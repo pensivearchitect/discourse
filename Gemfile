@@ -4,6 +4,8 @@ gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_
 
 # we had issues with latest, stick to the rev till we figure this out
 # PR that makes it all hang together welcome
+gem 'compass'
+gem 'zurb-foundation'
 gem 'ember-rails'
 gem 'ember-source', '1.0.0.rc5' # or the version you need
 gem 'handlebars-source', '1.0.0.rc4' # or the version you need
@@ -77,9 +79,9 @@ gem 'discourse_plugin', path: 'vendor/gems/discourse_plugin'
 # Discourse Plugins (optional)
 # Polls and Tasks have been disabled for launch, we need think all sorts of stuff through before adding them back in
 #   biggest concern is core support for custom sort orders, but there is also styling that just gets mishmashed into our core theme.
- gem 'discourse_poll', path: 'vendor/gems/discourse_poll'
-gem 'discourse_emoji', path: 'vendor/gems/discourse_emoji'
- gem 'discourse_task', path: 'vendor/gems/discourse_task'
+# gem 'discourse_poll', path: 'vendor/gems/discourse_poll'
+# gem 'discourse_emoji', path: 'vendor/gems/discourse_emoji'
+# gem 'discourse_task', path: 'vendor/gems/discourse_task'
 
 # Gems used only for assets and not required
 # in production environments by default.
