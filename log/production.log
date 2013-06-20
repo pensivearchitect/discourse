@@ -1,0 +1,254 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:55:33 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.4ms)
+Completed 500 Internal Server Error in 768ms
+
+ActionView::Template::Error (preload_store.js isn't precompiled):
+    11: 
+    12:     <link rel="icon" type="image/png" href="<%=SiteSetting.favicon_url%>">
+    13:     <link rel="apple-touch-icon" type="image/png" href="<%=SiteSetting.apple_touch_icon_url%>">
+    14:     <%= javascript_include_tag "preload_store" %>
+    15: 
+    16:     <%= render :partial => "common/special_font_face" %>
+    17:     <%= render :partial => "common/discourse_stylesheet" %>
+  app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb__258013373317522372_70266758408900'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:55:48 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (preload_store.js isn't precompiled):
+    11: 
+    12:     <link rel="icon" type="image/png" href="<%=SiteSetting.favicon_url%>">
+    13:     <link rel="apple-touch-icon" type="image/png" href="<%=SiteSetting.apple_touch_icon_url%>">
+    14:     <%= javascript_include_tag "preload_store" %>
+    15: 
+    16:     <%= render :partial => "common/special_font_face" %>
+    17:     <%= render :partial => "common/discourse_stylesheet" %>
+  app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb__258013373317522372_70266758408900'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2013-06-17 08:55:48 -0700
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Processing by ExceptionsController#not_found as */*
+  Rendered exceptions/not_found.html.erb within layouts/no_js (1.5ms)
+  Rendered common/_special_font_face.html.erb (1.2ms)
+Completed 500 Internal Server Error in 24ms
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:57:03 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.3ms)
+  Rendered common/_special_font_face.html.erb (12.9ms)
+  Rendered common/_discourse_stylesheet.html.erb (570.3ms)
+Completed 500 Internal Server Error in 1391ms
+
+ActionView::Template::Error (File to import not found or unreadable: foundation/helpers.
+Load paths:
+  /Users/joshua/code/discourse/forum/app/assets/fonts
+  /Users/joshua/code/discourse/forum/app/assets/images
+  /Users/joshua/code/discourse/forum/app/assets/javascripts
+  /Users/joshua/code/discourse/forum/app/assets/stylesheets
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/images
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/javascripts
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/stylesheets
+  /Users/joshua/code/discourse/forum/config/locales
+  /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/ember-rails-0.10.0/vendor/ember/development
+  (in /Users/joshua/code/discourse/forum/app/assets/stylesheets/components/navs.css.scss:3)):
+    1: <%- unless SiteCustomization.override_default_style(session[:preview_style]) %>
+    2:   <%=stylesheet_link_tag "application"%>
+    3: <%- end %>
+    4: 
+    5: <%- if staff? %>
+  app/assets/stylesheets/components/navs.css.scss:3
+  app/views/common/_discourse_stylesheet.html.erb:2:in `_app_views_common__discourse_stylesheet_html_erb__852734995031695817_70171036023680'
+  app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__3738650166702015216_70171058311040'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:57:11 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (0.5ms)
+  Rendered common/_special_font_face.html.erb (0.3ms)
+  Rendered common/_discourse_stylesheet.html.erb (126.1ms)
+Completed 500 Internal Server Error in 167ms
+
+ActionView::Template::Error (File to import not found or unreadable: foundation/helpers.
+Load paths:
+  /Users/joshua/code/discourse/forum/app/assets/fonts
+  /Users/joshua/code/discourse/forum/app/assets/images
+  /Users/joshua/code/discourse/forum/app/assets/javascripts
+  /Users/joshua/code/discourse/forum/app/assets/stylesheets
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/images
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/javascripts
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/stylesheets
+  /Users/joshua/code/discourse/forum/config/locales
+  /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/ember-rails-0.10.0/vendor/ember/development
+  (in /Users/joshua/code/discourse/forum/app/assets/stylesheets/components/navs.css.scss:3)):
+    1: <%- unless SiteCustomization.override_default_style(session[:preview_style]) %>
+    2:   <%=stylesheet_link_tag "application"%>
+    3: <%- end %>
+    4: 
+    5: <%- if staff? %>
+  app/assets/stylesheets/components/navs.css.scss:3
+  app/views/common/_discourse_stylesheet.html.erb:2:in `_app_views_common__discourse_stylesheet_html_erb__852734995031695817_70171036023680'
+  app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__3738650166702015216_70171058311040'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:57:43 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.4ms)
+  Rendered common/_special_font_face.html.erb (3.7ms)
+  Rendered common/_discourse_stylesheet.html.erb (92.2ms)
+Completed 500 Internal Server Error in 705ms
+
+ActionView::Template::Error (File to import not found or unreadable: foundation/helpers.
+Load paths:
+  /Users/joshua/code/discourse/forum/app/assets/fonts
+  /Users/joshua/code/discourse/forum/app/assets/images
+  /Users/joshua/code/discourse/forum/app/assets/javascripts
+  /Users/joshua/code/discourse/forum/app/assets/stylesheets
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/images
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/javascripts
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/stylesheets
+  /Users/joshua/code/discourse/forum/config/locales
+  /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/ember-rails-0.10.0/vendor/ember/development
+  (in /Users/joshua/code/discourse/forum/app/assets/stylesheets/components/navs.css.scss:3)):
+    1: <%- unless SiteCustomization.override_default_style(session[:preview_style]) %>
+    2:   <%=stylesheet_link_tag "application"%>
+    3: <%- end %>
+    4: 
+    5: <%- if staff? %>
+  app/assets/stylesheets/components/navs.css.scss:3
+  app/views/common/_discourse_stylesheet.html.erb:2:in `_app_views_common__discourse_stylesheet_html_erb__1302582932641716404_70153922439200'
+  app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__1127912962944258782_70153923242380'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 08:58:20 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.3ms)
+  Rendered common/_special_font_face.html.erb (4.2ms)
+  Rendered common/_discourse_stylesheet.html.erb (99.5ms)
+Completed 500 Internal Server Error in 868ms
+
+ActionView::Template::Error (File to import not found or unreadable: foundation/helpers.
+Load paths:
+  /Users/joshua/code/discourse/forum/app/assets/fonts
+  /Users/joshua/code/discourse/forum/app/assets/images
+  /Users/joshua/code/discourse/forum/app/assets/javascripts
+  /Users/joshua/code/discourse/forum/app/assets/stylesheets
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/images
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/javascripts
+  /Users/joshua/code/discourse/forum/vendor/gems/discourse_emoji/vendor/assets/stylesheets
+  /Users/joshua/code/discourse/forum/config/locales
+  /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/ember-rails-0.10.0/vendor/ember/development
+  (in /Users/joshua/code/discourse/forum/app/assets/stylesheets/components/navs.css.scss:3)):
+    1: <%- unless SiteCustomization.override_default_style(session[:preview_style]) %>
+    2:   <%=stylesheet_link_tag "application"%>
+    3: <%- end %>
+    4: 
+    5: <%- if staff? %>
+  app/assets/stylesheets/components/navs.css.scss:3
+  app/views/common/_discourse_stylesheet.html.erb:2:in `_app_views_common__discourse_stylesheet_html_erb___3329056319164404257_70254206920460'
+  app/views/layouts/application.html.erb:17:in `_app_views_layouts_application_html_erb__3468312548569177268_70254207819660'
+  app/controllers/list_controller.rb:88:in `block (2 levels) in respond'
+  app/controllers/list_controller.rb:84:in `respond'
+  app/controllers/list_controller.rb:32:in `block (2 levels) in <class:ListController>'
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+  Rendered /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (8.9ms)
+Started GET "/favicon.ico" for 127.0.0.1 at 2013-06-17 08:58:21 -0700
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  config/initializers/quiet_logger.rb:10:in `call_with_quiet_assets'
+  config/initializers/silence_logger.rb:19:in `call'
+  config/initializers/99-rack-cache.rb:18:in `call'
+
+
+  Rendered /Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 18:34:09 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.8ms)
+  Rendered common/_special_font_face.html.erb (0.7ms)
+  Rendered common/_discourse_stylesheet.html.erb (2.0ms)
+  Rendered common/_discourse_javascript.html.erb (0.8ms)
+Completed 200 OK in 961ms (Views: 16.0ms | ActiveRecord: 26.0ms)
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-17 19:01:14 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.1ms)
+  Rendered common/_special_font_face.html.erb (0.7ms)
+  Rendered common/_discourse_stylesheet.html.erb (1.8ms)
+  Rendered common/_discourse_javascript.html.erb (0.8ms)
+Completed 200 OK in 851ms (Views: 15.5ms | ActiveRecord: 9.6ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Started GET "/" for 127.0.0.1 at 2013-06-19 21:10:39 -0700
+Processing by ListController#latest as HTML
+  Rendered list/list.erb within layouts/application (1.4ms)
+  Rendered common/_special_font_face.html.erb (1.0ms)
+  Rendered common/_discourse_stylesheet.html.erb (2.9ms)
+  Rendered common/_discourse_javascript.html.erb (1.1ms)
+Completed 200 OK in 936ms (Views: 21.9ms | ActiveRecord: 30.5ms)

@@ -1,0 +1,128 @@
+<hash>
+  <date type="datetime">2013-06-17T09:07:52-07:00</date>
+  <guid>4b4289a2-b7de-4398-a90b-24f9bf7f64d3</guid>
+  <user-id nil="true"/>
+  <request>{}</request>
+  <action nil="true"/>
+  <controller>draft</controller>
+  <backtrace>[RAILS_ROOT]/spec/models/error_log_spec.rb:5:in `boom'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:10:in `exception'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:46:in `block (3 levels) in &lt;top (required)&gt;'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `instance_eval'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:254:in `with_around_each_hooks'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:111:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:390:in `block in run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:371:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/reporter.rb:34:in `report'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:25:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:80:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:17:in `block in autorun'</backtrace>
+  <message>boom</message>
+  <url>http://test.host/</url>
+  <exception-class>RuntimeError</exception-class>
+</hash>
+<hash>
+  <date type="datetime">2013-06-17T09:07:52-07:00</date>
+  <guid>fa8010f2-9d92-4627-b621-abef382e2085</guid>
+  <user-id nil="true"/>
+  <request>{}</request>
+  <action nil="true"/>
+  <controller>draft</controller>
+  <backtrace>[RAILS_ROOT]/spec/models/error_log_spec.rb:5:in `boom'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:10:in `exception'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:47:in `block (3 levels) in &lt;top (required)&gt;'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `instance_eval'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:254:in `with_around_each_hooks'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:111:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:390:in `block in run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:371:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/reporter.rb:34:in `report'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:25:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:80:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:17:in `block in autorun'</backtrace>
+  <message>boom</message>
+  <url>http://test.host/</url>
+  <exception-class>RuntimeError</exception-class>
+</hash>
+<hash>
+  <date type="datetime">2013-06-17T09:07:52-07:00</date>
+  <guid>99a06b7d-d6f4-474f-91a7-8a9feffd4ef6</guid>
+  <user-id nil="true"/>
+  <request>{}</request>
+  <action nil="true"/>
+  <controller>draft</controller>
+  <backtrace>[RAILS_ROOT]/spec/models/error_log_spec.rb:5:in `boom'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:10:in `exception'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:48:in `block (3 levels) in &lt;top (required)&gt;'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `instance_eval'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:254:in `with_around_each_hooks'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:111:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:390:in `block in run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:371:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/reporter.rb:34:in `report'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:25:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:80:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:17:in `block in autorun'</backtrace>
+  <message>boom</message>
+  <url>http://test.host/</url>
+  <exception-class>RuntimeError</exception-class>
+</hash>
+<hash>
+  <date type="datetime">2013-06-17T09:07:52-07:00</date>
+  <guid>183d6a86-95a5-4eef-8842-0cc2c02f4d7f</guid>
+  <user-id nil="true"/>
+  <request>{}</request>
+  <action nil="true"/>
+  <controller>draft</controller>
+  <backtrace>[RAILS_ROOT]/spec/models/error_log_spec.rb:5:in `boom'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:10:in `exception'
+[RAILS_ROOT]/spec/models/error_log_spec.rb:49:in `block (3 levels) in &lt;top (required)&gt;'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `instance_eval'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:114:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:254:in `with_around_each_hooks'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example.rb:111:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:390:in `block in run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:386:in `run_examples'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:371:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/example_group.rb:372:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `map'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:28:in `block in run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/reporter.rb:34:in `report'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/command_line.rb:25:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:80:in `run'
+/Users/joshua/.rvm/gems/ruby-2.0.0-p195-turbo/gems/rspec-core-2.13.1/lib/rspec/core/runner.rb:17:in `block in autorun'</backtrace>
+  <message>boom</message>
+  <url>http://test.host/</url>
+  <exception-class>RuntimeError</exception-class>
+</hash>
