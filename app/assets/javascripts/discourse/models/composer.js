@@ -400,7 +400,7 @@ Discourse.Composer = Discourse.Model.extend({
       // Update last post
       topic.set('last_posted_at', new Date());
       topic.set('highest_post_number', createdPost.get('post_number'));
-      topic.set('last_poster', Discourse.User.current());
+      topic.set('details.last_poster', Discourse.User.current());
       topic.set('filtered_posts_count', topic.get('filtered_posts_count') + 1);
 
       // Set the topic view for the new post

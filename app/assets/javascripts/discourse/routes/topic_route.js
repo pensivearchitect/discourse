@@ -60,11 +60,9 @@ Discourse.TopicRoute = Discourse.Route.extend({
   },
 
   model: function(params) {
-    var currentModel, _ref;
-    if (currentModel = (_ref = this.controllerFor('topic')) ? _ref.get('content') : void 0) {
-      if (currentModel.get('id') === parseInt(params.id, 10)) {
-        return currentModel;
-      }
+    var currentModel = this.modelFor('topic');
+    if (currentModel && (currentModel.get('id') === parseInt(params.id, 10))) {
+      return currentModel;
     }
     return Discourse.Topic.create(params);
   },
@@ -102,6 +100,7 @@ Discourse.TopicRoute = Discourse.Route.extend({
 
   setupController: function(controller, model) {
     controller.set('model', model);
+
     this.controllerFor('header').setProperties({
       topic: model,
       showExtraInfo: false

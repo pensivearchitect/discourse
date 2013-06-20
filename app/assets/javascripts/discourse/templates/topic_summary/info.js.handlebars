@@ -17,14 +17,14 @@
       <li>
         <a {{bindAttr href="url"}}>
         <h4>{{i18n created}}</h4>
-        {{avatar created_by imageSize="tiny"}}
+        {{avatar details.created_by imageSize="tiny"}}
         {{date created_at}}
         </a>
       </li>
       <li>
         <a {{bindAttr href="lastPostUrl"}}>
         <h4>{{i18n last_post}}</h4>
-        {{avatar last_poster imageSize="tiny"}}
+        {{avatar details.last_poster imageSize="tiny"}}
         {{date last_posted_at}}
         </a>
       </li>
@@ -53,12 +53,12 @@
     <ul class="clearfix">
       <li>
         <h4>{{i18n created}}</h4>
-        {{avatar created_by imageSize="tiny"}}
+        {{avatar details.created_by imageSize="tiny"}}
         <a {{bindAttr href="url"}}>{{date created_at}}</a>
       </li>
       <li>
         <h4>{{i18n last_post}}</h4>
-        {{avatar last_poster imageSize="tiny"}}
+        {{avatar details.last_poster imageSize="tiny"}}
         <a {{bindAttr href="lastPostUrl"}}>{{date last_posted_at}}</a>
       </li>
       <li>

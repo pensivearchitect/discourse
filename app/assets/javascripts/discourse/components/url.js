@@ -88,7 +88,7 @@ Discourse.URL = {
         var opts = { trackVisit: false };
         if (newMatches[3]) opts.nearPost = newMatches[3];
         topicController.cancelFilter();
-        topicController.loadPosts(opts);
+        topicController.filterPosts(opts);
 
         // Abort routing, we have replaced our state.
         return;

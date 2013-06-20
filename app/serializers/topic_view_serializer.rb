@@ -18,38 +18,24 @@ class TopicViewSerializer < ApplicationSerializer
      :moderator_posts_count,
      :has_best_of,
      :archetype,
-     :slug,
-     :auto_close_at]
-  end
-
-  def self.guardian_attributes
-    [:can_moderate, :can_edit, :can_delete, :can_invite_to, :can_move_posts, :can_remove_allowed_users]
+     :slug]
   end
 
   attributes *topic_attributes
-  attributes *guardian_attributes
-
   attributes :draft,
              :draft_key,
              :draft_sequence,
-             :post_action_visibility,
-             :voted_in_topic,
-             :can_create_post,
-             :can_reply_as_new_topic,
              :categoryName,
              :starred,
              :last_read_post_number,
              :posted,
-             :notification_level,
-             :notifications_reason_id,
-             :posts,
              :at_bottom,
              :highest_post_number,
              :pinned,
-             :filtered_posts_count
+             :filtered_posts_count,
+             :details,
+             :post_stream
 
-  has_one :created_by, serializer: BasicUserSerializer, embed: :objects
-  has_one :last_poster, serializer: BasicUserSerializer, embed: :objects
   has_many :allowed_users, serializer: BasicUserSerializer, embed: :objects
   has_many :allowed_groups, serializer: BasicGroupSerializer, embed: :objects
 
@@ -64,17 +50,32 @@ class TopicViewSerializer < ApplicationSerializer
     end}
   end
 
-  # Define the guardian attributes
-  guardian_attributes.each do |ga|
-    class_eval %{
-      def #{ga}
-        true
-      end
+  # TODO: Split off into proper object
+  def post_stream
+    { posts: posts }
+  end
 
-      def include_#{ga}?
-        scope.#{ga}?(object.topic)
-      end
+  # TODO: Split off into proper object
+  def details
+    result = {
+      auto_close_at: object.topic.auto_close_at,
+      created_by: BasicUserSerializer.new(object.topic.user, scope: scope, root: false),
+      last_poster: BasicUserSerializer.new(object.topic.last_poster, scope: scope, root: false)
     }
+
+    if has_topic_user?
+      result[:notification_level] = object.topic_user.notification_level
+      result[:notifications_reason_id] = object.topic_user.notifications_reason_id
+    end
+
+    result[:can_move_posts] = true if scope.can_move_posts?(object.topic)
+    result[:can_edit] = true if scope.can_edit?(object.topic)
+    result[:can_delete] = true if scope.can_delete?(object.topic)
+    result[:can_remove_allowed_users] = true if scope.can_remove_allowed_users?(object.topic)
+    result[:can_invite_to] = true if scope.can_invite_to?(object.topic)
+    result[:can_create_post] = true if scope.can_create?(Post, object.topic)
+    result[:can_reply_as_new_topic] = true if scope.can_reply_as_new_topic?(object.topic)
+    result
   end
 
   def draft
@@ -93,36 +94,8 @@ class TopicViewSerializer < ApplicationSerializer
     object.draft_sequence
   end
 
-  def post_action_visibility
-    object.post_action_visibility
-  end
-
-  def include_post_action_visibility?
-    object.post_action_visibility.present?
-  end
-
   def filtered_posts_count
     object.filtered_posts_count
-  end
-
-  def voted_in_topic
-    object.voted_in_topic?
-  end
-
-  def can_reply_as_new_topic
-    true
-  end
-
-  def include_can_reply_as_new_topic?
-    scope.can_reply_as_new_topic?(object.topic)
-  end
-
-  def can_create_post
-    true
-  end
-
-  def include_can_create_post?
-    scope.can_create?(Post, object.topic)
   end
 
   def categoryName
@@ -152,24 +125,6 @@ class TopicViewSerializer < ApplicationSerializer
     object.topic_user.posted?
   end
   alias_method :include_posted?, :has_topic_user?
-
-  def notification_level
-    object.topic_user.notification_level
-  end
-  alias_method :include_notification_level?, :has_topic_user?
-
-  def notifications_reason_id
-    object.topic_user.notifications_reason_id
-  end
-  alias_method :include_notifications_reason_id?, :has_topic_user?
-
-  def created_by
-    object.topic.user
-  end
-
-  def last_poster
-    object.topic.last_poster
-  end
 
   def allowed_users
     object.topic.allowed_users

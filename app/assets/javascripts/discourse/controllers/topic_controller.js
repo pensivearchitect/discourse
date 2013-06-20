@@ -11,7 +11,6 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   multiSelect: false,
   bestOf: false,
   summaryCollapsed: true,
-  loading: false,
   loadingBelow: false,
   loadingAbove: false,
   needs: ['header', 'modal', 'composer', 'quoteButton'],
@@ -19,12 +18,12 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   selectedPosts: new Em.Set(),
 
   canMergeTopic: function() {
-    if (!this.get('can_move_posts')) return false;
+    if (!this.get('details.can_move_posts')) return false;
     return (this.get('selectedPostsCount') > 0);
   }.property('selectedPostsCount'),
 
   canSplitTopic: function() {
-    if (!this.get('can_move_posts')) return false;
+    if (!this.get('details.can_move_posts')) return false;
     if (this.get('allPostsSelected')) return false;
     return (this.get('selectedPostsCount') > 0);
   }.property('selectedPostsCount'),
@@ -126,19 +125,11 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   },
 
   jumpTop: function() {
-    if (this.get('bestOf')) {
-      Discourse.TopicView.scrollTo(this.get('id'), this.get('posts')[0].get('post_number'));
-    } else {
-      Discourse.URL.routeTo(this.get('url'));
-    }
+    Discourse.URL.routeTo(this.get('url'));
   },
 
   jumpBottom: function() {
-    if (this.get('bestOf')) {
-      Discourse.TopicView.scrollTo(this.get('id'), this.get('posts').last().get('post_number'));
-    } else {
-      Discourse.URL.routeTo(this.get('lastPostUrl'));
-    }
+    Discourse.URL.routeTo(this.get('lastPostUrl'));
   },
 
   cancelFilter: function() {
@@ -182,8 +173,12 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
     }
   },
 
+  /**
+    Toggle a participant for filtering
+
+    @method toggleParticipant
+  **/
   toggleParticipant: function(user) {
-    this.set('bestOf', false);
     var username = Em.get(user, 'username');
     var userFilters = this.get('userFilters');
     if (userFilters.contains(username)) {
@@ -207,7 +202,7 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
         n_best_posts: Em.String.i18n("topic.filters.n_best_posts", { count: this.get('filtered_posts_count') }),
         of_n_posts: Em.String.i18n("topic.filters.of_n_posts", { count: this.get('posts_count') })
       }));
-    } else if (postFilters.userFilters.length > 0) {
+    } else if (postFilters.userFilters) {
       this.set('filterDesc', Em.String.i18n("topic.filters.user", {
         n_posts: Em.String.i18n("topic.filters.n_posts", { count: this.get('filtered_posts_count') }),
         by_n_users: Em.String.i18n("topic.filters.by_n_users", { count: postFilters.userFilters.length })
@@ -221,56 +216,62 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
     $('#topic-filter').slideDown();
   },
 
-  enableBestOf: function(e) {
-    this.set('bestOf', true);
-    this.get('userFilters').clear();
-  },
-
   postFilters: function() {
-    if (this.get('bestOf') === true) return { bestOf: true };
-    return { userFilters: this.get('userFilters') };
+
+    var result = {};
+    if (this.get('bestOf')) { result.bestOf = true; }
+
+    var userFiltersArray = this.get('userFilters').toArray();
+    if (userFiltersArray.length > 0) { result.userFilters = userFiltersArray; }
+
+    return result;
+
   }.property('userFilters.[]', 'bestOf'),
 
-  loadPosts: function(opts) {
+  filterPosts: function(opts) {
     var topicController = this;
-    this.get('content').loadPosts(opts).then(function () {
+
+    this.get('postStream').filter(opts).then(function() {
       Em.run.scheduleOnce('afterRender', topicController, 'updateBottomBar');
     });
   },
 
-  reloadPosts: function() {
-    var topic = this.get('content');
-    if (!topic) return;
+  showFavoriteButton: function() {
+    return Discourse.User.current() && !this.get('isPrivateMessage');
+  }.property('isPrivateMessage'),
 
-    var posts = topic.get('posts');
-    if (!posts) return;
+  // reloadPosts: function() {
+  //   var topic = this.get('content');
+  //   if (!topic) return;
 
-    // Leave the first post -- we keep it above the filter controls
-    posts.removeAt(1, posts.length - 1);
+  //   var posts = topic.get('posts');
+  //   if (!posts) return;
 
-    this.set('loadingBelow', true);
+  //   // Leave the first post -- we keep it above the filter controls
+  //   posts.removeAt(1, posts.length - 1);
 
-    var topicController = this;
-    var postFilters = this.get('postFilters');
-    return Discourse.Topic.find(this.get('id'), postFilters).then(function(result) {
-      var first = result.posts[0];
-      if (first) {
-        topicController.set('currentPost', first.post_number);
-      }
-      $('#topic-progress .solid').data('progress', false);
-      _.each(result.posts,function(p) {
-        // Skip the first post
-        if (p.post_number === 1) return;
-        posts.pushObject(Discourse.Post.create(p, topic));
-      });
+  //   this.set('loadingBelow', true);
 
-      Em.run.scheduleOnce('afterRender', topicController, 'updateBottomBar');
+  //   var topicController = this;
+  //   var postFilters = this.get('postFilters');
+  //   return Discourse.Topic.find(this.get('id'), postFilters).then(function(result) {
+  //     var first = result.posts[0];
+  //     if (first) {
+  //       topicController.set('currentPost', first.post_number);
+  //     }
+  //     $('#topic-progress .solid').data('progress', false);
+  //     result.posts.forEach(function(p) {
+  //       // Skip the first post
+  //       if (p.post_number === 1) return;
+  //       posts.pushObject(Discourse.Post.create(p, topic));
+  //     });
 
-      topicController.set('filtered_posts_count', result.filtered_posts_count);
-      topicController.set('loadingBelow', false);
-      topicController.set('seenBottom', false);
-    });
-  }.observes('postFilters'),
+  //     Em.run.scheduleOnce('afterRender', topicController, 'updateBottomBar');
+  //     topicController.set('filtered_posts_count', result.filtered_posts_count);
+  //     topicController.set('loadingBelow', false);
+  //     topicController.set('seenBottom', false);
+  //   });
+  // }.observes('postFilters'),
 
   deleteTopic: function() {
     var topicController = this;
@@ -327,8 +328,8 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
     bus.subscribe("/topic/" + (this.get('id')), function(data) {
       var topic = topicController.get('model');
       if (data.notification_level_change) {
-        topic.set('notification_level', data.notification_level_change);
-        topic.set('notifications_reason_id', data.notifications_reason_id);
+        topic.set('details.notification_level', data.notification_level_change);
+        topic.set('details.notifications_reason_id', data.notifications_reason_id);
         return;
       }
       var posts = topic.get('posts');
@@ -342,7 +343,7 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
       //  in this view ... for now fixed the general case
       topic.set('filtered_posts_count', topic.get('filtered_posts_count') + 1);
       topic.set('highest_post_number', data.post_number);
-      topic.set('last_poster', data.user);
+      topic.set('details.last_poster', data.user);
       topic.set('last_posted_at', data.created_at);
     });
   },

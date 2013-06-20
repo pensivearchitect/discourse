@@ -132,12 +132,6 @@ describe TopicView do
       end
     end
 
-    context '.post_action_visibility' do
-      it "is allows users to see likes" do
-        topic_view.post_action_visibility.include?(PostActionType.types[:like]).should be_true
-      end
-    end
-
     context '.read?' do
       it 'is unread with no logged in user' do
         TopicView.new(topic.id).read?(1).should be_false

@@ -212,27 +212,6 @@ class TopicView
     @all_post_actions ||= PostAction.counts_for(posts, @user)
   end
 
-  def voted_in_topic?
-    return false
-
-    # all post_actions is not the way to do this, cut down on the query, roll it up into topic if we need it
-
-    @voted_in_topic ||= begin
-      return false unless all_post_actions.present?
-      all_post_actions.values.flatten.map {|ac| ac.keys}.flatten.include?(PostActionType.types[:vote])
-    end
-  end
-
-  def post_action_visibility
-    @post_action_visibility ||= begin
-      result = []
-      PostActionType.types.each do |k, v|
-        result << v if guardian.can_see_post_actors?(@topic, v)
-      end
-      result
-    end
-  end
-
   def links
     @links ||= TopicLink.topic_summary(guardian, @topic.id)
   end

@@ -14,7 +14,7 @@ Discourse.TopicFromParamsRoute = Discourse.Route.extend({
 
     var topicController = this.controllerFor('topic');
     topicController.cancelFilter();
-    topicController.loadPosts(params);
+    topicController.filterPosts(params);
   }
 
 });

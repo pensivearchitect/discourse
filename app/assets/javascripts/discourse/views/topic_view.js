@@ -117,7 +117,7 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
 
     var controller = this.get('controller');
     controller.set('onPostRendered', function(){
-      topicView.postsRendered.apply(topicView);
+      topicView.postsRendered(topicView);
     });
 
     this.$().on('mouseup.discourse-redirect', '.cooked a, a.track-link', function(e) {
@@ -205,66 +205,47 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
     }
   },
 
-  observeFirstPostLoaded: (function() {
-    var loaded, old, posts;
-    posts = this.get('topic.posts');
-    // TODO topic.posts stores non ember objects in it for a period of time, this is bad
-    loaded = posts && posts[0] && posts[0].post_number === 1;
-
-    // I avoided a computed property cause I did not want to set it, over and over again
-    old = this.get('firstPostLoaded');
-    if (loaded) {
-      if (old !== true) {
-        this.set('firstPostLoaded', true);
-      }
-    } else {
-      if (old !== false) {
-        this.set('firstPostLoaded', false);
-      }
-    }
-  }).observes('topic.posts.@each'),
-
   // Load previous posts if there are some
   prevPage: function($post) {
-    var postView = Ember.View.views[$post.prop('id')];
-    if (!postView) return;
+    // var postView = Ember.View.views[$post.prop('id')];
+    // if (!postView) return;
 
-    var post = postView.get('post');
-    if (!post) return;
+    // var post = postView.get('post');
+    // if (!post) return;
 
-    // We don't load upwards from the first page
-    if (post.post_number === 1) return;
+    // // We don't load upwards from the first page
+    // if (post.post_number === 1) return;
 
-    // double check
-    if (this.topic && this.topic.posts && this.topic.posts.length > 0 && this.topic.posts[0].post_number !== post.post_number) return;
+    // // double check
+    // if (this.topic && this.topic.posts && this.topic.posts.length > 0 && this.topic.posts[0].post_number !== post.post_number) return;
 
-    // half mutex
-    if (this.get('controller.loading')) return;
-    this.set('controller.loading', true);
-    this.set('controller.loadingAbove', true);
-    var opts = $.extend({ postsBefore: post.get('post_number') }, this.get('controller.postFilters'));
+    // // half mutex
+    // if (this.get('controller.loading')) return;
+    // this.set('controller.loading', true);
+    // this.set('controller.loadingAbove', true);
+    // var opts = $.extend({ postsBefore: post.get('post_number') }, this.get('controller.postFilters'));
 
-    var topicView = this;
-    return Discourse.Topic.find(this.get('topic.id'), opts).then(function(result) {
-      var lastPostNum, posts;
-      posts = topicView.get('topic.posts');
+    // var topicView = this;
+    // return Discourse.Topic.find(this.get('topic.id'), opts).then(function(result) {
+    //   var lastPostNum, posts;
+    //   posts = topicView.get('topic.posts');
 
-      // Add a scrollTo record to the last post inserted to the DOM
-      lastPostNum = result.posts[0].post_number;
-      _.each(result.posts,function(post) {
-        var newPost;
-        newPost = Discourse.Post.create(post, topicView.get('topic'));
-        if (post.post_number === lastPostNum) {
-          newPost.set('scrollTo', {
-            top: $(window).scrollTop(),
-            height: $(document).height()
-          });
-        }
-        return posts.unshiftObject(newPost);
-      });
-      topicView.set('controller.loading', false);
-      return topicView.set('controller.loadingAbove', false);
-    });
+    //   // Add a scrollTo record to the last post inserted to the DOM
+    //   lastPostNum = result.posts[0].post_number;
+    //   _.each(result.posts,function(post) {
+    //     var newPost;
+    //     newPost = Discourse.Post.create(post, topicView.get('topic'));
+    //     if (post.post_number === lastPostNum) {
+    //       newPost.set('scrollTo', {
+    //         top: $(window).scrollTop(),
+    //         height: $(document).height()
+    //       });
+    //     }
+    //     return posts.unshiftObject(newPost);
+    //   });
+    //   topicView.set('controller.loading', false);
+    //   return topicView.set('controller.loadingAbove', false);
+    // });
   },
 
   fullyLoaded: (function() {
@@ -282,39 +263,39 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
   }.observes('topic.highest_post_number'),
 
   loadMore: function(post) {
-    if (!post) return;
-    if (this.get('controller.loading')) return;
+    // if (!post) return;
+    // if (this.get('controller.loading')) return;
 
-    // Don't load if we know we're at the bottom
-    if (this.get('topic.highest_post_number') === post.get('post_number')) return;
+    // // Don't load if we know we're at the bottom
+    // if (this.get('topic.highest_post_number') === post.get('post_number')) return;
 
-    if (this.get('controller.seenBottom')) return;
+    // if (this.get('controller.seenBottom')) return;
 
-    // Don't double load ever
-    if (this.topic.posts[this.topic.posts.length-1].post_number !== post.post_number) return;
-    this.set('controller.loadingBelow', true);
-    this.set('controller.loading', true);
-    var opts = $.extend({ postsAfter: post.get('post_number') }, this.get('controller.postFilters'));
+    // // Don't double load ever
+    // if (this.topic.posts[this.topic.posts.length-1].post_number !== post.post_number) return;
+    // this.set('controller.loadingBelow', true);
+    // this.set('controller.loading', true);
+    // var opts = $.extend({ postsAfter: post.get('post_number') }, this.get('controller.postFilters'));
 
-    var topicView = this;
-    var topic = this.get('controller.content');
-    return Discourse.Topic.find(topic.get('id'), opts).then(function(result) {
-      if (result.at_bottom || result.posts.length === 0) {
-        topicView.set('controller.seenBottom', 'true');
-      }
-      topic.pushPosts(_.map(result.posts,function(p) {
-        return Discourse.Post.create(p, topic);
-      }));
-      if (result.suggested_topics) {
-        var suggested = Em.A();
-        _.each(result.suggested_topics,function(topic) {
-          suggested.pushObject(Discourse.Topic.create(topic));
-        });
-        topicView.set('topic.suggested_topics', suggested);
-      }
-      topicView.set('controller.loadingBelow', false);
-      return topicView.set('controller.loading', false);
-    });
+    // var topicView = this;
+    // var topic = this.get('controller.content');
+    // return Discourse.Topic.find(topic.get('id'), opts).then(function(result) {
+    //   if (result.at_bottom || result.posts.length === 0) {
+    //     topicView.set('controller.seenBottom', 'true');
+    //   }
+    //   topic.pushPosts(_.map(result.posts,function(p) {
+    //     return Discourse.Post.create(p, topic);
+    //   }));
+    //   if (result.suggested_topics) {
+    //     var suggested = Em.A();
+    //     _.each(result.suggested_topics,function(topic) {
+    //       suggested.pushObject(Discourse.Topic.create(topic));
+    //     });
+    //     topicView.set('topic.suggested_topics', suggested);
+    //   }
+    //   topicView.set('controller.loadingBelow', false);
+    //   return topicView.set('controller.loading', false);
+    // });
   },
 
   cancelEdit: function() {
@@ -337,17 +318,17 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
       // manually update the titles & category
       topic.setProperties({
         title: newTitle,
-        fancy_title: newTitle,
         categoryName: newCategoryName
       });
+
+      topic.set('fancy_title', newTitle);
+
       // save the modifications
       topic.save().then(function(result){
         // update the title if it has been changed (cleaned up) server-side
         var title = result.basic_topic.fancy_title;
-        topic.setProperties({
-          title: title,
-          fancy_title: title
-        });
+        topic.set('title', title);
+        topic.set('fancy_title', title);
 
       }, function(error) {
         topicView.set('editingTopic', true);
@@ -363,15 +344,11 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
   },
 
   editTopic: function() {
-    if (!this.get('topic.can_edit')) return false;
+    if (!this.get('topic.details.can_edit')) return false;
     // enable editing mode
     this.set('editingTopic', true);
     return false;
   },
-
-  showFavoriteButton: function() {
-    return Discourse.User.current() && !this.get('topic.isPrivateMessage');
-  }.property('topic.isPrivateMessage'),
 
   resetExamineDockCache: function() {
     this.docAt = null;
@@ -399,6 +376,8 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
   },
 
   updatePosition: function(userActive) {
+
+    var topic = this.get('controller.model');
 
     var rows = $('.topic-post');
     if (!rows || rows.length === 0) { return; }
@@ -445,7 +424,7 @@ Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {
     }
 
     var offset = window.pageYOffset || $('html').scrollTop();
-    var firstLoaded = this.get('firstPostLoaded');
+    var firstLoaded = topic.get('postStream.firstPostLoaded');
     if (!this.docAt) {
       var title = $('#topic-title');
       if (title && title.length === 1) {
