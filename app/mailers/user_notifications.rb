@@ -38,7 +38,10 @@ class UserNotifications < ActionMailer::Base
                 topic_title: post.topic.title,
                 private_message_from: post.user.name,
                 from_alias: I18n.t(:via, username: post.user.name, site_name: SiteSetting.title),
-                add_unsubscribe_link: true
+                add_unsubscribe_link: true,
+                allow_reply_by_email: true,
+                post_id: post.id,
+                topic_id: post.topic_id
   end
 
   def digest(user, opts={})

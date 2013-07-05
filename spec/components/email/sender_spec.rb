@@ -20,6 +20,34 @@ describe Email::Sender do
     Email::Sender.new(message, :hello).send
   end
 
+  context "list_id_for" do
+
+    it "joins the host and forum name" do
+      Email::Sender.list_id_for("myforum", "http://mysite.com").should == '"myforum" <discourse.forum.myforum.mysite.com>'
+    end
+
+    it "uses localhost when no host is present" do
+      Email::Sender.list_id_for("myforum", nil).should == '"myforum" <discourse.forum.myforum.localhost>'
+    end
+
+    it "uses localhost with a weird host" do
+      Email::Sender.list_id_for("Fun", "this is not a real host").should == '"Fun" <discourse.forum.fun.localhost>'
+    end
+
+    it "removes double quotes from names" do
+      Email::Sender.list_id_for('Quoted "Forum"', 'http://quoted.com').should == '"Quoted \'Forum\'" <discourse.forum.quoted-forum.quoted.com>'
+    end
+
+    it "converts the site name to lower case and removes spaces" do
+      Email::Sender.list_id_for("Robin's cool Forum!", "http://robin.com").should == '"Robin\'s cool Forum!" <discourse.forum.robins-cool-forum.robin.com>'
+    end
+
+    it "downcases host names" do
+      Email::Sender.list_id_for("cool", "http://ForumSite.com").should == '"cool" <discourse.forum.cool.forumsite.com>'
+    end
+
+  end
+
   context 'with a valid message' do
 
     let(:reply_key) { "abcd" * 8 }
@@ -38,6 +66,11 @@ describe Email::Sender do
       email_sender.send
     end
 
+    it "adds a List-Id header to identify the forum" do
+      email_sender.send
+      message.header['List-Id'].should be_present
+    end
+
     context 'email logs' do
       let(:email_log) { EmailLog.last }
 
@@ -51,8 +84,8 @@ describe Email::Sender do
 
     context "email log with a post id and topic id" do
       before do
-        message.header['Discourse-Post-Id'] = 3344
-        message.header['Discourse-Topic-Id'] = 5577
+        message.header['X-Discourse-Post-Id'] = 3344
+        message.header['X-Discourse-Topic-Id'] = 5577
       end
 
       let(:email_log) { EmailLog.last }
@@ -63,7 +96,7 @@ describe Email::Sender do
 
     context "email log with a reply key" do
       before do
-        message.header['Discourse-Reply-Key'] = reply_key
+        message.header['X-Discourse-Reply-Key'] = reply_key
       end
 
       let(:email_log) { EmailLog.last }

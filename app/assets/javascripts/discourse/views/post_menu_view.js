@@ -38,7 +38,8 @@ Discourse.PostMenuView = Discourse.View.extend({
   // Trigger re-rendering
   needsToRender: function() {
     this.rerender();
-  }.observes('post.deleted_at', 'post.flagsAvailable.@each', 'post.url', 'post.bookmarked', 'post.reply_count', 'post.showRepliesBelow', 'post.can_delete'),
+  }.observes('post.deleted_at', 'post.flagsAvailable.@each', 'post.url', 'post.bookmarked', 'post.reply_count',
+             'post.showRepliesBelow', 'post.can_delete', 'post.read', 'post.topic.last_read_post_number'),
 
   // Replies Button
   renderReplies: function(post, buffer) {
@@ -59,7 +60,7 @@ Discourse.PostMenuView = Discourse.View.extend({
 
   // Delete button
   renderDelete: function(post, buffer) {
-    if (post.get('post_number') === 1 && this.get('controller.content.can_delete')) {
+    if (post.get('post_number') === 1 && this.get('controller.model.details.can_delete')) {
       buffer.push("<button title=\"" +
                   (Em.String.i18n("topic.actions.delete")) +
                   "\" data-action=\"deleteTopic\" class='delete'><i class=\"icon-trash\"></i></button>");
@@ -137,7 +138,7 @@ Discourse.PostMenuView = Discourse.View.extend({
 
   // Reply button
   renderReply: function(post, buffer) {
-    if (!this.get('controller.content.can_create_post')) return;
+    if (!this.get('controller.model.details.can_create_post')) return;
     buffer.push("<button title=\"" +
                  (Em.String.i18n("post.controls.reply")) +
                  "\" class='create' data-action=\"reply\"><i class='icon-reply'></i>" +
@@ -152,13 +153,9 @@ Discourse.PostMenuView = Discourse.View.extend({
   renderBookmark: function(post, buffer) {
     if (!Discourse.User.current()) return;
 
-    var icon = 'bookmark';
-    if (!this.get('post.bookmarked')) {
-      icon += '-empty';
-    }
-    buffer.push("<button title=\"" +
-                (Em.String.i18n("post.controls.bookmark")) +
-                "\" data-action=\"bookmark\" class='bookmark'><i class=\"icon-" + icon + "\"></i></button>");
+    buffer.push("<button title=\"" + this.get('post.bookmarkTooltip') +
+                "\" data-action=\"bookmark\" class='bookmark'><div class='" + this.get('post.bookmarkClass') +
+                "'></div></button>");
   },
 
   clickBookmark: function() {

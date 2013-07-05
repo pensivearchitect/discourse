@@ -25,7 +25,11 @@ class TopicsController < ApplicationController
   caches_action :avatar, cache_path: Proc.new {|c| "#{c.params[:post_number]}-#{c.params[:topic_id]}" }
 
   def show
-    opts = params.slice(:username_filters, :best_of, :page, :post_number, :posts_before, :posts_after, :best)
+    # We'd like to migrate the wordpress feed to another url. This keeps up backwards compatibility with
+    # existing installs.
+    return wordpress if params[:best].present?
+
+    opts = params.slice(:username_filters, :filter, :page, :post_number)
     begin
       @topic_view = TopicView.new(params[:id] || params[:topic_id], current_user, opts)
     rescue Discourse::NotFound
@@ -33,8 +37,6 @@ class TopicsController < ApplicationController
       raise Discourse::NotFound unless topic
       return redirect_to(topic.relative_url)
     end
-
-    raise Discourse::NotFound if @topic_view.posts.blank? && !(opts[:best].to_i > 0)
 
     anonymous_etag(@topic_view.topic) do
       redirect_to_correct_topic && return if slugs_do_not_match
@@ -44,6 +46,36 @@ class TopicsController < ApplicationController
     end
 
     canonical_url @topic_view.canonical_path
+  end
+
+  def wordpress
+    params.require(:best)
+    params.require(:topic_id)
+    params.permit(:min_trust_level, :min_score, :min_replies, :bypass_trust_level_score)
+
+    @topic_view = TopicView.new(
+        params[:topic_id],
+        current_user,
+          best: params[:best].to_i,
+          min_trust_level: params[:min_trust_level].nil? ? 1 : params[:min_trust_level].to_i,
+          min_score: params[:min_score].to_i,
+          min_replies: params[:min_replies].to_i,
+          bypass_trust_level_score: params[:bypass_trust_level_score].to_i # safe cause 0 means ignore
+    )
+
+    anonymous_etag(@topic_view.topic) do
+      wordpress_serializer = TopicViewWordpressSerializer.new(@topic_view, scope: guardian, root: false)
+      render_json_dump(wordpress_serializer)
+    end
+  end
+
+
+  def posts
+    params.require(:topic_id)
+    params.require(:post_ids)
+
+    @topic_view = TopicView.new(params[:topic_id], current_user, post_ids: params[:post_ids])
+    render_json_dump(TopicViewPostsSerializer.new(@topic_view, scope: guardian, root: false))
   end
 
   def destroy_timings
@@ -84,7 +116,11 @@ class TopicsController < ApplicationController
     raise Discourse::InvalidParameters.new(:title) if title.length < SiteSetting.min_title_similar_length
     raise Discourse::InvalidParameters.new(:raw) if raw.length < SiteSetting.min_body_similar_length
 
-    topics = Topic.similar_to(title, raw, current_user)
+    # Only suggest similar topics if the site has a minimmum amount of topics present.
+    if Topic.count > SiteSetting.minimum_topics_similar
+      topics = Topic.similar_to(title, raw, current_user)
+    end
+
     render_serialized(topics, BasicTopicSerializer)
   end
 
@@ -153,7 +189,7 @@ class TopicsController < ApplicationController
     guardian.ensure_can_invite_to!(topic)
 
     if topic.invite(current_user, params[:user])
-      user = User.find_by_username_or_email(params[:user]).first
+      user = User.find_by_username_or_email(params[:user])
       if user
         render_json_dump BasicUserSerializer.new(user, scope: guardian, root: 'user')
       else
@@ -253,6 +289,7 @@ class TopicsController < ApplicationController
 
   def perform_show_response
     topic_view_serializer = TopicViewSerializer.new(@topic_view, scope: guardian, root: false)
+
     respond_to do |format|
       format.html do
         store_preloaded("topic_#{@topic_view.topic.id}", MultiJson.dump(topic_view_serializer))

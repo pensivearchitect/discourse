@@ -7,6 +7,7 @@ require_dependency 'discourse'
 require_dependency 'post_destroyer'
 require_dependency 'user_name_suggester'
 require_dependency 'roleable'
+require_dependency 'pretty_text'
 
 class User < ActiveRecord::Base
   include Roleable
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :invites
   has_many :topic_links
 
+  has_one :facebook_user_info, dependent: :destroy
   has_one :twitter_user_info, dependent: :destroy
   has_one :github_user_info, dependent: :destroy
   has_one :cas_user_info, dependent: :destroy
@@ -133,7 +135,22 @@ class User < ActiveRecord::Base
   def self.find_by_username_or_email(username_or_email)
     lower_user = username_or_email.downcase
     lower_email = Email.downcase(username_or_email)
-    where("username_lower = :user or lower(username) = :user or email = :email or lower(name) = :user", user: lower_user, email: lower_email)
+
+    users =
+      if username_or_email.include?('@')
+        User.where(email: lower_email)
+      else
+        User.where(username_lower: lower_user)
+      end
+        .to_a
+
+    if users.count > 1
+      raise Discourse::TooManyMatches
+    elsif users.count == 1
+      users[0]
+    else
+      nil
+    end
   end
 
   def enqueue_welcome_message(message_type)
@@ -142,9 +159,10 @@ class User < ActiveRecord::Base
   end
 
   def change_username(new_username)
-    current_username, self.username = username, new_username
+    current_username = self.username
+    self.username = new_username
 
-    if SiteSetting.call_discourse_hub? && valid?
+    if current_username.downcase != new_username.downcase && SiteSetting.call_discourse_hub? && valid?
       begin
         DiscourseHub.change_nickname(current_username, new_username)
       rescue DiscourseHub::NicknameUnavailable
@@ -177,12 +195,12 @@ class User < ActiveRecord::Base
   end
 
   # Approve this user
-  def approve(approved_by)
+  def approve(approved_by, send_mail=true)
     self.approved = true
     self.approved_by = approved_by
     self.approved_at = Time.now
 
-    send_approval_email if save
+    send_approval_email if save and send_mail
   end
 
   def self.email_hash(email)
@@ -212,8 +230,7 @@ class User < ActiveRecord::Base
   end
 
   def saw_notification_id(notification_id)
-    User.update_all ["seen_notification_id = ?", notification_id],
-                    ["seen_notification_id < ?", notification_id]
+    User.where(["seen_notification_id < ?", notification_id]).update_all ["seen_notification_id = ?", notification_id]
   end
 
   def publish_notifications_state
@@ -265,11 +282,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def update_last_seen!
-    now = DateTime.now
+  def update_last_seen!(now=nil)
+    now ||= Time.zone.now
     now_date = now.to_date
+
     # Only update last seen once every minute
-    redis_key = "user:#{self.id}:#{now_date.to_s}"
+    redis_key = "user:#{self.id}:#{now_date}"
     if $redis.setnx(redis_key, "1")
       $redis.expire(redis_key, SiteSetting.active_user_rate_limit_secs)
 
@@ -442,7 +460,7 @@ class User < ActiveRecord::Base
     if last_seen.present?
       diff = (Time.now.to_f - last_seen.to_f).round
       if diff > 0 && diff < MAX_TIME_READ_DIFF
-        User.update_all ["time_read = time_read + ?", diff], id: id, time_read: time_read
+        User.where(id: id, time_read: time_read).update_all ["time_read = time_read + ?", diff]
       end
     end
     $redis.set(last_seen_key, Time.now.to_f)
@@ -512,10 +530,10 @@ class User < ActiveRecord::Base
 
     where_conditions = {notifications_reason_id: nil, user_id: id}
     if auto_track_topics_after_msecs < 0
-      TopicUser.update_all({notification_level: TopicUser.notification_levels[:regular]}, where_conditions)
+      TopicUser.where(where_conditions).update_all({notification_level: TopicUser.notification_levels[:regular]})
     else
-      TopicUser.update_all(["notification_level = CASE WHEN total_msecs_viewed < ? THEN ? ELSE ? END",
-                            auto_track_topics_after_msecs, TopicUser.notification_levels[:regular], TopicUser.notification_levels[:tracking]], where_conditions)
+      TopicUser.where(where_conditions).update_all(["notification_level = CASE WHEN total_msecs_viewed < ? THEN ? ELSE ? END",
+                            auto_track_topics_after_msecs, TopicUser.notification_levels[:regular], TopicUser.notification_levels[:tracking]])
     end
   end
 
@@ -548,7 +566,8 @@ class User < ActiveRecord::Base
   def username_validator
     username_format_validator || begin
       lower = username.downcase
-      if username_changed? && User.where(username_lower: lower).exists?
+      existing = User.where(username_lower: lower).first
+      if username_changed? && existing && existing.id != self.id
         errors.add(:username, I18n.t(:'user.username.unique'))
       end
     end
@@ -638,6 +657,7 @@ end
 #  likes_received                :integer          default(0), not null
 #  topic_reply_count             :integer          default(0), not null
 #  blocked                       :boolean          default(FALSE)
+#  dynamic_favicon               :boolean          default(FALSE), not null
 #
 # Indexes
 #
