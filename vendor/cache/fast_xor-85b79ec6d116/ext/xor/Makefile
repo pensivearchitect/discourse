@@ -16,7 +16,7 @@ hdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 arch_hdrdir = $(rubyhdrdir)/$(arch)
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/joshua/.rvm/rubies/ruby-2.0.0-p195-turbo
+prefix = $(DESTDIR)/Users/joshua/.rbenv/versions/2.0.0-p0
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -30,8 +30,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20130618-5223-xcgrxe
-sitelibdir = $(DESTDIR)./.gem.20130618-5223-xcgrxe
+sitearchdir = $(sitelibdir)/$(sitearch)
+sitelibdir = $(sitedir)/$(ruby_version)
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -62,11 +62,11 @@ bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
 
 
-CC = /usr/bin/clang
-CXX = clang++
-LIBRUBY = $(LIBRUBY_SO)
+CC = clang
+CXX = g++
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
+LIBRUBYARG_SHARED = 
 LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
@@ -77,14 +77,13 @@ cflags   =  $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
 warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration
-CCDLFLAGS = -fno-common
-CFLAGS   = $(CCDLFLAGS) $(cflags)  -fno-common -pipe $(ARCH_FLAG)
+CFLAGS   = -fno-common  -O3 -Wno-error=shorten-64-to-32  -pipe $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS =  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libxml2/include -I/usr/local/opt/libxslt/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include $(DEFS) $(cppflags)
-CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
-ldflags  = -L. -fstack-protector -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libxml2/lib -L/usr/local/opt/libxslt/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib 
-dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libxml2/lib -L/usr/local/opt/libxslt/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  
+CPPFLAGS =  -I'/Users/joshua/.rbenv/versions/2.0.0-p0/include'  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CXXFLAGS = $(CFLAGS) $(cxxflags)
+ldflags  = -L. -L'/Users/joshua/.rbenv/versions/2.0.0-p0/lib' 
+dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -dynamic -bundle
@@ -93,13 +92,13 @@ AR = ar
 EXEEXT = 
 
 RUBY_INSTALL_NAME = ruby
-RUBY_SO_NAME = ruby.2.0.0
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-darwin12.4.0
+arch = x86_64-darwin12.3.0
 sitearch = $(arch)
 ruby_version = 2.0.0
 ruby = $(bindir)/ruby
@@ -110,7 +109,7 @@ RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
 RMDIRS = rmdir -p
 MAKEDIRS = /usr/local/bin/gmkdir -p
-INSTALL = /usr/local/bin/ginstall -c
+INSTALL = /usr/bin/install -c
 INSTALL_PROG = $(INSTALL) -m 0755
 INSTALL_DATA = $(INSTALL) -m 644
 COPY = cp
@@ -120,8 +119,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(libdir) /usr/local/opt/libyaml/lib /usr/local/opt/readline/lib /usr/local/opt/libxml2/lib /usr/local/opt/libxslt/lib /usr/local/opt/libksba/lib /usr/local/opt/openssl/lib
-LIBPATH =  -L. -L$(libdir) -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libxml2/lib -L/usr/local/opt/libxslt/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib
+libpath = . $(libdir)
+LIBPATH =  -L. -L$(libdir)
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -132,7 +131,7 @@ extout =
 extout_prefix = 
 target_prefix = 
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED)  -lpthread -ldl -lobjc 
+LIBS =   -lpthread -ldl -lobjc 
 ORIG_SRCS = xor.c
 SRCS = $(ORIG_SRCS) 
 OBJS = xor.o
@@ -146,8 +145,8 @@ STATIC_LIB =
 
 BINDIR        = $(bindir)
 RUBYCOMMONDIR = $(sitedir)$(target_prefix)
-RUBYLIBDIR    = $(sitelibdir)$(target_prefix)
-RUBYARCHDIR   = $(sitearchdir)$(target_prefix)
+RUBYLIBDIR = /Users/joshua/code/discourse/forum/vendor/cache/fast_xor-85b79ec6d116/lib$(target_prefix)
+RUBYARCHDIR = /Users/joshua/code/discourse/forum/vendor/cache/fast_xor-85b79ec6d116/lib$(target_prefix)
 HDRDIR        = $(rubyhdrdir)/ruby$(target_prefix)
 ARCHHDRDIR    = $(rubyhdrdir)/$(arch)/ruby$(target_prefix)
 
@@ -165,7 +164,7 @@ clean-rb-default::
 clean-rb::
 clean-so::
 clean: clean-so clean-static clean-rb-default clean-rb
-		-$(Q)$(RM) $(CLEANLIBS) $(CLEANOBJS) $(CLEANFILES) .*.time
+		-$(Q)$(RM) $(CLEANLIBS) $(CLEANOBJS) $(CLEANFILES)
 
 distclean-rb-default::
 distclean-rb::
@@ -179,7 +178,7 @@ distclean: clean distclean-so distclean-static distclean-rb-default distclean-rb
 realclean: distclean
 install: install-so install-rb
 
-install-so: $(DLLIB) ./.RUBYARCHDIR.time
+install-so: $(DLLIB)
 	$(INSTALL_PROG) $(DLLIB) $(RUBYARCHDIR)
 clean-static::
 	-$(Q)$(RM) $(STATIC_LIB)

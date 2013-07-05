@@ -29,7 +29,7 @@ production:
   pool: 5
   timeout: 5000
   host_names:
-    - dgsforum.aws.af.cm # Update this to be the domain of your production site
+    - dgsforum 
 
 profile:
   adapter: postgresql
