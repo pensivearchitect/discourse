@@ -65,7 +65,7 @@ gem 'seed-fu'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: nil
-gem 'slim'  # required for sidekiq-web
+gem 'slim' # required for sidekiq-web
 gem 'strong_parameters' # remove when we upgrade to Rails 4
 gem 'therubyracer', require: 'v8'
 gem 'thin'
@@ -141,7 +141,7 @@ gem 'lru_redux'
 # IMPORTANT: mini profiler monkey patches, so it better be required last
 #  If you want to amend mini profiler to do the monkey patches in the railstie
 #  we are open to it. by deferring require to the initializer we can configure disourse installs without it
-gem 'rack-mini-profiler', '0.1.27', require: false  # require: false #, git: 'git://github.com/SamSaffron/MiniProfiler'
+gem 'rack-mini-profiler', '0.1.27', require: false # require: false #, git: 'git://github.com/SamSaffron/MiniProfiler'
 
 # used for caching, optional
 # redis-rack-cache is missing a sane expiry policy, it hogs redis
@@ -157,4 +157,5 @@ group :profile do
   #
   # if you need to profile, uncomment out this line
   # gem 'rack-perftools_profiler', require: 'rack/perftools_profiler', platform: :mri_19
+  gem 'capistrano'
 end
