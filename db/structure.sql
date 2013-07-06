@@ -1965,7 +1965,9 @@ CREATE TABLE post_actions (
     deleted_by integer,
     message text,
     related_post_id integer,
-    staff_took_action boolean DEFAULT false NOT NULL
+    staff_took_action boolean DEFAULT false NOT NULL,
+    defer boolean,
+    defer_by integer
 );
 
 
@@ -2310,9 +2312,9 @@ CREATE TABLE topic_link_clicks (
     id integer NOT NULL,
     topic_link_id integer NOT NULL,
     user_id integer,
-    ip bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ip_address inet NOT NULL
 );
 
 
@@ -2519,7 +2521,7 @@ CREATE TABLE uploads (
     url character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sha character varying(255)
+    sha1 character varying(40)
 );
 
 
@@ -2704,7 +2706,8 @@ CREATE TABLE users (
     likes_received integer DEFAULT 0 NOT NULL,
     topic_reply_count integer DEFAULT 0 NOT NULL,
     blocked boolean DEFAULT false,
-    dynamic_favicon boolean DEFAULT false NOT NULL
+    dynamic_favicon boolean DEFAULT false NOT NULL,
+    title character varying(255)
 );
 
 
@@ -2773,9 +2776,9 @@ ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
 CREATE TABLE views (
     parent_id integer NOT NULL,
     parent_type character varying(50) NOT NULL,
-    ip bigint NOT NULL,
     viewed_at date NOT NULL,
-    user_id integer
+    user_id integer,
+    ip_address inet NOT NULL
 );
 
 
@@ -4647,10 +4650,17 @@ CREATE UNIQUE INDEX index_twitter_user_infos_on_user_id ON twitter_user_infos US
 
 
 --
--- Name: index_uploads_on_sha; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_uploads_on_sha1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_uploads_on_sha ON uploads USING btree (sha);
+CREATE UNIQUE INDEX index_uploads_on_sha1 ON uploads USING btree (sha1);
+
+
+--
+-- Name: index_uploads_on_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_uploads_on_url ON uploads USING btree (url);
 
 
 --
@@ -5285,4 +5295,20 @@ INSERT INTO schema_migrations (version) VALUES ('20130616082327');
 
 INSERT INTO schema_migrations (version) VALUES ('20130617014127');
 
+INSERT INTO schema_migrations (version) VALUES ('20130617180009');
+
 INSERT INTO schema_migrations (version) VALUES ('20130617181804');
+
+INSERT INTO schema_migrations (version) VALUES ('20130619063902');
+
+INSERT INTO schema_migrations (version) VALUES ('20130621042855');
+
+INSERT INTO schema_migrations (version) VALUES ('20130622110348');
+
+INSERT INTO schema_migrations (version) VALUES ('20130624203206');
+
+INSERT INTO schema_migrations (version) VALUES ('20130625022454');
+
+INSERT INTO schema_migrations (version) VALUES ('20130625170842');
+
+INSERT INTO schema_migrations (version) VALUES ('20130625201113');

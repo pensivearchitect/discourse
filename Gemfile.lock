@@ -539,7 +539,7 @@ DEPENDENCIES
   rack-mini-profiler (= 0.1.27)
   rails (= 3.2.12)
   rails_multisite!
-  rake
+  rake (= 10.0.4)
   rb-fsevent
   rb-inotify (~> 0.9)
   redcarpet

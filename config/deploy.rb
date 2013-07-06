@@ -32,7 +32,7 @@ role :web, 'SERVER_ADDRESS_HERE', primary: true
 
 # Application Settings
 set :application, 'discourse'
-set :deploy_to, "/var/www/#{application}"
+set :deploy_to, "/home/discourse/discourse"
 
 # Perform an initial bundle
 after "deploy:setup" do
@@ -43,17 +43,18 @@ end
 namespace :deploy do
   desc 'Start thin servers'
   task :start, :roles => :app, :except => {:no_release => true} do
-    run "cd #{current_path} && RUBY_GC_MALLOC_LIMIT=90000000 bundle exec thin -C config/thin.yml start", :pty => false
+    run "cd /home/discourse/discourse && ./start", :pty => false
+
   end
 
   desc 'Stop thin servers'
   task :stop, :roles => :app, :except => {:no_release => true} do
-    run "cd #{current_path} && bundle exec thin -C config/thin.yml stop"
+    run "cd /home/discourse/discourse && bluepill stop --no-priveleged"
   end
 
   desc 'Restart thin servers'
   task :restart, :roles => :app, :except => {:no_release => true} do
-    run "cd #{current_path} && RUBY_GC_MALLOC_LIMIT=90000000 bundle exec thin -C config/thin.yml restart"
+    run "cd /home/discourse/discourse && ./start", :pty => false
   end
 end
 
@@ -62,7 +63,7 @@ end
 namespace :config do
   task :nginx, roles: :app do
     puts "Symlinking your nginx configuration..."
-    sudo "ln -nfs #{release_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
+    sudo "ln -nfs /etc/nginx/config/nginx.conf /etc/nginx/sites-enabled/discourse"
   end
 end
 

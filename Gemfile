@@ -54,7 +54,7 @@ gem 'pg'
 # we had pain with the 3.2.13 upgrade so monkey patch the security fix
 # next time around we hope to upgrade
 gem 'rails', '3.2.12'
-gem 'rake'
+gem 'rake', '10.0.4'
 gem 'redis'
 gem 'redis-rails'
 gem 'rest-client'

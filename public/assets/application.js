@@ -48,7 +48,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
         }
 
         function n(e) {
-            var t = wt[e] = {};
+            var t = Tt[e] = {};
             return ut.each(e.match(ct) || [], function (e, s) {
                 t[s] = !0
             }), t
@@ -80,7 +80,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 var r = "data-" + s.replace(Ct, "-$1").toLowerCase();
                 if (n = e.getAttribute(r), "string" == typeof n) {
                     try {
-                        n = "true" === n ? !0 : "false" === n ? !1 : "null" === n ? null : +n + "" === n ? +n : Tt.test(n) ? ut.parseJSON(n) : n
+                        n = "true" === n ? !0 : "false" === n ? !1 : "null" === n ? null : +n + "" === n ? +n : Et.test(n) ? ut.parseJSON(n) : n
                     } catch (a) {
                     }
                     ut.data(e, s, n)
@@ -187,27 +187,27 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
 
         function _(e, t) {
             if (t in e)return t;
-            for (var s = t.charAt(0).toUpperCase() + t.slice(1), n = t, r = Ts.length; r--;)if (t = Ts[r] + s, t in e)return t;
+            for (var s = t.charAt(0).toUpperCase() + t.slice(1), n = t, r = Es.length; r--;)if (t = Es[r] + s, t in e)return t;
             return n
         }
 
-        function E(e, t) {
+        function w(e, t) {
             return e = t || e, "none" === ut.css(e, "display") || !ut.contains(e.ownerDocument, e)
         }
 
-        function w(e, t) {
-            for (var s, n, r, a = [], i = 0, o = e.length; o > i; i++)n = e[i], n.style && (a[i] = ut._data(n, "olddisplay"), s = n.style.display, t ? (a[i] || "none" !== s || (n.style.display = ""), "" === n.style.display && E(n) && (a[i] = ut._data(n, "olddisplay", I(n.nodeName)))) : a[i] || (r = E(n), (s && "none" !== s || !r) && ut._data(n, "olddisplay", r ? s : ut.css(n, "display"))));
+        function T(e, t) {
+            for (var s, n, r, a = [], i = 0, o = e.length; o > i; i++)n = e[i], n.style && (a[i] = ut._data(n, "olddisplay"), s = n.style.display, t ? (a[i] || "none" !== s || (n.style.display = ""), "" === n.style.display && w(n) && (a[i] = ut._data(n, "olddisplay", I(n.nodeName)))) : a[i] || (r = w(n), (s && "none" !== s || !r) && ut._data(n, "olddisplay", r ? s : ut.css(n, "display"))));
             for (i = 0; o > i; i++)n = e[i], n.style && (t && "none" !== n.style.display && "" !== n.style.display || (n.style.display = t ? a[i] || "" : "none"));
             return e
         }
 
-        function T(e, t, s) {
+        function E(e, t, s) {
             var n = bs.exec(t);
             return n ? Math.max(0, n[1] - (s || 0)) + (n[2] || "px") : t
         }
 
         function C(e, t, s, n, r) {
-            for (var a = s === (n ? "border" : "content") ? 4 : "width" === t ? 1 : 0, i = 0; 4 > a; a += 2)"margin" === s && (i += ut.css(e, s + ws[a], !0, r)), n ? ("content" === s && (i -= ut.css(e, "padding" + ws[a], !0, r)), "margin" !== s && (i -= ut.css(e, "border" + ws[a] + "Width", !0, r))) : (i += ut.css(e, "padding" + ws[a], !0, r), "padding" !== s && (i += ut.css(e, "border" + ws[a] + "Width", !0, r)));
+            for (var a = s === (n ? "border" : "content") ? 4 : "width" === t ? 1 : 0, i = 0; 4 > a; a += 2)"margin" === s && (i += ut.css(e, s + Ts[a], !0, r)), n ? ("content" === s && (i -= ut.css(e, "padding" + Ts[a], !0, r)), "margin" !== s && (i -= ut.css(e, "border" + Ts[a] + "Width", !0, r))) : (i += ut.css(e, "padding" + Ts[a], !0, r), "padding" !== s && (i += ut.css(e, "border" + Ts[a] + "Width", !0, r)));
             return i
         }
 
@@ -237,7 +237,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             }); else if (s || "object" !== ut.type(t))n(e, t); else for (r in t)k(e + "[" + r + "]", t[r], s, n)
         }
 
-        function A(e) {
+        function N(e) {
             return function (t, s) {
                 "string" != typeof t && (s = t, t = "*");
                 var n, r = 0, a = t.toLowerCase().match(ct) || [];
@@ -245,7 +245,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             }
         }
 
-        function N(e, t, s, n) {
+        function A(e, t, s, n) {
             function r(o) {
                 var u;
                 return a[o] = !0, ut.each(e[o] || [], function (e, o) {
@@ -360,7 +360,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
         }
 
         function B(e, t, s) {
-            var n, r, a, i, o, u, h, c, l, p = this, f = e.style, d = {}, m = [], g = e.nodeType && E(e);
+            var n, r, a, i, o, u, h, c, l, p = this, f = e.style, d = {}, m = [], g = e.nodeType && w(e);
             s.queue || (c = ut._queueHooks(e, "fx"), null == c.unqueued && (c.unqueued = 0, l = c.empty.fire, c.empty.fire = function () {
                 c.unqueued || l()
             }), c.unqueued++, p.always(function () {
@@ -392,7 +392,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
 
         function G(e, t) {
             var s, n = {height: e}, r = 0;
-            for (t = t ? 1 : 0; 4 > r; r += 2 - t)s = ws[r], n["margin" + s] = n["padding" + s] = e;
+            for (t = t ? 1 : 0; 4 > r; r += 2 - t)s = Ts[r], n["margin" + s] = n["padding" + s] = e;
             return t && (n.opacity = n.width = e), n
         }
 
@@ -400,13 +400,13 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             return ut.isWindow(e) ? e : 9 === e.nodeType ? e.defaultView || e.parentWindow : !1
         }
 
-        var q, $, W = typeof t, K = e.document, Q = e.location, Y = e.jQuery, X = e.$, Z = {}, J = [], et = "1.9.1", tt = J.concat, st = J.push, nt = J.slice, rt = J.indexOf, at = Z.toString, it = Z.hasOwnProperty, ot = et.trim, ut = function (e, t) {
+        var q, $, W = typeof t, K = e.document, Q = e.location, X = e.jQuery, Y = e.$, Z = {}, J = [], et = "1.9.1", tt = J.concat, st = J.push, nt = J.slice, rt = J.indexOf, at = Z.toString, it = Z.hasOwnProperty, ot = et.trim, ut = function (e, t) {
             return new ut.fn.init(e, t, $)
         }, ht = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source, ct = /\S+/g, lt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, pt = /^(?:(<[\w\W]+>)[^>]*|#([\w-]*))$/, ft = /^<(\w+)\s*\/?>(?:<\/\1>|)$/, dt = /^[\],:{}\s]*$/, mt = /(?:^|:|,)(?:\s*\[)+/g, gt = /\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g, bt = /"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g, yt = /^-ms-/, vt = /-([\da-z])/gi, xt = function (e, t) {
             return t.toUpperCase()
         }, _t = function (e) {
-            (K.addEventListener || "load" === e.type || "complete" === K.readyState) && (Et(), ut.ready())
-        }, Et = function () {
+            (K.addEventListener || "load" === e.type || "complete" === K.readyState) && (wt(), ut.ready())
+        }, wt = function () {
             K.addEventListener ? (K.removeEventListener("DOMContentLoaded", _t, !1), e.removeEventListener("load", _t, !1)) : (K.detachEvent("onreadystatechange", _t), e.detachEvent("onload", _t))
         };
         ut.fn = ut.prototype = {jquery: et, constructor: ut, init: function (e, s, n) {
@@ -458,7 +458,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             for ("boolean" == typeof o && (c = o, o = arguments[1] || {}, u = 2), "object" == typeof o || ut.isFunction(o) || (o = {}), h === u && (o = this, --u); h > u; u++)if (null != (a = arguments[u]))for (r in a)e = o[r], n = a[r], o !== n && (c && n && (ut.isPlainObject(n) || (s = ut.isArray(n))) ? (s ? (s = !1, i = e && ut.isArray(e) ? e : []) : i = e && ut.isPlainObject(e) ? e : {}, o[r] = ut.extend(c, i, n)) : n !== t && (o[r] = n));
             return o
         }, ut.extend({noConflict: function (t) {
-            return e.$ === ut && (e.$ = X), t && e.jQuery === ut && (e.jQuery = Y), ut
+            return e.$ === ut && (e.$ = Y), t && e.jQuery === ut && (e.jQuery = X), ut
         }, isReady: !1, readyWait: 1, holdReady: function (e) {
             e ? ut.readyWait++ : ut.ready(!0)
         }, ready: function (e) {
@@ -580,7 +580,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         } catch (e) {
                             return setTimeout(r, 50)
                         }
-                        Et(), ut.ready()
+                        wt(), ut.ready()
                     }
                 }()
             }
@@ -588,9 +588,9 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
         }, ut.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function (e, t) {
             Z["[object " + t + "]"] = t.toLowerCase()
         }), $ = ut(K);
-        var wt = {};
+        var Tt = {};
         ut.Callbacks = function (e) {
-            e = "string" == typeof e ? wt[e] || n(e) : ut.extend({}, e);
+            e = "string" == typeof e ? Tt[e] || n(e) : ut.extend({}, e);
             var s, r, a, i, o, u, h = [], c = !e.once && [], l = function (t) {
                 for (r = e.memory && t, a = !0, o = u || 0, u = 0, i = h.length, s = !0; h && i > o; o++)if (h[o].apply(t[0], t[1]) === !1 && e.stopOnFalse) {
                     r = !1;
@@ -689,7 +689,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 i && (s = K.createElement("div"), s.style.cssText = "border:0;width:0;height:0;position:absolute;top:0;left:-9999px;margin-top:1px", i.appendChild(s).appendChild(l), l.innerHTML = "<table><tr><td></td><td>t</td></tr></table>", r = l.getElementsByTagName("td"), r[0].style.cssText = "padding:0;margin:0;border:0;display:none", h = 0 === r[0].offsetHeight, r[0].style.display = "", r[1].style.display = "none", t.reliableHiddenOffsets = h && 0 === r[0].offsetHeight, l.innerHTML = "", l.style.cssText = "box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:1px;border:1px;display:block;width:4px;margin-top:1%;position:absolute;top:1%;", t.boxSizing = 4 === l.offsetWidth, t.doesNotIncludeMarginInBodyOffset = 1 !== i.offsetTop, e.getComputedStyle && (t.pixelPosition = "1%" !== (e.getComputedStyle(l, null) || {}).top, t.boxSizingReliable = "4px" === (e.getComputedStyle(l, null) || {width: "4px"}).width, n = l.appendChild(K.createElement("div")), n.style.cssText = l.style.cssText = a, n.style.marginRight = n.style.width = "0", l.style.width = "1px", t.reliableMarginRight = !parseFloat((e.getComputedStyle(n, null) || {}).marginRight)), typeof l.style.zoom !== W && (l.innerHTML = "", l.style.cssText = a + "width:1px;padding:1px;display:inline;zoom:1", t.inlineBlockNeedsLayout = 3 === l.offsetWidth, l.style.display = "block", l.innerHTML = "<div></div>", l.firstChild.style.width = "5px", t.shrinkWrapBlocks = 3 !== l.offsetWidth, t.inlineBlockNeedsLayout && (i.style.zoom = 1)), i.removeChild(s), s = l = r = n = null)
             }), s = a = i = o = n = r = null, t
         }();
-        var Tt = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/, Ct = /([A-Z])/g;
+        var Et = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/, Ct = /([A-Z])/g;
         ut.extend({cache: {}, expando: "jQuery" + (et + Math.random()).replace(/\D/g, ""), noData: {embed: !0, object: "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000", applet: !0}, hasData: function (e) {
             return e = e.nodeType ? ut.cache[e[ut.expando]] : e[ut.expando], !!e && !o(e)
         }, data: function (e, t, s) {
@@ -764,7 +764,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             for ("string" != typeof e && (s = e, e = t), e = e || "fx"; o--;)n = ut._data(i[o], e + "queueHooks"), n && n.empty && (r++, n.empty.add(u));
             return u(), a.promise(s)
         }});
-        var Dt, It, St = /[\t\r\n]/g, kt = /\r/g, At = /^(?:input|select|textarea|button|object)$/i, Nt = /^(?:a|area)$/i, Pt = /^(?:checked|selected|autofocus|autoplay|async|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped)$/i, Rt = /^(?:checked|selected)$/i, Ot = ut.support.getSetAttribute, jt = ut.support.input;
+        var Dt, It, St = /[\t\r\n]/g, kt = /\r/g, Nt = /^(?:input|select|textarea|button|object)$/i, At = /^(?:a|area)$/i, Pt = /^(?:checked|selected|autofocus|autoplay|async|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped)$/i, Rt = /^(?:checked|selected)$/i, Ot = ut.support.getSetAttribute, jt = ut.support.input;
         ut.fn.extend({attr: function (e, t) {
             return ut.access(this, ut.attr, e, t, arguments.length > 1)
         }, removeAttr: function (e) {
@@ -851,7 +851,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             if (e && 3 !== o && 8 !== o && 2 !== o)return i = 1 !== o || !ut.isXMLDoc(e), i && (s = ut.propFix[s] || s, a = ut.propHooks[s]), n !== t ? a && "set"in a && (r = a.set(e, n, s)) !== t ? r : e[s] = n : a && "get"in a && null !== (r = a.get(e, s)) ? r : e[s]
         }, propHooks: {tabIndex: {get: function (e) {
             var s = e.getAttributeNode("tabindex");
-            return s && s.specified ? parseInt(s.value, 10) : At.test(e.nodeName) || Nt.test(e.nodeName) && e.href ? 0 : t
+            return s && s.specified ? parseInt(s.value, 10) : Nt.test(e.nodeName) || At.test(e.nodeName) && e.href ? 0 : t
         }}}}), It = {get: function (e, s) {
             var n = ut.prop(e, s), r = "boolean" == typeof n && e.getAttribute(s), a = "boolean" == typeof n ? jt && Ot ? null != r : Rt.test(s) ? e[ut.camelCase("default-" + s)] : !!r : e.getAttributeNode(s);
             return a && a.value !== !1 ? s.toLowerCase() : t
@@ -1083,7 +1083,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 function n() {
                     var e, t = [];
                     return e = function (s, n) {
-                        return t.push(s += " ") > T.cacheLength && delete e[t.shift()], e[s] = n
+                        return t.push(s += " ") > E.cacheLength && delete e[t.shift()], e[s] = n
                     }
                 }
 
@@ -1092,7 +1092,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 }
 
                 function a(e) {
-                    var t = N.createElement("div");
+                    var t = A.createElement("div");
                     try {
                         return e(t)
                     } catch (s) {
@@ -1104,7 +1104,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
 
                 function i(e, t, s, n) {
                     var r, a, i, o, u, h, c, f, d, m;
-                    if ((t ? t.ownerDocument || t : H) !== N && A(t), t = t || N, s = s || [], !e || "string" != typeof e)return s;
+                    if ((t ? t.ownerDocument || t : H) !== A && N(t), t = t || A, s = s || [], !e || "string" != typeof e)return s;
                     if (1 !== (o = t.nodeType) && 9 !== o)return[];
                     if (!R && !n) {
                         if (r = mt.exec(e))if (i = r[1]) {
@@ -1113,8 +1113,8 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                                 if (a.id === i)return s.push(a), s
                             } else if (t.ownerDocument && (a = t.ownerDocument.getElementById(i)) && L(t, a) && a.id === i)return s.push(a), s
                         } else {
-                            if (r[2])return X.apply(s, Z.call(t.getElementsByTagName(e), 0)), s;
-                            if ((i = r[3]) && B.getByClassName && t.getElementsByClassName)return X.apply(s, Z.call(t.getElementsByClassName(i), 0)), s
+                            if (r[2])return Y.apply(s, Z.call(t.getElementsByTagName(e), 0)), s;
+                            if ((i = r[3]) && B.getByClassName && t.getElementsByClassName)return Y.apply(s, Z.call(t.getElementsByClassName(i), 0)), s
                         }
                         if (B.qsa && !O.test(e)) {
                             if (c = !0, f = V, d = t, m = 9 === o && e, 1 === o && "object" !== t.nodeName.toLowerCase()) {
@@ -1122,7 +1122,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                                 d = ft.test(e) && t.parentNode || t, m = h.join(",")
                             }
                             if (m)try {
-                                return X.apply(s, Z.call(d.querySelectorAll(m), 0)), s
+                                return Y.apply(s, Z.call(d.querySelectorAll(m), 0)), s
                             } catch (g) {
                             } finally {
                                 c || t.removeAttribute("id")
@@ -1164,9 +1164,9 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 function l(e, t) {
                     var s, n, r, a, o, u, h, c = q[e + " "];
                     if (c)return t ? 0 : c.slice(0);
-                    for (o = e, u = [], h = T.preFilter; o;) {
+                    for (o = e, u = [], h = E.preFilter; o;) {
                         (!s || (n = ot.exec(o))) && (n && (o = o.slice(n[0].length) || o), u.push(r = [])), s = !1, (n = ht.exec(o)) && (s = n.shift(), r.push({value: s, type: n[0].replace(it, " ")}), o = o.slice(s.length));
-                        for (a in T.filter)!(n = pt[a].exec(o)) || h[a] && !(n = h[a](n)) || (s = n.shift(), r.push({value: s, type: a, matches: n}), o = o.slice(s.length));
+                        for (a in E.filter)!(n = pt[a].exec(o)) || h[a] && !(n = h[a](n)) || (s = n.shift(), r.push({value: s, type: a, matches: n}), o = o.slice(s.length));
                         if (!s)break
                     }
                     return t ? o.length : o ? i.error(e) : q(e, u).slice(0)
@@ -1186,8 +1186,8 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         if (i) {
                             for (; t = t[n];)if ((1 === t.nodeType || r) && e(t, s, i))return!0
                         } else for (; t = t[n];)if (1 === t.nodeType || r)if (h = t[V] || (t[V] = {}), (u = h[n]) && u[0] === c) {
-                            if ((o = u[1]) === !0 || o === w)return o === !0
-                        } else if (u = h[n] = [c], u[1] = e(t, s, i) || w, u[1] === !0)return!0
+                            if ((o = u[1]) === !0 || o === T)return o === !0
+                        } else if (u = h[n] = [c], u[1] = e(t, s, i) || T, u[1] === !0)return!0
                     }
                 }
 
@@ -1215,20 +1215,20 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                                 }
                                 for (c = y.length; c--;)(l = y[c]) && (h = a ? J.call(r, l) : p[c]) > -1 && (r[h] = !(i[h] = l))
                             }
-                        } else y = m(y === i ? y.splice(d, y.length) : y), a ? a(null, i, y, u) : X.apply(i, y)
+                        } else y = m(y === i ? y.splice(d, y.length) : y), a ? a(null, i, y, u) : Y.apply(i, y)
                     })
                 }
 
                 function b(e) {
-                    for (var t, s, n, r = e.length, a = T.relative[e[0].type], i = a || T.relative[" "], o = a ? 1 : 0, u = f(function (e) {
+                    for (var t, s, n, r = e.length, a = E.relative[e[0].type], i = a || E.relative[" "], o = a ? 1 : 0, u = f(function (e) {
                         return e === t
                     }, i, !0), h = f(function (e) {
                         return J.call(t, e) > -1
                     }, i, !0), c = [function (e, s, n) {
                         return!a && (n || s !== k) || ((t = s).nodeType ? u(e, s, n) : h(e, s, n))
-                    }]; r > o; o++)if (s = T.relative[e[o].type])c = [f(d(c), s)]; else {
-                        if (s = T.filter[e[o].type].apply(null, e[o].matches), s[V]) {
-                            for (n = ++o; r > n && !T.relative[e[n].type]; n++);
+                    }]; r > o; o++)if (s = E.relative[e[o].type])c = [f(d(c), s)]; else {
+                        if (s = E.filter[e[o].type].apply(null, e[o].matches), s[V]) {
+                            for (n = ++o; r > n && !E.relative[e[n].type]; n++);
                             return g(o > 1 && d(c), o > 1 && p(e.slice(0, o - 1)).replace(it, "$1"), s, n > o && b(e.slice(o, n)), r > n && b(e = e.slice(n)), r > n && p(e))
                         }
                         c.push(s)
@@ -1238,26 +1238,26 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
 
                 function y(e, t) {
                     var s = 0, n = t.length > 0, a = e.length > 0, o = function (r, o, u, h, c) {
-                        var l, p, f, d = [], g = 0, b = "0", y = r && [], v = null != c, x = k, _ = r || a && T.find.TAG("*", c && o.parentNode || o), E = F += null == x ? 1 : Math.random() || .1;
-                        for (v && (k = o !== N && o, w = s); null != (l = _[b]); b++) {
+                        var l, p, f, d = [], g = 0, b = "0", y = r && [], v = null != c, x = k, _ = r || a && E.find.TAG("*", c && o.parentNode || o), w = F += null == x ? 1 : Math.random() || .1;
+                        for (v && (k = o !== A && o, T = s); null != (l = _[b]); b++) {
                             if (a && l) {
                                 for (p = 0; f = e[p++];)if (f(l, o, u)) {
                                     h.push(l);
                                     break
                                 }
-                                v && (F = E, w = ++s)
+                                v && (F = w, T = ++s)
                             }
                             n && ((l = !f && l) && g--, r && y.push(l))
                         }
                         if (g += b, n && b !== g) {
                             for (p = 0; f = t[p++];)f(y, d, o, u);
                             if (r) {
-                                if (g > 0)for (; b--;)y[b] || d[b] || (d[b] = Y.call(h));
+                                if (g > 0)for (; b--;)y[b] || d[b] || (d[b] = X.call(h));
                                 d = m(d)
                             }
-                            X.apply(h, d), v && !r && d.length > 0 && g + t.length > 1 && i.uniqueSort(h)
+                            Y.apply(h, d), v && !r && d.length > 0 && g + t.length > 1 && i.uniqueSort(h)
                         }
-                        return v && (F = E, k = x), y
+                        return v && (F = w, k = x), y
                     };
                     return n ? r(o) : o
                 }
@@ -1270,12 +1270,12 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 function x(e, t, s, n) {
                     var r, a, i, o, u, h = l(e);
                     if (!n && 1 === h.length) {
-                        if (a = h[0] = h[0].slice(0), a.length > 2 && "ID" === (i = a[0]).type && 9 === t.nodeType && !R && T.relative[a[1].type]) {
-                            if (t = T.find.ID(i.matches[0].replace(xt, _t), t)[0], !t)return s;
+                        if (a = h[0] = h[0].slice(0), a.length > 2 && "ID" === (i = a[0]).type && 9 === t.nodeType && !R && E.relative[a[1].type]) {
+                            if (t = E.find.ID(i.matches[0].replace(xt, _t), t)[0], !t)return s;
                             e = e.slice(a.shift().value.length)
                         }
-                        for (r = pt.needsContext.test(e) ? 0 : a.length; r-- && (i = a[r], !T.relative[o = i.type]);)if ((u = T.find[o]) && (n = u(i.matches[0].replace(xt, _t), ft.test(a[0].type) && t.parentNode || t))) {
-                            if (a.splice(r, 1), e = n.length && p(a), !e)return X.apply(s, Z.call(n, 0)), s;
+                        for (r = pt.needsContext.test(e) ? 0 : a.length; r-- && (i = a[r], !E.relative[o = i.type]);)if ((u = E.find[o]) && (n = u(i.matches[0].replace(xt, _t), ft.test(a[0].type) && t.parentNode || t))) {
+                            if (a.splice(r, 1), e = n.length && p(a), !e)return Y.apply(s, Z.call(n, 0)), s;
                             break
                         }
                     }
@@ -1285,7 +1285,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 function _() {
                 }
 
-                var E, w, T, C, D, I, S, k, A, N, P, R, O, j, M, L, U, V = "sizzle" + -new Date, H = e.document, B = {}, F = 0, G = 0, z = n(), q = n(), $ = n(), W = typeof t, K = 1 << 31, Q = [], Y = Q.pop, X = Q.push, Z = Q.slice, J = Q.indexOf || function (e) {
+                var w, T, E, C, D, I, S, k, N, A, P, R, O, j, M, L, U, V = "sizzle" + -new Date, H = e.document, B = {}, F = 0, G = 0, z = n(), q = n(), $ = n(), W = typeof t, K = 1 << 31, Q = [], X = Q.pop, Y = Q.push, Z = Q.slice, J = Q.indexOf || function (e) {
                     for (var t = 0, s = this.length; s > t; t++)if (this[t] === e)return t;
                     return-1
                 }, et = "[\\x20\\t\\r\\n\\f]", tt = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+", st = tt.replace("w", "w#"), nt = "([*^$|!~]?=)", rt = "\\[" + et + "*(" + tt + ")" + et + "*(?:" + nt + et + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + st + ")|)|)" + et + "*\\]", at = ":(" + tt + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + rt.replace(3, 8) + ")*)|.*)\\)|)", it = new RegExp("^" + et + "+|((?:^|[^\\\\])(?:\\\\.)*)" + et + "+$", "g"), ot = new RegExp("^" + et + "*," + et + "*"), ht = new RegExp("^" + et + "*([\\x20\\t\\r\\n\\f>+~])" + et + "*"), ct = new RegExp(at), lt = new RegExp("^" + st + "$"), pt = {ID: new RegExp("^#(" + tt + ")"), CLASS: new RegExp("^\\.(" + tt + ")"), NAME: new RegExp("^\\[name=['\"]?(" + tt + ")['\"]?\\]"), TAG: new RegExp("^(" + tt.replace("w", "w*") + ")"), ATTR: new RegExp("^" + rt), PSEUDO: new RegExp("^" + at), CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + et + "*(even|odd|(([+-]|)(\\d*)n|)" + et + "*(?:([+-]|)" + et + "*(\\d+)|))" + et + "*\\)|)", "i"), needsContext: new RegExp("^" + et + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + et + "*((?:-\\d)?\\d*)" + et + "*\\)|)(?=[^-]|$)", "i")}, ft = /[\x20\t\r\n\f]*[+~]/, dt = /^[^{]+\{\s*\[native code/, mt = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, gt = /^(?:input|select|textarea|button)$/i, bt = /^h\d$/i, yt = /'|\\/g, vt = /\=[\x20\t\r\n\f]*([^'"\]]*)[\x20\t\r\n\f]*\]/g, xt = /\\([\da-fA-F]{1,6}[\x20\t\r\n\f]?|.)/g, _t = function (e, t) {
@@ -1294,7 +1294,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 };
                 try {
                     Z.call(H.documentElement.childNodes, 0)[0].nodeType
-                } catch (Et) {
+                } catch (wt) {
                     Z = function (e) {
                         for (var t, s = []; t = this[e++];)s.push(t);
                         return s
@@ -1303,9 +1303,9 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 D = i.isXML = function (e) {
                     var t = e && (e.ownerDocument || e).documentElement;
                     return t ? "HTML" !== t.nodeName : !1
-                }, A = i.setDocument = function (e) {
+                }, N = i.setDocument = function (e) {
                     var n = e ? e.ownerDocument || e : H;
-                    return n !== N && 9 === n.nodeType && n.documentElement ? (N = n, P = n.documentElement, R = D(n), B.tagNameNoComments = a(function (e) {
+                    return n !== A && 9 === n.nodeType && n.documentElement ? (A = n, P = n.documentElement, R = D(n), B.tagNameNoComments = a(function (e) {
                         return e.appendChild(n.createComment("")), !e.getElementsByTagName("*").length
                     }), B.attributes = a(function (e) {
                         e.innerHTML = "<select></select>";
@@ -1317,34 +1317,34 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         e.id = V + 0, e.innerHTML = "<a name='" + V + "'></a><div name='" + V + "'></div>", P.insertBefore(e, P.firstChild);
                         var t = n.getElementsByName && n.getElementsByName(V).length === 2 + n.getElementsByName(V + 0).length;
                         return B.getIdNotName = !n.getElementById(V), P.removeChild(e), t
-                    }), T.attrHandle = a(function (e) {
+                    }), E.attrHandle = a(function (e) {
                         return e.innerHTML = "<a href='#'></a>", e.firstChild && typeof e.firstChild.getAttribute !== W && "#" === e.firstChild.getAttribute("href")
                     }) ? {} : {href: function (e) {
                         return e.getAttribute("href", 2)
                     }, type: function (e) {
                         return e.getAttribute("type")
-                    }}, B.getIdNotName ? (T.find.ID = function (e, t) {
+                    }}, B.getIdNotName ? (E.find.ID = function (e, t) {
                         if (typeof t.getElementById !== W && !R) {
                             var s = t.getElementById(e);
                             return s && s.parentNode ? [s] : []
                         }
-                    }, T.filter.ID = function (e) {
+                    }, E.filter.ID = function (e) {
                         var t = e.replace(xt, _t);
                         return function (e) {
                             return e.getAttribute("id") === t
                         }
-                    }) : (T.find.ID = function (e, s) {
+                    }) : (E.find.ID = function (e, s) {
                         if (typeof s.getElementById !== W && !R) {
                             var n = s.getElementById(e);
                             return n ? n.id === e || typeof n.getAttributeNode !== W && n.getAttributeNode("id").value === e ? [n] : t : []
                         }
-                    }, T.filter.ID = function (e) {
+                    }, E.filter.ID = function (e) {
                         var t = e.replace(xt, _t);
                         return function (e) {
                             var s = typeof e.getAttributeNode !== W && e.getAttributeNode("id");
                             return s && s.value === t
                         }
-                    }), T.find.TAG = B.tagNameNoComments ? function (e, t) {
+                    }), E.find.TAG = B.tagNameNoComments ? function (e, t) {
                         return typeof t.getElementsByTagName !== W ? t.getElementsByTagName(e) : void 0
                     } : function (e, t) {
                         var s, n = [], r = 0, a = t.getElementsByTagName(e);
@@ -1353,9 +1353,9 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                             return n
                         }
                         return a
-                    }, T.find.NAME = B.getByName && function (e, t) {
+                    }, E.find.NAME = B.getByName && function (e, t) {
                         return typeof t.getElementsByName !== W ? t.getElementsByName(name) : void 0
-                    }, T.find.CLASS = B.getByClassName && function (e, t) {
+                    }, E.find.CLASS = B.getByClassName && function (e, t) {
                         return typeof t.getElementsByClassName === W || R ? void 0 : t.getElementsByClassName(e)
                     }, j = [], O = [":focus"], (B.qsa = s(n.querySelectorAll)) && (a(function (e) {
                         e.innerHTML = "<select><option selected=''></option></select>", e.querySelectorAll("[selected]").length || O.push("\\[" + et + "*(?:checked|disabled|ismap|multiple|readonly|selected|value)"), e.querySelectorAll(":checked").length || O.push(":checked")
@@ -1381,21 +1381,21 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         for (s = t; s = s.parentNode;)h.unshift(s);
                         for (; u[r] === h[r];)r++;
                         return r ? o(u[r], h[r]) : u[r] === H ? -1 : h[r] === H ? 1 : 0
-                    }, S = !1, [0, 0].sort(U), B.detectDuplicates = S, N) : N
+                    }, S = !1, [0, 0].sort(U), B.detectDuplicates = S, A) : A
                 }, i.matches = function (e, t) {
                     return i(e, null, null, t)
                 }, i.matchesSelector = function (e, t) {
-                    if ((e.ownerDocument || e) !== N && A(e), t = t.replace(vt, "='$1']"), !(!B.matchesSelector || R || j && j.test(t) || O.test(t)))try {
+                    if ((e.ownerDocument || e) !== A && N(e), t = t.replace(vt, "='$1']"), !(!B.matchesSelector || R || j && j.test(t) || O.test(t)))try {
                         var s = M.call(e, t);
                         if (s || B.disconnectedMatch || e.document && 11 !== e.document.nodeType)return s
                     } catch (n) {
                     }
-                    return i(t, N, null, [e]).length > 0
+                    return i(t, A, null, [e]).length > 0
                 }, i.contains = function (e, t) {
-                    return(e.ownerDocument || e) !== N && A(e), L(e, t)
+                    return(e.ownerDocument || e) !== A && N(e), L(e, t)
                 }, i.attr = function (e, t) {
                     var s;
-                    return(e.ownerDocument || e) !== N && A(e), R || (t = t.toLowerCase()), (s = T.attrHandle[t]) ? s(e) : R || B.attributes ? e.getAttribute(t) : ((s = e.getAttributeNode(t)) || e.getAttribute(t)) && e[t] === !0 ? t : s && s.specified ? s.value : null
+                    return(e.ownerDocument || e) !== A && N(e), R || (t = t.toLowerCase()), (s = E.attrHandle[t]) ? s(e) : R || B.attributes ? e.getAttribute(t) : ((s = e.getAttributeNode(t)) || e.getAttribute(t)) && e[t] === !0 ? t : s && s.specified ? s.value : null
                 }, i.error = function (e) {
                     throw new Error("Syntax error, unrecognized expression: " + e)
                 }, i.uniqueSort = function (e) {
@@ -1414,7 +1414,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         } else if (3 === r || 4 === r)return e.nodeValue
                     } else for (; t = e[n]; n++)s += C(t);
                     return s
-                }, T = i.selectors = {cacheLength: 50, createPseudo: r, match: pt, find: {}, relative: {">": {dir: "parentNode", first: !0}, " ": {dir: "parentNode"}, "+": {dir: "previousSibling", first: !0}, "~": {dir: "previousSibling"}}, preFilter: {ATTR: function (e) {
+                }, E = i.selectors = {cacheLength: 50, createPseudo: r, match: pt, find: {}, relative: {">": {dir: "parentNode", first: !0}, " ": {dir: "parentNode"}, "+": {dir: "previousSibling", first: !0}, "~": {dir: "previousSibling"}}, preFilter: {ATTR: function (e) {
                     return e[1] = e[1].replace(xt, _t), e[3] = (e[4] || e[5] || "").replace(xt, _t), "~=" === e[2] && (e[3] = " " + e[3] + " "), e.slice(0, 4)
                 }, CHILD: function (e) {
                     return e[1] = e[1].toLowerCase(), "nth" === e[1].slice(0, 3) ? (e[3] || i.error(e[0]), e[4] = +(e[4] ? e[5] + (e[6] || 1) : 2 * ("even" === e[3] || "odd" === e[3])), e[5] = +(e[7] + e[8] || "odd" === e[3])) : e[3] && i.error(e[0]), e
@@ -1461,8 +1461,8 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         }
                     }
                 }, PSEUDO: function (e, t) {
-                    var s, n = T.pseudos[e] || T.setFilters[e.toLowerCase()] || i.error("unsupported pseudo: " + e);
-                    return n[V] ? n(t) : n.length > 1 ? (s = [e, e, "", t], T.setFilters.hasOwnProperty(e.toLowerCase()) ? r(function (e, s) {
+                    var s, n = E.pseudos[e] || E.setFilters[e.toLowerCase()] || i.error("unsupported pseudo: " + e);
+                    return n[V] ? n(t) : n.length > 1 ? (s = [e, e, "", t], E.setFilters.hasOwnProperty(e.toLowerCase()) ? r(function (e, s) {
                         for (var r, a = n(e, t), i = a.length; i--;)r = J.call(e, a[i]), e[r] = !(s[r] = a[i])
                     }) : function (e) {
                         return n(e, 0, s)
@@ -1494,7 +1494,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 }, root: function (e) {
                     return e === P
                 }, focus: function (e) {
-                    return e === N.activeElement && (!N.hasFocus || N.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
+                    return e === A.activeElement && (!A.hasFocus || A.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
                 }, enabled: function (e) {
                     return e.disabled === !1
                 }, disabled: function (e) {
@@ -1508,7 +1508,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                     for (e = e.firstChild; e; e = e.nextSibling)if (e.nodeName > "@" || 3 === e.nodeType || 4 === e.nodeType)return!1;
                     return!0
                 }, parent: function (e) {
-                    return!T.pseudos.empty(e)
+                    return!E.pseudos.empty(e)
                 }, header: function (e) {
                     return bt.test(e.nodeName)
                 }, input: function (e) {
@@ -1538,8 +1538,8 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                     for (var n = 0 > s ? s + t : s; t > ++n;)e.push(n);
                     return e
                 })}};
-                for (E in{radio: !0, checkbox: !0, file: !0, password: !0, image: !0})T.pseudos[E] = u(E);
-                for (E in{submit: !0, reset: !0})T.pseudos[E] = h(E);
+                for (w in{radio: !0, checkbox: !0, file: !0, password: !0, image: !0})E.pseudos[w] = u(w);
+                for (w in{submit: !0, reset: !0})E.pseudos[w] = h(w);
                 I = i.compile = function (e, t) {
                     var s, n = [], r = [], a = $[e + " "];
                     if (!a) {
@@ -1547,7 +1547,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                         a = $(e, y(r, n))
                     }
                     return a
-                }, T.pseudos.nth = T.pseudos.eq, T.filters = _.prototype = T.pseudos, T.setFilters = new _, A(), i.attr = ut.attr, ut.find = i, ut.expr = i.selectors, ut.expr[":"] = ut.expr.pseudos, ut.unique = i.uniqueSort, ut.text = i.getText, ut.isXMLDoc = i.isXML, ut.contains = i.contains
+                }, E.pseudos.nth = E.pseudos.eq, E.filters = _.prototype = E.pseudos, E.setFilters = new _, N(), i.attr = ut.attr, ut.find = i, ut.expr = i.selectors, ut.expr[":"] = ut.expr.pseudos, ut.unique = i.uniqueSort, ut.text = i.getText, ut.isXMLDoc = i.isXML, ut.contains = i.contains
             }(e);
         var Bt = /Until$/, Ft = /^(?:parents|prev(?:Until|All))/, Gt = /^.[^:#\[\.,]*$/, zt = ut.expr.match.needsContext, qt = {children: !0, contents: !0, next: !0, prev: !0};
         ut.fn.extend({find: function (e) {
@@ -1623,7 +1623,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             for (var s = []; e; e = e.nextSibling)1 === e.nodeType && e !== t && s.push(e);
             return s
         }});
-        var $t = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", Wt = / jQuery\d+="(?:null|\d+)"/g, Kt = new RegExp("<(?:" + $t + ")[\\s/>]", "i"), Qt = /^\s+/, Yt = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi, Xt = /<([\w:]+)/, Zt = /<tbody/i, Jt = /<|&#?\w+;/, es = /<(?:script|style|link)/i, ts = /^(?:checkbox|radio)$/i, ss = /checked\s*(?:[^=]|=\s*.checked.)/i, ns = /^$|\/(?:java|ecma)script/i, rs = /^true\/(.*)/, as = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g, is = {option: [1, "<select multiple='multiple'>", "</select>"], legend: [1, "<fieldset>", "</fieldset>"], area: [1, "<map>", "</map>"], param: [1, "<object>", "</object>"], thead: [1, "<table>", "</table>"], tr: [2, "<table><tbody>", "</tbody></table>"], col: [2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"], td: [3, "<table><tbody><tr>", "</tr></tbody></table>"], _default: ut.support.htmlSerialize ? [0, "", ""] : [1, "X<div>", "</div>"]}, os = p(K), us = os.appendChild(K.createElement("div"));
+        var $t = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", Wt = / jQuery\d+="(?:null|\d+)"/g, Kt = new RegExp("<(?:" + $t + ")[\\s/>]", "i"), Qt = /^\s+/, Xt = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi, Yt = /<([\w:]+)/, Zt = /<tbody/i, Jt = /<|&#?\w+;/, es = /<(?:script|style|link)/i, ts = /^(?:checkbox|radio)$/i, ss = /checked\s*(?:[^=]|=\s*.checked.)/i, ns = /^$|\/(?:java|ecma)script/i, rs = /^true\/(.*)/, as = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g, is = {option: [1, "<select multiple='multiple'>", "</select>"], legend: [1, "<fieldset>", "</fieldset>"], area: [1, "<map>", "</map>"], param: [1, "<object>", "</object>"], thead: [1, "<table>", "</table>"], tr: [2, "<table><tbody>", "</tbody></table>"], col: [2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"], td: [3, "<table><tbody><tr>", "</tr></tbody></table>"], _default: ut.support.htmlSerialize ? [0, "", ""] : [1, "X<div>", "</div>"]}, os = p(K), us = os.appendChild(K.createElement("div"));
         is.optgroup = is.option, is.tbody = is.tfoot = is.colgroup = is.caption = is.thead, is.th = is.td, ut.fn.extend({text: function (e) {
             return ut.access(this, function (e) {
                 return e === t ? ut.text(this) : this.empty().append((this[0] && this[0].ownerDocument || K).createTextNode(e))
@@ -1689,8 +1689,8 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             return ut.access(this, function (e) {
                 var s = this[0] || {}, n = 0, r = this.length;
                 if (e === t)return 1 === s.nodeType ? s.innerHTML.replace(Wt, "") : t;
-                if (!("string" != typeof e || es.test(e) || !ut.support.htmlSerialize && Kt.test(e) || !ut.support.leadingWhitespace && Qt.test(e) || is[(Xt.exec(e) || ["", ""])[1].toLowerCase()])) {
-                    e = e.replace(Yt, "<$1></$2>");
+                if (!("string" != typeof e || es.test(e) || !ut.support.htmlSerialize && Kt.test(e) || !ut.support.leadingWhitespace && Qt.test(e) || is[(Yt.exec(e) || ["", ""])[1].toLowerCase()])) {
+                    e = e.replace(Xt, "<$1></$2>");
                     try {
                         for (; r > n; n++)s = this[n] || {}, 1 === s.nodeType && (ut.cleanData(v(s, !1)), s.innerHTML = e);
                         s = 0
@@ -1732,7 +1732,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             return n = v(a, "script"), n.length > 0 && g(n, !u && v(e, "script")), n = o = r = null, a
         }, buildFragment: function (e, t, s, n) {
             for (var r, a, i, o, u, h, c, l = e.length, f = p(t), d = [], m = 0; l > m; m++)if (a = e[m], a || 0 === a)if ("object" === ut.type(a))ut.merge(d, a.nodeType ? [a] : a); else if (Jt.test(a)) {
-                for (o = o || f.appendChild(t.createElement("div")), u = (Xt.exec(a) || ["", ""])[1].toLowerCase(), c = is[u] || is._default, o.innerHTML = c[1] + a.replace(Yt, "<$1></$2>") + c[2], r = c[0]; r--;)o = o.lastChild;
+                for (o = o || f.appendChild(t.createElement("div")), u = (Yt.exec(a) || ["", ""])[1].toLowerCase(), c = is[u] || is._default, o.innerHTML = c[1] + a.replace(Xt, "<$1></$2>") + c[2], r = c[0]; r--;)o = o.lastChild;
                 if (!ut.support.leadingWhitespace && Qt.test(a) && d.push(t.createTextNode(Qt.exec(a)[0])), !ut.support.tbody)for (a = "table" !== u || Zt.test(a) ? "<table>" !== c[1] || Zt.test(a) ? 0 : o : o.firstChild, r = a && a.childNodes.length; r--;)ut.nodeName(h = a.childNodes[r], "tbody") && !h.childNodes.length && a.removeChild(h);
                 for (ut.merge(d, o.childNodes), o.textContent = ""; o.firstChild;)o.removeChild(o.firstChild);
                 o = f.lastChild
@@ -1745,7 +1745,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 u[r] && (delete u[r], h ? delete s[o] : typeof s.removeAttribute !== W ? s.removeAttribute(o) : s[o] = null, J.push(r))
             }
         }});
-        var hs, cs, ls, ps = /alpha\([^)]*\)/i, fs = /opacity\s*=\s*([^)]*)/, ds = /^(top|right|bottom|left)$/, ms = /^(none|table(?!-c[ea]).+)/, gs = /^margin/, bs = new RegExp("^(" + ht + ")(.*)$", "i"), ys = new RegExp("^(" + ht + ")(?!px)[a-z%]+$", "i"), vs = new RegExp("^([+-])=(" + ht + ")", "i"), xs = {BODY: "block"}, _s = {position: "absolute", visibility: "hidden", display: "block"}, Es = {letterSpacing: 0, fontWeight: 400}, ws = ["Top", "Right", "Bottom", "Left"], Ts = ["Webkit", "O", "Moz", "ms"];
+        var hs, cs, ls, ps = /alpha\([^)]*\)/i, fs = /opacity\s*=\s*([^)]*)/, ds = /^(top|right|bottom|left)$/, ms = /^(none|table(?!-c[ea]).+)/, gs = /^margin/, bs = new RegExp("^(" + ht + ")(.*)$", "i"), ys = new RegExp("^(" + ht + ")(?!px)[a-z%]+$", "i"), vs = new RegExp("^([+-])=(" + ht + ")", "i"), xs = {BODY: "block"}, _s = {position: "absolute", visibility: "hidden", display: "block"}, ws = {letterSpacing: 0, fontWeight: 400}, Ts = ["Top", "Right", "Bottom", "Left"], Es = ["Webkit", "O", "Moz", "ms"];
         ut.fn.extend({css: function (e, s) {
             return ut.access(this, function (e, s, n) {
                 var r, a, i = {}, o = 0;
@@ -1756,13 +1756,13 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 return n !== t ? ut.style(e, s, n) : ut.css(e, s)
             }, e, s, arguments.length > 1)
         }, show: function () {
-            return w(this, !0)
+            return T(this, !0)
         }, hide: function () {
-            return w(this)
+            return T(this)
         }, toggle: function (e) {
             var t = "boolean" == typeof e;
             return this.each(function () {
-                (t ? e : E(this)) ? ut(this).show() : ut(this).hide()
+                (t ? e : w(this)) ? ut(this).show() : ut(this).hide()
             })
         }}), ut.extend({cssHooks: {opacity: {get: function (e, t) {
             if (t) {
@@ -1780,7 +1780,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             }
         }, css: function (e, s, n, r) {
             var a, i, o, u = ut.camelCase(s);
-            return s = ut.cssProps[u] || (ut.cssProps[u] = _(e.style, u)), o = ut.cssHooks[s] || ut.cssHooks[u], o && "get"in o && (i = o.get(e, !0, n)), i === t && (i = ls(e, s, r)), "normal" === i && s in Es && (i = Es[s]), "" === n || n ? (a = parseFloat(i), n === !0 || ut.isNumeric(a) ? a || 0 : i) : i
+            return s = ut.cssProps[u] || (ut.cssProps[u] = _(e.style, u)), o = ut.cssHooks[s] || ut.cssHooks[u], o && "get"in o && (i = o.get(e, !0, n)), i === t && (i = ls(e, s, r)), "normal" === i && s in ws && (i = ws[s]), "" === n || n ? (a = parseFloat(i), n === !0 || ut.isNumeric(a) ? a || 0 : i) : i
         }, swap: function (e, t, s, n) {
             var r, a, i = {};
             for (a in t)i[a] = e.style[a], e.style[a] = t[a];
@@ -1804,7 +1804,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 }) : D(e, t, n) : void 0
             }, set: function (e, s, n) {
                 var r = n && cs(e);
-                return T(e, s, n ? C(e, t, n, ut.support.boxSizing && "border-box" === ut.css(e, "boxSizing", !1, r), r) : 0)
+                return E(e, s, n ? C(e, t, n, ut.support.boxSizing && "border-box" === ut.css(e, "boxSizing", !1, r), r) : 0)
             }}
         }), ut.support.opacity || (ut.cssHooks.opacity = {get: function (e, t) {
             return fs.test((t && e.currentStyle ? e.currentStyle.filter : e.style.filter) || "") ? .01 * parseFloat(RegExp.$1) + "" : t ? "1" : ""
@@ -1825,9 +1825,9 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             return!ut.expr.filters.hidden(e)
         }), ut.each({margin: "", padding: "", border: "Width"}, function (e, t) {
             ut.cssHooks[e + t] = {expand: function (s) {
-                for (var n = 0, r = {}, a = "string" == typeof s ? s.split(" ") : [s]; 4 > n; n++)r[e + ws[n] + t] = a[n] || a[n - 2] || a[0];
+                for (var n = 0, r = {}, a = "string" == typeof s ? s.split(" ") : [s]; 4 > n; n++)r[e + Ts[n] + t] = a[n] || a[n - 2] || a[0];
                 return r
-            }}, gs.test(e) || (ut.cssHooks[e + t].set = T)
+            }}, gs.test(e) || (ut.cssHooks[e + t].set = E)
         });
         var Cs = /%20/g, Ds = /\[\]$/, Is = /\r?\n/g, Ss = /^(?:submit|button|image|reset|file)$/i, ks = /^(?:input|select|textarea|keygen)/i;
         ut.fn.extend({serialize: function () {
@@ -1860,13 +1860,13 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
         }), ut.fn.hover = function (e, t) {
             return this.mouseenter(e).mouseleave(t || e)
         };
-        var As, Ns, Ps = ut.now(), Rs = /\?/, Os = /#.*$/, js = /([?&])_=[^&]*/, Ms = /^(.*?):[ \t]*([^\r\n]*)\r?$/gm, Ls = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/, Us = /^(?:GET|HEAD)$/, Vs = /^\/\//, Hs = /^([\w.+-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/, Bs = ut.fn.load, Fs = {}, Gs = {}, zs = "*/".concat("*");
+        var Ns, As, Ps = ut.now(), Rs = /\?/, Os = /#.*$/, js = /([?&])_=[^&]*/, Ms = /^(.*?):[ \t]*([^\r\n]*)\r?$/gm, Ls = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/, Us = /^(?:GET|HEAD)$/, Vs = /^\/\//, Hs = /^([\w.+-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/, Bs = ut.fn.load, Fs = {}, Gs = {}, zs = "*/".concat("*");
         try {
-            Ns = Q.href
+            As = Q.href
         } catch (qs) {
-            Ns = K.createElement("a"), Ns.href = "", Ns = Ns.href
+            As = K.createElement("a"), As.href = "", As = As.href
         }
-        As = Hs.exec(Ns.toLowerCase()) || [], ut.fn.load = function (e, s, n) {
+        Ns = Hs.exec(As.toLowerCase()) || [], ut.fn.load = function (e, s, n) {
             if ("string" != typeof e && Bs)return Bs.apply(this, arguments);
             var r, a, i, o = this, u = e.indexOf(" ");
             return u >= 0 && (r = e.slice(u, e.length), e = e.slice(0, u)), ut.isFunction(s) ? (n = s, s = t) : s && "object" == typeof s && (i = "POST"), o.length > 0 && ut.ajax({url: e, type: i, dataType: "html", data: s}).done(function (e) {
@@ -1882,16 +1882,16 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
             ut[s] = function (e, n, r, a) {
                 return ut.isFunction(n) && (a = a || r, r = n, n = t), ut.ajax({url: e, type: s, dataType: a, data: n, success: r})
             }
-        }), ut.extend({active: 0, lastModified: {}, etag: {}, ajaxSettings: {url: Ns, type: "GET", isLocal: Ls.test(As[1]), global: !0, processData: !0, async: !0, contentType: "application/x-www-form-urlencoded; charset=UTF-8", accepts: {"*": zs, text: "text/plain", html: "text/html", xml: "application/xml, text/xml", json: "application/json, text/javascript"}, contents: {xml: /xml/, html: /html/, json: /json/}, responseFields: {xml: "responseXML", text: "responseText"}, converters: {"* text": e.String, "text html": !0, "text json": ut.parseJSON, "text xml": ut.parseXML}, flatOptions: {url: !0, context: !0}}, ajaxSetup: function (e, t) {
+        }), ut.extend({active: 0, lastModified: {}, etag: {}, ajaxSettings: {url: As, type: "GET", isLocal: Ls.test(Ns[1]), global: !0, processData: !0, async: !0, contentType: "application/x-www-form-urlencoded; charset=UTF-8", accepts: {"*": zs, text: "text/plain", html: "text/html", xml: "application/xml, text/xml", json: "application/json, text/javascript"}, contents: {xml: /xml/, html: /html/, json: /json/}, responseFields: {xml: "responseXML", text: "responseText"}, converters: {"* text": e.String, "text html": !0, "text json": ut.parseJSON, "text xml": ut.parseXML}, flatOptions: {url: !0, context: !0}}, ajaxSetup: function (e, t) {
             return t ? P(P(e, ut.ajaxSettings), t) : P(ut.ajaxSettings, e)
-        }, ajaxPrefilter: A(Fs), ajaxTransport: A(Gs), ajax: function (e, s) {
+        }, ajaxPrefilter: N(Fs), ajaxTransport: N(Gs), ajax: function (e, s) {
             function n(e, s, n, r) {
-                var a, l, y, v, _, w = s;
-                2 !== x && (x = 2, u && clearTimeout(u), c = t, o = r || "", E.readyState = e > 0 ? 4 : 0, n && (v = R(p, E, n)), e >= 200 && 300 > e || 304 === e ? (p.ifModified && (_ = E.getResponseHeader("Last-Modified"), _ && (ut.lastModified[i] = _), _ = E.getResponseHeader("etag"), _ && (ut.etag[i] = _)), 204 === e ? (a = !0, w = "nocontent") : 304 === e ? (a = !0, w = "notmodified") : (a = O(p, v), w = a.state, l = a.data, y = a.error, a = !y)) : (y = w, (e || !w) && (w = "error", 0 > e && (e = 0))), E.status = e, E.statusText = (s || w) + "", a ? m.resolveWith(f, [l, w, E]) : m.rejectWith(f, [E, w, y]), E.statusCode(b), b = t, h && d.trigger(a ? "ajaxSuccess" : "ajaxError", [E, p, a ? l : y]), g.fireWith(f, [E, w]), h && (d.trigger("ajaxComplete", [E, p]), --ut.active || ut.event.trigger("ajaxStop")))
+                var a, l, y, v, _, T = s;
+                2 !== x && (x = 2, u && clearTimeout(u), c = t, o = r || "", w.readyState = e > 0 ? 4 : 0, n && (v = R(p, w, n)), e >= 200 && 300 > e || 304 === e ? (p.ifModified && (_ = w.getResponseHeader("Last-Modified"), _ && (ut.lastModified[i] = _), _ = w.getResponseHeader("etag"), _ && (ut.etag[i] = _)), 204 === e ? (a = !0, T = "nocontent") : 304 === e ? (a = !0, T = "notmodified") : (a = O(p, v), T = a.state, l = a.data, y = a.error, a = !y)) : (y = T, (e || !T) && (T = "error", 0 > e && (e = 0))), w.status = e, w.statusText = (s || T) + "", a ? m.resolveWith(f, [l, T, w]) : m.rejectWith(f, [w, T, y]), w.statusCode(b), b = t, h && d.trigger(a ? "ajaxSuccess" : "ajaxError", [w, p, a ? l : y]), g.fireWith(f, [w, T]), h && (d.trigger("ajaxComplete", [w, p]), --ut.active || ut.event.trigger("ajaxStop")))
             }
 
             "object" == typeof e && (s = e, e = t), s = s || {};
-            var r, a, i, o, u, h, c, l, p = ut.ajaxSetup({}, s), f = p.context || p, d = p.context && (f.nodeType || f.jquery) ? ut(f) : ut.event, m = ut.Deferred(), g = ut.Callbacks("once memory"), b = p.statusCode || {}, y = {}, v = {}, x = 0, _ = "canceled", E = {readyState: 0, getResponseHeader: function (e) {
+            var r, a, i, o, u, h, c, l, p = ut.ajaxSetup({}, s), f = p.context || p, d = p.context && (f.nodeType || f.jquery) ? ut(f) : ut.event, m = ut.Deferred(), g = ut.Callbacks("once memory"), b = p.statusCode || {}, y = {}, v = {}, x = 0, _ = "canceled", w = {readyState: 0, getResponseHeader: function (e) {
                 var t;
                 if (2 === x) {
                     if (!l)for (l = {}; t = Ms.exec(o);)l[t[1].toLowerCase()] = t[2];
@@ -1907,30 +1907,30 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 return x || (p.mimeType = e), this
             }, statusCode: function (e) {
                 var t;
-                if (e)if (2 > x)for (t in e)b[t] = [b[t], e[t]]; else E.always(e[E.status]);
+                if (e)if (2 > x)for (t in e)b[t] = [b[t], e[t]]; else w.always(e[w.status]);
                 return this
             }, abort: function (e) {
                 var t = e || _;
                 return c && c.abort(t), n(0, t), this
             }};
-            if (m.promise(E).complete = g.add, E.success = E.done, E.error = E.fail, p.url = ((e || p.url || Ns) + "").replace(Os, "").replace(Vs, As[1] + "//"), p.type = s.method || s.type || p.method || p.type, p.dataTypes = ut.trim(p.dataType || "*").toLowerCase().match(ct) || [""], null == p.crossDomain && (r = Hs.exec(p.url.toLowerCase()), p.crossDomain = !(!r || r[1] === As[1] && r[2] === As[2] && (r[3] || ("http:" === r[1] ? 80 : 443)) == (As[3] || ("http:" === As[1] ? 80 : 443)))), p.data && p.processData && "string" != typeof p.data && (p.data = ut.param(p.data, p.traditional)), N(Fs, p, s, E), 2 === x)return E;
-            h = p.global, h && 0 === ut.active++ && ut.event.trigger("ajaxStart"), p.type = p.type.toUpperCase(), p.hasContent = !Us.test(p.type), i = p.url, p.hasContent || (p.data && (i = p.url += (Rs.test(i) ? "&" : "?") + p.data, delete p.data), p.cache === !1 && (p.url = js.test(i) ? i.replace(js, "$1_=" + Ps++) : i + (Rs.test(i) ? "&" : "?") + "_=" + Ps++)), p.ifModified && (ut.lastModified[i] && E.setRequestHeader("If-Modified-Since", ut.lastModified[i]), ut.etag[i] && E.setRequestHeader("If-None-Match", ut.etag[i])), (p.data && p.hasContent && p.contentType !== !1 || s.contentType) && E.setRequestHeader("Content-Type", p.contentType), E.setRequestHeader("Accept", p.dataTypes[0] && p.accepts[p.dataTypes[0]] ? p.accepts[p.dataTypes[0]] + ("*" !== p.dataTypes[0] ? ", " + zs + "; q=0.01" : "") : p.accepts["*"]);
-            for (a in p.headers)E.setRequestHeader(a, p.headers[a]);
-            if (p.beforeSend && (p.beforeSend.call(f, E, p) === !1 || 2 === x))return E.abort();
+            if (m.promise(w).complete = g.add, w.success = w.done, w.error = w.fail, p.url = ((e || p.url || As) + "").replace(Os, "").replace(Vs, Ns[1] + "//"), p.type = s.method || s.type || p.method || p.type, p.dataTypes = ut.trim(p.dataType || "*").toLowerCase().match(ct) || [""], null == p.crossDomain && (r = Hs.exec(p.url.toLowerCase()), p.crossDomain = !(!r || r[1] === Ns[1] && r[2] === Ns[2] && (r[3] || ("http:" === r[1] ? 80 : 443)) == (Ns[3] || ("http:" === Ns[1] ? 80 : 443)))), p.data && p.processData && "string" != typeof p.data && (p.data = ut.param(p.data, p.traditional)), A(Fs, p, s, w), 2 === x)return w;
+            h = p.global, h && 0 === ut.active++ && ut.event.trigger("ajaxStart"), p.type = p.type.toUpperCase(), p.hasContent = !Us.test(p.type), i = p.url, p.hasContent || (p.data && (i = p.url += (Rs.test(i) ? "&" : "?") + p.data, delete p.data), p.cache === !1 && (p.url = js.test(i) ? i.replace(js, "$1_=" + Ps++) : i + (Rs.test(i) ? "&" : "?") + "_=" + Ps++)), p.ifModified && (ut.lastModified[i] && w.setRequestHeader("If-Modified-Since", ut.lastModified[i]), ut.etag[i] && w.setRequestHeader("If-None-Match", ut.etag[i])), (p.data && p.hasContent && p.contentType !== !1 || s.contentType) && w.setRequestHeader("Content-Type", p.contentType), w.setRequestHeader("Accept", p.dataTypes[0] && p.accepts[p.dataTypes[0]] ? p.accepts[p.dataTypes[0]] + ("*" !== p.dataTypes[0] ? ", " + zs + "; q=0.01" : "") : p.accepts["*"]);
+            for (a in p.headers)w.setRequestHeader(a, p.headers[a]);
+            if (p.beforeSend && (p.beforeSend.call(f, w, p) === !1 || 2 === x))return w.abort();
             _ = "abort";
-            for (a in{success: 1, error: 1, complete: 1})E[a](p[a]);
-            if (c = N(Gs, p, s, E)) {
-                E.readyState = 1, h && d.trigger("ajaxSend", [E, p]), p.async && p.timeout > 0 && (u = setTimeout(function () {
-                    E.abort("timeout")
+            for (a in{success: 1, error: 1, complete: 1})w[a](p[a]);
+            if (c = A(Gs, p, s, w)) {
+                w.readyState = 1, h && d.trigger("ajaxSend", [w, p]), p.async && p.timeout > 0 && (u = setTimeout(function () {
+                    w.abort("timeout")
                 }, p.timeout));
                 try {
                     x = 1, c.send(y, n)
-                } catch (w) {
-                    if (!(2 > x))throw w;
-                    n(-1, w)
+                } catch (T) {
+                    if (!(2 > x))throw T;
+                    n(-1, T)
                 }
             } else n(-1, "No Transport");
-            return E
+            return w
         }, getScript: function (e, s) {
             return ut.get(e, t, s, "script")
         }, getJSON: function (e, t, s) {
@@ -1965,7 +1965,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 e[a] = i, s[a] && (s.jsonpCallback = n.jsonpCallback, $s.push(a)), o && ut.isFunction(i) && i(o[0]), o = i = t
             }), "script") : void 0
         });
-        var Ks, Qs, Ys = 0, Xs = e.ActiveXObject && function () {
+        var Ks, Qs, Xs = 0, Ys = e.ActiveXObject && function () {
             var e;
             for (e in Ks)Ks[e](t, !0)
         };
@@ -1985,7 +1985,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                     u.send(s.hasContent && s.data || null), n = function (e, r) {
                         var o, h, c, l;
                         try {
-                            if (n && (r || 4 === u.readyState))if (n = t, i && (u.onreadystatechange = ut.noop, Xs && delete Ks[i]), r)4 !== u.readyState && u.abort(); else {
+                            if (n && (r || 4 === u.readyState))if (n = t, i && (u.onreadystatechange = ut.noop, Ys && delete Ks[i]), r)4 !== u.readyState && u.abort(); else {
                                 l = {}, o = u.status, h = u.getAllResponseHeaders(), "string" == typeof u.responseText && (l.text = u.responseText);
                                 try {
                                     c = u.statusText
@@ -1998,7 +1998,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                             r || a(-1, f)
                         }
                         l && a(o, c, l, h)
-                    }, s.async ? 4 === u.readyState ? setTimeout(n) : (i = ++Ys, Xs && (Ks || (Ks = {}, ut(e).unload(Xs)), Ks[i] = n), u.onreadystatechange = n) : n()
+                    }, s.async ? 4 === u.readyState ? setTimeout(n) : (i = ++Xs, Ys && (Ks || (Ks = {}, ut(e).unload(Ys)), Ks[i] = n), u.onreadystatechange = n) : n()
                 }, abort: function () {
                     n && n(t, !0)
                 }}
@@ -2041,7 +2041,7 @@ window.ENV = {CP_DEFAULT_CACHEABLE: !0, VIEW_PRESERVES_CONTEXT: !0, MANDATORY_SE
                 return null == e || "boolean" == typeof e ? s.apply(this, arguments) : this.animate(G(t, !0), e, n, r)
             }
         }), ut.fn.extend({fadeTo: function (e, t, s, n) {
-            return this.filter(E).css("opacity", 0).show().end().animate({opacity: t}, e, s, n)
+            return this.filter(w).css("opacity", 0).show().end().animate({opacity: t}, e, s, n)
         }, animate: function (e, t, s, n) {
             var r = ut.isEmptyObject(e), a = ut.speed(t, s, n), i = function () {
                 var t = V(this, ut.extend({}, e), a);
@@ -2544,13 +2544,13 @@ var Handlebars = {};
             a.push(l);
             var p = this.lexer.options && this.lexer.options.ranges;
             "function" == typeof this.yy.parseError && (this.parseError = this.yy.parseError);
-            for (var f, d, m, g, b, y, v, x, _, E = {}; ;) {
+            for (var f, d, m, g, b, y, v, x, _, w = {}; ;) {
                 if (m = n[n.length - 1], this.defaultActions[m] ? g = this.defaultActions[m] : ((null === f || "undefined" == typeof f) && (f = t()), g = i[m] && i[m][f]), "undefined" == typeof g || !g.length || !g[0]) {
-                    var w = "";
+                    var T = "";
                     if (!c) {
                         _ = [];
                         for (y in i[m])this.terminals_[y] && y > 2 && _.push("'" + this.terminals_[y] + "'");
-                        w = this.lexer.showPosition ? "Parse error on line " + (u + 1) + ":\n" + this.lexer.showPosition() + "\nExpecting " + _.join(", ") + ", got '" + (this.terminals_[f] || f) + "'" : "Parse error on line " + (u + 1) + ": Unexpected " + (1 == f ? "end of input" : "'" + (this.terminals_[f] || f) + "'"), this.parseError(w, {text: this.lexer.match, token: this.terminals_[f] || f, line: this.lexer.yylineno, loc: l, expected: _})
+                        T = this.lexer.showPosition ? "Parse error on line " + (u + 1) + ":\n" + this.lexer.showPosition() + "\nExpecting " + _.join(", ") + ", got '" + (this.terminals_[f] || f) + "'" : "Parse error on line " + (u + 1) + ": Unexpected " + (1 == f ? "end of input" : "'" + (this.terminals_[f] || f) + "'"), this.parseError(T, {text: this.lexer.match, token: this.terminals_[f] || f, line: this.lexer.yylineno, loc: l, expected: _})
                     }
                 }
                 if (g[0]instanceof Array && g.length > 1)throw new Error("Parse Error: multiple actions possible at state: " + m + ", token: " + f);
@@ -2559,8 +2559,8 @@ var Handlebars = {};
                         n.push(f), r.push(this.lexer.yytext), a.push(this.lexer.yylloc), n.push(g[1]), f = null, d ? (f = d, d = null) : (h = this.lexer.yyleng, o = this.lexer.yytext, u = this.lexer.yylineno, l = this.lexer.yylloc, c > 0 && c--);
                         break;
                     case 2:
-                        if (v = this.productions_[g[1]][1], E.$ = r[r.length - v], E._$ = {first_line: a[a.length - (v || 1)].first_line, last_line: a[a.length - 1].last_line, first_column: a[a.length - (v || 1)].first_column, last_column: a[a.length - 1].last_column}, p && (E._$.range = [a[a.length - (v || 1)].range[0], a[a.length - 1].range[1]]), b = this.performAction.call(E, o, h, u, this.yy, g[1], r, a), "undefined" != typeof b)return b;
-                        v && (n = n.slice(0, 2 * -1 * v), r = r.slice(0, -1 * v), a = a.slice(0, -1 * v)), n.push(this.productions_[g[1]][0]), r.push(E.$), a.push(E._$), x = i[n[n.length - 2]][n[n.length - 1]], n.push(x);
+                        if (v = this.productions_[g[1]][1], w.$ = r[r.length - v], w._$ = {first_line: a[a.length - (v || 1)].first_line, last_line: a[a.length - 1].last_line, first_column: a[a.length - (v || 1)].first_column, last_column: a[a.length - 1].last_column}, p && (w._$.range = [a[a.length - (v || 1)].range[0], a[a.length - 1].range[1]]), b = this.performAction.call(w, o, h, u, this.yy, g[1], r, a), "undefined" != typeof b)return b;
+                        v && (n = n.slice(0, 2 * -1 * v), r = r.slice(0, -1 * v), a = a.slice(0, -1 * v)), n.push(this.productions_[g[1]][0]), r.push(w.$), a.push(w._$), x = i[n[n.length - 2]][n[n.length - 1]], n.push(x);
                         break;
                     case 3:
                         return!0
@@ -3113,33 +3113,6 @@ var Handlebars = {};
         throw new e.Exception("The partial " + n + " could not be compiled when running in runtime-only mode")
     }}, e.template = e.VM.template
 })(Handlebars), function () {
-    "undefined" == typeof Ember && (Ember = {}, "undefined" != typeof window && (window.Em = window.Ember = Em = Ember)), Ember.ENV = "undefined" == typeof ENV ? {} : ENV, "MANDATORY_SETTER"in Ember.ENV || (Ember.ENV.MANDATORY_SETTER = !0), Ember.assert = function (e, t) {
-        if (!t)throw new Error("assertion failed: " + e)
-    }, Ember.warn = function (e, t) {
-        t || (Ember.Logger.warn("WARNING: " + e), "trace"in Ember.Logger && Ember.Logger.trace())
-    }, Ember.debug = function (e) {
-        Ember.Logger.debug("DEBUG: " + e)
-    }, Ember.deprecate = function (e, t) {
-        if (!(Ember && Ember.TESTING_DEPRECATION || (1 === arguments.length && (t = !1), t))) {
-            if (Ember && Ember.ENV.RAISE_ON_DEPRECATION)throw new Error(e);
-            var s;
-            try {
-                __fail__.fail()
-            } catch (n) {
-                s = n
-            }
-            if (Ember.LOG_STACKTRACE_ON_DEPRECATION && s.stack) {
-                var r, a = "";
-                s.arguments ? (r = s.stack.replace(/^\s+at\s+/gm, "").replace(/^([^\(]+?)([\n$])/gm, "{anonymous}($1)$2").replace(/^Object.<anonymous>\s*\(([^\)]+)\)/gm, "{anonymous}($1)").split("\n"), r.shift()) : r = s.stack.replace(/(?:\n@:0)?\s+$/m, "").replace(/^\(/gm, "{anonymous}(").split("\n"), a = "\n    " + r.slice(2).join("\n    "), e += a
-            }
-            Ember.Logger.warn("DEPRECATION: " + e)
-        }
-    }, Ember.deprecateFunc = function (e, t) {
-        return function () {
-            return Ember.deprecate(e), t.apply(this, arguments)
-        }
-    }
-}(), function () {
     var e, t;
     (function () {
         var s = {}, n = {};
@@ -3293,7 +3266,6 @@ var Handlebars = {};
             var n = Ember.meta(e, !0);
             return n[t] = s, s
         }, Ember.metaPath = function (e, t, s) {
-            Ember.deprecate("Ember.metaPath is deprecated and will be removed from future releases.");
             for (var r, a, i = Ember.meta(e, s), o = 0, u = t.length; u > o; o++) {
                 if (r = t[o], a = i[r]) {
                     if (a.__ember_source__ !== e) {
@@ -3479,7 +3451,7 @@ var Handlebars = {};
         var s, n = Ember.META_KEY, r = Ember.ENV.MANDATORY_SETTER, a = /^([A-Z$]|([0-9][A-Z$])).*[\.\*]/, i = /^this[\.\*]/, o = /^([^\.\*]+)/;
         s = function s(e, t) {
             if ("" === t)return e;
-            if (t || "string" != typeof e || (t = e, e = null), Ember.assert("Cannot call get with '" + t + "' on an undefined object.", void 0 !== e), null === e || -1 !== t.indexOf("."))return u(e, t);
+            if (t || "string" != typeof e || (t = e, e = null), null === e || -1 !== t.indexOf("."))return u(e, t);
             var s, a = e[n], i = a && a.descs[t];
             return i ? i.get(e, t) : (s = r && a && a.watching[t] > 0 ? a.values[t] : e[t], void 0 !== s || "object" != typeof e || t in e || "function" != typeof e.unknownProperty ? s : e.unknownProperty(t))
         }, Ember.config.overrideAccessors && (Ember.get = s, Ember.config.overrideAccessors(), s = Ember.get);
@@ -3529,7 +3501,7 @@ var Handlebars = {};
         }
 
         function r(s, n, r, a, i) {
-            Ember.assert("You must pass at least an object and event name to Ember.addListener", !!s && !!n), a || "function" != typeof r || (a = r, r = null);
+            a || "function" != typeof r || (a = r, r = null);
             var o = t(s, n), u = e(o, r, a), h = 0;
             i && (h |= m), -1 === u && (o.push([r, a, h]), "function" == typeof s.didAddListener && s.didAddListener(n, r, a))
         }
@@ -3540,7 +3512,7 @@ var Handlebars = {};
                 -1 !== o && (i.splice(o, 1), "function" == typeof s.didRemoveListener && s.didRemoveListener(n, r, a))
             }
 
-            if (Ember.assert("You must pass at least an object and event name to Ember.removeListener", !!s && !!n), a || "function" != typeof r || (a = r, r = null), a)i(r, a); else {
+            if (a || "function" != typeof r || (a = r, r = null), a)i(r, a); else {
                 var o = s[d], u = o && o.listeners && o.listeners[n];
                 if (!u)return;
                 for (var h = u.length - 1; h >= 0; h--)i(u[h][0], u[h][1])
@@ -3665,7 +3637,7 @@ var Handlebars = {};
             r && i !== t && (o && o.willChange && o.willChange(t, s), e(t, s, n), b(t, s, n), _(t, s))
         }, g = Ember.propertyDidChange = function (e, s) {
             var n = a(e, !1), r = n.watching[s] > 0 || "length" === s, i = n.proto, o = n.descs[s];
-            i !== e && (o && o.didChange && o.didChange(e, s), (r || "length" === s) && (t(e, s, n), y(e, s, n), E(e, s)))
+            i !== e && (o && o.didChange && o.didChange(e, s), (r || "length" === s) && (t(e, s, n), y(e, s, n), w(e, s)))
         }, b = function (e, t, s, n) {
             if (s.hasOwnProperty("chainWatchers")) {
                 var r = s.chainWatchers;
@@ -3693,31 +3665,30 @@ var Handlebars = {};
                 var s, n, r = t + ":before";
                 d ? (s = p.add(e, t, r), n = c(e, r, s), u(e, r, [e, t], n)) : u(e, r, [e, t])
             }
-        }, E = function (e, t) {
+        }, w = function (e, t) {
             if (!e.isDestroying) {
                 var s, n = t + ":change";
                 d ? (s = f.add(e, t, n), h(e, n, s)) : u(e, n, [e, t])
             }
         }
     }(), function () {
-        function e(e, t, s, n) {
+        function e(e, t, s, a) {
             var i;
-            if (i = t.slice(t.lastIndexOf(".") + 1), t = t.slice(0, t.length - (i.length + 1)), "this" !== t && (e = r(e, t)), !i || 0 === i.length)throw new Error("You passed an empty path");
+            if (i = t.slice(t.lastIndexOf(".") + 1), t = t.slice(0, t.length - (i.length + 1)), "this" !== t && (e = n(e, t)), !i || 0 === i.length)throw new Error("You passed an empty path");
             if (!e) {
-                if (n)return;
+                if (a)return;
                 throw new Error("Object in path " + t + " could not be found or was destroyed.")
             }
-            return a(e, i, s)
+            return r(e, i, s)
         }
 
-        var t = Ember.META_KEY, s = Ember.ENV.MANDATORY_SETTER, n = /^([A-Z$]|([0-9][A-Z$]))/, r = Ember._getPath, a = function a(r, a, i, o) {
-            if ("string" == typeof r && (Ember.assert("Path '" + r + "' must be global if no obj is given.", n.test(r)), i = a, a = r, r = null), !r || -1 !== a.indexOf("."))return e(r, a, i, o);
-            Ember.assert("You need to provide an object and key to `set`.", !!r && void 0 !== a), Ember.assert("calling set on destroyed object", !r.isDestroyed);
-            var u, h, c = r[t], l = c && c.descs[a];
-            return l ? l.set(r, a, i) : (u = "object" == typeof r && !(a in r), u && "function" == typeof r.setUnknownProperty ? r.setUnknownProperty(a, i) : c && c.watching[a] > 0 ? (h = s ? c.values[a] : r[a], i !== h && (Ember.propertyWillChange(r, a), s ? void 0 !== h || a in r ? c.values[a] = i : Ember.defineProperty(r, a, null, i) : r[a] = i, Ember.propertyDidChange(r, a))) : r[a] = i), i
+        var t = Ember.META_KEY, s = Ember.ENV.MANDATORY_SETTER, n = Ember._getPath, r = function r(n, r, a, i) {
+            if ("string" == typeof n && (a = r, r = n, n = null), !n || -1 !== r.indexOf("."))return e(n, r, a, i);
+            var o, u, h = n[t], c = h && h.descs[r];
+            return c ? c.set(n, r, a) : (o = "object" == typeof n && !(r in n), o && "function" == typeof n.setUnknownProperty ? n.setUnknownProperty(r, a) : h && h.watching[r] > 0 ? (u = s ? h.values[r] : n[r], a !== u && (Ember.propertyWillChange(n, r), s ? void 0 !== u || r in n ? h.values[r] = a : Ember.defineProperty(n, r, null, a) : n[r] = a, Ember.propertyDidChange(n, r))) : n[r] = a), a
         };
-        Ember.config.overrideAccessors && (Ember.set = a, Ember.config.overrideAccessors(), a = Ember.set), Ember.set = a, Ember.setPath = Ember.deprecateFunc("setPath is deprecated since set now supports paths", Ember.set), Ember.trySet = function (e, t, s) {
-            return a(e, t, s, !0)
+        Ember.config.overrideAccessors && (Ember.set = r, Ember.config.overrideAccessors(), r = Ember.set), Ember.set = r, Ember.setPath = Ember.deprecateFunc("setPath is deprecated since set now supports paths", Ember.set), Ember.trySet = function (e, t, s) {
+            return r(e, t, s, !0)
         }, Ember.trySetPath = Ember.deprecateFunc("trySetPath has been renamed to trySet", Ember.trySet)
     }(), function () {
         var e = (Ember.get, Ember.set), t = Ember.guidFor, s = Ember.ArrayPolyfills.indexOf, n = function (e) {
@@ -3799,7 +3770,6 @@ var Handlebars = {};
         Ember.Descriptor = function () {
         };
         var r = Ember.MANDATORY_SETTER_FUNCTION = function () {
-            Ember.assert("You must use Ember.set() to access this property (of " + this + ")", !1)
         }, a = Ember.DEFAULT_GETTER_FUNCTION = function (t) {
             return function () {
                 var s = this[e];
@@ -4007,7 +3977,6 @@ var Handlebars = {};
             }
         }
 
-        Ember.warn("The CP_DEFAULT_CACHEABLE flag has been removed and computed properties are always cached by default. Use `volatile` if you don't want caching.", Ember.ENV.CP_DEFAULT_CACHEABLE !== !1);
         var u = Ember.get, h = Ember.set, c = Ember.meta, l = [].slice, p = Ember.create, f = Ember.META_KEY, d = Ember.watch, m = Ember.unwatch;
         Ember.ComputedProperty = r, r.prototype = new Ember.Descriptor;
         var g = r.prototype;
@@ -4024,10 +3993,10 @@ var Handlebars = {};
             return 0 === arguments.length ? this._meta || {} : (this._meta = e, this)
         }, g.willWatch = function (e, t) {
             var n = e[f];
-            Ember.assert("watch should have setup meta to be writable", n.source === e), t in n.cache || s(this, e, t, n)
+            t in n.cache || s(this, e, t, n)
         }, g.didUnwatch = function (e, t) {
             var s = e[f];
-            Ember.assert("unwatch should have setup meta to be writable", s.source === e), t in s.cache || n(this, e, t, s)
+            t in s.cache || n(this, e, t, s)
         }, g.didChange = function (e, t) {
             if (this._cacheable && this._suspended !== e) {
                 var s = c(e);
@@ -4289,7 +4258,7 @@ var Handlebars = {};
         })
     }(), function () {
         function e() {
-            Ember.run.currentRunLoop || Ember.assert("You have turned on testing mode, which disabled the run-loop's autorun. You will need to wrap any code with asynchronous side-effects in an Ember.run", !Ember.testing)
+            !Ember.run.currentRunLoop
         }
 
         var s = function (e) {
@@ -4365,11 +4334,9 @@ var Handlebars = {};
             var e = this._oneWay ? "[oneWay]" : "";
             return"Ember.Binding<" + n(this) + ">(" + this._from + " -> " + this._to + ")" + e
         }, connect: function (t) {
-            Ember.assert("Must pass a valid object to Ember.Binding.connect()", !!t);
             var s = this._from, n = this._to;
             return Ember.trySet(t, n, e(t, s)), Ember.addObserver(t, s, this, this.fromDidChange), this._oneWay || Ember.addObserver(t, n, this, this.toDidChange), this._readyToSync = !0, this
         }, disconnect: function (e) {
-            Ember.assert("Must pass a valid object to Ember.Binding.disconnect()", !!e);
             var t = !this._oneWay;
             return Ember.removeObserver(e, this._from, this, this.fromDidChange), t && Ember.removeObserver(e, this._to, this, this.toDidChange), this._readyToSync = !1, this
         }, fromDidChange: function (e) {
@@ -4416,7 +4383,7 @@ var Handlebars = {};
         }
 
         function t(e, t) {
-            return t && t.length > 0 && (e.mixins = E.call(t, function (e) {
+            return t && t.length > 0 && (e.mixins = w.call(t, function (e) {
                 if (e instanceof v)return e;
                 var t = new v;
                 return t.properties = e, t
@@ -4456,7 +4423,7 @@ var Handlebars = {};
             if (n instanceof Ember.Descriptor) {
                 if (n === x && u[t])return k;
                 n.func && (n = a(r, t, n, h, u)), u[t] = n, h[t] = void 0
-            } else s(n) ? n = i(e, t, n, h, u) : (c && w.call(c, t) >= 0 || "concatenatedProperties" === t) && (n = o(e, t, n, h)), u[t] = void 0, h[t] = n
+            } else s(n) ? n = i(e, t, n, h, u) : (c && T.call(c, t) >= 0 || "concatenatedProperties" === t) && (n = o(e, t, n, h)), u[t] = void 0, h[t] = n
         }
 
         function h(e, t, s, a, i, o) {
@@ -4464,15 +4431,15 @@ var Handlebars = {};
                 delete s[e], delete a[e]
             }
 
-            for (var l, p, f, d, m, g = 0, b = e.length; b > g; g++)if (l = e[g], Ember.assert("Expected hash or Mixin instance, got " + Object.prototype.toString.call(l), "object" == typeof l && null !== l && "[object Array]" !== Object.prototype.toString.call(l)), p = n(t, l), p !== k)if (p) {
+            for (var l, p, f, d, m, g = 0, b = e.length; b > g; g++)if (l = e[g], p = n(t, l), p !== k)if (p) {
                 m = Ember.meta(i), d = r(p, a, i);
                 for (f in p)p.hasOwnProperty(f) && (o.push(f), u(i, f, p[f], m, s, a, d));
                 p.hasOwnProperty("toString") && (i.toString = p.toString)
-            } else l.mixins && (h(l.mixins, t, s, a, i, o), l._without && T.call(l._without, c))
+            } else l.mixins && (h(l.mixins, t, s, a, i, o), l._without && E.call(l._without, c))
         }
 
         function c(e, t, s, n) {
-            if (A.test(t)) {
+            if (N.test(t)) {
                 var r = n.bindings;
                 r ? n.hasOwnProperty("bindings") || (r = n.bindings = D(n.bindings)) : r = n.bindings = {}, r[t] = s
             }
@@ -4532,12 +4499,12 @@ var Handlebars = {};
             if (!s[S(t)])if (s[S(t)] = !0, t.properties) {
                 var n = t.properties;
                 for (var r in n)n.hasOwnProperty(r) && (e[r] = !0)
-            } else t.mixins && T.call(t.mixins, function (t) {
+            } else t.mixins && E.call(t.mixins, function (t) {
                 y(e, t, s)
             })
         }
 
-        var v, x, _, E = Ember.ArrayPolyfills.map, w = Ember.ArrayPolyfills.indexOf, T = Ember.ArrayPolyfills.forEach, C = [].slice, D = Ember.create, I = Ember.defineProperty, S = Ember.guidFor, k = {}, A = Ember.IS_BINDING = /^.+Binding$/;
+        var v, x, _, w = Ember.ArrayPolyfills.map, T = Ember.ArrayPolyfills.indexOf, E = Ember.ArrayPolyfills.forEach, C = [].slice, D = Ember.create, I = Ember.defineProperty, S = Ember.guidFor, k = {}, N = Ember.IS_BINDING = /^.+Binding$/;
         Ember.mixin = function (e) {
             var t = C.call(arguments, 1);
             return g(e, t, !1), e
@@ -4551,26 +4518,26 @@ var Handlebars = {};
             var e = this;
             return t(new e, arguments)
         };
-        var N = v.prototype;
-        N.reopen = function () {
+        var A = v.prototype;
+        A.reopen = function () {
             var e, t;
             this.properties ? (e = v.create(), e.properties = this.properties, delete this.properties, this.mixins = [e]) : this.mixins || (this.mixins = []);
             var s, n = arguments.length, r = this.mixins;
-            for (s = 0; n > s; s++)e = arguments[s], Ember.assert("Expected hash or Mixin instance, got " + Object.prototype.toString.call(e), "object" == typeof e && null !== e && "[object Array]" !== Object.prototype.toString.call(e)), e instanceof v ? r.push(e) : (t = v.create(), t.properties = e, r.push(t));
+            for (s = 0; n > s; s++)e = arguments[s], e instanceof v ? r.push(e) : (t = v.create(), t.properties = e, r.push(t));
             return this
-        }, N.apply = function (e) {
+        }, A.apply = function (e) {
             return g(e, [this], !1)
-        }, N.applyPartial = function (e) {
+        }, A.applyPartial = function (e) {
             return g(e, [this], !0)
-        }, N.detect = function (e) {
+        }, A.detect = function (e) {
             if (!e)return!1;
             if (e instanceof v)return b(e, this, {});
             var t = Ember.meta(e, !1).mixins;
             return t ? !!t[S(this)] : !1
-        }, N.without = function () {
+        }, A.without = function () {
             var e = new v(this);
             return e._without = C.call(arguments), e
-        }, N.keys = function () {
+        }, A.keys = function () {
             var e = {}, t = {}, s = [];
             y(e, this, t);
             for (var n in e)e.hasOwnProperty(n) && s.push(n);
@@ -4597,10 +4564,7 @@ var Handlebars = {};
             var t = C.call(arguments, 1);
             return e.__ember_observes__ = t, e
         }, Ember.immediateObserver = function () {
-            for (var e = 0, t = arguments.length; t > e; e++) {
-                var s = arguments[e];
-                Ember.assert("Immediate observers must observe internal properties only, not properties on other objects.", "string" != typeof s || -1 === s.indexOf("."))
-            }
+            for (var e = 0, t = arguments.length; t > e; e++)arguments[e];
             return Ember.observer.apply(this, arguments)
         }, Ember.beforeObserver = function (e) {
             var t = C.call(arguments, 1);
@@ -4953,7 +4917,7 @@ var Handlebars = {};
                 e[t] = s
             }, register: function (e, t, s, n) {
                 var r;
-                -1 !== e.indexOf(":") ? (n = s, s = t, r = e) : (Ember.deprecate('register("' + e + '", "' + t + '") is now deprecated in-favour of register("' + e + ":" + t + '");', !1), r = e + ":" + t);
+                -1 !== e.indexOf(":") ? (n = s, s = t, r = e) : r = e + ":" + t;
                 var a = this.normalize(r);
                 this.registry.set(a, s), this._options.set(a, n || {})
             }, resolve: function (e) {
@@ -4994,7 +4958,7 @@ var Handlebars = {};
             var i, o, u;
             if ("object" != typeof s || null === s)return s;
             if (n && (o = t(r, s)) >= 0)return a[o];
-            if (Ember.assert("Cannot clone an Ember.Object that does not implement Ember.Copyable", !(s instanceof Ember.Object) || Ember.Copyable && Ember.Copyable.detect(s)), "array" === Ember.typeOf(s)) {
+            if ("array" === Ember.typeOf(s)) {
                 if (i = s.slice(), n)for (o = i.length; --o >= 0;)i[o] = e(i[o], n, r, a)
             } else if (Ember.Copyable && Ember.Copyable.detect(s))i = s.copy(n, r, a); else {
                 i = {};
@@ -5436,9 +5400,9 @@ var Handlebars = {};
         }, hasObserverFor: function (e) {
             return Ember.hasListeners(this, e + ":change")
         }, getPath: function (e) {
-            return Ember.deprecate("getPath is deprecated since get now supports paths"), this.get(e)
+            return this.get(e)
         }, setPath: function (e, t) {
-            return Ember.deprecate("setPath is deprecated since set now supports paths"), this.set(e, t)
+            return this.set(e, t)
         }, getWithDefault: function (e, t) {
             return Ember.getWithDefault(this, e, t)
         }, incrementProperty: function (s, n) {
@@ -5473,7 +5437,7 @@ var Handlebars = {};
             var s = t.action || e(this, "action"), n = t.target || e(this, "targetObject"), r = t.actionContext || e(this, "actionContextObject") || this;
             if (n && s) {
                 var a;
-                return n.send ? a = n.send.apply(n, [s, r]) : (Ember.assert("The action '" + s + "' did not exist on " + n, "function" == typeof n[s]), a = n[s].apply(n, [r])), a !== !1 && (a = !0), a
+                return a = n.send ? n.send.apply(n, [s, r]) : n[s].apply(n, [r]), a !== !1 && (a = !0), a
             }
             return!1
         }})
@@ -5487,7 +5451,7 @@ var Handlebars = {};
             for (t = 1, s = arguments.length; s > t; t++)n.push(arguments[t]);
             Ember.sendEvent(this, e, n)
         }, fire: function () {
-            Ember.deprecate("Ember.Evented#fire() has been deprecated in favor of trigger() for compatibility with jQuery. It will be removed in 1.0. Please update your code to call trigger() instead."), this.trigger.apply(this, arguments)
+            this.trigger.apply(this, arguments)
         }, off: function (e, t, s) {
             return Ember.removeListener(this, e, t, s), this
         }, has: function (e) {
@@ -5530,19 +5494,18 @@ var Handlebars = {};
                     t = null;
                     for (var p = this.concatenatedProperties, f = 0, m = l.length; m > f; f++) {
                         var v = l[f];
-                        Ember.assert("Ember.Object.create no longer supports mixing in other definitions, use createWithMixins instead.", !(v instanceof Ember.Mixin));
                         for (var x in v)if (v.hasOwnProperty(x)) {
-                            var _ = v[x], E = Ember.IS_BINDING;
-                            if (E.test(x)) {
-                                var w = u.bindings;
-                                w ? u.hasOwnProperty("bindings") || (w = u.bindings = s(u.bindings)) : w = u.bindings = {}, w[x] = _
+                            var _ = v[x], w = Ember.IS_BINDING;
+                            if (w.test(x)) {
+                                var T = u.bindings;
+                                T ? u.hasOwnProperty("bindings") || (T = u.bindings = s(u.bindings)) : T = u.bindings = {}, T[x] = _
                             }
-                            var T = u.descs[x];
-                            if (Ember.assert("Ember.Object.create no longer supports defining computed properties.", !(_ instanceof Ember.ComputedProperty)), Ember.assert("Ember.Object.create no longer supports defining methods that call _super.", !("function" == typeof _ && -1 !== _.toString().indexOf("._super"))), p && b(p, x) >= 0) {
+                            var E = u.descs[x];
+                            if (p && b(p, x) >= 0) {
                                 var C = this[x];
                                 _ = C ? "function" == typeof C.concat ? C.concat(_) : Ember.makeArray(C).concat(_) : Ember.makeArray(_)
                             }
-                            T ? T.set(this, x, _) : "function" != typeof this.setUnknownProperty || x in this ? g ? Ember.defineProperty(this, x, null, _) : this[x] = _ : this.setUnknownProperty(x, _)
+                            E ? E.set(this, x, _) : "function" != typeof this.setUnknownProperty || x in this ? g ? Ember.defineProperty(this, x, null, _) : this[x] = _ : this.setUnknownProperty(x, _)
                         }
                     }
                 }
@@ -5606,7 +5569,7 @@ var Handlebars = {};
             return e instanceof this
         }, metaForProperty: function (e) {
             var t = o(this.proto(), !1).descs[e];
-            return Ember.assert("metaForProperty() could not find a computed property with key '" + e + "'.", !!t && t instanceof Ember.ComputedProperty), t._meta || {}
+            return t._meta || {}
         }, eachComputedProperty: function (e, t) {
             var s, n = this.proto(), r = o(n).descs, a = {};
             for (var i in r)s = r[i], s instanceof Ember.ComputedProperty && e.call(t || this, i, s._meta || a)
@@ -5638,7 +5601,7 @@ var Handlebars = {};
                 } catch (a) {
                     continue
                 }
-                t && (Ember.deprecate("Namespaces should not begin with lowercase.", /^[A-Z]/.test(r)), e[p] = r)
+                t && (e[p] = r)
             }
         }
 
@@ -5701,8 +5664,7 @@ var Handlebars = {};
             var e = s(this, "content");
             e && e.removeArrayObserver(this, {willChange: "contentArrayWillChange", didChange: "contentArrayDidChange"})
         }, contentArrayWillChange: Ember.K, contentArrayDidChange: Ember.K, _contentDidChange: Ember.observer(function () {
-            var e = s(this, "content");
-            Ember.assert("Can't set ArrayProxy's content to itself", e !== this), this._setupContent()
+            s(this, "content"), this._setupContent()
         }, "content"), _setupContent: function () {
             var e = s(this, "content");
             e && e.addArrayObserver(this, {willChange: "contentArrayWillChange", didChange: "contentArrayDidChange"})
@@ -5711,7 +5673,7 @@ var Handlebars = {};
             this.arrangedContentArrayWillChange(this, 0, t, void 0), this.arrangedContentWillChange(this), this._teardownArrangedContent(e)
         }, "arrangedContent"), _arrangedContentDidChange: Ember.observer(function () {
             var e = s(this, "arrangedContent"), t = e ? s(e, "length") : 0;
-            Ember.assert("Can't set ArrayProxy's content to itself", e !== this), this._setupArrangedContent(), this.arrangedContentDidChange(this), this.arrangedContentArrayDidChange(this, 0, void 0, t)
+            this._setupArrangedContent(), this.arrangedContentDidChange(this), this.arrangedContentArrayDidChange(this, 0, void 0, t)
         }, "arrangedContent"), _setupArrangedContent: function () {
             var e = s(this, "arrangedContent");
             e && e.addArrayObserver(this, {willChange: "arrangedContentArrayWillChange", didChange: "arrangedContentArrayDidChange"})
@@ -5725,7 +5687,7 @@ var Handlebars = {};
             return e ? s(e, "length") : 0
         }), _replace: function (e, t, n) {
             var r = s(this, "content");
-            return Ember.assert("The content property of " + this.constructor + " should be set before modifying it", r), r && this.replaceContent(e, t, n), this
+            return r && this.replaceContent(e, t, n), this
         }, replace: function () {
             if (s(this, "arrangedContent") !== s(this, "content"))throw new Ember.Error("Using replace on an arranged ArrayProxy is not allowed.");
             this._replace.apply(this, arguments)
@@ -5773,29 +5735,28 @@ var Handlebars = {};
     }(), function () {
         function e(e, t) {
             var s = t.slice(8);
-            s in this || h(this, s)
+            s in this || u(this, s)
         }
 
         function t(e, t) {
             var s = t.slice(8);
-            s in this || c(this, s)
+            s in this || h(this, s)
         }
 
-        var s = Ember.get, n = Ember.set, r = Ember.String.fmt, a = Ember.addBeforeObserver, i = Ember.addObserver, o = Ember.removeBeforeObserver, u = Ember.removeObserver, h = Ember.propertyWillChange, c = Ember.propertyDidChange;
+        var s = Ember.get, n = Ember.set, r = (Ember.String.fmt, Ember.addBeforeObserver), a = Ember.addObserver, i = Ember.removeBeforeObserver, o = Ember.removeObserver, u = Ember.propertyWillChange, h = Ember.propertyDidChange;
         Ember.ObjectProxy = Ember.Object.extend({content: null, _contentDidChange: Ember.observer(function () {
-            Ember.assert("Can't set ObjectProxy's content to itself", this.get("content") !== this)
         }, "content"), isTruthy: Ember.computed.bool("content"), _debugContainerKey: null, willWatchProperty: function (s) {
             var n = "content." + s;
-            a(this, n, null, e), i(this, n, null, t)
+            r(this, n, null, e), a(this, n, null, t)
         }, didUnwatchProperty: function (s) {
             var n = "content." + s;
-            o(this, n, null, e), u(this, n, null, t)
+            i(this, n, null, e), o(this, n, null, t)
         }, unknownProperty: function (e) {
             var t = s(this, "content");
             return t ? s(t, e) : void 0
         }, setUnknownProperty: function (e, t) {
-            var a = s(this, "content");
-            return Ember.assert(r("Cannot delegate set('%@', %@) to the 'content' property of object proxy %@: its 'content' is undefined.", [e, t, this]), a), n(a, e, t)
+            var r = s(this, "content");
+            return n(r, e, t)
         }}), Ember.ObjectProxy.reopenClass({create: function () {
             var e, t, s, n, r, a;
             if (arguments.length) {
@@ -5984,13 +5945,13 @@ var Handlebars = {};
         var e = Ember.get;
         Ember.ControllerMixin = Ember.Mixin.create({isController: !0, target: null, container: null, parentController: null, store: null, model: Ember.computed.alias("content"), send: function (t) {
             var s, n = [].slice.call(arguments, 1);
-            this[t] ? (Ember.assert("The controller " + this + " does not have the action " + t, "function" == typeof this[t]), this[t].apply(this, n)) : (s = e(this, "target")) && (Ember.assert("The target for controller " + this + " (" + s + ") did not define a `send` method", "function" == typeof s.send), s.send.apply(s, arguments))
+            this[t] ? this[t].apply(this, n) : (s = e(this, "target")) && s.send.apply(s, arguments)
         }}), Ember.Controller = Ember.Object.extend(Ember.ControllerMixin)
     }(), function () {
         var e = Ember.get, t = (Ember.set, Ember.EnumerableUtils.forEach);
         Ember.SortableMixin = Ember.Mixin.create(Ember.MutableEnumerable, {sortProperties: null, sortAscending: !0, orderBy: function (s, n) {
             var r = 0, a = e(this, "sortProperties"), i = e(this, "sortAscending");
-            return Ember.assert("you need to define `sortProperties`", !!a), t(a, function (t) {
+            return t(a, function (t) {
                 0 === r && (r = Ember.compare(e(s, t), e(n, t)), 0 === r || i || (r = -1 * r))
             }), r
         }, destroy: function () {
@@ -6089,7 +6050,7 @@ var Handlebars = {};
         Ember.ObjectController = Ember.ObjectProxy.extend(Ember.ControllerMixin)
     }(), function () {
         var e = Ember.imports.jQuery;
-        Ember.assert("Ember Views require jQuery 1.8, 1.9, 1.10, or 2.0", e && (e().jquery.match(/^((1\.(8|9|10))|2.0)(\.\d+)?(pre|rc\d?)?/) || Ember.ENV.FORCE_JQUERY)), Ember.$ = e
+        Ember.$ = e
     }(), function () {
         if (Ember.$) {
             var e = Ember.String.w("dragstart drag dragenter dragleave dragover drop dragend");
@@ -6140,9 +6101,7 @@ var Handlebars = {};
         }, o = function (e, t) {
             var s = e.tagName;
             if (i(s))r(e, t); else {
-                var n = e.outerHTML || (new XMLSerializer).serializeToString(e);
-                Ember.assert("Can't set innerHTML on " + e.tagName + " in this browser", n);
-                var a = n.match(new RegExp("<" + s + "([^>]*)>", "i"))[0], o = "</" + s + ">", u = document.createElement("div");
+                var n = e.outerHTML || (new XMLSerializer).serializeToString(e), a = n.match(new RegExp("<" + s + "([^>]*)>", "i"))[0], o = "</" + s + ">", u = document.createElement("div");
                 for (r(u, a + t + o), e = u.firstChild; e.tagName !== s;)e = e.nextSibling
             }
             return e
@@ -6246,11 +6205,11 @@ var Handlebars = {};
             return n.test(a) ? a.replace(s, r) : a
         }}
     }(), function () {
-        var e = Ember.get, t = Ember.set, s = Ember.String.fmt;
-        Ember.EventDispatcher = Ember.Object.extend({rootElement: "body", setup: function (n, r) {
-            var a, i = {touchstart: "touchStart", touchend: "touchEnd", touchcancel: "touchCancel", keydown: "keyDown", keyup: "keyUp", keypress: "keyPress", mousedown: "mouseDown", mouseup: "mouseUp", contextmenu: "contextMenu", click: "click", dblclick: "doubleClick", focusin: "focusIn", focusout: "focusOut", mouseenter: "mouseEnter", mouseleave: "mouseLeave", submit: "submit", input: "input", change: "change", dragstart: "dragStart", drag: "drag", dragenter: "dragEnter", dragleave: "dragLeave", dragover: "dragOver", drop: "drop", dragend: "dragEnd"};
-            Ember.$.extend(i, n || {}), Ember.isNone(r) || t(this, "rootElement", r), r = Ember.$(e(this, "rootElement")), Ember.assert(s("You cannot use the same root element (%@) multiple times in an Ember.Application", [r.selector || r[0].tagName]), !r.is(".ember-application")), Ember.assert("You cannot make a new Ember.Application using a root element that is a descendent of an existing Ember.Application", !r.closest(".ember-application").length), Ember.assert("You cannot make a new Ember.Application using a root element that is an ancestor of an existing Ember.Application", !r.find(".ember-application").length), r.addClass("ember-application"), Ember.assert('Unable to add "ember-application" class to rootElement. Make sure you set rootElement to the body or an element in the body.', r.is(".ember-application"));
-            for (a in i)i.hasOwnProperty(a) && this.setupHandler(r, a, i[a])
+        var e = Ember.get, t = Ember.set;
+        Ember.String.fmt, Ember.EventDispatcher = Ember.Object.extend({rootElement: "body", setup: function (s, n) {
+            var r, a = {touchstart: "touchStart", touchend: "touchEnd", touchcancel: "touchCancel", keydown: "keyDown", keyup: "keyUp", keypress: "keyPress", mousedown: "mouseDown", mouseup: "mouseUp", contextmenu: "contextMenu", click: "click", dblclick: "doubleClick", focusin: "focusIn", focusout: "focusOut", mouseenter: "mouseEnter", mouseleave: "mouseLeave", submit: "submit", input: "input", change: "change", dragstart: "dragStart", drag: "drag", dragenter: "dragEnter", dragleave: "dragLeave", dragover: "dragOver", drop: "drop", dragend: "dragEnd"};
+            Ember.$.extend(a, s || {}), Ember.isNone(n) || t(this, "rootElement", n), n = Ember.$(e(this, "rootElement")), n.addClass("ember-application");
+            for (r in a)a.hasOwnProperty(r) && this.setupHandler(n, r, a[r])
         }, setupHandler: function (e, t, s) {
             var n = this;
             e.on(t + ".ember", ".ember-view", function (e, t) {
@@ -6300,11 +6259,11 @@ var Handlebars = {};
             return a(e, function (e) {
                 e.isVirtual ? t.pushObjects(s(e, "childViews")) : t.push(e)
             }), t.replace = function (e, t, s) {
-                if (n instanceof Ember.ContainerView)return Ember.deprecate("Manipulating an Ember.ContainerView through its childViews property is deprecated. Please use the ContainerView instance itself as an Ember.MutableArray."), n.replace(e, t, s);
+                if (n instanceof Ember.ContainerView)return n.replace(e, t, s);
                 throw new Error("childViews is immutable")
             }, t
         });
-        Ember.warn("The VIEW_PRESERVES_CONTEXT flag has been removed and the functionality can no longer be disabled.", Ember.ENV.VIEW_PRESERVES_CONTEXT !== !1), Ember.TEMPLATES = {}, Ember.CoreView = Ember.Object.extend(Ember.Evented, {isView: !0, states: t, init: function () {
+        Ember.TEMPLATES = {}, Ember.CoreView = Ember.Object.extend(Ember.Evented, {isView: !0, states: t, init: function () {
             this._super(), this.transitionTo("preRender")
         }, parentView: Ember.computed(function () {
             var e = this._parentView;
@@ -6365,16 +6324,15 @@ var Handlebars = {};
         Ember.View = Ember.CoreView.extend({concatenatedProperties: ["classNames", "classNameBindings", "attributeBindings"], isView: !0, templateName: null, layoutName: null, templates: Ember.TEMPLATES, template: Ember.computed(function (e, t) {
             if (void 0 !== t)return t;
             var n = s(this, "templateName"), r = this.templateForName(n, "template");
-            return Ember.assert("You specified the templateName " + n + " for " + this + ", but it did not exist.", !n || r), r || s(this, "defaultTemplate")
+            return r || s(this, "defaultTemplate")
         }).property("templateName"), controller: Ember.computed(function () {
             var e = s(this, "_parentView");
             return e ? s(e, "controller") : null
         }).property("_parentView"), layout: Ember.computed(function () {
             var e = s(this, "layoutName"), t = this.templateForName(e, "layout");
-            return Ember.assert("You specified the layoutName " + e + " for " + this + ", but it did not exist.", !e || t), t || s(this, "defaultLayout")
+            return t || s(this, "defaultLayout")
         }).property("layoutName"), templateForName: function (e) {
             if (e) {
-                Ember.assert("templateNames are not allowed to contain periods: " + e, -1 === e.indexOf("."));
                 var t = this.container || Ember.Container && Ember.Container.defaultContainer;
                 return t && t.lookup("template:" + e)
             }
@@ -6396,7 +6354,6 @@ var Handlebars = {};
                 e && Ember.propertyDidChange(e, "childViews")
             }
         }, "childViews"), nearestInstanceOf: function (e) {
-            Ember.deprecate("nearestInstanceOf is deprecated and will be removed from future releases. Use nearestOfType.");
             for (var t = s(this, "parentView"); t;) {
                 if (t instanceof e)return t;
                 t = s(t, "parentView")
@@ -6433,7 +6390,7 @@ var Handlebars = {};
             var t = s(this, "layout") || s(this, "template");
             if (t) {
                 var n, r = s(this, "context"), a = this.cloneKeywords(), i = {view: this, buffer: e, isRenderData: !0, keywords: a, insideGroup: s(this, "templateData.insideGroup")};
-                Ember.assert('template must be a function. Did you mean to call Ember.Handlebars.compile("...") or specify templateName instead?', "function" == typeof t), n = t(r, {data: i}), void 0 !== n && e.push(n)
+                n = t(r, {data: i}), void 0 !== n && e.push(n)
             }
         }, rerender: function () {
             return this.currentState.rerender(this)
@@ -6475,10 +6432,10 @@ var Handlebars = {};
             return this
         }, appendTo: function (e) {
             return this._insertElementLater(function () {
-                Ember.assert("You cannot append to an existing Ember.View. Consider using Ember.ContainerView instead.", !Ember.$(e).is(".ember-view") && !Ember.$(e).parents().is(".ember-view")), this.$().appendTo(e)
+                this.$().appendTo(e)
             }), this
         }, replaceIn: function (e) {
-            return Ember.assert("You cannot replace an existing Ember.View. Consider using Ember.ContainerView instead.", !Ember.$(e).is(".ember-view") && !Ember.$(e).parents().is(".ember-view")), this._insertElementLater(function () {
+            return this._insertElementLater(function () {
                 Ember.$(e).empty(), this.$().appendTo(e)
             }), this
         }, _insertElementLater: function (e) {
@@ -6545,7 +6502,7 @@ var Handlebars = {};
             var r = s(this, "ariaRole");
             r && e.attr("role", r), s(this, "isVisible") === !1 && e.style("display", "none")
         }, tagName: null, ariaRole: null, classNames: ["ember-view"], classNameBindings: h, attributeBindings: h, init: function () {
-            this.elementId = this.elementId || r(this), this._super(), this._childViews = this._childViews.slice(), Ember.assert("Only arrays are allowed for 'classNameBindings'", "array" === Ember.typeOf(this.classNameBindings)), this.classNameBindings = Ember.A(this.classNameBindings.slice()), Ember.assert("Only arrays are allowed for 'classNames'", "array" === Ember.typeOf(this.classNames)), this.classNames = Ember.A(this.classNames.slice());
+            this.elementId = this.elementId || r(this), this._super(), this._childViews = this._childViews.slice(), this.classNameBindings = Ember.A(this.classNameBindings.slice()), this.classNames = Ember.A(this.classNames.slice());
             var e = s(this, "viewController");
             e && (e = s(e), e && n(e, "view", this))
         }, appendChild: function (e, t) {
@@ -6575,7 +6532,7 @@ var Handlebars = {};
                 return this
             }
         }, createChildView: function (e, t) {
-            return e.isView && e._parentView === this ? e : (Ember.CoreView.detect(e) ? (t = t || {}, t._parentView = this, t.container = this.container, t.templateData = t.templateData || s(this, "templateData"), e = e.create(t), e.viewName && n(s(this, "concreteView"), e.viewName, e)) : (Ember.assert("You must pass instance or subclass of View", e.isView), t && e.setProperties(t), s(e, "templateData") || n(e, "templateData", s(this, "templateData")), n(e, "_parentView", this)), e)
+            return e.isView && e._parentView === this ? e : (Ember.CoreView.detect(e) ? (t = t || {}, t._parentView = this, t.container = this.container, t.templateData = t.templateData || s(this, "templateData"), e = e.create(t), e.viewName && n(s(this, "concreteView"), e.viewName, e)) : (t && e.setProperties(t), s(e, "templateData") || n(e, "templateData", s(this, "templateData")), n(e, "_parentView", this)), e)
         }, becameVisible: Ember.K, becameHidden: Ember.K, _isVisibleDidChange: Ember.observer(function () {
             var e = this.$();
             if (e) {
@@ -6699,7 +6656,6 @@ var Handlebars = {};
             var t = e._notifyWillDestroyElement();
             return t.transitionTo("preRender", !1), e
         }, empty: function () {
-            Ember.assert("Emptying a view in the inBuffer state is not allowed and should not happen under normal circumstances. Most likely there is a bug in your application. This may be due to excessive property change notifications.")
         }, renderToBufferIfNeeded: function () {
             return!1
         }, insertElement: function () {
@@ -6735,7 +6691,7 @@ var Handlebars = {};
         }});
         var n = Ember.View.states.inDOM = Ember.create(s);
         Ember.merge(n, {enter: function (e) {
-            e.isVirtual || (Ember.assert("Attempted to register a view with an id already in use: " + e.elementId, !Ember.View.views[e.elementId]), Ember.View.views[e.elementId] = e), e.addBeforeObserver("elementId", function () {
+            e.isVirtual || (Ember.View.views[e.elementId] = e), e.addBeforeObserver("elementId", function () {
                 throw new Error("Changing a view's elementId after creation is not allowed")
             })
         }, exit: function (e) {
@@ -6785,12 +6741,10 @@ var Handlebars = {};
             var a = s(this, "currentView");
             a && (t.length || (t = this._childViews = this._childViews.slice()), t.push(this.createChildView(a)))
         }, replace: function (e, t, n) {
-            var r = n ? s(n, "length") : 0, a = this;
-            if (Ember.assert("You can't add a child to a container that is already a child of another view", Ember.A(n).every(function (e) {
-                return!s(e, "_parentView") || s(e, "_parentView") === a
-            })), this.arrayContentWillChange(e, t, r), this.childViewsWillChange(this._childViews, e, t), 0 === r)this._childViews.splice(e, t); else {
-                var i = [e, t].concat(n);
-                n.length && !this._childViews.length && (this._childViews = this._childViews.slice()), this._childViews.splice.apply(this._childViews, i)
+            var r = n ? s(n, "length") : 0;
+            if (this.arrayContentWillChange(e, t, r), this.childViewsWillChange(this._childViews, e, t), 0 === r)this._childViews.splice(e, t); else {
+                var a = [e, t].concat(n);
+                n.length && !this._childViews.length && (this._childViews = this._childViews.slice()), this._childViews.splice.apply(this._childViews, a)
             }
             return this.arrayContentDidChange(e, t, r), this.childViewsDidChange(this._childViews, e, t, r), this
         }, objectAt: function (e) {
@@ -6823,7 +6777,7 @@ var Handlebars = {};
             e && e.destroy()
         }, "currentView"), _currentViewDidChange: Ember.observer(function () {
             var e = s(this, "currentView");
-            e && (Ember.assert("You tried to set a current view that already has a parent. Make sure you don't have multiple outlets in the same view.", !s(e, "_parentView")), this.pushObject(e))
+            e && this.pushObject(e)
         }, "currentView"), _ensureChildrenAreInDOM: function () {
             this.currentState.ensureChildrenAreInDOM(this)
         }}), Ember.merge(t._default, {childViewsWillChange: Ember.K, childViewsDidChange: Ember.K, ensureChildrenAreInDOM: Ember.K}), Ember.merge(t.inBuffer, {childViewsDidChange: function () {
@@ -6838,8 +6792,8 @@ var Handlebars = {};
             h.length && e(t, h, i, o)
         }})
     }(), function () {
-        var e = Ember.get, t = Ember.set, s = Ember.String.fmt;
-        Ember.CollectionView = Ember.ContainerView.extend({content: null, emptyViewClass: Ember.View, emptyView: null, itemViewClass: Ember.View, init: function () {
+        var e = Ember.get, t = Ember.set;
+        Ember.String.fmt, Ember.CollectionView = Ember.ContainerView.extend({content: null, emptyViewClass: Ember.View, emptyView: null, itemViewClass: Ember.View, init: function () {
             var e = this._super();
             return this._contentDidChange(), e
         }, _contentWillChange: Ember.beforeObserver(function () {
@@ -6849,9 +6803,9 @@ var Handlebars = {};
             this.arrayWillChange(t, 0, s)
         }, "content"), _contentDidChange: Ember.observer(function () {
             var t = e(this, "content");
-            t && (Ember.assert(s("an Ember.CollectionView's content must implement Ember.Array. You passed %@", [t]), Ember.Array.detect(t)), t.addArrayObserver(this));
-            var n = t ? e(t, "length") : 0;
-            this.arrayDidChange(t, 0, null, n)
+            t && t.addArrayObserver(this);
+            var s = t ? e(t, "length") : 0;
+            this.arrayDidChange(t, 0, null, s)
         }, "content"), destroy: function () {
             if (this._super()) {
                 var t = e(this, "content");
@@ -6866,15 +6820,15 @@ var Handlebars = {};
             for (h && (this.currentState.empty(this), this.invokeRecursively(function (e) {
                 e.removedFromDOM = !0
             }, !1)), i = s + n - 1; i >= s; i--)a = u[i], a.destroy()
-        }, arrayDidChange: function (n, r, a, i) {
-            var o, u, h, c, l = e(this, "itemViewClass"), p = [];
-            if ("string" == typeof l && (l = e(l)), Ember.assert(s("itemViewClass must be a subclass of Ember.View, not %@", [l]), Ember.View.detect(l)), c = n ? e(n, "length") : 0)for (h = r; r + i > h; h++)u = n.objectAt(h), o = this.createChildView(l, {content: u, contentIndex: h}), p.push(o); else {
-                var f = e(this, "emptyView");
-                if (!f)return;
-                var d = Ember.CoreView.detect(f);
-                f = this.createChildView(f), p.push(f), t(this, "emptyView", f), d && (this._createdEmptyView = f)
+        }, arrayDidChange: function (s, n, r, a) {
+            var i, o, u, h, c = e(this, "itemViewClass"), l = [];
+            if ("string" == typeof c && (c = e(c)), h = s ? e(s, "length") : 0)for (u = n; n + a > u; u++)o = s.objectAt(u), i = this.createChildView(c, {content: o, contentIndex: u}), l.push(i); else {
+                var p = e(this, "emptyView");
+                if (!p)return;
+                var f = Ember.CoreView.detect(p);
+                p = this.createChildView(p), l.push(p), t(this, "emptyView", p), f && (this._createdEmptyView = p)
             }
-            this.replace(r, 0, p)
+            this.replace(n, 0, l)
         }, createChildView: function (s, n) {
             s = this._super(s, n);
             var r = e(s, "tagName"), a = null === r || void 0 === r ? Ember.CollectionView.CONTAINER_MAP[e(this, "tagName")] : r;
@@ -7013,9 +6967,9 @@ var Handlebars = {};
 
             return t.prototype = e, new t
         }, s = this.Handlebars || Ember.imports && Ember.imports.Handlebars;
-        s || "function" != typeof require || (s = require("handlebars")), Ember.assert("Ember Handlebars requires Handlebars version 1.0.0-rc.4. Include a SCRIPT tag in the HTML HEAD linking to the Handlebars file before you link to Ember.", s), Ember.assert("Ember Handlebars requires Handlebars version 1.0.0-rc.4, COMPILER_REVISION expected: 3, got: " + s.COMPILER_REVISION + " – Please note: Builds of master may have other COMPILER_REVISION values.", 3 === s.COMPILER_REVISION), Ember.Handlebars = t(s), Ember.Handlebars.helper = function (t, s) {
+        s || "function" != typeof require || (s = require("handlebars")), Ember.Handlebars = t(s), Ember.Handlebars.helper = function (t, s) {
             Ember.View.detect(s) ? Ember.Handlebars.registerHelper(t, function (t) {
-                return Ember.assert("You can only pass attributes as parameters (not values) to a application-defined helper", 2 > arguments.length), e(t), Ember.Handlebars.helpers.view.call(this, s, t)
+                return e(t), Ember.Handlebars.helpers.view.call(this, s, t)
             }) : Ember.Handlebars.registerBoundHelper.apply(null, arguments)
         }, Ember.Handlebars.helpers = t(s.helpers), Ember.Handlebars.Compiler = function () {
         }, s.Compiler && (Ember.Handlebars.Compiler.prototype = t(s.Compiler.prototype)), Ember.Handlebars.Compiler.prototype.compiler = Ember.Handlebars.Compiler, Ember.Handlebars.JavaScriptCompiler = function () {
@@ -7078,12 +7032,12 @@ var Handlebars = {};
         }), Ember.Handlebars.registerBoundHelper = function (r, a) {
             function i() {
                 var r, i, u, h, c, l = s.call(arguments, 0, -1), p = l.length, f = arguments[arguments.length - 1], d = [], m = f.data, g = f.hash, b = m.view, y = f.contexts && f.contexts[0] || this;
-                Ember.assert("registerBoundHelper-generated helpers do not support use with Handlebars blocks.", !f.fn), g.boundOptions = {};
+                g.boundOptions = {};
                 for (c in g)g.hasOwnProperty(c) && Ember.IS_BINDING.test(c) && "string" == typeof g[c] && (g.boundOptions[c.slice(0, -7)] = g[c]);
                 for (m.properties = [], h = 0; p > h; ++h)m.properties.push(l[h]), d.push(n(y, l[h], m));
                 if (m.isUnbound)return t(this, a, d, f);
                 if (0 === o.length)return e(y, a, d, f);
-                Ember.assert("Dependent keys can only be used with single-property helpers.", 1 === l.length), r = d[0], i = r.root, u = r.path;
+                r = d[0], i = r.root, u = r.path;
                 var v = new Ember._SimpleHandlebarsView(u, i, !f.hash.unescaped, f.data);
                 v.normalizedValue = function () {
                     var e = Ember._SimpleHandlebarsView.prototype.normalizedValue.call(v);
@@ -7142,7 +7096,7 @@ var Handlebars = {};
             t.morph.html(""), e()
         }};
         Ember._Metamorph = Ember.Mixin.create({isVirtual: !0, tagName: "", instrumentName: "metamorph", init: function () {
-            this._super(), this.morph = s(), Ember.deprecate("Supplying a tagName to Metamorph views is unreliable and is deprecated. You may be setting the tagName on a Handlebars helper that creates a Metamorph.", !this.tagName)
+            this._super(), this.morph = s()
         }, beforeRender: function (e) {
             e.push(this.morph.startTag()), e.pushOpeningTag()
         }, afterRender: function (e) {
@@ -7208,34 +7162,34 @@ var Handlebars = {};
             return!Ember.isNone(e)
         }
 
-        function t(e, t, s, n, r, o) {
+        function t(e, t, s, n, i, o) {
             var u, h, c, l = t.data, p = t.fn, f = t.inverse, d = l.view, m = this;
-            if (u = i(m, e, l), "object" == typeof this) {
+            if (u = a(m, e, l), "object" == typeof this) {
                 if (l.insideGroup) {
                     h = function () {
                         Ember.run.once(d, "rerender")
                     };
-                    var g, b, y = a(m, e, t);
-                    y = r(y), b = s ? m : y, n(y) ? g = p : f && (g = f), g(b, {data: t.data})
+                    var g, b, y = r(m, e, t);
+                    y = i(y), b = s ? m : y, n(y) ? g = p : f && (g = f), g(b, {data: t.data})
                 } else {
-                    var v = d.createChildView(Ember._HandlebarsBoundView, {preserveContext: s, shouldDisplayFunc: n, valueNormalizerFunc: r, displayTemplate: p, inverseTemplate: f, path: e, pathRoot: m, previousContext: m, isEscaped: !t.hash.unescaped, templateData: t.data});
+                    var v = d.createChildView(Ember._HandlebarsBoundView, {preserveContext: s, shouldDisplayFunc: n, valueNormalizerFunc: i, displayTemplate: p, inverseTemplate: f, path: e, pathRoot: m, previousContext: m, isEscaped: !t.hash.unescaped, templateData: t.data});
                     d.appendChild(v), h = function () {
                         Ember.run.scheduleOnce("render", v, "rerenderIfNeeded")
                     }
                 }
                 if ("" !== u.path && (d.registerObserver(u.root, u.path, h), o))for (c = 0; o.length > c; c++)d.registerObserver(u.root, u.path + "." + o[c], h)
-            } else l.buffer.push(a(m, e, t))
+            } else l.buffer.push(r(m, e, t))
         }
 
         function s(e, t) {
-            var s, n, r = t.data, o = r.view, u = this;
-            if (s = i(u, e, r), "object" == typeof this) {
-                if (r.insideGroup) {
+            var s, n, i = t.data, o = i.view, u = this;
+            if (s = a(u, e, i), "object" == typeof this) {
+                if (i.insideGroup) {
                     n = function () {
                         Ember.run.once(o, "rerender")
                     };
-                    var h = a(u, e, t);
-                    (null === h || void 0 === h) && (h = ""), r.buffer.push(h)
+                    var h = r(u, e, t);
+                    (null === h || void 0 === h) && (h = ""), i.buffer.push(h)
                 } else {
                     var c = new Ember._SimpleHandlebarsView(e, u, !t.hash.unescaped, t.data);
                     c._parentView = o, o.appendChild(c), n = function () {
@@ -7243,82 +7197,75 @@ var Handlebars = {};
                     }
                 }
                 "" !== s.path && o.registerObserver(s.root, s.path, n)
-            } else r.buffer.push(a(u, e, t))
+            } else i.buffer.push(r(u, e, t))
         }
 
-        var n = Ember.get, r = (Ember.set, Ember.String.fmt), a = Ember.Handlebars.get, i = Ember.Handlebars.normalizePath, o = Ember.ArrayPolyfills.forEach, u = Ember.Handlebars, h = u.helpers;
-        u.registerHelper("_triageMustache", function (e, t) {
-            return Ember.assert("You cannot pass more than one argument to the _triageMustache helper", 2 >= arguments.length), h[e] ? h[e].call(this, t) : h.bind.apply(this, arguments)
-        }), u.registerHelper("bind", function (n, r) {
-            Ember.assert("You cannot pass more than one argument to the bind helper", 2 >= arguments.length);
+        var n = Ember.get;
+        Ember.set, Ember.String.fmt;
+        var r = Ember.Handlebars.get, a = Ember.Handlebars.normalizePath, i = Ember.ArrayPolyfills.forEach, o = Ember.Handlebars, u = o.helpers;
+        o.registerHelper("_triageMustache", function (e, t) {
+            return u[e] ? u[e].call(this, t) : u.bind.apply(this, arguments)
+        }), o.registerHelper("bind", function (n, r) {
             var a = r.contexts && r.contexts[0] || this;
             return r.fn ? t.call(a, n, r, !1, e) : s.call(a, n, r)
-        }), u.registerHelper("boundIf", function (e, s) {
+        }), o.registerHelper("boundIf", function (e, s) {
             var r = s.contexts && s.contexts[0] || this, a = function (e) {
                 var t = e && n(e, "isTruthy");
                 return"boolean" == typeof t ? t : Ember.isArray(e) ? 0 !== n(e, "length") : !!e
             };
             return t.call(r, e, s, !0, a, a, ["isTruthy", "length"])
-        }), u.registerHelper("with", function (s, n) {
+        }), o.registerHelper("with", function (s, n) {
             if (4 === arguments.length) {
-                var r, a, o, u;
-                if (Ember.assert("If you pass more than one argument to the with helper, it must be in the form #with foo as bar", "as" === arguments[1]), n = arguments[3], r = arguments[2], a = arguments[0], Ember.assert("You must pass a block to the with helper", n.fn && n.fn !== Handlebars.VM.noop), Ember.isGlobalPath(a))Ember.bind(n.data.keywords, r, a); else {
-                    u = i(this, a, n.data), a = u.path, o = u.root;
+                var r, i, o, h;
+                if (n = arguments[3], r = arguments[2], i = arguments[0], Ember.isGlobalPath(i))Ember.bind(n.data.keywords, r, i); else {
+                    h = a(this, i, n.data), i = h.path, o = h.root;
                     var c = Ember.$.expando + Ember.guidFor(o);
                     n.data.keywords[c] = o;
-                    var l = a ? c + "." + a : c;
+                    var l = i ? c + "." + i : c;
                     Ember.bind(n.data.keywords, r, l)
                 }
-                return t.call(this, a, n, !0, e)
+                return t.call(this, i, n, !0, e)
             }
-            return Ember.assert("You must pass exactly one argument to the with helper", 2 === arguments.length), Ember.assert("You must pass a block to the with helper", n.fn && n.fn !== Handlebars.VM.noop), h.bind.call(n.contexts[0], s, n)
-        }), u.registerHelper("if", function (e, t) {
-            return Ember.assert("You must pass exactly one argument to the if helper", 2 === arguments.length), Ember.assert("You must pass a block to the if helper", t.fn && t.fn !== Handlebars.VM.noop), h.boundIf.call(t.contexts[0], e, t)
-        }), u.registerHelper("unless", function (e, t) {
-            Ember.assert("You must pass exactly one argument to the unless helper", 2 === arguments.length), Ember.assert("You must pass a block to the unless helper", t.fn && t.fn !== Handlebars.VM.noop);
+            return u.bind.call(n.contexts[0], s, n)
+        }), o.registerHelper("if", function (e, t) {
+            return u.boundIf.call(t.contexts[0], e, t)
+        }), o.registerHelper("unless", function (e, t) {
             var s = t.fn, n = t.inverse;
-            return t.fn = n, t.inverse = s, h.boundIf.call(t.contexts[0], e, t)
-        }), u.registerHelper("bindAttr", function (e) {
-            var t = e.hash;
-            Ember.assert("You must specify at least one hash argument to bindAttr", !!Ember.keys(t).length);
-            var s = e.data.view, n = [], h = this, c = ++Ember.uuid, l = t["class"];
-            if (null != l) {
-                var p = u.bindClasses(this, l, s, c, e);
-                n.push('class="' + Handlebars.Utils.escapeExpression(p.join(" ")) + '"'), delete t["class"]
+            return t.fn = n, t.inverse = s, u.boundIf.call(t.contexts[0], e, t)
+        }), o.registerHelper("bindAttr", function (e) {
+            var t = e.hash, s = e.data.view, n = [], u = this, h = ++Ember.uuid, c = t["class"];
+            if (null != c) {
+                var l = o.bindClasses(this, c, s, h, e);
+                n.push('class="' + Handlebars.Utils.escapeExpression(l.join(" ")) + '"'), delete t["class"]
             }
-            var f = Ember.keys(t);
-            return o.call(f, function (o) {
-                var u, l = t[o];
-                Ember.assert(r("You must provide a String for a bound attribute, not %@", [l]), "string" == typeof l), u = i(h, l, e.data);
-                var p = "this" === l ? u.root : a(h, l, e), f = Ember.typeOf(p);
-                Ember.assert(r("Attributes must be numbers, strings or booleans, not %@", [p]), null === p || void 0 === p || "number" === f || "string" === f || "boolean" === f);
-                var d, m;
-                d = function d() {
-                    var t = a(h, l, e);
-                    Ember.assert(r("Attributes must be numbers, strings or booleans, not %@", [t]), null === t || void 0 === t || "number" == typeof t || "string" == typeof t || "boolean" == typeof t);
-                    var n = s.$("[data-bindattr-" + c + "='" + c + "']");
-                    return n && 0 !== n.length ? (Ember.View.applyAttributeBindings(n, o, t), void 0) : (Ember.removeObserver(u.root, u.path, m), void 0)
-                }, "this" === l || u.isKeyword && "" === u.path || s.registerObserver(u.root, u.path, d), "string" === f || "number" === f && !isNaN(p) ? n.push(o + '="' + Handlebars.Utils.escapeExpression(p) + '"') : p && "boolean" === f && n.push(o + '="' + o + '"')
-            }, this), n.push("data-bindattr-" + c + '="' + c + '"'), new u.SafeString(n.join(" "))
-        }), u.bindClasses = function (e, t, s, n, r) {
+            var p = Ember.keys(t);
+            return i.call(p, function (i) {
+                var o, c = t[i];
+                o = a(u, c, e.data);
+                var l, p, f = "this" === c ? o.root : r(u, c, e), d = Ember.typeOf(f);
+                l = function l() {
+                    var t = r(u, c, e), n = s.$("[data-bindattr-" + h + "='" + h + "']");
+                    return n && 0 !== n.length ? (Ember.View.applyAttributeBindings(n, i, t), void 0) : (Ember.removeObserver(o.root, o.path, p), void 0)
+                }, "this" === c || o.isKeyword && "" === o.path || s.registerObserver(o.root, o.path, l), "string" === d || "number" === d && !isNaN(f) ? n.push(i + '="' + Handlebars.Utils.escapeExpression(f) + '"') : f && "boolean" === d && n.push(i + '="' + i + '"')
+            }, this), n.push("data-bindattr-" + h + '="' + h + '"'), new o.SafeString(n.join(" "))
+        }), o.bindClasses = function (e, t, s, n, o) {
             var u, h, c, l = [], p = function (e, t, s) {
-                var n, r = t.path;
-                return n = "this" === r ? e : "" === r ? !0 : a(e, r, s), Ember.View._classStringForValue(r, n, t.className, t.falsyClassName)
+                var n, a = t.path;
+                return n = "this" === a ? e : "" === a ? !0 : r(e, a, s), Ember.View._classStringForValue(a, n, t.className, t.falsyClassName)
             };
-            return o.call(t.split(" "), function (t) {
-                var a, o, f, d, m = Ember.View._parsePropertyPath(t), g = m.path, b = e;
-                "" !== g && "this" !== g && (d = i(e, g, r.data), b = d.root, g = d.path), o = function () {
-                    u = p(e, m, r), c = n ? s.$("[data-bindattr-" + n + "='" + n + "']") : s.$(), c && 0 !== c.length ? (a && c.removeClass(a), u ? (c.addClass(u), a = u) : a = null) : Ember.removeObserver(b, g, f)
-                }, "" !== g && "this" !== g && s.registerObserver(b, g, o), h = p(e, m, r), h && (l.push(h), a = h)
+            return i.call(t.split(" "), function (t) {
+                var r, i, f, d, m = Ember.View._parsePropertyPath(t), g = m.path, b = e;
+                "" !== g && "this" !== g && (d = a(e, g, o.data), b = d.root, g = d.path), i = function () {
+                    u = p(e, m, o), c = n ? s.$("[data-bindattr-" + n + "='" + n + "']") : s.$(), c && 0 !== c.length ? (r && c.removeClass(r), u ? (c.addClass(u), r = u) : r = null) : Ember.removeObserver(b, g, f)
+                }, "" !== g && "this" !== g && s.registerObserver(b, g, i), h = p(e, m, o), h && (l.push(h), r = h)
             }), l
         }
     }(), function () {
-        var e = Ember.get;
-        Ember.set;
-        var t = Ember.Handlebars;
-        t.ViewHelper = Ember.Object.create({propertiesFromHTMLOptions: function (e) {
+        Ember.get, Ember.set;
+        var e = Ember.Handlebars;
+        e.ViewHelper = Ember.Object.create({propertiesFromHTMLOptions: function (e) {
             var t = e.hash, s = e.data, n = {}, r = t["class"], a = !1;
-            t.id && (n.elementId = t.id, a = !0), t.tag && (n.tagName = t.tag, a = !0), r && (r = r.split(" "), n.classNames = r, a = !0), t.classBinding && (n.classNameBindings = t.classBinding.split(" "), a = !0), t.classNameBindings && (void 0 === n.classNameBindings && (n.classNameBindings = []), n.classNameBindings = n.classNameBindings.concat(t.classNameBindings.split(" ")), a = !0), t.attributeBindings && (Ember.assert("Setting 'attributeBindings' via Handlebars is not allowed. Please subclass Ember.View and set it there instead."), n.attributeBindings = null, a = !0), a && (t = Ember.$.extend({}, t), delete t.id, delete t.tag, delete t["class"], delete t.classBinding);
+            t.id && (n.elementId = t.id, a = !0), t.tag && (n.tagName = t.tag, a = !0), r && (r = r.split(" "), n.classNames = r, a = !0), t.classBinding && (n.classNameBindings = t.classBinding.split(" "), a = !0), t.classNameBindings && (void 0 === n.classNameBindings && (n.classNameBindings = []), n.classNameBindings = n.classNameBindings.concat(t.classNameBindings.split(" ")), a = !0), t.attributeBindings && (n.attributeBindings = null, a = !0), a && (t = Ember.$.extend({}, t), delete t.id, delete t.tag, delete t["class"], delete t.classBinding);
             var i;
             for (var o in t)t.hasOwnProperty(o) && Ember.IS_BINDING.test(o) && "string" == typeof t[o] && (i = this.contextualizeBindingPath(t[o], s), i && (t[o] = i));
             if (n.classNameBindings)for (var u in n.classNameBindings) {
@@ -7332,32 +7279,32 @@ var Handlebars = {};
         }, contextualizeBindingPath: function (e, t) {
             var s = Ember.Handlebars.normalizePath(null, e, t);
             return s.isKeyword ? "templateData.keywords." + e : Ember.isGlobalPath(e) ? null : "this" === e ? "_parentView.context" : "_parentView.context." + e
-        }, helper: function (s, n, r) {
-            var a, i = r.data, o = r.fn;
-            "string" == typeof n ? (a = t.get(s, n, r), Ember.assert("Unable to find view at path '" + n + "'", !!a)) : a = n, Ember.assert(Ember.String.fmt("You must pass a view to the #view helper, not %@ (%@)", [n, a]), Ember.View.detect(a) || Ember.View.detectInstance(a));
-            var u = this.propertiesFromHTMLOptions(r, s), h = i.view;
-            u.templateData = i;
-            var c = a.proto ? a.proto() : a;
-            o && (Ember.assert("You cannot provide a template block if you also specified a templateName", !e(u, "templateName") && !e(c, "templateName")), u.template = o), c.controller || c.controllerBinding || u.controller || u.controllerBinding || (u._context = s), h.appendChild(a, u)
-        }}), t.registerHelper("view", function (e, s) {
-            return Ember.assert("The view helper only takes a single argument", 2 >= arguments.length), e && e.data && e.data.isRenderData && (s = e, e = "Ember.View"), t.ViewHelper.helper(this, e, s)
+        }, helper: function (t, s, n) {
+            var r, a = n.data, i = n.fn;
+            r = "string" == typeof s ? e.get(t, s, n) : s;
+            var o = this.propertiesFromHTMLOptions(n, t), u = a.view;
+            o.templateData = a;
+            var h = r.proto ? r.proto() : r;
+            i && (o.template = i), h.controller || h.controllerBinding || o.controller || o.controllerBinding || (o._context = t), u.appendChild(r, o)
+        }}), e.registerHelper("view", function (t, s) {
+            return t && t.data && t.data.isRenderData && (s = t, t = "Ember.View"), e.ViewHelper.helper(this, t, s)
         })
     }(), function () {
-        var e = Ember.get, t = Ember.Handlebars.get, s = Ember.String.fmt;
-        Ember.Handlebars.registerHelper("collection", function (n, r) {
-            Ember.deprecate("Using the {{collection}} helper without specifying a class has been deprecated as the {{each}} helper now supports the same functionality.", "collection" !== n), n && n.data && n.data.isRenderData ? (r = n, n = void 0, Ember.assert("You cannot pass more than one argument to the collection helper", 1 === arguments.length)) : Ember.assert("You cannot pass more than one argument to the collection helper", 2 === arguments.length);
-            var a = r.fn, i = r.data, o = r.inverse;
-            r.data.view;
-            var u;
-            u = n ? t(this, n, r) : Ember.CollectionView, Ember.assert(s("%@ #collection: Could not find collection class %@", [i.view, n]), !!u);
-            var h, c, l = r.hash, p = {}, f = l.itemViewClass, d = u.proto();
-            delete l.itemViewClass, c = f ? t(d, f, r) : d.itemViewClass, Ember.assert(s("%@ #collection: Could not find itemViewClass %@", [i.view, f]), !!c);
-            for (var m in l)l.hasOwnProperty(m) && (h = m.match(/^item(.)(.*)$/), h && "itemController" !== m && (p[h[1].toLowerCase() + h[2]] = l[m], delete l[m]));
-            a && (p.template = a, delete r.fn);
-            var g;
-            o && o !== Handlebars.VM.noop ? (g = e(d, "emptyViewClass"), g = g.extend({template: o, tagName: p.tagName})) : l.emptyViewClass && (g = t(this, l.emptyViewClass, r)), g && (l.emptyView = g), l.keyword || (p._context = Ember.computed.alias("content"));
-            var b = Ember.Handlebars.ViewHelper.propertiesFromHTMLOptions({data: i, hash: p}, this);
-            return l.itemViewClass = c.extend(b), Ember.Handlebars.helpers.view.call(this, u, r)
+        var e = Ember.get, t = Ember.Handlebars.get;
+        Ember.String.fmt, Ember.Handlebars.registerHelper("collection", function (s, n) {
+            s && s.data && s.data.isRenderData && (n = s, s = void 0);
+            var r = n.fn, a = n.data, i = n.inverse;
+            n.data.view;
+            var o;
+            o = s ? t(this, s, n) : Ember.CollectionView;
+            var u, h, c = n.hash, l = {}, p = c.itemViewClass, f = o.proto();
+            delete c.itemViewClass, h = p ? t(f, p, n) : f.itemViewClass;
+            for (var d in c)c.hasOwnProperty(d) && (u = d.match(/^item(.)(.*)$/), u && "itemController" !== d && (l[u[1].toLowerCase() + u[2]] = c[d], delete c[d]));
+            r && (l.template = r, delete n.fn);
+            var m;
+            i && i !== Handlebars.VM.noop ? (m = e(f, "emptyViewClass"), m = m.extend({template: i, tagName: l.tagName})) : c.emptyViewClass && (m = t(this, c.emptyViewClass, n)), m && (c.emptyView = m), c.keyword || (l._context = Ember.computed.alias("content"));
+            var g = Ember.Handlebars.ViewHelper.propertiesFromHTMLOptions({data: a, hash: l}, this);
+            return c.itemViewClass = h.extend(g), Ember.Handlebars.helpers.view.call(this, o, n)
         })
     }(), function () {
         var e = Ember.Handlebars.get;
@@ -7433,7 +7380,6 @@ var Handlebars = {};
             this.removeContentObservers(), this.removeArrayObservers()
         }}, Ember.Handlebars.registerHelper("each", function (e, t) {
             if (4 === arguments.length) {
-                Ember.assert("If you pass more than one argument to the each helper, it must be in the form #each foo in bar", "in" === arguments[1]);
                 var s = arguments[0];
                 t = arguments[3], e = arguments[2], "" === e && (e = "this"), t.hash.keyword = s
             }
@@ -7442,20 +7388,20 @@ var Handlebars = {};
     }(), function () {
         Ember.Handlebars.registerHelper("template", function (e, t) {
             var s = t.data.view, n = s.templateForName(e);
-            Ember.assert("Unable to find template with name '" + e + "'.", !!n), n(this, {data: t.data})
+            n(this, {data: t.data})
         })
     }(), function () {
         Ember.Handlebars.registerHelper("partial", function (e, t) {
             var s = e.split("/"), n = s[s.length - 1];
             s[s.length - 1] = "_" + n;
             var r = t.data.view, a = s.join("/"), i = r.templateForName(a), o = !i && r.templateForName(e);
-            Ember.deprecate("You tried to render the partial " + e + ", which should be at '" + a + "', but Ember found '" + e + "'. Please use a leading underscore in your partials", i), Ember.assert("Unable to find partial with name '" + e + "'.", i || o), i = i || o, i(this, {data: t.data})
+            i = i || o, i(this, {data: t.data})
         })
     }(), function () {
         var e = Ember.get;
         Ember.set, Ember.Handlebars.registerHelper("yield", function (t) {
             for (var s, n = t.data.view; n && !e(n, "layout");)n = e(n, "parentView");
-            Ember.assert("You called yield in a template that was not a layout", !!n), s = e(n, "template"), s && s(this, t)
+            s = e(n, "template"), s && s(this, t)
         })
     }(), function () {
         var e = Ember.set;
@@ -7516,7 +7462,7 @@ var Handlebars = {};
         }, touchEnd: function (e) {
             return this.mouseUp(e)
         }, init: function () {
-            Ember.deprecate("Ember.Button is deprecated and will be removed from future releases. Consider using the `{{action}}` helper."), this._super()
+            this._super()
         }})
     }(), function () {
         var e = Ember.get;
@@ -7613,11 +7559,9 @@ var Handlebars = {};
         }
 
         Ember.Handlebars.registerHelper("input", function (t) {
-            Ember.assert("You can only pass attributes to the `input` helper, not arguments", 2 > arguments.length);
             var s = t.hash, n = t.hashTypes, r = s.type, a = s.on;
             return delete s.type, delete s.on, e(s, n), "checkbox" === r ? Ember.Handlebars.helpers.view.call(this, Ember.Checkbox, t) : (s.type = r, s.onEvent = a || "enter", Ember.Handlebars.helpers.view.call(this, Ember.TextField, t))
         }), Ember.Handlebars.registerHelper("textarea", function (t) {
-            Ember.assert("You can only pass attributes to the `textarea` helper, not arguments", 2 > arguments.length);
             var s = t.hash, n = t.hashTypes;
             return e(s, n), Ember.Handlebars.helpers.view.call(this, Ember.TextArea, t)
         })
@@ -7989,7 +7933,7 @@ var Handlebars = {};
             var n = t.split(".");
             ("" === e || "/" === e || "index" === n[n.length - 1]) && (this.explicitIndex = !0), this.matches.push([e, t, s])
         }, route: function (e, t) {
-            Ember.assert("You must use `this.resource` to nest", "function" != typeof t), t = t || {}, "string" != typeof t.path && (t.path = "/" + e), this.parent && "application" !== this.parent && (e = this.parent + "." + e), this.push(t.path, e)
+            t = t || {}, "string" != typeof t.path && (t.path = "/" + e), this.parent && "application" !== this.parent && (e = this.parent + "." + e), this.push(t.path, e)
         }, generate: function () {
             var e = this.matches;
             return this.explicitIndex || this.route("index", {path: "/"}), function (t) {
@@ -8063,7 +8007,7 @@ var Handlebars = {};
 
         function a(e, t, s) {
             var n, r = s[0];
-            n = e.router.hasRoute(s[0]) ? r : s[0] = r + ".index", Ember.assert("The route " + r + " was not found", e.router.hasRoute(n)), e.router[t].apply(e.router, s), e.notifyPropertyChange("url")
+            n = e.router.hasRoute(s[0]) ? r : s[0] = r + ".index", e.router[t].apply(e.router, s), e.notifyPropertyChange("url")
         }
 
         var i = t("router"), o = Ember.get, u = Ember.set, h = Ember.defineProperty, c = Ember._MetamorphView;
@@ -8134,13 +8078,13 @@ var Handlebars = {};
             }
         }
 
-        function t(s, n) {
-            var r, a = e(s);
-            if (a)return Ember.warn(l("The immediate parent route ('%@') did not render into the main outlet and the default 'into' option ('%@') may not be expected", [u(a, "routeName"), u(s, "routeName")]), !n), (r = a.lastRenderedTemplate) ? r : t(a, !0)
+        function t(s) {
+            var n, r = e(s);
+            if (r)return(n = r.lastRenderedTemplate) ? n : t(r, !0)
         }
 
         function s(e, s, n, r) {
-            r = r || {}, r.into = r.into ? r.into.replace(/\//g, ".") : t(e), r.outlet = r.outlet || "main", r.name = s, r.template = n, r.LOG_VIEW_LOOKUPS = u(e.router, "namespace.LOG_VIEW_LOOKUPS"), Ember.assert("An outlet (" + r.outlet + ") was specified but this view will render at the root level.", "main" === r.outlet || r.into);
+            r = r || {}, r.into = r.into ? r.into.replace(/\//g, ".") : t(e), r.outlet = r.outlet || "main", r.name = s, r.template = n, r.LOG_VIEW_LOOKUPS = u(e.router, "namespace.LOG_VIEW_LOOKUPS");
             var a, i = r.controller;
             return i = r.controller ? r.controller : (a = e.container.lookup("controller:" + s)) ? a : e.routeName, "string" == typeof i && (i = e.container.lookup("controller:" + i)), r.controller = i, r
         }
@@ -8179,8 +8123,8 @@ var Handlebars = {};
             e.teardownView && e.teardownView(), delete e.teardownView, delete e.lastRenderedTemplate
         }
 
-        var u = Ember.get, h = Ember.set, c = Ember.String.classify, l = Ember.String.fmt;
-        Ember.Route = Ember.Object.extend({exit: function () {
+        var u = Ember.get, h = Ember.set, c = Ember.String.classify;
+        Ember.String.fmt, Ember.Route = Ember.Object.extend({exit: function () {
             this.deactivate(), o(this)
         }, enter: function () {
             this.activate()
@@ -8202,7 +8146,7 @@ var Handlebars = {};
             var n = this._redirected;
             if (t && (this._redirected = null), n[s])return!1;
             var r = this.controllerFor(this.routeName, e);
-            this.controller = r, this.setupControllers ? (Ember.deprecate("Ember.Route.setupControllers is deprecated. Please use Ember.Route.setupController(controller, model) instead."), this.setupControllers(r, e)) : this.setupController(r, e), this.renderTemplates ? (Ember.deprecate("Ember.Route.renderTemplates is deprecated. Please use Ember.Route.renderTemplate(controller, model) instead."), this.renderTemplates(e)) : this.renderTemplate(r, e)
+            this.controller = r, this.setupControllers ? this.setupControllers(r, e) : this.setupController(r, e), this.renderTemplates ? this.renderTemplates(e) : this.renderTemplate(r, e)
         }, redirect: Ember.K, deserialize: function (e) {
             var t = this.model(e);
             return this.currentModel = t
@@ -8214,7 +8158,7 @@ var Handlebars = {};
             if (!s && n)return e;
             if (s) {
                 var i = c(s), o = this.router.namespace, u = o[i];
-                return Ember.assert("You used the dynamic segment " + s + "_id in your router, but " + o + "." + i + " did not exist and you did not override your route's `model` hook.", u), u.find(r)
+                return u.find(r)
             }
         }, serialize: function (e, t) {
             if (1 === t.length) {
@@ -8225,14 +8169,14 @@ var Handlebars = {};
             e && void 0 !== t && h(e, "model", t)
         }, controllerFor: function (e, t) {
             var s = this.router.container, n = s.lookup("controller:" + e);
-            return n || (t = t || this.modelFor(e), Ember.assert("You are trying to look up a controller that you did not define, and for which Ember does not know the model.\n\nThis is not a controller for a route, so you must explicitly define the controller (" + this.router.namespace.toString() + "." + Ember.String.capitalize(Ember.String.camelize(e)) + "Controller) or pass a model as the second parameter to `controllerFor`, so that Ember knows which type of controller to create for you.", t || this.container.lookup("route:" + e)), n = Ember.generateController(s, e, t)), n
+            return n || (t = t || this.modelFor(e), n = Ember.generateController(s, e, t)), n
         }, modelFor: function (e) {
             var t = this.container.lookup("route:" + e);
             return t && t.currentModel
         }, renderTemplate: function () {
             this.render()
         }, render: function (e, t) {
-            Ember.assert("The name in the given arguments is undefined", arguments.length > 0 ? !Ember.isNone(arguments[0]) : !0), "object" != typeof e || t || (t = e, e = this.routeName), e = e ? e.replace(/\//g, ".") : this.routeName;
+            "object" != typeof e || t || (t = e, e = this.routeName), e = e ? e.replace(/\//g, ".") : this.routeName;
             var a = this.container, i = a.lookup("view:" + e), o = a.lookup("template:" + e);
             return i || o ? (t = s(this, e, o, t), i = n(i, a, t), "main" === t.outlet && (this.lastRenderedTemplate = e), r(this, i, t), void 0) : (u(this.router, "namespace.LOG_VIEW_LOOKUPS") && Ember.Logger.info('Could not find "' + e + '" template or view. Nothing will be rendered', {fullName: "template:" + e}), void 0)
         }, willDestroy: function () {
@@ -8262,51 +8206,51 @@ var Handlebars = {};
             Ember.Router.resolveParams = e
         })
     }(), function () {
-        var e = Ember.get, t = (Ember.set, Ember.String.fmt);
-        Ember.onLoad("Ember.Handlebars", function () {
-            function s(e, t) {
+        var e = Ember.get;
+        Ember.set, Ember.String.fmt, Ember.onLoad("Ember.Handlebars", function () {
+            function t(e, t) {
                 return e.hasRoute(t) || (t += ".index"), t
             }
 
-            function n(e) {
+            function s(e) {
                 var t = e.options.types.slice(1), s = e.options.data;
-                return a(e.context, e.params, {types: t, data: s})
+                return r(e.context, e.params, {types: t, data: s})
             }
 
-            function r(e, r, a) {
-                var i, o = a || e.namedRoute;
-                i = s(r, o), Ember.assert(t("The attempt to linkTo route '%@' failed. The router did not find '%@' in its possible routes: '%@'", [o, o, Ember.keys(r.router.recognizer.names).join("', '")]), r.hasRoute(i));
-                var u = [i];
-                return u.concat(n(e.parameters))
+            function n(e, n, r) {
+                var a, i = r || e.namedRoute;
+                a = t(n, i);
+                var o = [a];
+                return o.concat(s(e.parameters))
             }
 
-            var a = Ember.Router.resolveParams, i = Ember.ViewUtils.isSimpleClick, o = Ember.LinkView = Ember.View.extend({tagName: "a", namedRoute: null, currentWhen: null, title: null, activeClass: "active", disabledClass: "disabled", _isDisabled: !1, replace: !1, attributeBindings: ["href", "title"], classNameBindings: ["active", "disabled"], concreteView: Ember.computed(function () {
+            var r = Ember.Router.resolveParams, a = Ember.ViewUtils.isSimpleClick, i = Ember.LinkView = Ember.View.extend({tagName: "a", namedRoute: null, currentWhen: null, title: null, activeClass: "active", disabledClass: "disabled", _isDisabled: !1, replace: !1, attributeBindings: ["href", "title"], classNameBindings: ["active", "disabled"], concreteView: Ember.computed(function () {
                 return e(this, "parentView")
             }).property("parentView"), disabled: Ember.computed(function (e, t) {
                 return void 0 !== t && this.set("_isDisabled", t), t ? this.get("disabledClass") : !1
             }), active: Ember.computed(function () {
-                var t = this.get("router"), s = n(this.parameters), r = this.currentWhen + ".index", a = t.isActive.apply(t, [this.currentWhen].concat(s)) || t.isActive.apply(t, [r].concat(s));
+                var t = this.get("router"), n = s(this.parameters), r = this.currentWhen + ".index", a = t.isActive.apply(t, [this.currentWhen].concat(n)) || t.isActive.apply(t, [r].concat(n));
                 return a ? e(this, "activeClass") : void 0
             }).property("namedRoute", "router.url"), router: Ember.computed(function () {
                 return this.get("controller").container.lookup("router:main")
             }), click: function (t) {
-                if (!i(t))return!0;
+                if (!a(t))return!0;
                 if (t.preventDefault(), this.bubbles === !1 && t.stopPropagation(), e(this, "_isDisabled"))return!1;
                 var s = this.get("router");
                 if (Ember.ENV.ENABLE_ROUTE_TO) {
-                    var n = r(this, s);
-                    s.routeTo(Ember.TransitionEvent.create({transitionMethod: this.get("replace") ? "replaceWith" : "transitionTo", destinationRouteName: n[0], contexts: n.slice(1)}))
-                } else this.get("replace") ? s.replaceWith.apply(s, r(this, s)) : s.transitionTo.apply(s, r(this, s))
+                    var r = n(this, s);
+                    s.routeTo(Ember.TransitionEvent.create({transitionMethod: this.get("replace") ? "replaceWith" : "transitionTo", destinationRouteName: r[0], contexts: r.slice(1)}))
+                } else this.get("replace") ? s.replaceWith.apply(s, n(this, s)) : s.transitionTo.apply(s, n(this, s))
             }, href: Ember.computed(function () {
                 if ("a" !== this.get("tagName"))return!1;
                 var e = this.get("router");
-                return e.generate.apply(e, r(this, e))
+                return e.generate.apply(e, n(this, e))
             })});
-            o.toString = function () {
+            i.toString = function () {
                 return"LinkView"
             }, Ember.Handlebars.registerHelper("linkTo", function (e) {
                 var t = [].slice.call(arguments, -1)[0], s = [].slice.call(arguments, 1, -1), n = t.hash;
-                return n.namedRoute = e, n.currentWhen = n.currentWhen || e, n.disabledBinding = n.disabledWhen, n.parameters = {context: this, options: t, params: s}, Ember.Handlebars.helpers.view.call(this, o, t)
+                return n.namedRoute = e, n.currentWhen = n.currentWhen || e, n.disabledBinding = n.disabledWhen, n.parameters = {context: this, options: t, params: s}, Ember.Handlebars.helpers.view.call(this, i, t)
             })
         })
     }(), function () {
@@ -8320,11 +8264,10 @@ var Handlebars = {};
     }(), function () {
         Ember.get, Ember.set, Ember.onLoad("Ember.Handlebars", function () {
             Ember.Handlebars.registerHelper("render", function (e, t, s) {
-                Ember.assert("You must pass a template to render", arguments.length >= 2);
                 var n, r, a, i, o, u;
-                2 === arguments.length && (s = t, t = void 0), "string" == typeof t && (o = Ember.Handlebars.get(s.contexts[1], t, s), u = {singleton: !1}), e = e.replace(/\//g, "."), n = s.data.keywords.controller.container, r = n.lookup("router:main"), Ember.assert('You can only use the {{render}} helper once without a model object as its second argument, as in {{render "post" post}}.', o || !r || !r._lookupActiveView(e)), i = n.lookup("view:" + e) || n.lookup("view:default");
+                2 === arguments.length && (s = t, t = void 0), "string" == typeof t && (o = Ember.Handlebars.get(s.contexts[1], t, s), u = {singleton: !1}), e = e.replace(/\//g, "."), n = s.data.keywords.controller.container, r = n.lookup("router:main"), i = n.lookup("view:" + e) || n.lookup("view:default");
                 var h = s.hash.controller;
-                h ? (a = n.lookup("controller:" + h, u), Ember.assert("The controller name you supplied '" + h + "' did not resolve to a controller.", !!a)) : a = Ember.controllerFor(n, e, o, u), a && o && a.set("model", o);
+                a = h ? n.lookup("controller:" + h, u) : Ember.controllerFor(n, e, o, u), a && o && a.set("model", o);
                 var c = s.contexts[1];
                 c && i.registerObserver(c, t, function () {
                     a.set("model", Ember.Handlebars.get(c, t, s))
@@ -8354,7 +8297,7 @@ var Handlebars = {};
                     a.preventDefault(), s.bubbles === !1 && a.stopPropagation();
                     var i = s.target;
                     i = i.target ? r(i.root, i.target, i.options) : i.root, Ember.run(function () {
-                        i.send ? i.send.apply(i, e(s.parameters, t)) : (Ember.assert("The action '" + t + "' did not exist on " + i, "function" == typeof i[t]), i[t].apply(i, e(s.parameters)))
+                        i.send ? i.send.apply(i, e(s.parameters, t)) : i[t].apply(i, e(s.parameters))
                     })
                 }}, s.view.on("willClearRender", function () {
                     delete u.registeredActions[a]
@@ -8383,7 +8326,7 @@ var Handlebars = {};
                 var o, u, h = r.data.keywords.controller, c = (r.data.keywords.view, e(h, "_childContainers")), l = r.hash.controlID;
                 c.hasOwnProperty(l) ? u = c[l] : (o = e(h, "container"), u = o.child(), c[l] = u);
                 var p = s.replace(/\//g, "."), f = u.lookup("view:" + p) || u.lookup("view:default"), d = u.lookup("controller:" + p), m = u.lookup("template:" + s);
-                Ember.assert("Could not find controller for path: " + p, d), Ember.assert("Could not find view for path: " + p, f), t(d, "target", h), t(d, "model", i), r.hash.template = m, r.hash.controller = d, Ember.addObserver(this, n, a), f.one("willDestroyElement", this, function () {
+                t(d, "target", h), t(d, "model", i), r.hash.template = m, r.hash.controller = d, Ember.addObserver(this, n, a), f.one("willDestroyElement", this, function () {
                     Ember.removeObserver(this, n, a)
                 }), Ember.Handlebars.helpers.view.call(this, f, r)
             })
@@ -8394,12 +8337,12 @@ var Handlebars = {};
             var t = e(this, "target"), s = t.transitionToRoute || t.transitionTo;
             return s.apply(t, arguments)
         }, transitionTo: function () {
-            return Ember.deprecate("transitionTo is deprecated. Please use transitionToRoute."), this.transitionToRoute.apply(this, arguments)
+            return this.transitionToRoute.apply(this, arguments)
         }, replaceRoute: function () {
             var t = e(this, "target"), s = t.replaceRoute || t.replaceWith;
             return s.apply(t, arguments)
         }, replaceWith: function () {
-            return Ember.deprecate("replaceWith is deprecated. Please use replaceRoute."), this.replaceRoute.apply(this, arguments)
+            return this.replaceRoute.apply(this, arguments)
         }})
     }(), function () {
         var e = Ember.get, t = Ember.set;
@@ -8421,10 +8364,8 @@ var Handlebars = {};
         }})
     }(), function () {
         Ember.get, Ember.set, Ember.Location = {create: function (e) {
-            var t = e && e.implementation;
-            Ember.assert("Ember.Location.create: you must specify a 'implementation' option", !!t);
-            var s = this.implementations[t];
-            return Ember.assert("Ember.Location.create: " + t + " is not a valid implementation", !!s), s.create.apply(s, arguments)
+            var t = e && e.implementation, s = this.implementations[t];
+            return s.create.apply(s, arguments)
         }, registerImplementation: function (e, t) {
             this.implementations[e] = t
         }, implementations: {}}
@@ -8547,7 +8488,7 @@ var Handlebars = {};
                 var c = o.split("/");
                 o = c[c.length - 1];
                 var l = s(c.slice(0, -1).join("."));
-                h = Ember.Namespace.byName(l), Ember.assert("You are looking for a " + o + " " + a + " in the " + l + " namespace, but the namespace could not be found", h)
+                h = Ember.Namespace.byName(l)
             }
             return{fullName: n, type: a, fullNameWithoutType: i, name: o, root: h, resolveMethodName: "resolve" + t(a)}
         }, resolveTemplate: function (e) {
@@ -8579,7 +8520,7 @@ var Handlebars = {};
 
         function s(e) {
             var t = e.split(":", 2), s = t[0], n = t[1];
-            if (Ember.assert("Tried to normalize a container name without a colon (:) in it. You probably tried to lookup a name that did not contain a type, a colon, and a name. A proper lookup name would be `view:post`.", 2 === t.length), "template" !== s) {
+            if ("template" !== s) {
                 var r = n;
                 return r.indexOf(".") > -1 && (r = r.replace(/\.(.)/g, function (e) {
                     return e.charAt(1).toUpperCase()
@@ -8594,11 +8535,11 @@ var Handlebars = {};
         e.deprecate = function (e) {
             return function () {
                 var t = this._container;
-                return Ember.deprecate("Using the defaultContainer is no longer supported. [defaultContainer#" + e + "] see: http://git.io/EKPpnA", !1), t[e].apply(t, arguments)
+                return t[e].apply(t, arguments)
             }
         }, e.prototype = {_container: null, lookup: e.deprecate("lookup"), resolve: e.deprecate("resolve"), register: e.deprecate("register")};
         var a = Ember.Application = Ember.Namespace.extend(Ember.DeferredMixin, {rootElement: "body", eventDispatcher: null, customEvents: null, _readinessDeferrals: 1, init: function () {
-            this.$ || (this.$ = Ember.$), this.__container__ = this.buildContainer(), this.Router = this.Router || this.defaultRouter(), this.Router && (this.Router.namespace = this), this._super(), this.scheduleInitialize(), Ember.LOG_VERSION && (Ember.LOG_VERSION = !1, Ember.debug("-------------------------------"), Ember.debug("Ember.VERSION : " + Ember.VERSION), Ember.debug("Handlebars.VERSION : " + Ember.Handlebars.VERSION), Ember.debug("jQuery.VERSION : " + Ember.$().jquery), Ember.debug("-------------------------------"))
+            this.$ || (this.$ = Ember.$), this.__container__ = this.buildContainer(), this.Router = this.Router || this.defaultRouter(), this.Router && (this.Router.namespace = this), this._super(), this.scheduleInitialize(), Ember.LOG_VERSION && (Ember.LOG_VERSION = !1)
         }, buildContainer: function () {
             var e = this.__container__ = a.buildContainer(this);
             return e
@@ -8610,7 +8551,7 @@ var Handlebars = {};
                 Ember.run(e, "_initialize")
             })
         }, deferReadiness: function () {
-            Ember.assert("You cannot defer readiness since the `ready()` hook has already been called.", this._readinessDeferrals > 0), this._readinessDeferrals++
+            this._readinessDeferrals++
         }, advanceReadiness: function () {
             this._readinessDeferrals--, 0 === this._readinessDeferrals && Ember.run.once(this, this.didBecomeReady)
         }, register: function () {
@@ -8620,7 +8561,6 @@ var Handlebars = {};
             var e = this.__container__;
             e.injection.apply(e, arguments)
         }, initialize: function () {
-            Ember.deprecate("Calling initialize manually is not supported. Please see Ember.Application#advanceReadiness and Ember.Application#deferReadiness")
         }, _initialize: function () {
             return this.isDestroyed ? void 0 : (this.register("router:main", this.Router), this.runInitializers(), Ember.runLoadHooks("application", this), this.advanceReadiness(), this)
         }, reset: function () {
@@ -8637,7 +8577,7 @@ var Handlebars = {};
             for (e = 0; s.length > e; e++)t = s[e], a.addEdges(t.name, t.initialize, t.before, t.after);
             a.topsort(function (e) {
                 var t = e.value;
-                Ember.assert("No application initializer named '" + e.name + "'", t), t(r, i)
+                t(r, i)
             })
         }, didBecomeReady: function () {
             this.setupEventDispatcher(), this.ready(), this.startRouting(), Ember.testing || (Ember.Namespace.processAll(), Ember.BOOTED = !0), this.resolve(this)
@@ -8657,14 +8597,14 @@ var Handlebars = {};
         }});
         Ember.Application.reopenClass({concatenatedProperties: ["initializers"], initializers: Ember.A(), initializer: function (e) {
             var t = n(this, "initializers");
-            Ember.assert("The initializer '" + e.name + "' has already been registered", !t.findProperty("name", t.name)), Ember.assert("An injection cannot be registered with both a before and an after", !(e.before && e.after)), Ember.assert("An injection cannot be registered without an injection function", Ember.canInvoke(e, "initialize")), t.push(e)
+            t.push(e)
         }, buildContainer: function (n) {
             var r = new Ember.Container;
             return Ember.Container.defaultContainer = new e(r), r.set = Ember.set, r.normalize = s, r.resolver = t(n), r.optionsForType("view", {singleton: !1}), r.optionsForType("template", {instantiate: !1}), r.register("application:main", n, {instantiate: !1}), r.register("controller:basic", Ember.Controller, {instantiate: !1}), r.register("controller:object", Ember.ObjectController, {instantiate: !1}), r.register("controller:array", Ember.ArrayController, {instantiate: !1}), r.register("route:basic", Ember.Route, {instantiate: !1}), r.register("event_dispatcher:main", Ember.EventDispatcher), r.injection("router:main", "namespace", "application:main"), r.injection("controller", "target", "router:main"), r.injection("controller", "namespace", "application:main"), r.injection("route", "router", "router:main"), r
         }}), Ember.runLoadHooks("Ember.Application", Ember.Application)
     }(), function () {
         function e(e) {
-            for (var s, n = t(e, "needs"), r = t(e, "container"), a = !0, i = 0, o = n.length; o > i; i++)s = n[i], -1 === s.indexOf(":") && (s = "controller:" + s), r.has(s) || (a = !1, Ember.assert(e + " needs " + s + " but it does not exist", !1));
+            for (var s, n = t(e, "needs"), r = t(e, "container"), a = !0, i = 0, o = n.length; o > i; i++)s = n[i], -1 === s.indexOf(":") && (s = "controller:" + s), r.has(s) || (a = !1);
             return a
         }
 
@@ -8674,9 +8614,8 @@ var Handlebars = {};
             for (var s, n = t(this, "controller"), r = t(n, "needs"), a = n.get("container"), i = 0, o = r.length; o > i; i++)if (s = r[i], s === e)return a.lookup("controller:" + e)
         }});
         Ember.ControllerMixin.reopen({concatenatedProperties: ["needs"], needs: [], init: function () {
-            this._super.apply(this, arguments), e(this) || Ember.assert("Missing dependencies", !1)
+            this._super.apply(this, arguments), !e(this)
         }, controllerFor: function (e) {
-            Ember.deprecate("Controller#controllerFor is deprecated, please use Controller#needs instead");
             var s = t(this, "container");
             return s.lookup("controller:" + e)
         }, controllers: Ember.computed(function () {
@@ -8761,7 +8700,7 @@ var Handlebars = {};
         Ember.StateManager = Ember.State.extend({init: function () {
             this._super(), t(this, "stateMeta", Ember.Map.create());
             var s = e(this, "initialState");
-            !s && e(this, "states.start") && (s = "start"), s && (this.transitionTo(s), Ember.assert('Failed to transition to initial state "' + s + '"', !!e(this, "currentState")))
+            !s && e(this, "states.start") && (s = "start"), s && this.transitionTo(s)
         }, stateMetaFor: function (t) {
             var s = e(this, "stateMeta"), n = s.get(t);
             return n || (n = {}, s.set(t, n)), n
@@ -8769,9 +8708,9 @@ var Handlebars = {};
             return t(this.stateMetaFor(e), s, n)
         }, getStateMeta: function (t, s) {
             return e(this.stateMetaFor(t), s)
-        }, currentState: null, currentPath: Ember.computed.alias("currentState.path"), transitionEvent: "setup", errorOnUnhandledEvent: !0, send: function (t) {
-            var s = [].slice.call(arguments, 1);
-            return Ember.assert('Cannot send event "' + t + '" while currentState is ' + e(this, "currentState"), e(this, "currentState")), i.call(this, t, s, !1)
+        }, currentState: null, currentPath: Ember.computed.alias("currentState.path"), transitionEvent: "setup", errorOnUnhandledEvent: !0, send: function (e) {
+            var t = [].slice.call(arguments, 1);
+            return i.call(this, e, t, !1)
         }, unhandledEvent: function (t, s) {
             if (e(this, "errorOnUnhandledEvent"))throw new Ember.Error(this.toString() + " could not respond to event " + s + " in state " + e(this, "currentState.path") + ".")
         }, getStateByPath: function (t, s) {
@@ -8799,7 +8738,7 @@ var Handlebars = {};
             var n = t.getPathsCache(this, s);
             if (n)return n;
             for (var r = this.getStatesInPath(t, s), a = [], i = t; i && !r;) {
-                if (a.unshift(i), i = e(i, "parentState"), !i && (r = this.getStatesInPath(this, s), !r))return Ember.assert('Could not find state for path: "' + s + '"'), void 0;
+                if (a.unshift(i), i = e(i, "parentState"), !i && (r = this.getStatesInPath(this, s), !r))return;
                 r = this.getStatesInPath(i, s)
             }
             for (; r.length > 0 && r[0] === a[0];)i = r.shift(), a.shift();
@@ -8807,7 +8746,7 @@ var Handlebars = {};
             return t.setPathsCache(this, s, o), o
         }, triggerSetupContext: function (t) {
             var s = t.contexts, r = t.enterStates.length - s.length, a = t.enterStates, i = e(this, "transitionEvent");
-            Ember.assert("More contexts provided than states", r >= 0), n.call(a, function (e, t) {
+            n.call(a, function (e, t) {
                 e.trigger(i, this, s[t - r])
             }, this)
         }, getState: function (t) {
@@ -8821,119 +8760,8 @@ var Handlebars = {};
                 r && Ember.Logger.log("STATEMANAGER: Entering " + e(t, "path")), t.trigger("enter", this)
             }, this), t(this, "currentState", s.finalState)
         }})
-    }(), function () {
-        function e(e, s) {
-            return function () {
-                var n = t.call(arguments);
-                return n.unshift(e), s.apply(e, n)
-            }
-        }
-
-        var t = [].slice, s = {}, n = {}, r = [];
-        Ember.Test = {registerHelper: function (e, t) {
-            s[e] = t
-        }, unregisterHelper: function (e) {
-            delete s[e], n[e] && (window[e] = n[e]), delete n[e]
-        }, onInjectHelpers: function (e) {
-            r.push(e)
-        }, promise: function (e) {
-            var t = new Ember.RSVP.Promise(e), s = {chained: !1};
-            return s.then = function (e, n) {
-                var r, a;
-                return s.chained = !0, r = t.then(e, n), a = Ember.Test.promise(function (e) {
-                    e(r)
-                }), r.then(null, function (e) {
-                    a.chained || Ember.Test.adapter.exception(e)
-                }), a
-            }, s
-        }, adapter: null}, Ember.Application.reopen({testHelpers: {}, setupForTesting: function () {
-            this.deferReadiness(), this.Router.reopen({location: "none"}), Ember.Test.adapter || (Ember.Test.adapter = Ember.Test.QUnitAdapter.create())
-        }, injectTestHelpers: function () {
-            this.testHelpers = {};
-            for (var t in s)n[t] = window[t], this.testHelpers[t] = window[t] = e(this, s[t]);
-            for (var a = 0, i = r.length; i > a; a++)r[a](this)
-        }, removeTestHelpers: function () {
-            for (var e in s)window[e] = n[e], delete this.testHelpers[e], delete n[e]
-        }})
-    }(), function () {
-        var e = Ember.Test;
-        e.Adapter = Ember.Object.extend({asyncStart: Ember.K, asyncEnd: Ember.K, exception: function (e) {
-            setTimeout(function () {
-                throw e
-            })
-        }}), e.QUnitAdapter = e.Adapter.extend({asyncStart: function () {
-            stop()
-        }, asyncEnd: function () {
-            start()
-        }, exception: function (e) {
-            ok(!1, e)
-        }})
-    }(), function () {
-        function e(e, t) {
-            return Ember.run(e, e.handleURL, t), e.__container__.lookup("router:main").location.setURL(t), r(e)
-        }
-
-        function t(e, t, s) {
-            var a = n(e, t, s);
-            return Ember.run(function () {
-                a.click()
-            }), r(e)
-        }
-
-        function s(e, t, s, a) {
-            var i;
-            return"undefined" == typeof a && (a = s, s = null), i = n(e, t, s), Ember.run(function () {
-                i.val(a).change()
-            }), r(e)
-        }
-
-        function n(e, t, s) {
-            var n;
-            if (s = s || o(e, "rootElement"), n = e.$(t, s), 0 === n.length)throw"Element " + t + " not found.";
-            return n
-        }
-
-        function r(e, t) {
-            var s;
-            return s = Ember.Test.promise(function (s) {
-                1 === ++c && Ember.Test.adapter.asyncStart();
-                var n = setInterval(function () {
-                    var r = e.__container__.lookup("router:main").router.isLoading;
-                    r || h || Ember.run.hasScheduledTimers() || Ember.run.currentRunLoop || (clearInterval(n), 0 === --c && Ember.Test.adapter.asyncEnd(), Ember.run(function () {
-                        s(t)
-                    }))
-                }, 10)
-            }), a(e, s)
-        }
-
-        function a(e, t) {
-            var s, n = {};
-            for (s in e.testHelpers)n[s] = i(e, t, e.testHelpers[s]);
-            return n.then = function (s) {
-                var n = t.then(s);
-                return a(e, n)
-            }, n
-        }
-
-        function i(e, t, s) {
-            return function () {
-                var n, r = arguments;
-                return n = t.then(function () {
-                    return s.apply(null, r)
-                }), a(e, n)
-            }
-        }
-
-        var o = Ember.get, u = Ember.Test.registerHelper, h = 0, c = 0;
-        Ember.Test.onInjectHelpers(function () {
-            Ember.$(document).ajaxStart(function () {
-                h++
-            }), Ember.$(document).ajaxStop(function () {
-                h--
-            })
-        }), u("visit", e), u("click", t), u("fillIn", s), u("find", n), u("wait", r)
     }()
-}(), function () {
+}(), "undefined" == typeof location || "localhost" !== location.hostname && "127.0.0.1" !== location.hostname || Ember.Logger.warn("You are running a production build of Ember on localhost and won't receive detailed error messages. If you want full error messages please use the non-minified build provided on the Ember website."), function () {
     var e = Ember.get, t = (Ember.set, Ember.Handlebars);
     t.registerHelper("group", function (t) {
         var s, n = t.data, r = t.fn, a = n.view;
@@ -8988,14 +8816,14 @@ var Handlebars = {};
                 if (!y[0])return setTimeout(arguments.callee, 25), void 0;
                 y = y[0]
             }
-            a = document.createElement("script"), t.type && (a.type = t.type), t.charset && (a.charset = t.charset), r ? E ? (s.elem = a, _ ? (a.preload = !0, a.onpreload = n) : a.onreadystatechange = function () {
+            a = document.createElement("script"), t.type && (a.type = t.type), t.charset && (a.charset = t.charset), r ? w ? (s.elem = a, _ ? (a.preload = !0, a.onpreload = n) : a.onreadystatechange = function () {
                 "loaded" == a.readyState && n()
             }, a.src = u) : r && 0 == u.indexOf(b) && e[l] ? (o = new XMLHttpRequest, o.onreadystatechange = function () {
                 4 == o.readyState && (o.onreadystatechange = function () {
                 }, s.text = o.responseText + "\n//@ sourceURL=" + u, n())
             }, o.open("GET", u), o.send()) : (a.type = "text/cache-script", i(a, s, "ready", function () {
                 y.removeChild(a), n()
-            }), a.src = u, y.insertBefore(a, y.firstChild)) : w ? (a.async = !1, i(a, s, "finished", n), a.src = u, y.insertBefore(a, y.firstChild)) : (i(a, s, "finished", n), a.src = u, y.insertBefore(a, y.firstChild))
+            }), a.src = u, y.insertBefore(a, y.firstChild)) : T ? (a.async = !1, i(a, s, "finished", n), a.src = u, y.insertBefore(a, y.firstChild)) : (i(a, s, "finished", n), a.src = u, y.insertBefore(a, y.firstChild))
         }, 0)
     }
 
@@ -9060,7 +8888,7 @@ var Handlebars = {};
                 for (var a = 0; arguments.length > a; a++)(function (a, i) {
                     var l;
                     s(a) || (i = [a]);
-                    for (var f = 0; i.length > f; f++)o(), a = i[f], t(a) && (a = a()), a && (s(a) ? (l = [].slice.call(a), l.unshift(f, 1), [].splice.apply(i, l), f--) : ("string" == typeof a && (a = {src: a}), a = r(a, {ready: !1, ready_cb: e, finished: !1, finished_cb: n}), h.finished = !1, h.scripts.push(a), b(c, a, h, w && d), d = !0, c[p] && u.wait()))
+                    for (var f = 0; i.length > f; f++)o(), a = i[f], t(a) && (a = a()), a && (s(a) ? (l = [].slice.call(a), l.unshift(f, 1), [].splice.apply(i, l), f--) : ("string" == typeof a && (a = {src: a}), a = r(a, {ready: !1, ready_cb: e, finished: !1, finished_cb: n}), h.finished = !1, h.scripts.push(a), b(c, a, h, T && d), d = !0, c[p] && u.wait()))
                 })(arguments[a], arguments[a]);
                 return u
             }, wait: function () {
@@ -9074,7 +8902,7 @@ var Handlebars = {};
             }}
         }
 
-        var x, _ = {}, w = E || T, C = [], D = {};
+        var x, _ = {}, T = w || E, C = [], D = {};
         return _[l] = !0, _[p] = !1, _[f] = !1, _[d] = !1, _[m] = "", x = {setGlobalDefaults: function (e) {
             return r(e, _), x
         }, setOptions: function () {
@@ -9097,7 +8925,7 @@ var Handlebars = {};
         }}
     }
 
-    var c = e.$LAB, l = "UseLocalXHR", p = "AlwaysPreserveOrder", f = "AllowDuplicates", d = "CacheBust", m = "BasePath", g = /^[^?#]*\//.exec(location.href)[0], b = /^\w+\:\/\/\/?[^\/]+/.exec(g)[0], y = document.head || document.getElementsByTagName("head"), v = e.opera && "[object Opera]" == Object.prototype.toString.call(e.opera) || "MozAppearance"in document.documentElement.style, x = document.createElement("script"), _ = "boolean" == typeof x.preload, E = _ || x.readyState && "uninitialized" == x.readyState, w = !E && x.async === !0, T = !E && !w && !v;
+    var c = e.$LAB, l = "UseLocalXHR", p = "AlwaysPreserveOrder", f = "AllowDuplicates", d = "CacheBust", m = "BasePath", g = /^[^?#]*\//.exec(location.href)[0], b = /^\w+\:\/\/\/?[^\/]+/.exec(g)[0], y = document.head || document.getElementsByTagName("head"), v = e.opera && "[object Opera]" == Object.prototype.toString.call(e.opera) || "MozAppearance"in document.documentElement.style, x = document.createElement("script"), _ = "boolean" == typeof x.preload, w = _ || x.readyState && "uninitialized" == x.readyState, T = !w && x.async === !0, E = !w && !T && !v;
     e.$LAB = h(), function (e, t, s) {
         null == document.readyState && document[e] && (document.readyState = "loading", document[e](t, s = function () {
             document.removeEventListener(t, s, !1), document.readyState = "complete"
@@ -9141,7 +8969,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
     }}, Markdown.Converter = function () {
         function e(e) {
             return e = e.replace(/^[ ]{0,3}\[(.+)\]:[ \t]*\n?[ \t]*<?(\S+?)>?(?=\s|$)[ \t]*\n?[ \t]*((\n*)["(](.+?)[")][ \t]*)?(?:\n+)/gm, function (e, t, s, n, r, a) {
-                return t = t.toLowerCase(), O.set(t, w(s)), r ? n : (a && j.set(t, a.replace(/"/g, "&quot;")), "")
+                return t = t.toLowerCase(), O.set(t, T(s)), r ? n : (a && j.set(t, a.replace(/"/g, "&quot;")), "")
             })
         }
 
@@ -9157,18 +8985,18 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
         function a(e, s) {
             e = R.preBlockGamut(e, U), e = f(e);
             var n = "<hr />\n";
-            return e = e.replace(/^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$/gm, n), e = e.replace(/^[ ]{0,2}([ ]?-[ ]?){3,}[ \t]*$/gm, n), e = e.replace(/^[ ]{0,2}([ ]?_[ ]?){3,}[ \t]*$/gm, n), e = d(e), e = g(e), e = _(e), e = R.postBlockGamut(e, U), e = t(e), e = E(e, s)
+            return e = e.replace(/^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$/gm, n), e = e.replace(/^[ ]{0,2}([ ]?-[ ]?){3,}[ \t]*$/gm, n), e = e.replace(/^[ ]{0,2}([ ]?_[ ]?){3,}[ \t]*$/gm, n), e = d(e), e = g(e), e = _(e), e = R.postBlockGamut(e, U), e = t(e), e = w(e, s)
         }
 
         function i(e) {
-            return e = R.preSpanGamut(e), e = y(e), e = o(e), e = T(e), e = c(e), e = u(e), e = D(e), e = e.replace(/~P/g, "://"), e = w(e), e = x(e), e = e.replace(/  +\n/g, " <br>\n"), e = R.postSpanGamut(e)
+            return e = R.preSpanGamut(e), e = y(e), e = o(e), e = E(e), e = c(e), e = u(e), e = D(e), e = e.replace(/~P/g, "://"), e = T(e), e = x(e), e = e.replace(/  +\n/g, " <br>\n"), e = R.postSpanGamut(e)
         }
 
         function o(e) {
             var t = /(<[a-z\/!$]("[^"]*"|'[^']*'|[^'">])*>|<!(--(?:|(?:[^>-]|-[^>])(?:[^-]|-[^-])*)--)>)/gi;
             return e = e.replace(t, function (e) {
                 var t = e.replace(/(.)<\/?code>(?=.)/g, "$1`");
-                return t = N(t, "!" == e.charAt(1) ? "\\`*_/" : "\\`*_")
+                return t = A(t, "!" == e.charAt(1) ? "\\`*_/" : "\\`*_")
             })
         }
 
@@ -9183,9 +9011,9 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
                 if (!(u.search(/\(\s*\)$/m) > -1))return u;
                 p = ""
             }
-            p = A(p), p = N(p, "*_");
+            p = N(p), p = A(p, "*_");
             var d = '<a href="' + p + '"';
-            return"" != f && (f = l(f), f = N(f, "*_"), d += ' title="' + f + '"'), d += ">" + h + "</a>"
+            return"" != f && (f = l(f), f = A(f, "*_"), d += ' title="' + f + '"'), d += ">" + h + "</a>"
         }
 
         function c(e) {
@@ -9202,9 +9030,9 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
                 if ("" == c && (c = h.toLowerCase().replace(/ ?\n/g, " ")), p = "#" + c, void 0 == O.get(c))return u;
                 p = O.get(c), void 0 != j.get(c) && (f = j.get(c))
             }
-            h = N(l(h), "*_[]()"), p = N(p, "*_");
+            h = A(l(h), "*_[]()"), p = A(p, "*_");
             var d = '<img src="' + p + '" alt="' + h + '"';
-            return f = l(f), f = N(f, "*_"), d += ' title="' + f + '"', d += " />"
+            return f = l(f), f = A(f, "*_"), d += ' title="' + f + '"', d += " />"
         }
 
         function f(e) {
@@ -9258,7 +9086,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
         }
 
         function v(e) {
-            return e = e.replace(/&/g, "&amp;"), e = e.replace(/</g, "&lt;"), e = e.replace(/>/g, "&gt;"), e = N(e, "*_{}[]\\", !1)
+            return e = e.replace(/&/g, "&amp;"), e = e.replace(/</g, "&lt;"), e = e.replace(/>/g, "&gt;"), e = A(e, "*_{}[]\\", !1)
         }
 
         function x(e) {
@@ -9275,7 +9103,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
             })
         }
 
-        function E(e, t) {
+        function w(e, t) {
             e = e.replace(/^\n+/g, ""), e = e.replace(/\n+$/g, "");
             for (var s = e.split(/\n{2,}/g), n = [], r = /~K(\d+)K/, a = s.length, o = 0; a > o; o++) {
                 var u = s[o];
@@ -9290,11 +9118,11 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
             return n.join("\n\n")
         }
 
-        function w(e) {
+        function T(e) {
             return e = e.replace(/&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/g, "&amp;"), e = e.replace(/<(?![a-z\/?\$!])/gi, "&lt;")
         }
 
-        function T(e) {
+        function E(e) {
             return e = e.replace(/\\(\\)/g, P), e = e.replace(/\\([`*_{}\[\]()>#+-.!])/g, P)
         }
 
@@ -9339,7 +9167,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
             })
         }
 
-        function A(e) {
+        function N(e) {
             if (!e)return"";
             var t = e.length;
             return e.replace(H, function (s, n) {
@@ -9347,7 +9175,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
             })
         }
 
-        function N(e, t, s) {
+        function A(e, t, s) {
             var n = "([" + t.replace(/([\[\]\\])/g, "\\$1") + "])";
             s && (n = "\\\\" + n);
             var r = new RegExp(n, "g");
@@ -9483,7 +9311,7 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
                     var n = (new Date).getTime();
                     s = e.makeHtml(s);
                     var i = (new Date).getTime();
-                    r = i - n, E(s)
+                    r = i - n, w(s)
                 }
             }
         }, p = function (e, t, s) {
@@ -9528,17 +9356,17 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
             } catch (t) {
                 b = v, b(e)
             }
-        }, E = function (e) {
+        }, w = function (e) {
             var n = h.getTop(t.input) - u();
             if (t.preview && (_(e), s()), g(), y)return y = !1, void 0;
             var r = h.getTop(t.input) - u();
             m.isIE ? setTimeout(function () {
                 window.scrollBy(0, r - n)
             }, 0) : window.scrollBy(0, r - n)
-        }, w = function () {
+        }, T = function () {
             c(), t.preview && (t.preview.scrollTop = 0)
         };
-        w()
+        T()
     }
 
     function a(e, t, s, r, a, i, o) {
@@ -9978,53 +9806,150 @@ Markdown = "object" == typeof exports && "function" == typeof require ? exports 
     };
     var a = /^(<\/?(b|blockquote|code|del|dd|dl|dt|em|h1|h2|h3|i|kbd|li|ol|p|pre|s|sup|sub|strong|strike|ul)>|<(br|hr)\s?\/?>)$/i, i = /^(<a\shref="((https?|ftp):\/\/|\/)[-A-Za-z0-9+&@#\/%?=~_|!:,.;\(\)]+"(\stitle="[^"<>]+")?\s?>|<\/a>)$/i, o = /^(<img\ssrc="(https?:\/\/|\/)[-A-Za-z0-9+&@#\/%?=~_|!:,.;\(\)]+"(\swidth="\d{1,3}")?(\sheight="\d{1,3}")?(\salt="[^"<>]*")?(\stitle="[^"<>]*")?\s?\/?>)$/i
 }();
-/**
- * bootbox.js v2.3.2
- *
- * The MIT License
- *
- * Copyright (C) 2011-2012 by Nick Payne <nick@kurai.co.uk>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE
- */
-var bootbox = window.bootbox || function (e) {
-    function t(e, r) {
-        return null == r && (r = s), "string" == typeof o[r][e] ? o[r][e] : r != n ? t(e, n) : e
+var bootbox = window.bootbox || function (e, t) {
+    function s(e, t) {
+        return"undefined" == typeof t && (t = n), "string" == typeof p[t][e] ? p[t][e] : t != r ? s(e, r) : e
     }
 
-    var s = "en", n = "en", r = !1, a = {}, i = {}, o = {en: {OK: "OK", CANCEL: "Cancel", CONFIRM: "OK"}, fr: {OK: "OK", CANCEL: "Annuler", CONFIRM: "D'accord"}, de: {OK: "OK", CANCEL: "Abbrechen", CONFIRM: "Akzeptieren"}, es: {OK: "OK", CANCEL: "Cancelar", CONFIRM: "Aceptar"}, br: {OK: "OK", CANCEL: "Cancelar", CONFIRM: "Sim"}, nl: {OK: "OK", CANCEL: "Annuleren", CONFIRM: "Accepteren"}, ru: {OK: "OK", CANCEL: "Отмена", CONFIRM: "Применить"}, it: {OK: "OK", CANCEL: "Annulla", CONFIRM: "Conferma"}};
-    return i.setLocale = function (e) {
-        for (var t in o)if (t == e)return s = e, void 0;
+    var n = "en", r = "en", a = !0, i = "static", o = "javascript:;", u = "", h = {}, c = {}, l = {};
+    l.setLocale = function (e) {
+        for (var t in p)if (t == e)return n = e, void 0;
         throw new Error("Invalid locale: " + e)
-    }, i.addLocale = function (e, t) {
-        "undefined" == typeof o[e] && (o[e] = {});
-        for (var s in t)o[e][s] = t[s]
-    }, i.setIcons = function (e) {
-        a = e, ("object" != typeof a || null == a) && (a = {})
-    }, i.alert = function () {
-        var e = "", s = t("OK"), n = null;
+    }, l.addLocale = function (e, t) {
+        "undefined" == typeof p[e] && (p[e] = {});
+        for (var s in t)p[e][s] = t[s]
+    }, l.setIcons = function (e) {
+        c = e, ("object" != typeof c || null === c) && (c = {})
+    }, l.setBtnClasses = function (e) {
+        h = e, ("object" != typeof h || null === h) && (h = {})
+    }, l.alert = function () {
+        var e = "", t = s("OK"), n = null;
         switch (arguments.length) {
             case 1:
                 e = arguments[0];
                 break;
             case 2:
-                e = arguments[0], "function" == typeof arguments[1] ? n = arguments[1] : s = arguments[1];
+                e = arguments[0], "function" == typeof arguments[1] ? n = arguments[1] : t = arguments[1];
+                break;
+            case 3:
+                e = arguments[0], t = arguments[1], n = arguments[2];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-3")
+        }
+        return l.dialog(e, {label: t, icon: c.OK, "class": h.OK, callback: n}, {onEscape: n || !0})
+    }, l.confirm = function () {
+        var e = "", t = s("CANCEL"), n = s("CONFIRM"), r = null;
+        switch (arguments.length) {
+            case 1:
+                e = arguments[0];
+                break;
+            case 2:
+                e = arguments[0], "function" == typeof arguments[1] ? r = arguments[1] : t = arguments[1];
+                break;
+            case 3:
+                e = arguments[0], t = arguments[1], "function" == typeof arguments[2] ? r = arguments[2] : n = arguments[2];
+                break;
+            case 4:
+                e = arguments[0], t = arguments[1], n = arguments[2], r = arguments[3];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-4")
+        }
+        var a = function () {
+            return"function" == typeof r ? r(!1) : void 0
+        }, i = function () {
+            return"function" == typeof r ? r(!0) : void 0
+        };
+        return l.dialog(e, [
+            {label: t, icon: c.CANCEL, "class": h.CANCEL, callback: a},
+            {label: n, icon: c.CONFIRM, "class": h.CONFIRM, callback: i}
+        ], {onEscape: a})
+    }, l.prompt = function () {
+        var e = "", n = s("CANCEL"), r = s("CONFIRM"), a = null, i = "";
+        switch (arguments.length) {
+            case 1:
+                e = arguments[0];
+                break;
+            case 2:
+                e = arguments[0], "function" == typeof arguments[1] ? a = arguments[1] : n = arguments[1];
+                break;
+            case 3:
+                e = arguments[0], n = arguments[1], "function" == typeof arguments[2] ? a = arguments[2] : r = arguments[2];
+                break;
+            case 4:
+                e = arguments[0], n = arguments[1], r = arguments[2], a = arguments[3];
+                break;
+            case 5:
+                e = arguments[0], n = arguments[1], r = arguments[2], a = arguments[3], i = arguments[4];
+                break;
+            default:
+                throw new Error("Incorrect number of arguments: expected 1-5")
+        }
+        var o = e, u = t("<form></form>");
+        u.append("<input class='input-block-level' autocomplete=off type=text value='" + i + "' />");
+        var p = function () {
+            return"function" == typeof a ? a(null) : void 0
+        }, f = function () {
+            return"function" == typeof a ? a(u.find("input[type=text]").val()) : void 0
+        }, d = l.dialog(u, [
+            {label: n, icon: c.CANCEL, "class": h.CANCEL, callback: p},
+            {label: r, icon: c.CONFIRM, "class": h.CONFIRM, callback: f}
+        ], {header: o, show: !1, onEscape: p});
+        return d.on("shown", function () {
+            u.find("input[type=text]").focus(), u.on("submit", function (e) {
+                e.preventDefault(), d.find(".btn-primary").click()
+            })
+        }), d.modal("show"), d
+    }, l.dialog = function (s, n, r) {
+        function h() {
+            console.log("onCancel");
+            var e = null;
+            "function" == typeof r.onEscape && (e = r.onEscape()), e !== !1 && T.modal("hide")
+        }
+
+        var c = "", l = [];
+        r || (r = {}), "undefined" == typeof n ? n = [] : "undefined" == typeof n.length && (n = [n]);
+        for (var p = n.length; p--;) {
+            var f = null, d = null, m = null, g = "", b = null;
+            if ("undefined" == typeof n[p].label && "undefined" == typeof n[p]["class"] && "undefined" == typeof n[p].callback) {
+                var y = 0, v = null;
+                for (var x in n[p])if (v = x, ++y > 1)break;
+                1 == y && "function" == typeof n[p][x] && (n[p].label = v, n[p].callback = n[p][x])
+            }
+            "function" == typeof n[p].callback && (b = n[p].callback), n[p]["class"] ? m = n[p]["class"] : p == n.length - 1 && 2 >= n.length && (m = "btn-primary"), n[p].link !== !0 && (m = "btn " + m), f = n[p].label ? n[p].label : "Option " + (p + 1), n[p].icon && (g = "<i class='" + n[p].icon + "'></i> "), d = n[p].href ? n[p].href : o, c = c + "<a data-handler='" + p + "' class='" + m + "' href='" + d + "'>" + g + f + "</a>", l[p] = b
+        }
+        var _ = ["<div class='bootbox modal' tabindex='-1' style='overflow:hidden;'>"];
+        if (r.header) {
+            var w = "";
+            ("undefined" == typeof r.headerCloseButton || r.headerCloseButton) && (w = "<a href='" + o + "' class='close'>&times;</a>"), _.push("<div class='modal-header'>" + w + "<h3>" + r.header + "</h3></div>")
+        }
+        _.push("<div class='modal-body'></div>"), c && _.push("<div class='modal-footer'>" + c + "</div>"), _.push("</div>");
+        var T = t(_.join("\n")), E = "undefined" == typeof r.animate ? a : r.animate;
+        E && T.addClass("fade");
+        var C = "undefined" == typeof r.classes ? u : r.classes;
+        return C && T.addClass(C), T.find(".modal-body").html(s), T.on("keyup.dismiss.modal", function (e) {
+            console.log("keyup.dismiss.modal"), 27 === e.which && r.onEscape !== !1 && h("escape")
+        }), T.on("click", "a.close", function (e) {
+            e.preventDefault(), h("close")
+        }), T.on("shown", function () {
+            T.find("a.btn-primary:first").focus()
+        }), T.on("hidden", function () {
+            T.remove()
+        }), T.on("click", ".modal-footer a", function (e) {
+            var s = t(this).data("handler"), r = l[s], a = null;
+            ("undefined" == typeof s || "undefined" == typeof n[s].href) && (e.preventDefault(), "function" == typeof r && (a = r(e)), a !== !1 && T.modal("hide"))
+        }), t("body").append(T), T.modal({backdrop: "undefined" == typeof r.backdrop ? i : r.backdrop, keyboard: !1, show: !1}), T.on("show", function () {
+            t(e).off("focusin.modal")
+        }), ("undefined" == typeof r.show || r.show === !0) && T.modal("show"), T
+    }, l.modal = function () {
+        var e, s, n, r = {onEscape: null, keyboard: !0, backdrop: i};
+        switch (arguments.length) {
+            case 1:
+                e = arguments[0];
+                break;
+            case 2:
+                e = arguments[0], "object" == typeof arguments[1] ? n = arguments[1] : s = arguments[1];
                 break;
             case 3:
                 e = arguments[0], s = arguments[1], n = arguments[2];
@@ -10032,120 +9957,20 @@ var bootbox = window.bootbox || function (e) {
             default:
                 throw new Error("Incorrect number of arguments: expected 1-3")
         }
-        return i.dialog(e, {label: s, icon: a.OK, callback: n}, {onEscape: n})
-    }, i.confirm = function () {
-        var e = "", s = t("CANCEL"), n = t("CONFIRM"), r = null;
-        switch (arguments.length) {
-            case 1:
-                e = arguments[0];
-                break;
-            case 2:
-                e = arguments[0], "function" == typeof arguments[1] ? r = arguments[1] : s = arguments[1];
-                break;
-            case 3:
-                e = arguments[0], s = arguments[1], "function" == typeof arguments[2] ? r = arguments[2] : n = arguments[2];
-                break;
-            case 4:
-                e = arguments[0], s = arguments[1], n = arguments[2], r = arguments[3];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-4")
-        }
-        return i.dialog(e, [
-            {label: s, icon: a.CANCEL, callback: function () {
-                "function" == typeof r && r(!1)
-            }},
-            {label: n, icon: a.CONFIRM, callback: function () {
-                "function" == typeof r && r(!0)
-            }}
-        ])
-    }, i.prompt = function () {
-        var s = "", n = t("CANCEL"), r = t("CONFIRM"), o = null;
-        switch (arguments.length) {
-            case 1:
-                s = arguments[0];
-                break;
-            case 2:
-                s = arguments[0], "function" == typeof arguments[1] ? o = arguments[1] : n = arguments[1];
-                break;
-            case 3:
-                s = arguments[0], n = arguments[1], "function" == typeof arguments[2] ? o = arguments[2] : r = arguments[2];
-                break;
-            case 4:
-                s = arguments[0], n = arguments[1], r = arguments[2], o = arguments[3];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-4")
-        }
-        var u = s, h = e("<form></form>");
-        h.append("<input autocomplete=off type=text />");
-        var c = i.dialog(h, [
-            {label: n, icon: a.CANCEL, callback: function () {
-                "function" == typeof o && o(null)
-            }},
-            {label: r, icon: a.CONFIRM, callback: function () {
-                "function" == typeof o && o(h.find("input[type=text]").val())
-            }}
-        ], {header: u});
-        return c.on("shown", function () {
-            h.find("input[type=text]").focus(), h.on("submit", function (e) {
-                e.preventDefault(), c.find(".btn-primary").click()
-            })
-        }), c
-    }, i.modal = function () {
-        var t, s, n, r = {onEscape: null, keyboard: !0, backdrop: !0};
-        switch (arguments.length) {
-            case 1:
-                t = arguments[0];
-                break;
-            case 2:
-                t = arguments[0], "object" == typeof arguments[1] ? n = arguments[1] : s = arguments[1];
-                break;
-            case 3:
-                t = arguments[0], s = arguments[1], n = arguments[2];
-                break;
-            default:
-                throw new Error("Incorrect number of arguments: expected 1-3")
-        }
-        return r.header = s, n = "object" == typeof n ? e.extend(r, n) : r, i.dialog(t, [], n)
-    }, i.dialog = function (t, s, n) {
-        var a = null, i = "", o = [], n = n || {};
-        null == s ? s = [] : "undefined" == typeof s.length && (s = [s]);
-        for (var u = s.length; u--;) {
-            var h = null, c = null, l = "", p = null;
-            if ("undefined" == typeof s[u].label && "undefined" == typeof s[u]["class"] && "undefined" == typeof s[u].callback) {
-                var f = 0, d = null;
-                for (var m in s[u])if (d = m, ++f > 1)break;
-                1 == f && "function" == typeof s[u][m] && (s[u].label = d, s[u].callback = s[u][m])
-            }
-            "function" == typeof s[u].callback && (p = s[u].callback), s[u]["class"] ? c = s[u]["class"] : u == s.length - 1 && 2 >= s.length && (c = "btn-primary"), h = s[u].label ? s[u].label : "Option " + (u + 1), s[u].icon && (l = "<i class='" + s[u].icon + "'></i> "), i += "<a data-handler='" + u + "' class='btn " + c + "' href='javascript:;'>" + l + h + "</a>", o[u] = p
-        }
-        var g = ["<div class='bootbox modal'>"];
-        if (n.header) {
-            var b = "";
-            ("undefined" == typeof n.headerCloseButton || n.headerCloseButton) && (b = "<a href='javascript:;' class='close'>&times;</a>"), g.push("<div class='modal-header'>" + b + "<h3>" + n.header + "</h3></div>")
-        }
-        g.push("<div class='modal-body'></div>"), i && g.push("<div class='modal-footer'>" + i + "</div>"), g.push("</div>");
-        var y = e(g.join("\n")), v = "undefined" == typeof n.animate ? r : n.animate;
-        return v && y.addClass("fade"), e(".modal-body", y).html(t), y.bind("hidden", function () {
-            y.remove()
-        }), y.bind("hide", function () {
-            "escape" == a && "function" == typeof n.onEscape && n.onEscape()
-        }), e(document).bind("keyup.modal", function (e) {
-            27 == e.which && (a = "escape")
-        }), y.bind("shown", function () {
-            e("a.btn-primary:last", y).focus()
-        }), y.on("click", ".modal-footer a, a.close", function (t) {
-            var s = e(this).data("handler"), n = o[s], r = null;
-            "function" == typeof n && (r = n()), r !== !1 && (t.preventDefault(), a = "button", y.modal("hide"))
-        }), null == n.keyboard && (n.keyboard = "function" == typeof n.onEscape), e("body").append(y), y.modal({backdrop: n.backdrop || !0, keyboard: n.keyboard}), y
-    }, i.hideAll = function () {
-        e(".bootbox").modal("hide")
-    }, i.animate = function (e) {
-        r = e
-    }, i
-}(window.jQuery);
-/* ==========================================================
+        return r.header = s, n = "object" == typeof n ? t.extend(r, n) : r, l.dialog(e, [], n)
+    }, l.hideAll = function () {
+        t(".bootbox").modal("hide")
+    }, l.animate = function (e) {
+        a = e
+    }, l.backdrop = function (e) {
+        i = e
+    }, l.classes = function (e) {
+        u = e
+    };
+    var p = {br: {OK: "OK", CANCEL: "Cancelar", CONFIRM: "Sim"}, da: {OK: "OK", CANCEL: "Annuller", CONFIRM: "Accepter"}, de: {OK: "OK", CANCEL: "Abbrechen", CONFIRM: "Akzeptieren"}, en: {OK: "OK", CANCEL: "Cancel", CONFIRM: "OK"}, es: {OK: "OK", CANCEL: "Cancelar", CONFIRM: "Aceptar"}, fr: {OK: "OK", CANCEL: "Annuler", CONFIRM: "D'accord"}, it: {OK: "OK", CANCEL: "Annulla", CONFIRM: "Conferma"}, nl: {OK: "OK", CANCEL: "Annuleren", CONFIRM: "Accepteren"}, pl: {OK: "OK", CANCEL: "Anuluj", CONFIRM: "Potwierdź"}, ru: {OK: "OK", CANCEL: "Отмена", CONFIRM: "Применить"}, zh_CN: {OK: "OK", CANCEL: "取消", CONFIRM: "确认"}, zh_TW: {OK: "OK", CANCEL: "取消", CONFIRM: "確認"}};
+    return l
+}(document, window.jQuery);
+window.bootbox = bootbox, /* ==========================================================
  * bootstrap-alert.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#alerts
  * ==========================================================
@@ -10163,27 +9988,27 @@ var bootbox = window.bootbox || function (e) {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * ========================================================== */
-!function (e) {
-    "use strict";
-    var t = '[data-dismiss="alert"]', s = function (s) {
-        e(s).on("click", t, this.close)
-    };
-    s.prototype.close = function (t) {
-        function s() {
-            n.trigger("closed").remove()
-        }
+    !function (e) {
+        "use strict";
+        var t = '[data-dismiss="alert"]', s = function (s) {
+            e(s).on("click", t, this.close)
+        };
+        s.prototype.close = function (t) {
+            function s() {
+                n.trigger("closed").remove()
+            }
 
-        var n, r = e(this), a = r.attr("data-target");
-        a || (a = r.attr("href"), a = a && a.replace(/.*(?=#[^\s]*$)/, "")), n = e(a), t && t.preventDefault(), n.length || (n = r.hasClass("alert") ? r : r.parent()), n.trigger(t = e.Event("close")), t.isDefaultPrevented() || (n.removeClass("in"), e.support.transition && n.hasClass("fade") ? n.on(e.support.transition.end, s) : s())
-    }, e.fn.alert = function (t) {
-        return this.each(function () {
-            var n = e(this), r = n.data("alert");
-            r || n.data("alert", r = new s(this)), "string" == typeof t && r[t].call(n)
+            var n, r = e(this), a = r.attr("data-target");
+            a || (a = r.attr("href"), a = a && a.replace(/.*(?=#[^\s]*$)/, "")), n = e(a), t && t.preventDefault(), n.length || (n = r.hasClass("alert") ? r : r.parent()), n.trigger(t = e.Event("close")), t.isDefaultPrevented() || (n.removeClass("in"), e.support.transition && n.hasClass("fade") ? n.on(e.support.transition.end, s) : s())
+        }, e.fn.alert = function (t) {
+            return this.each(function () {
+                var n = e(this), r = n.data("alert");
+                r || n.data("alert", r = new s(this)), "string" == typeof t && r[t].call(n)
+            })
+        }, e.fn.alert.Constructor = s, e(function () {
+            e("body").on("click.alert.data-api", t, s.prototype.close)
         })
-    }, e.fn.alert.Constructor = s, e(function () {
-        e("body").on("click.alert.data-api", t, s.prototype.close)
-    })
-}(window.jQuery), /* ============================================================
+    }(window.jQuery), /* ============================================================
  * bootstrap-button.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#buttons
  * ============================================================
@@ -11454,12 +11279,12 @@ var bootbox = window.bootbox || function (e) {
     }
 
     function l(e) {
-        g.length == E && (g.length = E - 1), e.length = 0, g.push(e)
+        g.length == w && (g.length = w - 1), e.length = 0, g.push(e)
     }
 
     function p(e) {
         var t = e.cache;
-        t && p(t), b.length == E && (b.length = E - 1), e.array = e.cache = e.criteria = e.object = e.number = e.string = e.value = null, b.push(e)
+        t && p(t), b.length == w && (b.length = w - 1), e.array = e.cache = e.criteria = e.object = e.number = e.string = e.value = null, b.push(e)
     }
 
     function f(e, t, s) {
@@ -11477,10 +11302,10 @@ var bootbox = window.bootbox || function (e) {
             this.__wrapped__ = e
         }
 
-        function E(e, t, s, n) {
+        function w(e, t, s, n) {
             function r() {
                 var n = arguments, h = i ? this : t;
-                if (a || (e = t[o]), s.length && (n = n.length ? (n = En.call(n), u ? n.concat(s) : s.concat(n)) : s), this instanceof r) {
+                if (a || (e = t[o]), s.length && (n = n.length ? (n = wn.call(n), u ? n.concat(s) : s.concat(n)) : s), this instanceof r) {
                     h = $(e.prototype);
                     var c = e.apply(h, n);
                     return ft(c) ? c : h
@@ -11501,12 +11326,12 @@ var bootbox = window.bootbox || function (e) {
 
         function z() {
             var e = u();
-            e.shadowedProps = N, e.array = e.bottom = e.loop = e.top = "", e.init = "iterable", e.useHas = !0, e.useKeys = !!On;
+            e.shadowedProps = A, e.array = e.bottom = e.loop = e.top = "", e.init = "iterable", e.useHas = !0, e.useKeys = !!On;
             for (var t, s = 0; t = arguments[s]; s++)for (var n in t)e[n] = t[n];
             var r = e.args;
             e.firstArg = /^[^,]+/.exec(r)[0];
             var a = Hs("errorClass, errorProto, hasOwnProperty, isArguments, isArray, isString, keys, lodash, objectProto, objectTypes, nonEnumProps, stringClass, stringProto, toString", "return function(" + r + ") {\n" + Sn(e) + "\n}");
-            return p(e), a(M, Ks, an, J, Pn, yt, On, g, Qs, G, Dn, B, Ys, ln)
+            return p(e), a(M, Ks, an, J, Pn, yt, On, g, Qs, G, Dn, B, Xs, ln)
         }
 
         function $(e) {
@@ -11518,17 +11343,17 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Q() {
-            var e = (e = g.indexOf) === Yt ? t : e;
+            var e = (e = g.indexOf) === Xt ? t : e;
             return e
         }
 
-        function Y(e) {
+        function X(e) {
             return function (t, s, n, r) {
                 return"boolean" != typeof s && null != s && (r = n, n = r && r[s] === t ? m : s, s = !1), null != n && (n = g.createCallback(n, r)), e(t, s, n, r)
             }
         }
 
-        function X(e) {
+        function Y(e) {
             var t, s;
             return!e || ln.call(e) != V || (t = e.constructor, pt(t) && !(t instanceof t)) || !In.argsClass && J(e) || !In.nodeClass && h(e) ? !1 : In.ownLast ? (Hn(e, function (e, t, n) {
                 return s = an.call(n, t), !1
@@ -11567,7 +11392,7 @@ var bootbox = window.bootbox || function (e) {
                 case B:
                     return new d(i);
                 case H:
-                    return d(i.source, T.exec(i))
+                    return d(i.source, E.exec(i))
             }
             var b = !r;
             r || (r = o()), a || (a = o());
@@ -11661,19 +11486,19 @@ var bootbox = window.bootbox || function (e) {
             var x = !r;
             r || (r = o()), a || (a = o());
             for (var _ = r.length; _--;)if (r[_] == e)return a[_] == t;
-            var E = 0;
+            var w = 0;
             if (u = !0, r.push(e), a.push(t), m) {
-                if (_ = e.length, E = t.length, u = E == e.length, !u && !i)return u;
-                for (; E--;) {
-                    var w = _, T = t[E];
-                    if (i)for (; w-- && !(u = ct(e[w], T, s, n, r, a));); else if (!(u = ct(e[E], T, s, n, r, a)))break
+                if (_ = e.length, w = t.length, u = w == e.length, !u && !i)return u;
+                for (; w--;) {
+                    var T = _, E = t[w];
+                    if (i)for (; T-- && !(u = ct(e[T], E, s, n, r, a));); else if (!(u = ct(e[w], E, s, n, r, a)))break
                 }
                 return u
             }
             return Hn(t, function (t, i, o) {
-                return an.call(o, i) ? (E++, u = an.call(e, i) && ct(e[i], t, s, n, r, a)) : void 0
+                return an.call(o, i) ? (w++, u = an.call(e, i) && ct(e[i], t, s, n, r, a)) : void 0
             }), u && !i && Hn(e, function (e, t, s) {
-                return an.call(s, t) ? u = --E > -1 : void 0
+                return an.call(s, t) ? u = --w > -1 : void 0
             }), x && (l(r), l(a)), u
         }
 
@@ -11739,13 +11564,13 @@ var bootbox = window.bootbox || function (e) {
 
         function _t(e, t, s) {
             var n = Q(), r = "function" == typeof t, a = {};
-            if (r)t = g.createCallback(t, s); else var i = tn.apply(Ws, En.call(arguments, 1));
+            if (r)t = g.createCallback(t, s); else var i = tn.apply(Ws, wn.call(arguments, 1));
             return Hn(e, function (e, s, o) {
                 (r ? !t(e, s, o) : 0 > n(i, s)) && (a[s] = e)
             }), a
         }
 
-        function Et(e) {
+        function wt(e) {
             for (var t = -1, s = On(e), n = s.length, r = Ms(n); n > ++t;) {
                 var a = s[t];
                 r[t] = [a, e[a]]
@@ -11753,9 +11578,9 @@ var bootbox = window.bootbox || function (e) {
             return r
         }
 
-        function wt(e, t, s) {
+        function Tt(e, t, s) {
             var n = {};
-            if ("function" != typeof t)for (var r = -1, a = tn.apply(Ws, En.call(arguments, 1)), i = ft(e) ? a.length : 0; i > ++r;) {
+            if ("function" != typeof t)for (var r = -1, a = tn.apply(Ws, wn.call(arguments, 1)), i = ft(e) ? a.length : 0; i > ++r;) {
                 var o = a[r];
                 o in e && (n[o] = e[o])
             } else t = g.createCallback(t, s), Hn(e, function (e, s, r) {
@@ -11764,7 +11589,7 @@ var bootbox = window.bootbox || function (e) {
             return n
         }
 
-        function Tt(e, t, s, n) {
+        function Et(e, t, s, n) {
             var r = Pn(e);
             if (t = g.createCallback(t, n, 4), null == s)if (r)s = []; else {
                 var a = e && e.constructor, i = a && a.prototype;
@@ -11781,7 +11606,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Dt(e) {
-            var t = -1, s = tn.apply(Ws, En.call(arguments, 1)), n = s.length, r = Ms(n);
+            var t = -1, s = tn.apply(Ws, wn.call(arguments, 1)), n = s.length, r = Ms(n);
             for (In.unindexedChars && yt(e) && (e = e.split("")); n > ++t;)r[t] = e[s[t]];
             return r
         }
@@ -11808,7 +11633,7 @@ var bootbox = window.bootbox || function (e) {
             return n
         }
 
-        function At(e, t, s) {
+        function Nt(e, t, s) {
             var n = [];
             if (t = g.createCallback(t, s), Pn(e))for (var r = -1, a = e.length; a > ++r;) {
                 var i = e[r];
@@ -11819,7 +11644,7 @@ var bootbox = window.bootbox || function (e) {
             return n
         }
 
-        function Nt(e, t, s) {
+        function At(e, t, s) {
             if (t = g.createCallback(t, s), !Pn(e)) {
                 var n;
                 return jn(e, function (e, s, r) {
@@ -11845,7 +11670,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Ot(e, t) {
-            var s = En.call(arguments, 2), n = -1, r = "function" == typeof t, a = e ? e.length : 0, i = Ms("number" == typeof a ? a : 0);
+            var s = wn.call(arguments, 2), n = -1, r = "function" == typeof t, a = e ? e.length : 0, i = Ms("number" == typeof a ? a : 0);
             return Pt(e, function (e) {
                 i[++n] = (r ? t : e[t]).apply(e, s)
             }), i
@@ -11906,7 +11731,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Ht(e, t, s) {
-            return t = g.createCallback(t, s), At(e, function (e, s, n) {
+            return t = g.createCallback(t, s), Nt(e, function (e, s, n) {
                 return!t(e, s, n)
             })
         }
@@ -11957,7 +11782,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Wt(e) {
-            var n = -1, r = Q(), a = e ? e.length : 0, o = tn.apply(Ws, En.call(arguments, 1)), u = [], h = a >= _ && r === t;
+            var n = -1, r = Q(), a = e ? e.length : 0, o = tn.apply(Ws, wn.call(arguments, 1)), u = [], h = a >= _ && r === t;
             if (h) {
                 var c = i(o);
                 c ? (r = s, o = c) : h = !1
@@ -11986,7 +11811,7 @@ var bootbox = window.bootbox || function (e) {
             }
         }
 
-        function Yt(e, s, n) {
+        function Xt(e, s, n) {
             if ("number" == typeof n) {
                 var r = e ? e.length : 0;
                 n = 0 > n ? yn(0, r + n) : n || 0
@@ -11997,7 +11822,7 @@ var bootbox = window.bootbox || function (e) {
             return e ? t(e, s, n) : -1
         }
 
-        function Xt(e, t, s) {
+        function Yt(e, t, s) {
             if (!e)return[];
             var n = 0, r = e.length;
             if ("number" != typeof t && null != t) {
@@ -12064,7 +11889,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function rs(e) {
-            return Pn(e) || (arguments[0] = e ? En.call(e) : Ws), $n(tn.apply(Ws, arguments))
+            return Pn(e) || (arguments[0] = e ? wn.call(e) : Ws), $n(tn.apply(Ws, arguments))
         }
 
         function as(e) {
@@ -12073,7 +11898,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function is(e) {
-            return Wt(e, En.call(arguments, 1))
+            return Wt(e, wn.call(arguments, 1))
         }
 
         function os(e) {
@@ -12095,11 +11920,11 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function cs(e, t) {
-            return In.fastBind || pn && arguments.length > 2 ? pn.call.apply(pn, arguments) : E(e, t, En.call(arguments, 2))
+            return In.fastBind || pn && arguments.length > 2 ? pn.call.apply(pn, arguments) : w(e, t, wn.call(arguments, 2))
         }
 
         function ls(e) {
-            for (var t = arguments.length > 1 ? tn.apply(Ws, En.call(arguments, 1)) : nt(e), s = -1, n = t.length; n > ++s;) {
+            for (var t = arguments.length > 1 ? tn.apply(Ws, wn.call(arguments, 1)) : nt(e), s = -1, n = t.length; n > ++s;) {
                 var r = t[s];
                 e[r] = cs(e[r], e)
             }
@@ -12107,7 +11932,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function ps(e, t) {
-            return E(e, t, En.call(arguments, 2), v)
+            return w(e, t, wn.call(arguments, 2), v)
         }
 
         function fs() {
@@ -12173,14 +11998,14 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function gs(e) {
-            var t = En.call(arguments, 1);
+            var t = wn.call(arguments, 1);
             return cn(function () {
                 e.apply(m, t)
             }, 1)
         }
 
         function bs(e, t) {
-            var s = En.call(arguments, 2);
+            var s = wn.call(arguments, 2);
             return cn(function () {
                 e.apply(m, s)
             }, t)
@@ -12203,28 +12028,28 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function xs(e) {
-            return E(e, En.call(arguments, 1))
+            return w(e, wn.call(arguments, 1))
         }
 
         function _s(e) {
-            return E(e, En.call(arguments, 1), null, v)
+            return w(e, wn.call(arguments, 1), null, v)
         }
 
-        function Es(e, t, s) {
+        function ws(e, t, s) {
             var n = !0, r = !0;
             s === !1 ? n = !1 : ft(s) && (n = "leading"in s ? s.leading : n, r = "trailing"in s ? s.trailing : r), s = u(), s.leading = n, s.maxWait = t, s.trailing = r;
             var a = ms(e, t, s);
             return p(s), a
         }
 
-        function ws(e, t) {
+        function Ts(e, t) {
             return function () {
                 var s = [e];
                 return on.apply(s, arguments), t.apply(this, s)
             }
         }
 
-        function Ts(e) {
+        function Es(e) {
             return null == e ? "" : qs(e).replace(S, K)
         }
 
@@ -12245,7 +12070,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function Is() {
-            return n._ = Xs, this
+            return n._ = Ys, this
         }
 
         function Ss(e, t) {
@@ -12259,15 +12084,15 @@ var bootbox = window.bootbox || function (e) {
             return pt(s) ? e[t]() : s
         }
 
-        function As(e, t, s) {
+        function Ns(e, t, s) {
             e = (e = +e) > -1 ? e : 0;
             var n = -1, r = Ms(e);
             for (t = g.createCallback(t, s, 1); e > ++n;)r[n] = t(n);
             return r
         }
 
-        function Ns(e) {
-            return null == e ? "" : qs(e).replace(w, Z)
+        function As(e) {
+            return null == e ? "" : qs(e).replace(T, Z)
         }
 
         function Ps(e) {
@@ -12287,13 +12112,13 @@ var bootbox = window.bootbox || function (e) {
             return this.__wrapped__
         }
 
-        n = n ? W.defaults(e.Object(), n, W.pick(e, A)) : e;
-        var Ms = n.Array, Ls = n.Boolean, Us = n.Date, Vs = n.Error, Hs = n.Function, Bs = n.Math, Fs = n.Number, Gs = n.Object, zs = n.RegExp, qs = n.String, $s = n.TypeError, Ws = [], Ks = Vs.prototype, Qs = Gs.prototype, Ys = qs.prototype, Xs = n._, Zs = zs("^" + qs(Qs.valueOf).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/valueOf|for [^\]]+/g, ".+?") + "$"), Js = Bs.ceil, en = n.clearTimeout, tn = Ws.concat, sn = Bs.floor, nn = Hs.prototype.toString, rn = Zs.test(rn = Gs.getPrototypeOf) && rn, an = Qs.hasOwnProperty, on = Ws.push, un = Qs.propertyIsEnumerable, hn = n.setImmediate, cn = n.setTimeout, ln = Qs.toString, pn = Zs.test(pn = ln.bind) && pn, fn = Zs.test(fn = Gs.create) && fn, dn = Zs.test(dn = Ms.isArray) && dn, mn = n.isFinite, gn = n.isNaN, bn = Zs.test(bn = Gs.keys) && bn, yn = Bs.max, vn = Bs.min, xn = n.parseInt, _n = Bs.random, En = Ws.slice, wn = Zs.test(n.attachEvent), Tn = pn && !/\n|true/.test(pn + wn), Cn = {};
+        n = n ? W.defaults(e.Object(), n, W.pick(e, N)) : e;
+        var Ms = n.Array, Ls = n.Boolean, Us = n.Date, Vs = n.Error, Hs = n.Function, Bs = n.Math, Fs = n.Number, Gs = n.Object, zs = n.RegExp, qs = n.String, $s = n.TypeError, Ws = [], Ks = Vs.prototype, Qs = Gs.prototype, Xs = qs.prototype, Ys = n._, Zs = zs("^" + qs(Qs.valueOf).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/valueOf|for [^\]]+/g, ".+?") + "$"), Js = Bs.ceil, en = n.clearTimeout, tn = Ws.concat, sn = Bs.floor, nn = Hs.prototype.toString, rn = Zs.test(rn = Gs.getPrototypeOf) && rn, an = Qs.hasOwnProperty, on = Ws.push, un = Qs.propertyIsEnumerable, hn = n.setImmediate, cn = n.setTimeout, ln = Qs.toString, pn = Zs.test(pn = ln.bind) && pn, fn = Zs.test(fn = Gs.create) && fn, dn = Zs.test(dn = Ms.isArray) && dn, mn = n.isFinite, gn = n.isNaN, bn = Zs.test(bn = Gs.keys) && bn, yn = Bs.max, vn = Bs.min, xn = n.parseInt, _n = Bs.random, wn = Ws.slice, Tn = Zs.test(n.attachEvent), En = pn && !/\n|true/.test(pn + Tn), Cn = {};
         Cn[R] = Ms, Cn[O] = Ls, Cn[j] = Us, Cn[L] = Hs, Cn[V] = Gs, Cn[U] = Fs, Cn[H] = zs, Cn[B] = qs;
         var Dn = {};
         Dn[R] = Dn[j] = Dn[U] = {constructor: !0, toLocaleString: !0, toString: !0, valueOf: !0}, Dn[O] = Dn[B] = {constructor: !0, toString: !0, valueOf: !0}, Dn[M] = Dn[L] = Dn[H] = {constructor: !0, toString: !0}, Dn[V] = {constructor: !0}, function () {
-            for (var e = N.length; e--;) {
-                var t = N[e];
+            for (var e = A.length; e--;) {
+                var t = A[e];
                 for (var s in Dn)an.call(Dn, s) && !an.call(Dn[s], t) && (Dn[s][t] = !1)
             }
         }(), b.prototype = g.prototype;
@@ -12305,7 +12130,7 @@ var bootbox = window.bootbox || function (e) {
             e.prototype = {valueOf: 1, y: 1};
             for (var n in new e)s.push(n);
             for (n in arguments);
-            In.argsObject = arguments.constructor == Gs && !(arguments instanceof Ms), In.argsClass = J(arguments), In.enumErrorProps = un.call(Ks, "message") || un.call(Ks, "name"), In.enumPrototypes = un.call(e, "prototype"), In.fastBind = pn && !Tn, In.ownLast = "x" != s[0], In.nonEnumArgs = 0 != n, In.nonEnumShadows = !/valueOf/.test(s), In.spliceObjects = (Ws.splice.call(t, 0, 1), !t[0]), In.unindexedChars = "xx" != "x"[0] + Gs("x")[0];
+            In.argsObject = arguments.constructor == Gs && !(arguments instanceof Ms), In.argsClass = J(arguments), In.enumErrorProps = un.call(Ks, "message") || un.call(Ks, "name"), In.enumPrototypes = un.call(e, "prototype"), In.fastBind = pn && !En, In.ownLast = "x" != s[0], In.nonEnumArgs = 0 != n, In.nonEnumShadows = !/valueOf/.test(s), In.spliceObjects = (Ws.splice.call(t, 0, 1), !t[0]), In.unindexedChars = "xx" != "x"[0] + Gs("x")[0];
             try {
                 In.nodeClass = !(ln.call(document) == V && !({toString: 0} + ""))
             } catch (r) {
@@ -12321,7 +12146,7 @@ var bootbox = window.bootbox || function (e) {
                 t += "\n  }    "
             }
             return(e.array || In.nonEnumArgs) && (t += "\n}"), t += e.bottom + ";\nreturn result"
-        }, kn = {args: "object, source, guard", top: "var args = arguments,\n    argsIndex = 0,\n    argsLength = typeof guard == 'number' ? 2 : args.length;\nwhile (++argsIndex < argsLength) {\n  iterable = args[argsIndex];\n  if (iterable && objectTypes[typeof iterable]) {", loop: "if (typeof result[index] == 'undefined') result[index] = iterable[index]", bottom: "  }\n}"}, An = {args: "collection, callback, thisArg", top: "callback = callback && typeof thisArg == 'undefined' ? callback : lodash.createCallback(callback, thisArg)", array: "typeof length == 'number'", loop: "if (callback(iterable[index], index, collection) === false) return result"}, Nn = {top: "if (!objectTypes[typeof iterable]) return result;\n" + An.top, array: !1};
+        }, kn = {args: "object, source, guard", top: "var args = arguments,\n    argsIndex = 0,\n    argsLength = typeof guard == 'number' ? 2 : args.length;\nwhile (++argsIndex < argsLength) {\n  iterable = args[argsIndex];\n  if (iterable && objectTypes[typeof iterable]) {", loop: "if (typeof result[index] == 'undefined') result[index] = iterable[index]", bottom: "  }\n}"}, Nn = {args: "collection, callback, thisArg", top: "callback = callback && typeof thisArg == 'undefined' ? callback : lodash.createCallback(callback, thisArg)", array: "typeof length == 'number'", loop: "if (callback(iterable[index], index, collection) === false) return result"}, An = {top: "if (!objectTypes[typeof iterable]) return result;\n" + Nn.top, array: !1};
         if (!fn)var $ = function (e) {
             if (ft(e)) {
                 c.prototype = e;
@@ -12337,21 +12162,21 @@ var bootbox = window.bootbox || function (e) {
             return e ? "object" == typeof e && ln.call(e) == R : !1
         }, Rn = z({args: "object", init: "[]", top: "if (!(objectTypes[typeof object])) return result", loop: "result.push(index)"}), On = bn ? function (e) {
             return ft(e) ? In.enumPrototypes && "function" == typeof e || In.nonEnumArgs && e.length && J(e) ? Rn(e) : bn(e) : []
-        } : Rn, jn = z(An), Mn = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}, Ln = at(Mn), Un = z(kn, {top: kn.top.replace(";", ";\nif (argsLength > 3 && typeof args[argsLength - 2] == 'function') {\n  var callback = lodash.createCallback(args[--argsLength - 1], args[argsLength--], 2);\n} else if (argsLength > 2 && typeof args[argsLength - 1] == 'function') {\n  callback = args[--argsLength];\n}"), loop: "result[index] = callback ? callback(result[index], iterable[index]) : iterable[index]"}), Vn = z(kn), Hn = z(An, Nn, {useHas: !1}), Bn = z(An, Nn);
+        } : Rn, jn = z(Nn), Mn = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}, Ln = at(Mn), Un = z(kn, {top: kn.top.replace(";", ";\nif (argsLength > 3 && typeof args[argsLength - 2] == 'function') {\n  var callback = lodash.createCallback(args[--argsLength - 1], args[argsLength--], 2);\n} else if (argsLength > 2 && typeof args[argsLength - 1] == 'function') {\n  callback = args[--argsLength];\n}"), loop: "result[index] = callback ? callback(result[index], iterable[index]) : iterable[index]"}), Vn = z(kn), Hn = z(Nn, An, {useHas: !1}), Bn = z(Nn, An);
         pt(/x/) && (pt = function (e) {
             return"function" == typeof e && ln.call(e) == L
         });
         var Fn = rn ? function (e) {
             if (!e || ln.call(e) != V || !In.argsClass && J(e))return!1;
             var t = e.valueOf, s = "function" == typeof t && (s = rn(t)) && rn(s);
-            return s ? e == s || rn(e) == s : X(e)
-        } : X, Gn = jt, zn = At, qn = Y(function qn(e, t, s) {
+            return s ? e == s || rn(e) == s : Y(e)
+        } : Y, Gn = jt, zn = Nt, qn = X(function qn(e, t, s) {
             for (var n = -1, r = e ? e.length : 0, a = []; r > ++n;) {
                 var i = e[n];
                 s && (i = s(i, n, e)), Pn(i) ? on.apply(a, t ? i : qn(i)) : a.push(i)
             }
             return a
-        }), $n = Y(function (e, n, r) {
+        }), $n = X(function (e, n, r) {
             var a = -1, u = Q(), h = e ? e.length : 0, c = [], f = !n && h >= _ && u === t, d = r || f ? o() : c;
             if (f) {
                 var m = i(d);
@@ -12363,13 +12188,13 @@ var bootbox = window.bootbox || function (e) {
             }
             return f ? (l(d.array), p(d)) : r && l(d), c
         });
-        Tn && q && "function" == typeof hn && (gs = cs(hn, n));
+        En && q && "function" == typeof hn && (gs = cs(hn, n));
         var Wn = 8 == xn(D + "08") ? xn : function (e, t) {
             return xn(yt(e) ? e.replace(I, "") : e, t || 0)
         };
-        return g.after = hs, g.assign = Un, g.at = Dt, g.bind = cs, g.bindAll = ls, g.bindKey = ps, g.compact = $t, g.compose = fs, g.countBy = St, g.createCallback = ds, g.debounce = ms, g.defaults = Vn, g.defer = gs, g.delay = bs, g.difference = Wt, g.filter = At, g.flatten = qn, g.forEach = Pt, g.forIn = Hn, g.forOwn = Bn, g.functions = nt, g.groupBy = Rt, g.initial = Xt, g.intersection = Zt, g.invert = at, g.invoke = Ot, g.keys = On, g.map = jt, g.max = Mt, g.memoize = ys, g.merge = xt, g.min = Lt, g.omit = _t, g.once = vs, g.pairs = Et, g.partial = xs, g.partialRight = _s, g.pick = wt, g.pluck = Gn, g.range = ts, g.reject = Ht, g.rest = ss, g.shuffle = Bt, g.sortBy = zt, g.tap = Rs, g.throttle = Es, g.times = As, g.toArray = qt, g.transform = Tt, g.union = rs, g.uniq = $n, g.unzip = as, g.values = Ct, g.where = zn, g.without = is, g.wrap = ws, g.zip = os, g.zipObject = us, g.collect = jt, g.drop = ss, g.each = Pt, g.extend = Un, g.methods = nt, g.object = us, g.select = At, g.tail = ss, g.unique = $n, Ds(g), g.chain = g, g.prototype.chain = function () {
+        return g.after = hs, g.assign = Un, g.at = Dt, g.bind = cs, g.bindAll = ls, g.bindKey = ps, g.compact = $t, g.compose = fs, g.countBy = St, g.createCallback = ds, g.debounce = ms, g.defaults = Vn, g.defer = gs, g.delay = bs, g.difference = Wt, g.filter = Nt, g.flatten = qn, g.forEach = Pt, g.forIn = Hn, g.forOwn = Bn, g.functions = nt, g.groupBy = Rt, g.initial = Yt, g.intersection = Zt, g.invert = at, g.invoke = Ot, g.keys = On, g.map = jt, g.max = Mt, g.memoize = ys, g.merge = xt, g.min = Lt, g.omit = _t, g.once = vs, g.pairs = wt, g.partial = xs, g.partialRight = _s, g.pick = Tt, g.pluck = Gn, g.range = ts, g.reject = Ht, g.rest = ss, g.shuffle = Bt, g.sortBy = zt, g.tap = Rs, g.throttle = ws, g.times = Ns, g.toArray = qt, g.transform = Et, g.union = rs, g.uniq = $n, g.unzip = as, g.values = Ct, g.where = zn, g.without = is, g.wrap = Ts, g.zip = os, g.zipObject = us, g.collect = jt, g.drop = ss, g.each = Pt, g.extend = Un, g.methods = nt, g.object = us, g.select = Nt, g.tail = ss, g.unique = $n, Ds(g), g.chain = g, g.prototype.chain = function () {
             return this
-        }, g.clone = et, g.cloneDeep = tt, g.contains = It, g.escape = Ts, g.every = kt, g.find = Nt, g.findIndex = Kt, g.findKey = st, g.has = rt, g.identity = Cs, g.indexOf = Yt, g.isArguments = J, g.isArray = Pn, g.isBoolean = it, g.isDate = ot, g.isElement = ut, g.isEmpty = ht, g.isEqual = ct, g.isFinite = lt, g.isFunction = pt, g.isNaN = dt, g.isNull = mt, g.isNumber = gt, g.isObject = ft, g.isPlainObject = Fn, g.isRegExp = bt, g.isString = yt, g.isUndefined = vt, g.lastIndexOf = es, g.mixin = Ds, g.noConflict = Is, g.parseInt = Wn, g.random = Ss, g.reduce = Ut, g.reduceRight = Vt, g.result = ks, g.runInContext = d, g.size = Ft, g.some = Gt, g.sortedIndex = ns, g.unescape = Ns, g.uniqueId = Ps, g.all = kt, g.any = Gt, g.detect = Nt, g.findWhere = Nt, g.foldl = Ut, g.foldr = Vt, g.include = It, g.inject = Ut, Bn(g, function (e, t) {
+        }, g.clone = et, g.cloneDeep = tt, g.contains = It, g.escape = Es, g.every = kt, g.find = At, g.findIndex = Kt, g.findKey = st, g.has = rt, g.identity = Cs, g.indexOf = Xt, g.isArguments = J, g.isArray = Pn, g.isBoolean = it, g.isDate = ot, g.isElement = ut, g.isEmpty = ht, g.isEqual = ct, g.isFinite = lt, g.isFunction = pt, g.isNaN = dt, g.isNull = mt, g.isNumber = gt, g.isObject = ft, g.isPlainObject = Fn, g.isRegExp = bt, g.isString = yt, g.isUndefined = vt, g.lastIndexOf = es, g.mixin = Ds, g.noConflict = Is, g.parseInt = Wn, g.random = Ss, g.reduce = Ut, g.reduceRight = Vt, g.result = ks, g.runInContext = d, g.size = Ft, g.some = Gt, g.sortedIndex = ns, g.unescape = As, g.uniqueId = Ps, g.all = kt, g.any = Gt, g.detect = At, g.findWhere = At, g.foldl = Ut, g.foldr = Vt, g.include = It, g.inject = Ut, Bn(g, function (e, t) {
             g.prototype[t] || (g.prototype[t] = function () {
                 var t = [this.__wrapped__];
                 return on.apply(t, arguments), e.apply(g, t)
@@ -12403,7 +12228,7 @@ var bootbox = window.bootbox || function (e) {
         }), g
     }
 
-    var m, g = [], b = [], y = 0, v = {}, x = +new Date + "", _ = 75, E = 10, w = /&(?:amp|lt|gt|quot|#39);/g, T = /\w*$/, C = (C = /\bthis\b/) && C.test(d) && C, D = " 	\f ﻿\n\r\u2028\u2029 ᠎             　", I = RegExp("^[" + D + "]*0+(?=.$)"), S = /[&<>"']/g, A = ["Array", "Boolean", "Date", "Error", "Function", "Math", "Number", "Object", "RegExp", "String", "_", "attachEvent", "clearTimeout", "isFinite", "isNaN", "parseInt", "setImmediate", "setTimeout"], N = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"], P = "[object Arguments]", R = "[object Array]", O = "[object Boolean]", j = "[object Date]", M = "[object Error]", L = "[object Function]", U = "[object Number]", V = "[object Object]", H = "[object RegExp]", B = "[object String]", F = {};
+    var m, g = [], b = [], y = 0, v = {}, x = +new Date + "", _ = 75, w = 10, T = /&(?:amp|lt|gt|quot|#39);/g, E = /\w*$/, C = (C = /\bthis\b/) && C.test(d) && C, D = " 	\f ﻿\n\r\u2028\u2029 ᠎             　", I = RegExp("^[" + D + "]*0+(?=.$)"), S = /[&<>"']/g, N = ["Array", "Boolean", "Date", "Error", "Function", "Math", "Number", "Object", "RegExp", "String", "_", "attachEvent", "clearTimeout", "isFinite", "isNaN", "parseInt", "setImmediate", "setTimeout"], A = ["constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"], P = "[object Arguments]", R = "[object Array]", O = "[object Boolean]", j = "[object Date]", M = "[object Error]", L = "[object Function]", U = "[object Number]", V = "[object Object]", H = "[object RegExp]", B = "[object String]", F = {};
     F[L] = !1, F[P] = F[R] = F[O] = F[j] = F[U] = F[V] = F[H] = F[B] = !0;
     var G = {"boolean": !1, "function": !0, object: !0, number: !1, string: !1, undefined: !1}, z = G[typeof exports] && exports, q = G[typeof module] && module && module.exports == z && module, $ = G[typeof global] && global;
     !$ || $.global !== $ && $.window !== $ || (e = $);
@@ -12519,10 +12344,10 @@ var bootbox = window.bootbox || function (e) {
 
     function u(e, t, s) {
         var n = e.charAt(0).toUpperCase() + e.slice(1), a = (e + " " + _.join(n + " ") + n).split(" ");
-        return r(t, "string") || r(t, "undefined") ? i(a, t) : (a = (e + " " + E.join(n + " ") + n).split(" "), o(a, t, s))
+        return r(t, "string") || r(t, "undefined") ? i(a, t) : (a = (e + " " + w.join(n + " ") + n).split(" "), o(a, t, s))
     }
 
-    var h, c, l, p = "2.6.2", f = {}, d = !0, m = t.documentElement, g = "modernizr", b = t.createElement(g), y = b.style, v = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")), x = "Webkit Moz O ms", _ = x.split(" "), E = x.toLowerCase().split(" "), w = {}, T = [], C = T.slice, D = function (e, s, n, r) {
+    var h, c, l, p = "2.6.2", f = {}, d = !0, m = t.documentElement, g = "modernizr", b = t.createElement(g), y = b.style, v = ({}.toString, " -webkit- -moz- -o- -ms- ".split(" ")), x = "Webkit Moz O ms", _ = x.split(" "), w = x.toLowerCase().split(" "), T = {}, E = [], C = E.slice, D = function (e, s, n, r) {
         var a, i, o, u, h = t.createElement("div"), c = t.body, l = c || t.createElement("body");
         if (parseInt(n, 10))for (; n--;)o = t.createElement("div"), o.id = r ? r[n] : g + (n + 1), h.appendChild(o);
         return a = ["&#173;", '<style id="s', g, '">', e, "</style>"].join(""), h.id = g, (c ? h : l).innerHTML += a, l.appendChild(h), c || (l.style.background = "", l.style.overflow = "hidden", u = m.style.overflow, m.style.overflow = "hidden", m.appendChild(l)), i = s(h, e), c ? h.parentNode.removeChild(h) : (l.parentNode.removeChild(l), m.style.overflow = u), !!i
@@ -12545,13 +12370,13 @@ var bootbox = window.bootbox || function (e) {
             return t.apply(e, s.concat(C.call(arguments)))
         };
         return n
-    }), w.touch = function () {
+    }), T.touch = function () {
         var s;
         return"ontouchstart"in e || e.DocumentTouch && t instanceof DocumentTouch ? s = !0 : D(["@media (", v.join("touch-enabled),("), g, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function (e) {
             s = 9 === e.offsetTop
         }), s
     };
-    for (var S in w)l(w, S) && (c = S.toLowerCase(), f[c] = w[S](), T.push((f[c] ? "" : "no-") + c));
+    for (var S in T)l(T, S) && (c = S.toLowerCase(), f[c] = T[S](), E.push((f[c] ? "" : "no-") + c));
     return f.addTest = function (e, t) {
         if ("object" == typeof e)for (var n in e)l(e, n) && f.addTest(n, e[n]); else {
             if (e = e.toLowerCase(), f[e] !== s)return f;
@@ -12617,11 +12442,11 @@ var bootbox = window.bootbox || function (e) {
         })();
         var b = {elements: l.elements || "abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video", shivCSS: l.shivCSS !== !1, supportsUnknownElements: c, shivMethods: l.shivMethods !== !1, type: "default", shivDocument: u, createElement: a, createDocumentFragment: i};
         e.html5 = b, u(t)
-    }(this, t), f._version = p, f._prefixes = v, f._domPrefixes = E, f._cssomPrefixes = _, f.testProp = function (e) {
+    }(this, t), f._version = p, f._prefixes = v, f._domPrefixes = w, f._cssomPrefixes = _, f.testProp = function (e) {
         return i([e])
     }, f.testAllProps = u, f.testStyles = D, f.prefixed = function (e, t, s) {
         return t ? u(e, t, s) : u(e, "pfx")
-    }, m.className = m.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (d ? " js " + T.join(" ") : ""), f
+    }, m.className = m.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (d ? " js " + E.join(" ") : ""), f
 }(this, this.document), function (e, t, s) {
     function n(e) {
         return"[object Function]" == g.call(e)
@@ -12662,7 +12487,7 @@ var bootbox = window.bootbox || function (e) {
     }
 
     function h(e, t, s, n, a) {
-        return y = 0, t = t || "j", r(e) ? u("c" == t ? w : E, e, t, this.i++, s, n, a) : (b.splice(this.i++, 0, e), 1 == b.length && o()), this
+        return y = 0, t = t || "j", r(e) ? u("c" == t ? T : w, e, t, this.i++, s, n, a) : (b.splice(this.i++, 0, e), 1 == b.length && o()), this
     }
 
     function c() {
@@ -12670,7 +12495,7 @@ var bootbox = window.bootbox || function (e) {
         return e.loader = {load: h, i: 0}, e
     }
 
-    var l, p, f = t.documentElement, d = e.setTimeout, m = t.getElementsByTagName("script")[0], g = {}.toString, b = [], y = 0, v = "MozAppearance"in f.style, x = v && !!t.createRange().compareNode, _ = x ? f : m.parentNode, f = e.opera && "[object Opera]" == g.call(e.opera), f = !!t.attachEvent && !f, E = v ? "object" : f ? "script" : "img", w = f ? "script" : E, T = Array.isArray || function (e) {
+    var l, p, f = t.documentElement, d = e.setTimeout, m = t.getElementsByTagName("script")[0], g = {}.toString, b = [], y = 0, v = "MozAppearance"in f.style, x = v && !!t.createRange().compareNode, _ = x ? f : m.parentNode, f = e.opera && "[object Opera]" == g.call(e.opera), f = !!t.attachEvent && !f, w = v ? "object" : f ? "script" : "img", T = f ? "script" : w, E = Array.isArray || function (e) {
         return"[object Array]" == g.call(e)
     }, C = [], D = {}, I = {timeout: function (e, t) {
         return t.length && (e.timeout = t[0]), e
@@ -12717,7 +12542,7 @@ var bootbox = window.bootbox || function (e) {
         }
 
         var u, h, l = this.yepnope.loader;
-        if (r(e))i(e, 0, l, 0); else if (T(e))for (u = 0; e.length > u; u++)h = e[u], r(h) ? i(h, 0, l, 0) : T(h) ? p(h) : Object(h) === h && o(h, l); else Object(e) === e && o(e, l)
+        if (r(e))i(e, 0, l, 0); else if (E(e))for (u = 0; e.length > u; u++)h = e[u], r(h) ? i(h, 0, l, 0) : E(h) ? p(h) : Object(h) === h && o(h, l); else Object(e) === e && o(e, l)
     }, p.addPrefix = function (e, t) {
         I[e] = t
     }, p.addFilter = function (e) {
@@ -12778,14 +12603,14 @@ var bootbox = window.bootbox || function (e) {
         function n(e, t) {
             e = e || {};
             var s, n = !1;
-            for (s in T)e[s] && T[s] > t ? n = !0 : T[s] = 0;
+            for (s in E)e[s] && E[s] > t ? n = !0 : E[s] = 0;
             n || (D = !1)
         }
 
         function r(e, t, n, r, a) {
             var i, o, u = [], c = n.type;
-            if (!E[e])return[];
-            for ("keyup" == c && h(e) && (t = [e]), i = 0; E[e].length > i; ++i)o = E[e][i], o.seq && T[o.seq] != o.level || c == o.action && ("keypress" == c && !n.metaKey && !n.ctrlKey || s(t, o.modifiers)) && (r && o.combo == a && E[e].splice(i, 1), u.push(o));
+            if (!w[e])return[];
+            for ("keyup" == c && h(e) && (t = [e]), i = 0; w[e].length > i; ++i)o = w[e][i], o.seq && E[o.seq] != o.level || c == o.action && ("keypress" == c && !n.metaKey && !n.ctrlKey || s(t, o.modifiers)) && (r && o.combo == a && w[e].splice(i, 1), u.push(o));
             return u
         }
 
@@ -12831,9 +12656,9 @@ var bootbox = window.bootbox || function (e) {
         }
 
         function f(e, s, r, a) {
-            T[e] = 0, a || (a = p(s[0], []));
+            E[e] = 0, a || (a = p(s[0], []));
             var o, u = function () {
-                D = a, ++T[e], c()
+                D = a, ++E[e], c()
             }, h = function (s) {
                 i(r, s, e), "keyup" !== a && (C = t(s)), setTimeout(n, 10)
             };
@@ -12845,25 +12670,25 @@ var bootbox = window.bootbox || function (e) {
             var i, o, u, c = e.split(" "), l = [];
             if (c.length > 1)return f(e, c, t, s), void 0;
             for (u = "+" === e ? ["+"] : e.split("+"), i = 0; u.length > i; ++i)o = u[i], _[o] && (o = _[o]), s && "keypress" != s && x[o] && (o = x[o], l.push("shift")), h(o) && l.push(o);
-            s = p(o, l, s), E[o] || (E[o] = []), r(o, l, {type: s}, !n, e), E[o][n ? "unshift" : "push"]({callback: t, modifiers: l, action: s, seq: n, level: a, combo: e})
+            s = p(o, l, s), w[o] || (w[o] = []), r(o, l, {type: s}, !n, e), w[o][n ? "unshift" : "push"]({callback: t, modifiers: l, action: s, seq: n, level: a, combo: e})
         }
 
         function m(e, t, s) {
             for (var n = 0; e.length > n; ++n)d(e[n], t, s)
         }
 
-        for (var g, b, y = {8: "backspace", 9: "tab", 13: "enter", 16: "shift", 17: "ctrl", 18: "alt", 20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home", 37: "left", 38: "up", 39: "right", 40: "down", 45: "ins", 46: "del", 91: "meta", 93: "meta", 224: "meta"}, v = {106: "*", 107: "+", 109: "-", 110: ".", 111: "/", 186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/", 192: "`", 219: "[", 220: "\\", 221: "]", 222: "'"}, x = {"~": "`", "!": "1", "@": "2", "#": "3", $: "4", "%": "5", "^": "6", "&": "7", "*": "8", "(": "9", ")": "0", _: "-", "+": "=", ":": ";", '"': "'", "<": ",", ">": ".", "?": "/", "|": "\\"}, _ = {option: "alt", command: "meta", "return": "enter", escape: "esc"}, E = {}, w = {}, T = {}, C = !1, D = !1, I = 1; 20 > I; ++I)y[111 + I] = "f" + I;
+        for (var g, b, y = {8: "backspace", 9: "tab", 13: "enter", 16: "shift", 17: "ctrl", 18: "alt", 20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home", 37: "left", 38: "up", 39: "right", 40: "down", 45: "ins", 46: "del", 91: "meta", 93: "meta", 224: "meta"}, v = {106: "*", 107: "+", 109: "-", 110: ".", 111: "/", 186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/", 192: "`", 219: "[", 220: "\\", 221: "]", 222: "'"}, x = {"~": "`", "!": "1", "@": "2", "#": "3", $: "4", "%": "5", "^": "6", "&": "7", "*": "8", "(": "9", ")": "0", _: "-", "+": "=", ":": ";", '"': "'", "<": ",", ">": ".", "?": "/", "|": "\\"}, _ = {option: "alt", command: "meta", "return": "enter", escape: "esc"}, w = {}, T = {}, E = {}, C = !1, D = !1, I = 1; 20 > I; ++I)y[111 + I] = "f" + I;
         for (I = 0; 9 >= I; ++I)y[I + 96] = I;
         e(document, "keypress", u), e(document, "keydown", u), e(document, "keyup", u);
         var S = {bind: function (e, t, s) {
-            return m(e instanceof Array ? e : [e], t, s), w[e + ":" + s] = t, this
+            return m(e instanceof Array ? e : [e], t, s), T[e + ":" + s] = t, this
         }, unbind: function (e, t) {
-            return w[e + ":" + t] && (delete w[e + ":" + t], this.bind(e, function () {
+            return T[e + ":" + t] && (delete T[e + ":" + t], this.bind(e, function () {
             }, t)), this
         }, trigger: function (e, t) {
-            return w[e + ":" + t](), this
+            return T[e + ":" + t](), this
         }, reset: function () {
-            return E = {}, w = {}, this
+            return w = {}, T = {}, this
         }, stopCallback: function (e, t) {
             return(" " + t.className + " ").indexOf(" mousetrap ") > -1 ? !1 : "INPUT" == t.tagName || "SELECT" == t.tagName || "TEXTAREA" == t.tagName || t.contentEditable && "true" == t.contentEditable
         }};
@@ -13309,7 +13134,7 @@ var bootbox = window.bootbox || function (e) {
     })
 }(this), function () {
     var e = window.jQuery;
-    Discourse = Ember.Application.createWithMixins({rootElement: "#main", "transient": Em.Object.create(), hasFocus: !0, scrolling: !1, highestSeenByTopic: {}, getURL: function (e) {
+    Discourse = Ember.Application.createWithMixins({rootElement: "#main", "transient": Em.Object.create(), hasFocus: !0, scrolling: !1, highestSeenByTopic: {}, URL_FIXTURES: {}, getURL: function (e) {
         if (0 === e.indexOf("http"))return e;
         var t = void 0 === Discourse.BaseUri ? "/" : Discourse.BaseUri;
         return"/" === t[t.length - 1] && (t = t.substring(0, t.length - 1)), t + e
@@ -13333,9 +13158,6 @@ var bootbox = window.bootbox || function (e) {
         })
     }.property("Discourse.SiteSettings.post_menu"), notifyTitle: function (e) {
         this.set("notifyCount", e)
-    }, openComposer: function (e) {
-        var t = Discourse.__container__.lookup("controller:composer");
-        t && t.open(e)
     }, bindDOMEvents: function () {
         var t, s;
         t = e("html"), s = !1, t.hasClass("touch") && (s = !0), Modernizr.prefixed("MaxTouchPoints", navigator) > 1 && (s = !0), s ? (t.addClass("discourse-touch"), this.touch = !0, this.hasTouch = !0) : (t.addClass("discourse-no-touch"), this.touch = !1), e("#main").on("click.discourse", "[data-not-implemented=true]", function (e) {
@@ -13353,7 +13175,7 @@ var bootbox = window.bootbox || function (e) {
         var n = e("meta[name=csrf-token]").attr("content");
         e.ajaxPrefilter(function (e, t, s) {
             e.crossDomain || s.setRequestHeader("X-CSRF-Token", n)
-        }), setInterval(function () {
+        }), bootbox.animate(!1), bootbox.backdrop(!0), setInterval(function () {
             Discourse.Formatter.updateRelativeAge(e(".relative-date"))
         }, 6e4)
     }, logout: function () {
@@ -13417,35 +13239,31 @@ var bootbox = window.bootbox || function (e) {
         }) : (e.set("model", t), s.modelReady && s.modelReady(e, t))
     }})
 }(this), function () {
-    var e = window.jQuery;
-    Discourse.Presence = Em.Mixin.create({blank: function (t) {
-        var s = this[t] || this.get(t);
-        if (!s)return!0;
-        switch (typeof s) {
-            case"string":
-                return 0 === s.trim().length;
-            case"object":
-                return e.isEmptyObject(s)
-        }
-        return!1
+    window.jQuery, Discourse.Presence = Em.Mixin.create({blank: function (e) {
+        return Ember.isEmpty(this[e] || this.get(e))
     }, present: function (e) {
         return!this.blank(e)
     }})
 }(this), function () {
     var e = window.jQuery;
-    Discourse.Scrolling = Em.Mixin.create({bindScrolling: function (t) {
-        var s, n = this;
-        t = t || {debounce: 100}, s = t.debounce ? Discourse.debounce(function () {
-            return n.scrolled()
+    Discourse.Scrolling = Em.Mixin.create({bindScrolling: function (e) {
+        e = e || {debounce: 100};
+        var t, s = this;
+        t = e.debounce ? Discourse.debounce(function () {
+            return s.scrolled()
         }, 100) : function () {
-            return n.scrolled()
-        }, e(document).bind("touchmove.discourse", s), e(window).bind("scroll.discourse", s)
+            return s.scrolled()
+        }, Discourse.ScrollingDOMMethods.bindOnScroll(t)
     }, unbindScrolling: function () {
+        Discourse.ScrollingDOMMethods.unbindOnScroll()
+    }}), Discourse.ScrollingDOMMethods = {bindOnScroll: function (t) {
+        e(document).bind("touchmove.discourse", t), e(window).bind("scroll.discourse", t)
+    }, unbindOnScroll: function () {
         e(window).unbind("scroll.discourse"), e(document).unbind("touchmove.discourse")
-    }})
+    }}
 }(this), function () {
     window.jQuery, Discourse.SelectedPostsCount = Em.Mixin.create({selectedPostsCount: function () {
-        return this.get("selectedPosts") ? this.get("allPostsSelected") ? this.get("posts_count") || this.get("topic.posts_count") : this.get("selectedPosts.length") : 0
+        return this.get("allPostsSelected") ? this.get("posts_count") || this.get("topic.posts_count") : this.get("selectedPosts") ? this.get("selectedPosts.length") : 0
     }.property("selectedPosts.length", "allPostsSelected")})
 }(this), function () {
     window.jQuery, Discourse.View = Ember.View.extend(Discourse.Presence, {}), Discourse.View.reopenClass({registerHelper: function (e, t) {
@@ -13611,56 +13429,56 @@ var bootbox = window.bootbox || function (e) {
 }(this), function () {
     var e = window.jQuery;
     Discourse.ComposerController = Discourse.Controller.extend({needs: ["modal", "topic"], togglePreview: function () {
-        this.get("content").togglePreview()
+        this.get("model").togglePreview()
     }, importQuote: function () {
-        this.get("content").importQuote()
+        this.get("model").importQuote()
     }, updateDraftStatus: function () {
-        this.get("content").updateDraftStatus()
+        this.get("model").updateDraftStatus()
     }, appendText: function (e) {
-        var t = this.get("content");
-        return t ? t.appendText(e) : void 0
+        var t = this.get("model");
+        t && t.appendText(e)
     }, categories: function () {
         return Discourse.Category.list()
     }.property(), save: function (e) {
         var t, s, n, r, a = this;
-        return t = this.get("content"), t.get("cantSubmitPost") ? (this.set("view.showTitleTip", Date.now()), this.set("view.showCategoryTip", Date.now()), this.set("view.showReplyTip", Date.now()), void 0) : (t.set("disableDrafts", !0), e || !t.get("replyingToTopic") || (s = this.get("topic"), s && s.get("id") === t.get("topic.id")) ? t.save({imageSizes: this.get("view").imageSizes()}).then(function (e) {
+        return t = this.get("model"), t.get("cantSubmitPost") ? (this.set("view.showTitleTip", Date.now()), this.set("view.showCategoryTip", Date.now()), this.set("view.showReplyTip", Date.now()), void 0) : (t.set("disableDrafts", !0), e || !t.get("replyingToTopic") || (s = this.get("topic"), s && s.get("id") === t.get("topic.id")) ? t.save({imageSizes: this.get("view").imageSizes()}).then(function (e) {
             e = e || {}, a.close();
             var s = Discourse.User.current();
             t.get("creatingTopic") ? s.set("topic_count", s.get("topic_count") + 1) : s.set("reply_count", s.get("reply_count") + 1), Discourse.URL.routeTo(e.post.get("url"))
         }, function (e) {
             t.set("disableDrafts", !1), bootbox.alert(e)
-        }) : (n = Em.String.i18n("composer.posting_not_on_topic", {title: this.get("content.topic.title")}), r = [
-            {label: Em.String.i18n("composer.cancel"), "class": "btn"}
-        ], r.push({label: Em.String.i18n("composer.reply_original"), "class": "btn-primary", callback: function () {
-            a.save(!0)
-        }}), s && r.push({label: Em.String.i18n("composer.reply_here"), "class": "btn-primary", callback: function () {
+        }) : (n = Em.String.i18n("composer.posting_not_on_topic", {title: this.get("model.topic.title")}), r = [
+            {label: Em.String.i18n("composer.cancel"), "class": "cancel", link: !0}
+        ], s && r.push({label: Em.String.i18n("composer.reply_here") + "<br/><div class='topic-title'>" + s.get("title") + "</div>", "class": "btn btn-reply-here", callback: function () {
             t.set("topic", s), t.set("post", null), a.save(!0)
-        }}), bootbox.dialog(n, r), void 0))
+        }}), r.push({label: Em.String.i18n("composer.reply_original") + "<br/><div class='topic-title'>" + this.get("model.topic.title") + "</div>", "class": "btn-primary btn-reply-on-original", callback: function () {
+            a.save(!0)
+        }}), bootbox.dialog(n, r, {classes: "reply-where-modal"}), void 0))
     }, closeEducation: function () {
         this.set("educationClosed", !0)
     }, closeSimilar: function () {
         this.set("similarClosed", !0)
     }, similarVisible: function () {
-        return this.get("similarClosed") ? !1 : this.get("content.composeState") !== Discourse.Composer.OPEN ? !1 : (this.get("similarTopics.length") || 0) > 0
-    }.property("similarTopics.length", "similarClosed", "content.composeState"), newUserEducationVisible: function () {
-        return this.get("educationContents") ? this.get("content.composeState") !== Discourse.Composer.OPEN ? !1 : this.present("content.reply") ? this.get("educationClosed") ? !1 : !0 : !1 : !1
-    }.property("content.composeState", "content.reply", "educationClosed", "educationContents"), fetchNewUserEducation: function () {
-        if (!this.get("content.editingPost")) {
-            var e = this.get("content.creatingTopic") ? Discourse.User.current("topic_count") : Discourse.User.current("reply_count");
+        return this.get("similarClosed") ? !1 : this.get("model.composeState") !== Discourse.Composer.OPEN ? !1 : (this.get("similarTopics.length") || 0) > 0
+    }.property("similarTopics.length", "similarClosed", "model.composeState"), newUserEducationVisible: function () {
+        return this.get("educationContents") ? this.get("model.composeState") !== Discourse.Composer.OPEN ? !1 : this.present("model.reply") ? this.get("educationClosed") ? !1 : !0 : !1 : !1
+    }.property("model.composeState", "model.reply", "educationClosed", "educationContents"), fetchNewUserEducation: function () {
+        if (!this.get("model.editingPost")) {
+            var e = this.get("model.creatingTopic") ? Discourse.User.current("topic_count") : Discourse.User.current("reply_count");
             if (e >= Discourse.SiteSettings.educate_until_posts)return this.set("educationClosed", !0), this.set("educationContents", ""), void 0;
             if (this.get("typedReply")) {
                 this.set("educationClosed", !1);
-                var t = this.get("content.creatingTopic") ? "new-topic" : "new-reply", s = this;
+                var t = this.get("model.creatingTopic") ? "new-topic" : "new-reply", s = this;
                 Discourse.ajax("/education/" + t, {dataType: "html"}).then(function (e) {
                     s.set("educationContents", e)
                 })
             }
         }
-    }.observes("typedReply", "content.creatingTopic", "currentUser.reply_count"), checkReplyLength: function () {
-        this.set("typedReply", this.present("content.reply"))
+    }.observes("typedReply", "model.creatingTopic", "currentUser.reply_count"), checkReplyLength: function () {
+        this.set("typedReply", this.present("model.reply"))
     }, findSimilarTopics: function () {
-        if (this.get("content.creatingTopic")) {
-            var e = this.get("content.reply"), t = this.get("content.title");
+        if (this.get("model.creatingTopic")) {
+            var e = this.get("model.reply"), t = this.get("model.title");
             if (!(e.length < Discourse.SiteSettings.min_body_similar_length || t.length < Discourse.SiteSettings.min_title_similar_length)) {
                 var s = this;
                 Discourse.Topic.findSimilarTo(t, e).then(function (e) {
@@ -13669,7 +13487,7 @@ var bootbox = window.bootbox || function (e) {
             }
         }
     }, saveDraft: function () {
-        var e = this.get("content");
+        var e = this.get("model");
         e && e.saveDraft()
     }, open: function (t) {
         t || (t = {});
@@ -13684,58 +13502,53 @@ var bootbox = window.bootbox || function (e) {
                 })
             }), s
         }
-        var i = this.get("content");
-        return i && t.draftKey !== i.draftKey && i.composeState === Discourse.Composer.DRAFT && (this.close(), i = null), i && !t.tested && i.wouldLoseChanges() ? i.composeState === Discourse.Composer.DRAFT && i.draftKey === t.draftKey && i.action === t.action ? (i.set("composeState", Discourse.Composer.OPEN), s.resolve(), s) : (t.tested = !0, t.ignoreIfChanged || this.cancel().then(function () {
+        var i = this.get("model");
+        return i && t.draftKey !== i.draftKey && i.composeState === Discourse.Composer.DRAFT && (this.close(), i = null), i && !t.tested && i.get("wouldLoseChanges") ? i.composeState === Discourse.Composer.DRAFT && i.draftKey === t.draftKey && i.action === t.action ? (i.set("composeState", Discourse.Composer.OPEN), s.resolve(), s) : (t.tested = !0, t.ignoreIfChanged || this.cancel().then(function () {
             r.open(t)
         }, function () {
             return s.reject()
         }), s) : void 0 === t.draftSequence ? (Discourse.Draft.get(t.draftKey).then(function (e) {
             return t.draftSequence = e.draft_sequence, t.draft = e.draft, r.open(t)
-        }), s) : (t.draft && (i = Discourse.Composer.loadDraft(t.draftKey, t.draftSequence, t.draft), i && i.set("topic", t.topic)), i = i || Discourse.Composer.open(t), this.set("content", i), this.set("view.content", i), s.resolve(), s)
-    }, wouldLoseChanges: function () {
-        var e = this.get("content");
-        return e && e.wouldLoseChanges()
+        }), s) : (t.draft && (i = Discourse.Composer.loadDraft(t.draftKey, t.draftSequence, t.draft), i && i.set("topic", t.topic)), i = i || Discourse.Composer.create(), i.open(t), this.set("model", i), i.set("composeState", Discourse.Composer.OPEN), s.resolve(), s)
     }, viewNewReply: function () {
         return Discourse.URL.routeTo(this.get("createdPost.url")), this.close(), !1
     }, destroyDraft: function () {
-        var e = this.get("content.draftKey");
-        e && Discourse.Draft.clear(e, this.get("content.draftSequence"))
+        var e = this.get("model.draftKey");
+        e && Discourse.Draft.clear(e, this.get("model.draftSequence"))
     }, cancel: function () {
         var e = this;
         return Ember.Deferred.promise(function (t) {
-            e.get("content.hasMetaData") || (e.get("content.reply") || "") !== (e.get("content.originalText") || "") ? bootbox.confirm(Em.String.i18n("post.abandon"), Em.String.i18n("no_value"), Em.String.i18n("yes_value"), function (s) {
+            e.get("model.hasMetaData") || e.get("model.wouldLoseChanges") ? bootbox.confirm(Em.String.i18n("post.abandon"), Em.String.i18n("no_value"), Em.String.i18n("yes_value"), function (s) {
                 s ? (e.destroyDraft(), e.close(), t.resolve()) : t.reject()
             }) : (e.destroyDraft(), e.close(), t.resolve())
         })
     }, openIfDraft: function () {
-        this.get("content.composeState") === Discourse.Composer.DRAFT && this.set("content.composeState", Discourse.Composer.OPEN)
+        this.get("model.viewDraft") && this.set("model.composeState", Discourse.Composer.OPEN)
     }, shrink: function () {
-        this.get("content.reply") === this.get("content.originalText") ? this.close() : this.collapse()
+        this.get("model.wouldLoseChanges") ? this.collapse() : this.close()
     }, collapse: function () {
-        this.saveDraft(), this.set("content.composeState", Discourse.Composer.DRAFT)
+        this.saveDraft(), this.set("model.composeState", Discourse.Composer.DRAFT)
     }, close: function () {
-        this.set("content", null), this.set("view.content", null), this.set("view.showTitleTip", !1), this.set("view.showCategoryTip", !1), this.set("view.showReplyTip", !1)
-    }, closeIfCollapsed: function () {
-        this.get("content.composeState") === Discourse.Composer.DRAFT && this.close()
+        this.set("model", null), this.set("view.showTitleTip", !1), this.set("view.showCategoryTip", !1), this.set("view.showReplyTip", !1)
     }, closeAutocomplete: function () {
         e("#wmd-input").autocomplete({cancel: !0})
     }, toggle: function () {
-        switch (this.closeAutocomplete(), this.get("content.composeState")) {
+        switch (this.closeAutocomplete(), this.get("model.composeState")) {
             case Discourse.Composer.OPEN:
-                this.blank("content.reply") && this.blank("content.title") ? this.close() : this.shrink();
+                this.blank("model.reply") && this.blank("model.title") ? this.close() : this.shrink();
                 break;
             case Discourse.Composer.DRAFT:
-                this.set("content.composeState", Discourse.Composer.OPEN);
+                this.set("model.composeState", Discourse.Composer.OPEN);
                 break;
             case Discourse.Composer.SAVING:
                 this.close()
         }
         return!1
     }, hitEsc: function () {
-        this.get("content.composeState") === Discourse.Composer.OPEN && this.shrink()
+        this.get("model.viewOpen") && this.shrink()
     }, showOptions: function () {
         var e;
-        return(e = this.get("controllers.modal")) ? e.show(Discourse.ArchetypeOptionsModalView.create({archetype: this.get("content.archetype"), metaData: this.get("content.metaData")})) : void 0
+        return(e = this.get("controllers.modal")) ? e.show(Discourse.ArchetypeOptionsModalView.create({archetype: this.get("model.archetype"), metaData: this.get("model.metaData")})) : void 0
     }})
 }(this), function () {
     window.jQuery, Discourse.CreateAccountController = Discourse.Controller.extend(Discourse.ModalFunctionality, {uniqueUsernameValidation: null, globalNicknameExists: !1, complete: !1, accountPasswordConfirm: 0, accountChallenge: 0, formSubmitted: !1, submitDisabled: function () {
@@ -13854,18 +13667,18 @@ var bootbox = window.bootbox || function (e) {
     }})
 }(this), function () {
     window.jQuery, Discourse.EditTopicAutoCloseController = Discourse.ObjectController.extend(Discourse.ModalFunctionality, {setDays: function () {
-        if (this.get("auto_close_at")) {
-            var e = new Date(this.get("auto_close_at"));
+        if (this.get("details.auto_close_at")) {
+            var e = new Date(this.get("details.auto_close_at"));
             e > new Date && this.set("auto_close_days", e.daysSince())
-        } else this.set("auto_close_days", "")
-    }.observes("auto_close_at"), saveAutoClose: function () {
+        } else this.set("details.auto_close_days", "")
+    }.observes("details.auto_close_at"), saveAutoClose: function () {
         this.setAutoClose(parseFloat(this.get("auto_close_days")))
     }, removeAutoClose: function () {
         this.setAutoClose(null)
     }, setAutoClose: function (e) {
         var t = this;
         Discourse.ajax({url: "/t/" + this.get("id") + "/autoclose", type: "PUT", dataType: "html", data: {auto_close_days: e > 0 ? e : null}}).then(function () {
-            t.set("auto_close_at", moment().add("days", e).format())
+            t.set("details.auto_close_at", moment().add("days", e).format())
         }, function () {
             bootbox.alert(Em.String.i18n("generic_error"))
         })
@@ -13994,7 +13807,7 @@ var bootbox = window.bootbox || function (e) {
         if (!this.get("disabled")) {
             var e = this;
             return this.set("saving", !0), this.set("error", !1), this.get("content").inviteUser(this.get("emailOrUsername")).then(function (t) {
-                e.set("saving", !1), e.set("finished", !0), t && t.user && e.get("content.allowed_users").pushObject(t.user)
+                e.set("saving", !1), e.set("finished", !0), t && t.user && e.get("content.details.allowed_users").pushObject(t.user)
             }, function () {
                 e.set("error", !0), e.set("saving", !1)
             }), !1
@@ -14011,20 +13824,24 @@ var bootbox = window.bootbox || function (e) {
         })
     }.property("categories.@each"), canEdit: function () {
         var e = Discourse.User.current();
-        return e && e.admin
+        return e && e.staff
     }.property(), clearPin: function (e) {
         e.clearPin()
     }})
 }(this), function () {
     window.jQuery, Discourse.ListController = Discourse.Controller.extend({categoryBinding: "topicList.category", canCreateCategory: !1, canCreateTopic: !1, needs: ["composer", "modal", "listTopics"], availableNavItems: function () {
-        this.get("filterSummary");
         var e = !!Discourse.User.current();
         return Discourse.SiteSettings.top_menu.split("|").map(function (t) {
             return Discourse.NavItem.fromText(t, {loggedOn: e})
         }).filter(function (e) {
             return null !== e
         })
-    }.property(), load: function (e) {
+    }.property(), refresh: function () {
+        var e = this.get("controllers.listTopics");
+        e.set("model.loaded", !1), this.load(this.get("filterMode")).then(function (t) {
+            e.set("model", t)
+        })
+    }, load: function (e) {
         var t = this;
         this.set("loading", !0);
         var s = Discourse.TopicTrackingState.current();
@@ -14035,7 +13852,7 @@ var bootbox = window.bootbox || function (e) {
             return t.name === e
         })[0];
         return n || (n = Discourse.NavItem.create({name: e})), Discourse.TopicList.list(n).then(function (n) {
-            return t.setProperties({loading: !1, filterSummary: n.filter_summary, filterMode: e, draft: n.draft, draft_key: n.draft_key, draft_sequence: n.draft_sequence}), s && (s.sync(n, e), s.trackIncoming(e)), n
+            return t.setProperties({loading: !1, filterMode: e, draft: n.draft, draft_key: n.draft_key, draft_sequence: n.draft_sequence}), s && (s.sync(n, e), s.trackIncoming(e)), n
         })
     }, updateTitle: function () {
         return"categories" === this.get("filterMode") ? Discourse.set("title", Em.String.i18n("categories_list")) : this.present("category") ? Discourse.set("title", this.get("category.name").capitalize() + " " + Em.String.i18n("topic.list")) : Discourse.set("title", Em.String.i18n("topic.list"))
@@ -14044,7 +13861,7 @@ var bootbox = window.bootbox || function (e) {
     }, canEditCategory: function () {
         if (this.present("category")) {
             var e = Discourse.User.current();
-            return e && e.admin
+            return e && e.staff
         }
         return!1
     }.property("category")}), Discourse.ListController.reopenClass({filters: ["latest", "hot", "favorited", "read", "unread", "new", "posted"]})
@@ -14156,7 +13973,7 @@ var bootbox = window.bootbox || function (e) {
     window.jQuery, Discourse.ModalController = Discourse.Controller.extend({})
 }(this), function () {
     window.jQuery, Discourse.NotActivatedController = Discourse.Controller.extend(Discourse.ModalFunctionality, {emailSent: !1, sendActivationEmail: function () {
-        Discourse.ajax("/users/" + this.get("username") + "/send_activation_email"), this.set("emailSent", !0)
+        Discourse.ajax("/users/" + this.get("username") + "/send_activation_email", {type: "POST"}), this.set("emailSent", !0)
     }})
 }(this), function () {
     window.jQuery, Discourse.PreferencesController = Discourse.ObjectController.extend({saved: !1, saveDisabled: function () {
@@ -14239,26 +14056,23 @@ var bootbox = window.bootbox || function (e) {
     }, bufferChanged: function () {
         this.blank("buffer") && this.set("post", null)
     }.observes("buffer"), selectText: function (t) {
-        if (Discourse.User.current() && this.get("controllers.topic.content.can_create_post")) {
+        if (Discourse.User.current() && this.get("controllers.topic.model.details.can_create_post")) {
             var s = window.getSelection();
             if (0 !== s.rangeCount) {
                 var n = s.getRangeAt(0), r = n.cloneRange(), a = e(n.commonAncestorContainer);
                 if (0 === a.closest(".topic-body > .contents").length)return this.set("buffer", ""), void 0;
                 var i = Discourse.Utilities.selectedText();
                 if (this.get("buffer") !== i) {
-                    for (var o, u = this.get("controllers.topic.posts"), h = u.length, c = 0; h > c; c++)if (u[c].id === t) {
-                        o = u[c];
-                        break
-                    }
-                    this.set("post", o), this.set("buffer", i), n.collapse(!0);
-                    var l = document.createElement("span");
-                    l.appendChild(document.createTextNode("﻿")), n.insertNode(l);
-                    var p = window.getSelection();
-                    p.removeAllRanges(), p.addRange(r);
-                    var f = e(l).offset(), d = e(".quote-button");
+                    var o = this.get("controllers.topic.postStream");
+                    this.set("post", o.findLoadedPost(t)), this.set("buffer", i), n.collapse(!0);
+                    var u = document.createElement("span");
+                    u.appendChild(document.createTextNode("﻿")), n.insertNode(u);
+                    var h = window.getSelection();
+                    h.removeAllRanges(), h.addRange(r);
+                    var c = e(u).offset(), l = e(".quote-button");
                     Em.run.schedule("afterRender", function () {
-                        d.offset({top: f.top - d.outerHeight() - 5, left: f.left})
-                    }), l.parentNode.removeChild(l)
+                        l.offset({top: c.top - l.outerHeight() - 5, left: c.left})
+                    }), u.parentNode.removeChild(u)
                 }
             }
         }
@@ -14266,8 +14080,8 @@ var bootbox = window.bootbox || function (e) {
         var e = this.get("post"), t = this.get("controllers.composer"), s = {post: e, action: Discourse.Composer.REPLY, draftKey: this.get("post.topic.draft_key")}, n = t.get("content.post");
         n && n.get("id") !== this.get("post.id") && (s.post = n);
         var r = this.get("buffer"), a = Discourse.BBCode.buildQuoteBBCode(e, r);
-        return t.wouldLoseChanges() ? t.appendText(a) : t.open(s).then(function () {
-            return t.appendText(a)
+        return t.get("content.wouldLoseChanges") ? t.appendText(a) : t.open(s).then(function () {
+            t.appendText(a)
         }), this.set("buffer", ""), !1
     }, deselectText: function () {
         window.getSelection().removeAllRanges(), this.set("buffer", "")
@@ -14352,12 +14166,12 @@ var bootbox = window.bootbox || function (e) {
         var s = this;
         this.set("content", null);
         var n = e('noscript[data-path="' + t + '"]');
-        if (!n.length)return Discourse.ajax(t + ".json", {dataType: "html"}).then(function (e) {
+        if (!n.length)return Discourse.ajax(t).then(function (e) {
             s.set("content", e)
         });
         var r = n.text();
         r = r.match(/<!-- preload-content: -->((?:.|[\n\r])*)<!-- :preload-content -->/), r = r[1], this.set("content", r)
-    }}), Discourse.StaticController.reopenClass({pages: ["faq", "tos", "privacy", "login"]})
+    }}), Discourse.StaticController.reopenClass({pages: ["faq", "tos", "privacy", "login"], configs: {faq: "faq_url", tos: "tos_url", privacy: "privacy_policy_url"}})
 }(this), function () {
     window.jQuery, Discourse.TopicAdminMenuController = Discourse.ObjectController.extend({visible: !1, needs: ["modal"], show: function () {
         this.set("visible", !0)
@@ -14366,10 +14180,14 @@ var bootbox = window.bootbox || function (e) {
     }})
 }(this), function () {
     var e = window.jQuery;
-    Discourse.TopicController = Discourse.ObjectController.extend(Discourse.SelectedPostsCount, {userFilters: new Em.Set, multiSelect: !1, bestOf: !1, summaryCollapsed: !0, loading: !1, loadingBelow: !1, loadingAbove: !1, needs: ["header", "modal", "composer", "quoteButton"], allPostsSelected: !1, selectedPosts: new Em.Set, canMergeTopic: function () {
-        return this.get("can_move_posts") ? this.get("selectedPostsCount") > 0 : !1
+    Discourse.TopicController = Discourse.ObjectController.extend(Discourse.SelectedPostsCount, {multiSelect: !1, summaryCollapsed: !0, needs: ["header", "modal", "composer", "quoteButton"], allPostsSelected: !1, selectedPosts: new Em.Set, editingTopic: !1, jumpTopDisabled: function () {
+        return 1 === this.get("progressPosition")
+    }.property("postStream.filteredPostsCount", "progressPosition"), jumpBottomDisabled: function () {
+        return this.get("progressPosition") >= this.get("postStream.filteredPostsCount")
+    }.property("postStream.filteredPostsCount", "progressPosition"), canMergeTopic: function () {
+        return this.get("details.can_move_posts") ? this.get("selectedPostsCount") > 0 : !1
     }.property("selectedPostsCount"), canSplitTopic: function () {
-        return this.get("can_move_posts") ? this.get("allPostsSelected") ? !1 : this.get("selectedPostsCount") > 0 : !1
+        return this.get("details.can_move_posts") ? this.get("allPostsSelected") ? !1 : this.get("selectedPostsCount") > 0 : !1
     }.property("selectedPostsCount"), categories: function () {
         return Discourse.Category.list()
     }.property(), canSelectAll: Em.computed.not("allPostsSelected"), canDeselectAll: function () {
@@ -14382,15 +14200,17 @@ var bootbox = window.bootbox || function (e) {
         return e.forEach(function (e) {
             return e.get("can_delete") ? void 0 : (t = !1, !1)
         }), t
-    }.property("selectedPostsCount"), multiSelectChanged: function () {
+    }.property("selectedPostsCount"), streamPercentage: function () {
+        return this.get("postStream.loaded") ? 0 === this.get("postStream.filteredPostsCount") ? 0 : this.get("progressPosition") / this.get("postStream.filteredPostsCount") : 0
+    }.property("postStream.loaded", "progressPosition", "postStream.filteredPostsCount"), multiSelectChanged: function () {
         this.get("multiSelect") || this.deselectAll()
     }.observes("multiSelect"), hideProgress: function () {
-        return this.get("content.loaded") ? this.get("currentPost") ? 2 > this.get("content.filtered_posts_count") ? !0 : !1 : !0 : !0
-    }.property("content.loaded", "currentPost", "content.filtered_posts_count"), selectPost: function (e) {
+        return this.get("postStream.loaded") ? this.get("currentPost") ? 2 > this.get("postStream.filteredPostsCount") ? !0 : !1 : !0 : !0
+    }.property("postStream.loaded", "currentPost", "postStream.filteredPostsCount"), selectPost: function (e) {
         var t = this.get("selectedPosts");
         t.contains(e) ? (t.removeObject(e), this.set("allPostsSelected", !1)) : (t.addObject(e), t.length === this.get("posts_count") && this.set("allPostsSelected"))
     }, selectAll: function () {
-        var e = this.get("posts"), t = this.get("selectedPosts");
+        var e = this.get("postStream.posts"), t = this.get("selectedPosts");
         e && t.addObjects(e), this.set("allPostsSelected", !0)
     }, deselectAll: function () {
         this.get("selectedPosts").clear(), this.set("allPostsSelected", !1)
@@ -14398,6 +14218,21 @@ var bootbox = window.bootbox || function (e) {
         this.toggleProperty("multiSelect")
     }, toggleSummary: function () {
         this.toggleProperty("summaryCollapsed")
+    }, editTopic: function () {
+        return this.get("details.can_edit") ? (this.setProperties({editingTopic: !0, newTitle: this.get("title"), newCategoryId: this.get("category_id")}), !1) : !1
+    }, cancelEditingTopic: function () {
+        this.set("editingTopic", !1)
+    }, finishedEditingTopic: function () {
+        var t = this;
+        if (this.get("editingTopic")) {
+            var s = this.get("model");
+            s.setProperties({title: this.get("newTitle"), category_id: parseInt(this.get("newCategoryId"), 10), fancy_title: this.get("newTitle")}), s.save().then(function (e) {
+                var t = e.basic_topic.fancy_title;
+                s.setProperties({title: t, fancy_title: t})
+            }, function (s) {
+                t.set("editingTopic", !0), s && s.responseText ? bootbox.alert(e.parseJSON(s.responseText).errors[0]) : bootbox.alert(Em.String.i18n("generic_error"))
+            }), t.set("editingTopic", !1)
+        }
     }, deleteSelected: function () {
         var e = this;
         bootbox.confirm(Em.String.i18n("post.delete.confirm", {count: this.get("selectedPostsCount")}), function (t) {
@@ -14408,11 +14243,9 @@ var bootbox = window.bootbox || function (e) {
             }
         })
     }, jumpTop: function () {
-        this.get("bestOf") ? Discourse.TopicView.scrollTo(this.get("id"), this.get("posts")[0].get("post_number")) : Discourse.URL.routeTo(this.get("url"))
+        Discourse.URL.routeTo(this.get("url"))
     }, jumpBottom: function () {
-        this.get("bestOf") ? Discourse.TopicView.scrollTo(this.get("id"), this.get("posts").last().get("post_number")) : Discourse.URL.routeTo(this.get("lastPostUrl"))
-    }, cancelFilter: function () {
-        this.set("bestOf", !1), this.get("userFilters").clear()
+        Discourse.URL.routeTo(this.get("lastPostUrl"))
     }, replyAsNewTopic: function (e) {
         var t = this.get("controllers.composer"), s = t.open({action: Discourse.Composer.CREATE_TOPIC, draftKey: Discourse.Composer.REPLY_AS_NEW_TOPIC_KEY}), n = "" + location.protocol + "//" + location.host + e.get("url"), r = "[" + this.get("title") + "](" + n + ")";
         s.then(function () {
@@ -14424,41 +14257,10 @@ var bootbox = window.bootbox || function (e) {
         var e = this.get("controllers.composer");
         e.get("content.topic.id") === this.get("content.id") && e.get("content.action") === Discourse.Composer.REPLY ? (e.set("content.post", null), e.set("content.composeState", Discourse.Composer.OPEN)) : e.open({topic: this.get("content"), action: Discourse.Composer.REPLY, draftKey: this.get("content.draft_key"), draftSequence: this.get("content.draft_sequence")})
     }, toggleParticipant: function (e) {
-        this.set("bestOf", !1);
-        var t = Em.get(e, "username"), s = this.get("userFilters");
-        s.contains(t) ? s.remove(t) : s.add(t)
-    }, updateBottomBar: function () {
-        var t = this.get("postFilters");
-        if (t.bestOf)this.set("filterDesc", Em.String.i18n("topic.filters.best_of", {n_best_posts: Em.String.i18n("topic.filters.n_best_posts", {count: this.get("filtered_posts_count")}), of_n_posts: Em.String.i18n("topic.filters.of_n_posts", {count: this.get("posts_count")})})); else {
-            if (!(t.userFilters.length > 0))return e("#topic-filter").slideUp(), void 0;
-            this.set("filterDesc", Em.String.i18n("topic.filters.user", {n_posts: Em.String.i18n("topic.filters.n_posts", {count: this.get("filtered_posts_count")}), by_n_users: Em.String.i18n("topic.filters.by_n_users", {count: t.userFilters.length})}))
-        }
-        e("#topic-filter").slideDown()
-    }, enableBestOf: function () {
-        this.set("bestOf", !0), this.get("userFilters").clear()
-    }, postFilters: function () {
-        return this.get("bestOf") === !0 ? {bestOf: !0} : {userFilters: this.get("userFilters")}
-    }.property("userFilters.[]", "bestOf"), loadPosts: function (e) {
-        var t = this;
-        this.get("content").loadPosts(e).then(function () {
-            Em.run.scheduleOnce("afterRender", t, "updateBottomBar")
-        })
-    }, reloadPosts: function () {
-        var t = this.get("content");
-        if (t) {
-            var s = t.get("posts");
-            if (s) {
-                s.removeAt(1, s.length - 1), this.set("loadingBelow", !0);
-                var n = this, r = this.get("postFilters");
-                return Discourse.Topic.find(this.get("id"), r).then(function (r) {
-                    var a = r.posts[0];
-                    a && n.set("currentPost", a.post_number), e("#topic-progress .solid").data("progress", !1), _.each(r.posts, function (e) {
-                        1 !== e.post_number && s.pushObject(Discourse.Post.create(e, t))
-                    }), Em.run.scheduleOnce("afterRender", n, "updateBottomBar"), n.set("filtered_posts_count", r.filtered_posts_count), n.set("loadingBelow", !1), n.set("seenBottom", !1)
-                })
-            }
-        }
-    }.observes("postFilters"), deleteTopic: function () {
+        this.get("postStream").toggleParticipant(Em.get(e, "username"))
+    }, showFavoriteButton: function () {
+        return Discourse.User.current() && !this.get("isPrivateMessage")
+    }.property("isPrivateMessage"), deleteTopic: function () {
         var e = this;
         this.unsubscribe(), this.get("content").destroy().then(function () {
             e.set("message", Em.String.i18n("topic.deleted")), e.set("loaded", !1)
@@ -14482,11 +14284,7 @@ var bootbox = window.bootbox || function (e) {
         var e = Discourse.MessageBus, t = this;
         e.subscribe("/topic/" + this.get("id"), function (e) {
             var s = t.get("model");
-            if (e.notification_level_change)return s.set("notification_level", e.notification_level_change), s.set("notifications_reason_id", e.notifications_reason_id), void 0;
-            var n = s.get("posts");
-            n.some(function (t) {
-                return t.get("post_number") === e.post_number
-            }) || (s.set("filtered_posts_count", s.get("filtered_posts_count") + 1), s.set("highest_post_number", e.post_number), s.set("last_poster", e.user), s.set("last_posted_at", e.created_at))
+            return e.notification_level_change ? (s.set("details.notification_level", e.notification_level_change), s.set("details.notifications_reason_id", e.notifications_reason_id), void 0) : (t.get("postStream").triggerNewPostInStream(e.id), void 0)
         })
     }, unsubscribe: function () {
         var e = this.get("content.id");
@@ -14512,11 +14310,8 @@ var bootbox = window.bootbox || function (e) {
         e.set("deleted_at", null), e.recover()
     }, deletePost: function (e) {
         Discourse.User.current("staff") ? e.set("deleted_at", new Date) : (e.set("cooked", Discourse.Markdown.cook(Em.String.i18n("post.deleted_by_author"))), e.set("can_delete", !1), e.set("version", e.get("version") + 1)), e.destroy()
-    }, postRendered: function (e) {
-        var t = this.get("onPostRendered");
-        t && t(e)
     }, removeAllowedUser: function (e) {
-        this.get("model").removeAllowedUser(e)
+        this.get("details").removeAllowedUser(e)
     }})
 }(this), function () {
     window.jQuery, Discourse.UserActivityController = Discourse.ObjectController.extend({needs: ["composer"], kickOffPrivateMessage: function () {
@@ -14589,11 +14384,11 @@ var bootbox = window.bootbox || function (e) {
                 }
             }, x = function (e) {
                 null !== o && (a = e, e && 0 !== e.length ? v() : f())
-            }, E = h.data("closeAutocomplete");
+            }, w = h.data("closeAutocomplete");
             return h.data("closeAutocomplete", function () {
-                E && E(), f()
+                w && w(), f()
             }), e(this).keypress(function (e) {
-                if (t.allowAny && (0 === p.length && p.push(""), p.pop(), p.push(h.val()), t.onChangeItems && t.onChangeItems(p)), t.key && e.which === t.key.charCodeAt(0)) {
+                if (t.key && e.which === t.key.charCodeAt(0)) {
                     var s = Discourse.Utilities.caretPosition(h[0]), n = h.val().charAt(s - 1);
                     if (!n || /\s/.test(n)) {
                         o = u = s;
@@ -14602,11 +14397,13 @@ var bootbox = window.bootbox || function (e) {
                     }
                 }
             }), e(this).keydown(function (e) {
-                var s, n, c, p, d, g, b, v, _, E, w, T;
-                if (t.key || (o = 0), 16 !== e.which) {
-                    if (null === o && 8 === e.which && t.key)for (s = Discourse.Utilities.caretPosition(h[0]), d = h[0].value[s], g = void 0 === d || /\s/.test(d), s -= 1, p = s, v = !0; v && s >= 0;) {
-                        if (s -= 1, b = h[0].value[s], _ = b === t.key, _ && (b = h[0].value[s - 1], !b || /\s/.test(b)))return o = s, n = u = p, E = h[0].value.substring(s + 1, p), t.dataSource(E).then(x), !0;
-                        v = /[a-zA-Z\.]/.test(b)
+                var s, n, c, d, g, b, v, w, T, E, C, D;
+                if (t.allowAny && _.delay(function () {
+                    0 === p.length && p.push(""), _.isString(p[0]) && (p.pop(), p.push(h.val()), t.onChangeItems && t.onChangeItems(p))
+                }, 50), t.key || (o = 0), 16 !== e.which) {
+                    if (null === o && 8 === e.which && t.key)for (s = Discourse.Utilities.caretPosition(h[0]), g = h[0].value[s], b = void 0 === g || /\s/.test(g), s -= 1, d = s, w = !0; w && s >= 0;) {
+                        if (s -= 1, v = h[0].value[s], T = v === t.key, T && (v = h[0].value[s - 1], !v || /\s/.test(v)))return o = s, n = u = d, E = h[0].value.substring(s + 1, d), t.dataSource(E).then(x), !0;
+                        w = /[a-zA-Z\.]/.test(v)
                     }
                     if (27 === e.which)return null !== o ? (f(), !1) : !0;
                     if (null !== o) {
@@ -14615,13 +14412,13 @@ var bootbox = window.bootbox || function (e) {
                             case 13:
                             case 39:
                             case 9:
-                                return a ? i >= 0 && (T = a[i]) ? (m(T), e.stopImmediatePropagation(), !1) : !0 : !0;
+                                return a ? i >= 0 && (D = a[i]) ? (m(D), e.stopImmediatePropagation(), !1) : !0 : !0;
                             case 38:
                                 return i -= 1, 0 > i && (i = 0), y(), !1;
                             case 40:
-                                return w = a.length, i += 1, i >= w && (i = w - 1), 0 > i && (i = 0), y(), !1;
+                                return C = a.length, i += 1, i >= C && (i = C - 1), 0 > i && (i = 0), y(), !1;
                             default:
-                                return u = n, 8 === e.which && n--, 0 > n ? (f(), l && (c = r.find("a:last"), c && c.click()), !1) : (E = h.val().substring(o + (t.key ? 1 : 0), n), e.which >= 48 && 90 >= e.which ? E += String.fromCharCode(e.which) : 187 === e.which ? E += "+" : 189 === e.which ? E += "-" : 8 !== e.which && (E += ","), t.dataSource(E).then(x), !0)
+                                return u = n, 8 === e.which && n--, 0 > n ? (f(), l && (c = r.find("a:last"), c && c.click()), !1) : (E = h.val().substring(o + (t.key ? 1 : 0), n), e.which >= 48 && 90 >= e.which ? E += String.fromCharCode(e.which) : 187 === e.which ? E += "+" : 189 === e.which ? E += e.shiftKey ? "_" : "-" : 8 !== e.which && (E += ","), t.dataSource(E).then(x), !0)
                         }
                     }
                 }
@@ -14629,7 +14426,7 @@ var bootbox = window.bootbox || function (e) {
         }
     }
 }(this), function () {
-    window.jQuery, Discourse.BBCode = {QUOTE_REGEXP: /\[quote=([^\]]*)\]((?:[\s\S](?!\[quote=[^\]]*\]))*?)\[\/quote\]/im, replacers: {base: {withoutArgs: {ol: function (e, t) {
+    window.jQuery, Discourse.BBCode = {QUOTE_REGEXP: /\[quote=([^\]]*)\]((?:[\s\S](?!\[quote=[^\]]*\]))*?)\[\/quote\]/im, IMG_REGEXP: /\[img\]([\s\S]*?)\[\/img\]/i, URL_REGEXP: /\[url\]([\s\S]*?)\[\/url\]/i, URL_WITH_TITLE_REGEXP: /\[url=(.+?)\]([\s\S]*?)\[\/url\]/i, replacers: {base: {withoutArgs: {ol: function (e, t) {
         return"<ol>" + t + "</ol>"
     }, li: function (e, t) {
         return"<li>" + t + "</li>"
@@ -14692,27 +14489,33 @@ var bootbox = window.bootbox || function (e) {
     }, buildQuoteBBCode: function (e, t) {
         var s, n, r, a, i, o;
         return t || (t = ""), r = t.replace(this.QUOTE_REGEXP, "").trim(), 0 === r.length ? "" : (n = '[quote="' + e.get("username") + ", post:" + e.get("post_number") + ", topic:" + e.get("topic_id"), o = document.createElement("div"), o.innerHTML = e.get("cooked"), a = o.textContent || o.innerText, i = a.replace(/[^a-zA-Z0-9]/g, ""), s = t.replace(/[^a-zA-Z0-9]/g, ""), i === s && (n += ", full:true"), n += '"]\n' + r + "\n[/quote]\n\n")
+    }, extractUrls: function (e) {
+        var t, s, n = {text: "" + e, replacements: []}, r = [];
+        return _.each([Discourse.BBCode.IMG_REGEXP, Discourse.BBCode.URL_REGEXP, Discourse.BBCode.URL_WITH_TITLE_REGEXP], function (e) {
+            for (; t = e.exec(n.text);)s = md5(t[0]), r.push({key: s, value: t[0]}), n.text = n.text.replace(t[0], s)
+        }), n.template = function (e) {
+            return _.each(r, function (t) {
+                e = e.replace(t.key, t.value)
+            }), e
+        }, n
     }, extractQuotes: function (e) {
-        for (var t, s = {text: "" + e, replacements: []}, n = []; t = Discourse.BBCode.QUOTE_REGEXP.exec(s.text);) {
-            var r = md5(t[0]);
-            n.push({key: r, value: t[0], content: t[2].trim()}), s.text = s.text.replace(t[0], r + "\n")
-        }
-        return s.template = function (e) {
-            return _.each(n, function (t) {
+        for (var t, s, n = {text: "" + e, replacements: []}, r = []; t = Discourse.BBCode.QUOTE_REGEXP.exec(n.text);)s = md5(t[0]), r.push({key: s, value: t[0], content: t[2].trim()}), n.text = n.text.replace(t[0], s + "\n");
+        return n.template = function (e) {
+            return _.each(r, function (t) {
                 var s = t.value.trim();
                 s = s.replace(t.content, t.content.replace(/\n/g, "<br>")), e = e.replace(t.key, s)
             }), e
-        }, s
+        }, n
     }, formatQuote: function (e, t) {
-        for (var s, n, r, a, i, o, u; n = this.QUOTE_REGEXP.exec(e);) {
-            i = n[1].replace(/\"/g, ""), a = i.split(/\, */), r = [], _.each(a, function (e, t) {
-                if (t > 0) {
-                    var s = e.split(":");
-                    if (s[0] && s[1])return r.push({key: s[0], value: s[1].trim()})
-                }
-            }), u = a[0];
-            var h = n[2].trim();
-            s = {username: u, params: r, quote: h, avatarImg: t.lookupAvatar ? t.lookupAvatar(u) : void 0}, o = "quote", t && t.environment && (o = "quote_" + t.environment), e = e.replace(n[0], "</p>" + HANDLEBARS_TEMPLATES[o](s) + "<p>")
+        for (var s, n, r, a, i, o, u, h = function (e, t) {
+            if (t > 0) {
+                var s = e.split(":");
+                if (s[0] && s[1])return r.push({key: s[0], value: s[1].trim()})
+            }
+        }; n = this.QUOTE_REGEXP.exec(e);) {
+            i = n[1].replace(/\"/g, ""), a = i.split(/\, */), r = [], _.each(a, h), u = a[0];
+            var c = n[2].trim();
+            s = {username: u, params: r, quote: c, avatarImg: t.lookupAvatar ? t.lookupAvatar(u) : void 0}, o = "quote", t && t.environment && (o = "quote_" + t.environment), e = e.replace(n[0], "</p>" + HANDLEBARS_TEMPLATES[o](s) + "<p>")
         }
         return e
     }, format: function (e, t) {
@@ -14757,7 +14560,7 @@ var bootbox = window.bootbox || function (e) {
             return s.attr("href", l), !0
         }
         if (t.shiftKey || t.metaKey || t.ctrlKey || 2 === t.which)return Discourse.ajax("/clicks/track", {data: {url: n, post_id: a, topic_id: i, redirect: !1}}), window.open(n, "_blank"), !1;
-        if (0 === n.indexOf(Discourse.URL.origin()))return Discourse.ajax("/clicks/track", {data: {url: n, post_id: a, topic_id: i, redirect: !1}}), Discourse.URL.routeTo(n), !1;
+        if (0 === n.indexOf(Discourse.URL.origin()) && !n.match(/\.(png|gif|jpg|jpeg)$/i))return Discourse.ajax("/clicks/track", {data: {url: n, post_id: a, topic_id: i, redirect: !1}}), Discourse.URL.routeTo(n), !1;
         if (Discourse.User.current("external_links_in_new_tab")) {
             var p = window.open(h, "_blank");
             p.focus()
@@ -14894,9 +14697,19 @@ var bootbox = window.bootbox || function (e) {
 }(this), function () {
     var e = window.jQuery;
     Discourse.Formatter = function () {
-        var t, s, n, r, a, i, o, u, h;
-        return h = function (e) {
+        var t, s, n, r, a, i, o, u, h, c, l;
+        return l = function (e, t) {
+            if (t >= e.length)return e;
+            var s = e.substr(0, t), n = s.substr(1).search(/[^a-z]/);
+            if (n >= 0) {
+                var r = 1;
+                return"_" === e[n + 1] && (r = 2), e.substr(0, n + r) + " " + e.substring(n + r)
+            }
+            return s + " " + e.substr(t)
+        }, h = function (e) {
             return moment(e).shortDate()
+        }, c = function (e) {
+            return moment(e).shortDateNoYear()
         }, u = function u(e) {
             return e.replace(/\w\S*/g, function (e) {
                 return e.charAt(0).toUpperCase() + e.substr(1).toLowerCase()
@@ -14912,7 +14725,7 @@ var bootbox = window.bootbox || function (e) {
             if (!e)return"";
             t = t || {};
             var s = t.format || "tiny", r = "";
-            return"medium" === s && (r = " date' title='" + o(e), t.leaveAgo && (s = "medium-with-ago"), t.wrapInSpan = !1), "<span class='relative-date" + r + "' data-time='" + e.getTime() + "' data-format='" + s + "'>" + n(e, t) + "</span>"
+            return"medium" === s && (r = " date", t.leaveAgo && (s = "medium-with-ago"), t.wrapInSpan = !1), t.title && (r += "' title='" + o(e)), "<span class='relative-date" + r + "' data-time='" + e.getTime() + "' data-format='" + s + "'>" + n(e, t) + "</span>"
         }, r = function (e) {
             var t, s = "tiny", n = Math.round((new Date - e) / 1e3), r = Math.round(n / 60), a = function (e, t) {
                 return Ember.String.i18n("dates." + s + "." + e, t)
@@ -14933,15 +14746,15 @@ var bootbox = window.bootbox || function (e) {
                 case r >= 1440 && 2519 >= r:
                     t = a("x_days", {count: 1});
                     break;
-                case r >= 2520 && 129599 >= r:
+                case r >= 2520 && 20160 >= r:
                     t = a("x_days", {count: Math.round(r / 1440)});
                     break;
-                case r >= 129600 && 525599 >= r:
-                    t = a("x_months", {count: Math.round(r / 43200)});
+                case r >= 20160 && 525599 >= r:
+                    t = c(e);
                     break;
                 default:
                     var i = Math.round(r / 43200);
-                    t = 24 > i ? a("x_months", {count: i}) : a("over_x_years", {count: Math.round(i / 12)})
+                    t = 12 > i ? c(e) : a("over_x_years", {count: Math.round(i / 12)})
             }
             return t
         }, i = function (e, t) {
@@ -14976,7 +14789,7 @@ var bootbox = window.bootbox || function (e) {
             t = t || {};
             var s = t.format || "tiny";
             return"tiny" === s ? r(e, t) : "medium" === s ? a(e, t) : "medium-with-ago" === s ? a(e, _.extend(t, {format: "medium", leaveAgo: !0})) : "UNKNOWN FORMAT"
-        }, {longDate: o, relativeAge: n, autoUpdatingRelativeAge: s, updateRelativeAge: t, toTitleCase: u, shortDate: h}
+        }, {longDate: o, relativeAge: n, autoUpdatingRelativeAge: s, updateRelativeAge: t, toTitleCase: u, shortDate: h, breakUp: l}
     }()
 }(this), function () {
     window.jQuery, Discourse.KeyValueStore = {initialized: !1, context: "", init: function (e) {
@@ -15012,17 +14825,24 @@ var bootbox = window.bootbox || function (e) {
         return new Markdown.Editor(t, void 0, s)
     }, markdownConverter: function (e) {
         e || (e = {});
-        var t = new Markdown.Converter, s = e.mentionLookup || Discourse.Mention.lookupCache, n = null;
-        return t.hooks.chain("preConversion", function (t) {
+        var t = new Markdown.Converter, s = e.mentionLookup || Discourse.Mention.lookupCache, n = null, r = null;
+        t.hooks.chain("preConversion", function (e) {
+            return e.replace(/\[\/quote\]/, "[/quote]\n")
+        }), t.hooks.chain("preConversion", function (t) {
             return Discourse.Markdown.trigger("beforeCook", {detail: t, opts: e}), Discourse.Markdown.textResult || t
         }), t.hooks.chain("preConversion", function (e) {
             var t = Discourse.BBCode.extractQuotes(e);
             return n = t.template, t.text
         }), t.hooks.chain("preConversion", function (e) {
+            var t = Discourse.BBCode.extractUrls(e);
+            return r = t.template, t.text
+        }), t.hooks.chain("preConversion", function (e) {
             return e.replace(/(^|[\s\n])(www\.[a-z\.\-\_\(\)\/\?\=\%0-9]+)/gim, function (e, t, s) {
                 return' <a href="http://' + s + '">' + s + "</a>"
             })
-        }), Discourse.SiteSettings.traditional_markdown_linebreaks || t.hooks.chain("preConversion", function (e) {
+        });
+        var a = e.traditional_markdown_linebreaks || Discourse.SiteSettings.traditional_markdown_linebreaks;
+        return a || t.hooks.chain("preConversion", function (e) {
             return e.replace(/(^[\w<][^\n]*\n+)/gim, function (e) {
                 return e.match(/\n{2}/gim) ? e : e.replace("\n", "  \n")
             })
@@ -15042,7 +14862,7 @@ var bootbox = window.bootbox || function (e) {
                 return Discourse && Discourse.Onebox && (e = Discourse.Onebox.lookupCache(t)), e && e.trim().length > 0 ? arguments[2] + e : arguments[2] + arguments[4] + ' class="onebox" target="_blank">' + arguments[6]
             })) : ""
         }), t.hooks.chain("postConversion", function (t) {
-            return n && (t = n(t)), Discourse.BBCode.format(t, e)
+            return n && (t = n(t)), r && (t = r(t)), Discourse.BBCode.format(t, e)
         }), e.sanitize && t.hooks.chain("postConversion", function (e) {
             return window.sanitizeHtml ? window.sanitizeHtml(e) : ""
         }), t
@@ -15216,11 +15036,10 @@ var bootbox = window.bootbox || function (e) {
         return r(e).on(s, t)
     }}
 }(this), function () {
-    window.jQuery, Discourse.URL = {TOPIC_REGEXP: /\/t\/([^\/]+)\/(\d+)\/?(\d+)?/, MORE_REGEXP: /\/more$/, router: function () {
-        return Discourse.__container__.lookup("router:main")
-    }, replaceState: function (e) {
+    window.jQuery, Discourse.URL = Em.Object.createWithMixins({TOPIC_REGEXP: /\/t\/([^\/]+)\/(\d+)\/?(\d+)?/, MORE_REGEXP: /\/more$/, replaceState: function (e) {
         window.history && window.history.pushState && window.history.replaceState && !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/) && window.location.pathname !== e && Em.run.next(function () {
-            Discourse.URL.router().get("location").replaceURL(e)
+            var t = Discourse.URL.get("router.location");
+            t.replaceURL && t.replaceURL(e)
         })
     }, routeTo: function (e) {
         var t = window.location.pathname;
@@ -15228,23 +15047,39 @@ var bootbox = window.bootbox || function (e) {
             var s = void 0 === Discourse.BaseUri ? "/" : Discourse.BaseUri;
             s = s.replace(/\/$/, ""), e = e.replace(s, "")
         }
-        var n = this.TOPIC_REGEXP.exec(e), r = n ? n[2] : null;
-        if (r) {
-            var a = this.TOPIC_REGEXP.exec(t), i = a ? a[2] : null;
-            if (i === r) {
-                Discourse.URL.replaceState(e);
-                var o = Discourse.__container__.lookup("controller:topic"), u = {trackVisit: !1};
-                return n[3] && (u.nearPost = n[3]), o.cancelFilter(), o.loadPosts(u), void 0
+        if (!this.navigatedToHome(t, e) && !this.navigatedToListMore(t, e) && !this.navigatedToHome(t, e)) {
+            var n = this.get("router");
+            return n.router.updateURL(e), n.handleURL(e)
+        }
+    }, queryParams: Em.computed.alias("router.location.queryParams"), redirectTo: function (e) {
+        window.location = Discourse.getURL(e)
+    }, navigatedToListMore: function (e, t) {
+        return this.MORE_REGEXP.exec(e) && 0 === e.indexOf(t) && window.scrollTo(0, 0), !1
+    }, navigatedToPost: function (e, t) {
+        var s = this.TOPIC_REGEXP.exec(t), n = s ? s[2] : null;
+        if (n) {
+            var r = this.TOPIC_REGEXP.exec(e), a = r ? r[2] : null;
+            if (a === n) {
+                Discourse.URL.replaceState(t);
+                var i = Discourse.__container__.lookup("controller:topic"), o = {};
+                s[3] && (o.nearPost = s[3]);
+                var u = i.get("postStream");
+                return u.refresh(o).then(function () {
+                    i.setProperties({currentPost: o.nearPost || 1, progressPosition: o.nearPost || 1})
+                }), !0
             }
         }
-        this.MORE_REGEXP.exec(t) && 0 === t.indexOf(e) && window.scrollTo(0, 0);
-        var h = this.router();
-        return h.router.updateURL(e), h.handleURL(e)
+        return!1
+    }, navigatedToHome: function (e, t) {
+        var s = "/" + Discourse.ListController.filters[0];
+        return"/" !== t || "/" !== e && e !== s ? !1 : (this.controllerFor("list").refresh(), !0)
     }, origin: function () {
         return window.location.origin
-    }, redirectTo: function (e) {
-        window.location = Discourse.getURL(e)
-    }}
+    }, router: function () {
+        return Discourse.__container__.lookup("router:main")
+    }.property(), controllerFor: function (e) {
+        return Discourse.__container__.lookup("controller:" + e)
+    }})
 }(this), function () {
     window.jQuery;
     var e = {}, t = null, s = null, n = Discourse.debouncePromise(function (t, n) {
@@ -15323,16 +15158,26 @@ var bootbox = window.bootbox || function (e) {
         return e.setSelectionRange ? (e.focus(), e.setSelectionRange(t, t), void 0) : e.createTextRange ? (s = e.createTextRange(), s.collapse(!0), s.moveEnd("character", t), s.moveStart("character", t), s.select()) : void 0
     }, validateFilesForUpload: function (e) {
         if (e) {
-            if (e.length > 1)return bootbox.alert(Em.String.i18n("post.errors.upload_too_many_images")), !1;
+            if (e.length > 1)return bootbox.alert(Em.String.i18n("post.errors.too_many_uploads")), !1;
             if (e.length > 0) {
-                if (e[0].type && 0 !== e[0].type.indexOf("image/"))return bootbox.alert(Em.String.i18n("post.errors.only_images_are_supported")), !1;
-                if (e[0].size && e[0].size > 0) {
-                    var t = e[0].size / 1024;
-                    return t > Discourse.SiteSettings.max_upload_size_kb ? (bootbox.alert(Em.String.i18n("post.errors.upload_too_large", {max_size_kb: Discourse.SiteSettings.max_upload_size_kb})), !1) : !0
+                var t = e[0];
+                if (0 === Discourse.User.current("trust_level") && 0 === Discourse.SiteSettings.newuser_max_images)return bootbox.alert(Em.String.i18n("post.errors.upload_not_allowed_for_new_user")), !1;
+                if (t instanceof Blob && !(t instanceof File) && "image/png" === t.type && (t.name = "blob.png"), !Discourse.Utilities.isAuthorizedUpload(t)) {
+                    var s = Discourse.SiteSettings.authorized_extensions.replace(/\|/g, ", ");
+                    return bootbox.alert(Em.String.i18n("post.errors.upload_not_authorized", {authorized_extensions: s})), !1
+                }
+                if (t.size && t.size > 0) {
+                    var n = t.size / 1024;
+                    return n > Discourse.SiteSettings.max_upload_size_kb ? (bootbox.alert(Em.String.i18n("post.errors.upload_too_large", {max_size_kb: Discourse.SiteSettings.max_upload_size_kb})), !1) : !0
                 }
             }
         }
         return!1
+    }, isAuthorizedUpload: function (e) {
+        var t = Discourse.SiteSettings.authorized_extensions;
+        if (!t)return!1;
+        var s = new RegExp("\\.(" + t.replace(/\./g, "") + ")$", "i");
+        return e && e.name ? e.name.match(s) : !1
     }}
 }(this), function () {
     var e = window.jQuery;
@@ -15376,7 +15221,8 @@ var bootbox = window.bootbox || function (e) {
         return this.get("id") === Discourse.Site.instance().get("default_archetype")
     }.property("id")})
 }(this), function () {
-    window.jQuery, Discourse.Category = Discourse.Model.extend({init: function () {
+    var e = window.jQuery;
+    Discourse.Category = Discourse.Model.extend({init: function () {
         this._super(), this.set("availableGroups", Em.A(this.get("available_groups"))), this.set("groups", Em.A(this.groups))
     }, searchContext: function () {
         return{type: "category", id: this.get("id"), category: this}
@@ -15395,7 +15241,9 @@ var bootbox = window.bootbox || function (e) {
         this.get("groups").addObject(e), this.get("availableGroups").removeObject(e)
     }, removeGroup: function (e) {
         this.get("groups").removeObject(e), this.get("availableGroups").addObject(e)
-    }}), Discourse.Category.reopenClass({uncategorizedInstance: function () {
+    }, description_text: function () {
+        return e("<div>" + this.get("description") + "</div>").text()
+    }.property("description")}), Discourse.Category.reopenClass({uncategorizedInstance: function () {
         return this.uncategorized ? this.uncategorized : (this.uncategorized = this.create({slug: "uncategorized", name: Discourse.SiteSettings.uncategorized_name, isUncategorized: !0, color: Discourse.SiteSettings.uncategorized_color, text_color: Discourse.SiteSettings.uncategorized_text_color}), this.uncategorized)
     }, slugFor: function (e) {
         if (!e)return"";
@@ -15404,7 +15252,7 @@ var bootbox = window.bootbox || function (e) {
     }, list: function () {
         return Discourse.Site.instance().get("categories")
     }, findBySlugOrId: function (e) {
-        return Discourse.ajax("/categories/" + e + ".json").then(function (e) {
+        return Discourse.ajax("/category/" + e + "/show.json").then(function (e) {
             return Discourse.Category.create(e.category)
         })
     }})
@@ -15431,24 +15279,14 @@ var bootbox = window.bootbox || function (e) {
         })
     }})
 }(this), function () {
-    var e, t, s, n, r, a, i, o, u, h = window.jQuery;
-    e = "closed", u = "saving", r = "open", s = "draft", t = "createTopic", a = "privateMessage", i = "reply", n = "edit", o = "reply_as_new_topic", Discourse.Composer = Discourse.Model.extend({init: function () {
+    var e = window.jQuery, t = "closed", s = "saving", n = "open", r = "draft", a = "createTopic", i = "privateMessage", o = "reply", u = "edit", h = "reply_as_new_topic";
+    Discourse.Composer = Discourse.Model.extend({init: function () {
         this._super();
         var e = Discourse.KeyValueStore.get("composer.showPreview") || "true";
         this.set("showPreview", "true" === e), this.set("archetypeId", Discourse.Site.instance().get("default_archetype"))
     }, archetypes: function () {
         return Discourse.Site.instance().get("archetypes")
-    }.property(), creatingTopic: function () {
-        return this.get("action") === t
-    }.property("action"), creatingPrivateMessage: function () {
-        return this.get("action") === a
-    }.property("action"), editingPost: function () {
-        return this.get("action") === n
-    }.property("action"), replyingToTopic: function () {
-        return this.get("action") === i
-    }.property("action"), viewOpen: function () {
-        return this.get("composeState") === r
-    }.property("composeState"), archetype: function () {
+    }.property(), creatingTopic: Em.computed.equal("action", a), creatingPrivateMessage: Em.computed.equal("action", i), editingPost: Em.computed.equal("action", u), replyingToTopic: Em.computed.equal("action", o), viewOpen: Em.computed.equal("composeState", n), viewDraft: Em.computed.equal("composeState", r), archetype: function () {
         return this.get("archetypes").findProperty("id", this.get("archetypeId"))
     }.property("archetypeId"), archetypeChanged: function () {
         return this.set("metaData", Em.Object.create())
@@ -15461,62 +15299,56 @@ var bootbox = window.bootbox || function (e) {
     }.property("editTitle"), togglePreview: function () {
         this.toggleProperty("showPreview"), Discourse.KeyValueStore.set({key: "composer.showPreview", value: this.get("showPreview")})
     }, importQuote: function () {
-        var e = this.get("post");
-        if (!e) {
-            var t = this.get("topic.posts");
-            t && t.length > 0 && (e = t[0])
-        }
+        var e = this.get("post.id") || this.get("topic.postStream.firstPostId");
         if (e) {
             this.set("loading", !0);
-            var s = this;
-            Discourse.Post.load(e.get("id")).then(function (t) {
-                s.appendText(Discourse.BBCode.buildQuoteBBCode(e, t.get("raw"))), s.set("loading", !1)
+            var t = this;
+            return Discourse.Post.load(e).then(function (e) {
+                t.appendText(Discourse.BBCode.buildQuoteBBCode(e, e.get("raw"))), t.set("loading", !1)
             })
         }
     }, appendText: function (e) {
         this.set("reply", (this.get("reply") || "") + e)
     }, actionTitle: function () {
-        var e, s, r = this.get("topic");
-        if (r) {
-            var o = this.get("post.post_number");
-            e = "<a href='" + r.get("url") + "/" + o + "'>" + Em.String.i18n("post.post_number", {number: o}) + "</a>", s = "<a href='" + r.get("url") + "'> " + Handlebars.Utils.escapeExpression(r.get("title")) + "</a>"
+        var e, t, s = this.get("topic");
+        if (s) {
+            var n = this.get("post.post_number");
+            e = "<a href='" + s.get("url") + "/" + n + "'>" + Em.String.i18n("post.post_number", {number: n}) + "</a>", t = "<a href='" + s.get("url") + "'> " + Handlebars.Utils.escapeExpression(s.get("title")) + "</a>"
         }
-        var u, h = this.get("post");
+        var r, h = this.get("post");
         if (h) {
-            u = Em.String.i18n("post." + this.get("action"), {link: e, replyAvatar: Discourse.Utilities.tinyAvatar(h.get("username")), username: this.get("post.username")});
+            r = Em.String.i18n("post." + this.get("action"), {link: e, replyAvatar: Discourse.Utilities.tinyAvatar(h.get("username")), username: this.get("post.username")});
             var c = h.get("reply_to_user.username");
-            c && this.get("action") === n && (u += " " + Em.String.i18n("post.in_reply_to") + " " + Discourse.Utilities.tinyAvatar(c) + " " + c)
+            c && this.get("action") === u && (r += " " + Em.String.i18n("post.in_reply_to") + " " + Discourse.Utilities.tinyAvatar(c) + " " + c)
         }
         switch (this.get("action")) {
-            case a:
-                return Em.String.i18n("topic.private_message");
-            case t:
-                return Em.String.i18n("topic.create_long");
             case i:
-            case n:
-                if (u)return u;
-                if (r)return Em.String.i18n("post.reply_topic", {link: s})
+                return Em.String.i18n("topic.private_message");
+            case a:
+                return Em.String.i18n("topic.create_long");
+            case o:
+            case u:
+                if (r)return r;
+                if (s)return Em.String.i18n("post.reply_topic", {link: t})
         }
     }.property("action", "post", "topic", "topic.title"), toggleText: function () {
         return this.get("showPreview") ? Em.String.i18n("composer.hide_preview") : Em.String.i18n("composer.show_preview")
-    }.property("showPreview"), hidePreview: function () {
-        return!this.get("showPreview")
-    }.property("showPreview"), cantSubmitPost: function () {
-        return this.get("loading") ? !0 : this.get("editTitle") && !this.get("titleLengthValid") ? !0 : this.get("creatingPrivateMessage") && this.get("targetUsernames") && 0 === (this.get("targetUsernames").trim() + ",").indexOf(",") ? !0 : this.get("replyLength") < Discourse.SiteSettings.min_post_length ? !0 : !this.get("canCategorize") || Discourse.SiteSettings.allow_uncategorized_topics || this.get("categoryName") ? !1 : !0
-    }.property("loading", "editTitle", "titleLength", "targetUsernames", "replyLength", "categoryName"), titleLengthValid: function () {
+    }.property("showPreview"), hidePreview: Em.computed.not("showPreview"), cantSubmitPost: function () {
+        return this.get("loading") ? !0 : this.get("editTitle") && !this.get("titleLengthValid") ? !0 : this.get("creatingPrivateMessage") && this.get("targetUsernames") && 0 === (this.get("targetUsernames").trim() + ",").indexOf(",") ? !0 : this.get("missingReplyCharacters") > 0 ? !0 : !this.get("canCategorize") || Discourse.SiteSettings.allow_uncategorized_topics || this.get("categoryName") ? !1 : !0
+    }.property("loading", "editTitle", "titleLength", "targetUsernames", "replyLength", "categoryName", "missingReplyCharacters"), titleLengthValid: function () {
         if (this.get("creatingPrivateMessage")) {
             if (this.get("titleLength") < Discourse.SiteSettings.min_private_message_title_length)return!1
         } else if (this.get("titleLength") < Discourse.SiteSettings.min_topic_title_length)return!1;
         return this.get("titleLength") <= Discourse.SiteSettings.max_topic_title_length
-    }.property("titleLength"), saveText: function () {
+    }.property("creatingPrivateMessage", "titleLength"), saveText: function () {
         switch (this.get("action")) {
-            case n:
+            case u:
                 return Em.String.i18n("composer.save_edit");
-            case i:
+            case o:
                 return Em.String.i18n("composer.reply");
-            case t:
-                return Em.String.i18n("composer.create_topic");
             case a:
+                return Em.String.i18n("composer.create_topic");
+            case i:
                 return Em.String.i18n("composer.create_pm")
         }
     }.property("action"), hasMetaData: function () {
@@ -15524,56 +15356,43 @@ var bootbox = window.bootbox || function (e) {
         return e ? Em.empty(Em.keys(this.get("metaData"))) : !1
     }.property("metaData"), wouldLoseChanges: function () {
         return this.get("reply") !== this.get("originalText")
-    }, open: function (e) {
-        var t;
-        e || (e = {}), this.set("loading", !1), e.topic && (t = e.topic.get("id"));
-        var s = "" === (this.get("reply") || ""), a = this;
-        if (!s && (e.action !== this.get("action") || (e.reply || e.action === this.EDIT) && this.get("reply") !== this.get("originalText")) && !e.tested)return e.tested = !0, this.cancel(function () {
-            return a.open(e)
-        }), void 0;
-        if (this.set("draftKey", e.draftKey), this.set("draftSequence", e.draftSequence), !e.draftKey)throw"draft key is required";
+    }.property("reply", "save"), open: function (e) {
+        e || (e = {}), this.set("loading", !1);
+        var t = Em.isEmpty(this.get("reply")), s = this;
+        if (!t && (e.action !== this.get("action") || (e.reply || e.action === this.EDIT) && this.get("reply") !== this.get("originalText")) && !e.tested)return e.tested = !0, void 0;
+        if (!e.draftKey)throw"draft key is required";
         if (null === e.draftSequence)throw"draft sequence is required";
-        return this.set("composeState", e.composerState || r), this.set("action", e.action), this.set("topic", e.topic), this.set("targetUsernames", e.usernames), e.post && (this.set("post", e.post), this.get("topic") || this.set("topic", e.post.get("topic"))), this.set("categoryName", e.categoryName || this.get("topic.category.name")), this.set("archetypeId", e.archetypeId || Discourse.Site.instance().get("default_archetype")), this.set("metaData", e.metaData ? Em.Object.create(e.metaData) : null), this.set("reply", e.reply || this.get("reply") || ""), e.postId && (this.set("loading", !0), Discourse.Post.load(e.postId).then(function (e) {
-            a.set("post", e), a.set("loading", !1)
-        })), e.action === n && e.post && (this.set("title", this.get("topic.title")), this.set("loading", !0), Discourse.Post.load(e.post.get("id")).then(function (e) {
-            a.set("reply", e.get("raw")), a.set("originalText", a.get("reply")), a.set("loading", !1)
-        })), e.title && this.set("title", e.title), e.draft ? this.set("originalText", "") : e.reply && this.set("originalText", this.get("reply")), !1
+        return this.setProperties({draftKey: e.draftKey, draftSequence: e.draftSequence, composeState: e.composerState || n, action: e.action, topic: e.topic, targetUsernames: e.usernames}), e.post && (this.set("post", e.post), this.get("topic") || this.set("topic", e.post.get("topic"))), this.setProperties({categoryName: e.categoryName || this.get("topic.category.name"), archetypeId: e.archetypeId || Discourse.Site.instance().get("default_archetype"), metaData: e.metaData ? Em.Object.create(e.metaData) : null, reply: e.reply || this.get("reply") || ""}), e.postId && (this.set("loading", !0), Discourse.Post.load(e.postId).then(function (e) {
+            s.set("post", e), s.set("loading", !1)
+        })), e.action === u && e.post && (this.setProperties({title: this.get("topic.title"), loading: !0}), Discourse.Post.load(e.post.get("id")).then(function (e) {
+            s.setProperties({reply: e.get("raw"), originalText: s.get("reply"), loading: !1})
+        })), e.title && this.set("title", e.title), this.set("originalText", e.draft ? "" : this.get("reply")), !1
     }, save: function (e) {
         return this.get("cantSubmitPost") ? void 0 : this.get("editingPost") ? this.editPost(e) : this.createPost(e)
-    }, editPost: function (t) {
-        var s = this.get("post"), n = s.get("cooked"), a = this;
-        if (this.get("title") && 1 === s.get("post_number")) {
-            var i = this.get("topic");
-            i.set("title", this.get("title")), i.set("fancy_title", this.get("title")), i.set("categoryName", this.get("categoryName")), i.save()
+    }, editPost: function (s) {
+        var r = this.get("post"), a = r.get("cooked"), i = this;
+        if (this.get("title") && 1 === r.get("post_number")) {
+            var o = this.get("topic");
+            o.setProperties({title: this.get("title"), fancy_title: this.get("title"), categoryName: this.get("categoryName")}), o.save()
         }
-        return s.set("raw", this.get("reply")), s.set("imageSizes", t.imageSizes), s.set("cooked", h("#wmd-preview").html()), this.set("composeState", e), Ember.Deferred.promise(function (e) {
-            s.save(function (t) {
-                var n = a.get("topic.posts"), r = -1, i = s.get("post_number");
-                _.each(n, function (e, t) {
-                    e.get("post_number") === i && (r = t)
-                }), r > -1 && (t.set("topic", a.get("topic")), n.replace(r, 1, [t]), e.resolve({post: s}), a.set("topic.draft_sequence", t.draft_sequence))
-            }, function (t) {
-                var i = h.parseJSON(t.responseText);
-                i && i.errors ? e.reject(i.errors[0]) : e.reject(Em.String.i18n("generic_error")), s.set("cooked", n), a.set("composeState", r)
+        return r.setProperties({raw: this.get("reply"), imageSizes: s.imageSizes, cooked: e("#wmd-preview").html()}), this.set("composeState", t), Ember.Deferred.promise(function (t) {
+            r.save(function () {
+                i.set("originalText", ""), i.set("reply", ""), i.set("post", null)
+            }, function (s) {
+                var o = e.parseJSON(s.responseText);
+                o && o.errors ? t.reject(o.errors[0]) : t.reject(Em.String.i18n("generic_error")), r.set("cooked", a), i.set("composeState", n)
             })
         })
-    }, createPost: function (t) {
-        var s = this.get("post"), n = this.get("topic"), a = Discourse.User.current(), i = !1, o = this.get("topic.highest_post_number") + 1, c = Discourse.Post.create({raw: this.get("reply"), title: this.get("title"), category: this.get("categoryName"), topic_id: this.get("topic.id"), reply_to_post_number: s ? s.get("post_number") : null, imageSizes: t.imageSizes, post_number: o, index: o, cooked: h("#wmd-preview").html(), reply_count: 0, display_username: a.get("name"), username: a.get("username"), user_id: a.get("id"), metaData: this.get("metaData"), archetype: this.get("archetypeId"), post_type: Discourse.Site.instance().get("post_types.regular"), target_usernames: this.get("targetUsernames"), actions_summary: Em.A(), moderator: a.get("moderator"), yours: !0, newPost: !0, auto_close_days: this.get("auto_close_days")});
-        if (n) {
-            s && s.set("reply_count", (s.get("reply_count") || 0) + 1), n.set("posts_count", n.get("posts_count") + 1), n.set("last_posted_at", new Date), n.set("highest_post_number", c.get("post_number")), n.set("last_poster", Discourse.User.current()), n.set("filtered_posts_count", n.get("filtered_posts_count") + 1), c.set("topic", n), c.set("created_at", new Date);
-            var l = n.posts[n.posts.length - 1];
-            if (l) {
-                var p = n.get("highest_post_number") - l.get("post_number");
-                5 > p && (c.set("scrollToAfterInsert", c.get("post_number")), n.pushPosts([c]), i = !0)
-            }
-        }
-        var f = this;
-        return Ember.Deferred.promise(function (t) {
-            c.save(function (s) {
-                var r = !0;
-                return c.updateFromSave(s), n ? (c.set("newPost", !1), n.set("draft_sequence", s.draft_sequence)) : (f.set("composeState", e), r = !1), f.set("reply", ""), f.set("createdPost", c), i ? f.set("composeState", e) : r && f.set("composeState", u), t.resolve({post: s})
-            }, function (e) {
-                n && (n.posts.removeObject(c), n.set("filtered_posts_count", n.get("filtered_posts_count") - 1)), t.reject(h.parseJSON(e.responseText).errors[0]), f.set("composeState", r)
+    }, createPost: function (r) {
+        var a = this.get("post"), i = this.get("topic"), o = Discourse.User.current(), u = this.get("topic.postStream"), h = !1, c = Discourse.Post.create({raw: this.get("reply"), title: this.get("title"), category: this.get("categoryName"), topic_id: this.get("topic.id"), reply_to_post_number: a ? a.get("post_number") : null, imageSizes: r.imageSizes, cooked: e("#wmd-preview").html(), reply_count: 0, display_username: o.get("name"), username: o.get("username"), user_id: o.get("id"), metaData: this.get("metaData"), archetype: this.get("archetypeId"), post_type: Discourse.Site.instance().get("post_types.regular"), target_usernames: this.get("targetUsernames"), actions_summary: Em.A(), moderator: o.get("moderator"), yours: !0, newPost: !0, auto_close_days: this.get("auto_close_days")});
+        u && (a && a.set("reply_count", (a.get("reply_count") || 0) + 1), u.stagePost(c, o));
+        var l = this;
+        return Ember.Deferred.promise(function (r) {
+            c.save(function (e) {
+                var n = !0;
+                return c.updateFromJson(e), i ? (c.set("newPost", !1), i.set("draft_sequence", e.draft_sequence), u.commitPost(c), h = !0) : (l.set("composeState", t), n = !1), l.setProperties({reply: "", createdPost: c, title: ""}), h ? l.set("composeState", t) : n && l.set("composeState", s), r.resolve({post: e})
+            }, function (t) {
+                u && u.undoPost(c), r.reject(e.parseJSON(t.responseText).errors[0]), l.set("composeState", n)
             })
         })
     }, saveDraft: function () {
@@ -15588,25 +15407,29 @@ var bootbox = window.bootbox || function (e) {
             })
         }
     }, flashDraftStatusForNewUser: function () {
-        var e = h("#draft-status");
-        0 === Discourse.User.current("trust_level") && (e.toggleClass("flash", !0), setTimeout(function () {
-            e.removeClass("flash")
+        var t = e("#draft-status");
+        0 === Discourse.User.current("trust_level") && (t.toggleClass("flash", !0), setTimeout(function () {
+            t.removeClass("flash")
         }, 250))
     }, updateDraftStatus: function () {
-        var e = h("#reply-title"), t = h("#wmd-input");
-        if (e.is(":focus")) {
-            var s = this.get("missingTitleCharacters");
-            if (s > 0)return this.flashDraftStatusForNewUser(), this.set("draftStatus", Em.String.i18n("composer.min_length.need_more_for_title", {n: s}))
-        } else if (t.is(":focus")) {
-            var n = this.get("missingReplyCharacters");
-            if (n > 0)return this.set("draftStatus", Em.String.i18n("composer.min_length.need_more_for_reply", {n: n}))
+        var t = e("#reply-title"), s = e("#wmd-input");
+        if (t.is(":focus")) {
+            var n = this.get("missingTitleCharacters");
+            if (n > 0)return this.flashDraftStatusForNewUser(), this.set("draftStatus", Em.String.i18n("composer.min_length.need_more_for_title", {n: n}))
+        } else if (s.is(":focus")) {
+            var r = this.get("missingReplyCharacters");
+            if (r > 0)return this.set("draftStatus", Em.String.i18n("composer.min_length.need_more_for_reply", {n: r}))
         }
         this.set("draftStatus", null)
     }.observes("missingTitleCharacters", "missingReplyCharacters"), missingTitleCharacters: function () {
-        return this.get("creatingPrivateMessage") ? Discourse.SiteSettings.min_private_message_title_length - this.get("titleLength") : Discourse.SiteSettings.min_topic_title_length - this.get("titleLength")
-    }.property("titleLength"), missingReplyCharacters: function () {
-        return Discourse.SiteSettings.min_post_length - this.get("replyLength")
-    }.property("replyLength"), titleLength: function () {
+        return this.get("minimumTitleLength") - this.get("titleLength")
+    }.property("minimumTitleLength", "titleLength"), minimumTitleLength: function () {
+        return this.get("creatingPrivateMessage") ? Discourse.SiteSettings.min_private_message_title_length : Discourse.SiteSettings.min_topic_title_length
+    }.property("creatingPrivateMessage"), missingReplyCharacters: function () {
+        return this.get("minimumPostLength") - this.get("replyLength")
+    }.property("minimumPostLength", "replyLength"), minimumPostLength: function () {
+        return this.get("creatingPrivateMessage") ? Discourse.SiteSettings.min_private_message_post_length : Discourse.SiteSettings.min_post_length
+    }.property("creatingPrivateMessage"), titleLength: function () {
         var e = this.get("title") || "";
         return e.replace(/\s+/gim, " ").trim().length
     }.property("title"), replyLength: function () {
@@ -15615,15 +15438,15 @@ var bootbox = window.bootbox || function (e) {
     }.property("reply")}), Discourse.Composer.reopenClass({open: function (e) {
         var t = Discourse.Composer.create();
         return t.open(e), t
-    }, loadDraft: function (e, t, n, r) {
+    }, loadDraft: function (e, t, s, n) {
         var a;
         try {
-            n && "string" == typeof n && (n = JSON.parse(n))
+            s && "string" == typeof s && (s = JSON.parse(s))
         } catch (i) {
-            n = null, Discourse.Draft.clear(e, t)
+            s = null, Discourse.Draft.clear(e, t)
         }
-        return n && (n.title && "" !== n.title || n.reply && "" !== n.reply) && (a = this.open({draftKey: e, draftSequence: t, topic: r, action: n.action, title: n.title, categoryName: n.categoryName, postId: n.postId, archetypeId: n.archetypeId, reply: n.reply, metaData: n.metaData, usernames: n.usernames, draft: !0, composerState: s})), a
-    }, CLOSED: e, SAVING: u, OPEN: r, DRAFT: s, CREATE_TOPIC: t, PRIVATE_MESSAGE: a, REPLY: i, EDIT: n, REPLY_AS_NEW_TOPIC_KEY: o})
+        return s && (s.title && "" !== s.title || s.reply && "" !== s.reply) && (a = this.open({draftKey: e, draftSequence: t, topic: n, action: s.action, title: s.title, categoryName: s.categoryName, postId: s.postId, archetypeId: s.archetypeId, reply: s.reply, metaData: s.metaData, usernames: s.usernames, draft: !0, composerState: r})), a
+    }, CLOSED: t, SAVING: s, OPEN: n, DRAFT: r, CREATE_TOPIC: a, PRIVATE_MESSAGE: i, REPLY: o, EDIT: u, REPLY_AS_NEW_TOPIC_KEY: h})
 }(this), function () {
     window.jQuery, Discourse.Draft = Discourse.Model.extend({}), Discourse.Draft.reopenClass({clear: function (e, t) {
         return Discourse.ajax("/draft", {type: "DELETE", data: {draft_key: e, sequence: t}})
@@ -15701,9 +15524,7 @@ var bootbox = window.bootbox || function (e) {
         if (1 === this.get("postnumber"))return this.get("topic.url");
         var e = Discourse.User.current();
         return this.get("url") + (e ? "?u=" + e.get("username_lower") : "")
-    }.property("url"), new_user: function () {
-        return 0 === this.get("trust_level")
-    }.property("trust_level"), url: function () {
+    }.property("url"), new_user: Em.computed.equal("trust_level", 0), firstPost: Em.computed.equal("post_number", 1), url: function () {
         return Discourse.Utilities.postUrl(this.get("topic.slug") || this.get("topic_slug"), this.get("topic_id"), this.get("post_number"))
     }.property("post_number", "topic_id", "topic.slug"), originalPostUrl: function () {
         return Discourse.getURL("/t/") + this.get("topic_id") + "/" + this.get("reply_to_post_number")
@@ -15711,20 +15532,22 @@ var bootbox = window.bootbox || function (e) {
         return Discourse.getURL("/users/" + this.get("username"))
     }.property("username"), showUserReplyTab: function () {
         return this.get("reply_to_user") && this.get("reply_to_post_number") < this.get("post_number") - 1
-    }.property("reply_to_user", "reply_to_post_number", "post_number"), firstPost: function () {
-        return this.get("bestOfFirst") === !0 ? !0 : 1 === this.get("post_number")
-    }.property("post_number"), byTopicCreator: function () {
-        return this.get("topic.created_by.id") === this.get("user_id")
-    }.property("topic.created_by.id", "user_id"), hasHistory: function () {
+    }.property("reply_to_user", "reply_to_post_number", "post_number"), byTopicCreator: function () {
+        return this.get("topic.details.created_by.id") === this.get("user_id")
+    }.property("topic.details.created_by.id", "user_id"), hasHistory: function () {
         return this.get("version") > 1
     }.property("version"), postElementId: function () {
         return"post_" + this.get("post_number")
     }.property("post_number"), bookmarkClass: function () {
-        var e, t;
-        return e = "read-icon", this.get("bookmarked") ? e + " bookmarked" : (t = this.get("topic"), t && t.get("last_read_post_number") === this.get("post_number") ? e += " last-read" : this.get("read") && (e += " seen"), e)
+        var e = "read-icon";
+        if (this.get("bookmarked"))return e + " bookmarked";
+        var t = this.get("topic");
+        return t && t.get("last_read_post_number") === this.get("post_number") ? e + " last-read" : e + (this.get("read") ? " seen" : " unseen")
     }.property("read", "topic.last_read_post_number", "bookmarked"), bookmarkTooltip: function () {
-        var e;
-        return this.get("bookmarked") ? Em.String.i18n("bookmarks.created") : this.get("read") ? (e = this.get("topic"), e && e.get("last_read_post_number") === this.get("post_number") ? Em.String.i18n("bookmarks.last_read") : Em.String.i18n("bookmarks.not_bookmarked")) : ""
+        if (this.get("bookmarked"))return Em.String.i18n("bookmarks.created");
+        if (!this.get("read"))return"";
+        var e = this.get("topic");
+        return e && e.get("last_read_post_number") === this.get("post_number") ? Em.String.i18n("bookmarks.last_read") : Em.String.i18n("bookmarks.not_bookmarked")
     }.property("read", "topic.last_read_post_number", "bookmarked"), bookmarkedChanged: function () {
         Discourse.ajax("/posts/" + this.get("id") + "/bookmark", {type: "PUT", data: {bookmarked: this.get("bookmarked") ? !0 : !1}}).then(null, function (t) {
             t && t.responseText ? bootbox.alert(e.parseJSON(t.responseText).errors[0]) : bootbox.alert(Em.String.i18n("generic_error"))
@@ -15746,14 +15569,17 @@ var bootbox = window.bootbox || function (e) {
             return 0 === e.get("count") ? !1 : e.get("users") && e.get("users").length > 0 ? !0 : !e.get("hidden")
         }) : null
     }.property("actions_summary.@each.users", "actions_summary.@each.count"), save: function (e, t) {
-        var s, n;
-        return this.get("newPost") ? (s = {raw: this.get("raw"), topic_id: this.get("topic_id"), reply_to_post_number: this.get("reply_to_post_number"), category: this.get("category"), archetype: this.get("archetype"), title: this.get("title"), image_sizes: this.get("imageSizes"), target_usernames: this.get("target_usernames"), auto_close_days: this.get("auto_close_days")}, (n = this.get("metaData")) && (s.meta_data = {}, Ember.keys(n).forEach(function (e) {
-            s.meta_data[e] = n.get(e)
-        })), Discourse.ajax("/posts", {type: "POST", data: s}).then(function (t) {
-            e && e(Discourse.Post.create(t))
-        }, function (e) {
-            t && t(e)
-        })) : Discourse.ajax("/posts/" + this.get("id"), {type: "PUT", data: {post: {raw: this.get("raw")}, image_sizes: this.get("imageSizes")}}).then(function (t) {
+        if (this.get("newPost")) {
+            var s = {raw: this.get("raw"), topic_id: this.get("topic_id"), reply_to_post_number: this.get("reply_to_post_number"), category: this.get("category"), archetype: this.get("archetype"), title: this.get("title"), image_sizes: this.get("imageSizes"), target_usernames: this.get("target_usernames"), auto_close_days: this.get("auto_close_days")}, n = this.get("metaData");
+            return n && (s.meta_data = {}, Ember.keys(n).forEach(function (e) {
+                s.meta_data[e] = n.get(e)
+            })), Discourse.ajax("/posts", {type: "POST", data: s}).then(function (t) {
+                e && e(Discourse.Post.create(t))
+            }, function (e) {
+                t && t(e)
+            })
+        }
+        return Discourse.ajax("/posts/" + this.get("id"), {type: "PUT", data: {post: {raw: this.get("raw")}, image_sizes: this.get("imageSizes")}}).then(function (t) {
             t.category && Discourse.Site.instance().updateCategory(t.category), e && e(Discourse.Post.create(t.post))
         }, function (e) {
             t && t(e)
@@ -15762,16 +15588,24 @@ var bootbox = window.bootbox || function (e) {
         return Discourse.ajax("/posts/" + this.get("id") + "/recover", {type: "PUT", cache: !1})
     }, destroy: function () {
         return Discourse.ajax("/posts/" + this.get("id"), {type: "DELETE"})
-    }, updateFromSave: function (e) {
+    }, updateFromPost: function (e) {
         var t = this;
-        if (e && (_.each(e, function (e, s) {
-            "actions_summary" !== s && e && t.set(s, e)
-        }), this.set("actions_summary", Em.A()), e.actions_summary)) {
-            var s = Em.Object.create();
-            _.each(e.actions_summary, function (e) {
-                var n;
-                e.post = t, e.actionType = Discourse.Site.instance().postActionTypeById(e.id), n = Discourse.ActionSummary.create(e), t.get("actions_summary").pushObject(n), s.set(e.actionType.get("name_key"), n)
-            }), this.set("actionByName", s)
+        Object.keys(e).forEach(function (s) {
+            var n = e[s];
+            "function" != typeof n && t.set(s, n)
+        })
+    }, updateFromJson: function (e) {
+        if (e) {
+            var t = this;
+            if (_.each(e, function (e, s) {
+                "actions_summary" !== s && e && t.set(s, e)
+            }), this.set("actions_summary", Em.A()), e.actions_summary) {
+                var s = Em.Object.create();
+                _.each(e.actions_summary, function (e) {
+                    var n;
+                    e.post = t, e.actionType = Discourse.Site.instance().postActionTypeById(e.id), n = Discourse.ActionSummary.create(e), t.get("actions_summary").pushObject(n), s.set(e.actionType.get("name_key"), n)
+                }), this.set("actionByName", s)
+            }
         }
     }, loadReplies: function () {
         this.set("loadingReplies", !0), this.set("replies", []);
@@ -15787,17 +15621,19 @@ var bootbox = window.bootbox || function (e) {
         return Discourse.ajax("/posts/" + this.get("id") + "/versions.json")
     }, showRepliesBelow: function () {
         var e, t;
-        return e = this.get("reply_count"), 0 === e ? !1 : Discourse.SiteSettings.supress_reply_directly_below ? e > 1 ? !0 : ((t = this.get("topic")) ? t.isReplyDirectlyBelow(this) : void 0) ? !1 : !0 : !0
+        return e = this.get("reply_count"), 0 === e ? !1 : Discourse.SiteSettings.suppress_reply_directly_below ? e > 1 ? !0 : (t = this.get("topic"), !t.isReplyDirectlyBelow(this)) : !0
     }.property("reply_count")}), Discourse.Post.reopenClass({createActionSummary: function (e) {
-        var t;
-        return e.actions_summary ? (t = Em.Object.create(), e.actions_summary = e.actions_summary.map(function (s) {
-            s.post = e, s.actionType = Discourse.Site.instance().postActionTypeById(s.id);
-            var n = Discourse.ActionSummary.create(s);
-            return t.set(s.actionType.get("name_key"), n), n
-        }), e.set("actionByName", t)) : void 0
-    }, create: function (e, t) {
-        var s = this._super(e);
-        return this.createActionSummary(s), e.reply_to_user && s.set("reply_to_user", Discourse.User.create(e.reply_to_user)), s.set("topic", t), s
+        if (e.actions_summary) {
+            var t = Em.Object.create();
+            e.actions_summary = e.actions_summary.map(function (s) {
+                s.post = e, s.actionType = Discourse.Site.instance().postActionTypeById(s.id);
+                var n = Discourse.ActionSummary.create(s);
+                return t.set(s.actionType.get("name_key"), n), n
+            }), e.set("actionByName", t)
+        }
+    }, create: function (e) {
+        var t = this._super(e);
+        return this.createActionSummary(t), e && e.reply_to_user && t.set("reply_to_user", Discourse.User.create(e.reply_to_user)), t
     }, deleteMany: function (e) {
         return Discourse.ajax("/posts/destroy_many", {type: "DELETE", data: {post_ids: e.map(function (e) {
             return e.get("id")
@@ -15822,6 +15658,155 @@ var bootbox = window.bootbox || function (e) {
     }})
 }(this), function () {
     window.jQuery, Discourse.PostActionType = Discourse.Model.extend({}), Discourse.PostActionType.reopenClass({MAX_MESSAGE_LENGTH: 500})
+}(this), function () {
+    window.jQuery, Discourse.PostStream = Em.Object.extend({loading: Em.computed.or("loadingAbove", "loadingBelow", "loadingFilter", "stagingPost"), notLoading: Em.computed.not("loading"), filteredPostsCount: Em.computed.alias("stream.length"), hasPosts: Em.computed.gt("posts.length", 0), hasStream: Em.computed.gt("filteredPostsCount", 0), canAppendMore: Em.computed.and("notLoading", "hasPosts", "lastPostNotLoaded"), canPrependMore: Em.computed.and("notLoading", "hasPosts", "firstPostNotLoaded"), firstPostLoaded: function () {
+        return this.get("hasLoadedData") ? !!this.get("posts").findProperty("id", this.get("firstPostId")) : !1
+    }.property("hasLoadedData", "posts.[]", "firstPostId"), firstPostNotLoaded: Em.computed.not("firstPostLoaded"), firstPostId: function () {
+        return this.get("stream")[0]
+    }.property("stream.@each"), lastPostId: function () {
+        return _.last(this.get("stream"))
+    }.property("stream.@each"), lastPostLoaded: function () {
+        return this.get("hasLoadedData") ? !!this.get("posts").findProperty("id", this.get("lastPostId")) : !1
+    }.property("hasLoadedData", "posts.[]", "lastPostId"), lastPostNotLoaded: Em.computed.not("lastPostLoaded"), streamFilters: function () {
+        var e = {};
+        this.get("bestOf") && (e.filter = "best_of");
+        var t = this.get("userFilters");
+        if (t) {
+            var s = this.get("userFilters").toArray();
+            s.length > 0 && (e.username_filters = s)
+        }
+        return e
+    }.property("userFilters.[]", "bestOf"), filterDesc: function () {
+        var e = this.get("streamFilters");
+        return e.filter && "best_of" === e.filter ? Em.String.i18n("topic.filters.best_of", {n_best_posts: Em.String.i18n("topic.filters.n_best_posts", {count: this.get("filteredPostsCount")}), of_n_posts: Em.String.i18n("topic.filters.of_n_posts", {count: this.get("topic.posts_count")})}) : e.username_filters ? Em.String.i18n("topic.filters.user", {n_posts: Em.String.i18n("topic.filters.n_posts", {count: this.get("filteredPostsCount")}), by_n_users: Em.String.i18n("topic.filters.by_n_users", {count: e.username_filters.length})}) : ""
+    }.property("streamFilters.[]", "topic.posts_count", "posts.length"), hasNoFilters: Em.computed.empty("filterDesc"), previousWindow: function () {
+        var e = _.first(this.get("posts"));
+        if (!e)return[];
+        var t = this.get("stream"), s = this.indexOf(e);
+        if (-1 === s)return[];
+        var n = s - Discourse.SiteSettings.posts_per_page;
+        return 0 > n && (n = 0), t.slice(n, s)
+    }.property("posts.@each", "stream.@each"), nextWindow: function () {
+        var e = _.last(this.get("posts"));
+        if (!e)return[];
+        var t = this.get("stream"), s = this.indexOf(e);
+        return-1 === s ? [] : s + 1 >= this.get("filteredPostsCount") ? [] : t.slice(s + 1, s + Discourse.SiteSettings.posts_per_page + 1)
+    }.property("posts.@each", "stream.@each"), cancelFilter: function () {
+        return this.set("bestOf", !1), this.get("userFilters").clear(), this.refresh()
+    }, toggleBestOf: function () {
+        this.toggleProperty("bestOf"), this.refresh()
+    }, toggleParticipant: function (e) {
+        var t = this.get("userFilters");
+        return t.contains(e) ? t.remove(e) : t.add(e), this.refresh()
+    }, refresh: function (e) {
+        e = e || {}, e.nearPost = parseInt(e.nearPost, 10);
+        var t = this.get("topic"), s = this, n = this.get("posts").findProperty("post_number", e.nearPost);
+        return n ? (Discourse.TopicView.jumpToPost(t.get("id"), e.nearPost), Ember.Deferred.create(function (e) {
+            e.reject()
+        })) : (s.set("loadingFilter", !0), e = _.merge(e, s.get("streamFilters")), Discourse.PostStream.loadTopicView(t.get("id"), e).then(function (n) {
+            t.updateFromJson(n), s.updateFromJson(n.post_stream), s.setProperties({loadingFilter: !1, loaded: !0}), e.nearPost && Discourse.TopicView.jumpToPost(t.get("id"), e.nearPost), Discourse.URL.set("queryParams", s.get("streamFilters"))
+        }, function (e) {
+            s.errorLoading(e.status)
+        }))
+    }, hasLoadedData: Em.computed.and("hasPosts", "hasStream"), appendMore: function () {
+        var e = this, t = Ember.Deferred.create(function (e) {
+            e.reject()
+        });
+        if (!e.get("canAppendMore"))return t;
+        var s = e.get("nextWindow");
+        return Ember.isEmpty(s) ? t : (e.set("loadingBelow", !0), e.findPostsByIds(s).then(function (t) {
+            t.forEach(function (t) {
+                e.appendPost(t)
+            }), e.set("loadingBelow", !1)
+        }))
+    }, prependMore: function () {
+        var e = this, t = Ember.Deferred.create(function (e) {
+            e.reject()
+        });
+        if (!e.get("canPrependMore"))return t;
+        var s = e.get("previousWindow");
+        return Ember.isEmpty(s) ? t : (e.set("loadingAbove", !0), e.findPostsByIds(s.reverse()).then(function (t) {
+            t.forEach(function (t) {
+                e.prependPost(t)
+            }), e.set("loadingAbove", !1)
+        }))
+    }, stagePost: function (e, t) {
+        var s = this.get("topic");
+        s.setProperties({posts_count: (s.get("posts_count") || 0) + 1, last_posted_at: new Date, "details.last_poster": t, highest_post_number: (s.get("highest_post_number") || 0) + 1}), this.set("stagingPost", !0), e.setProperties({post_number: s.get("highest_post_number"), topic: s, created_at: new Date}), this.get("lastPostLoaded") && this.appendPost(e)
+    }, commitPost: function (e) {
+        this.appendPost(e), this.get("stream").pushObject(e.get("id")), this.set("stagingPost", !1)
+    }, undoPost: function (e) {
+        this.posts.removeObject(e);
+        var t = this.get("topic");
+        this.set("stagingPost", !1), t.setProperties({highest_post_number: (t.get("highest_post_number") || 0) - 1, posts_count: (t.get("posts_count") || 0) - 1})
+    }, prependPost: function (e) {
+        return this.get("posts").unshiftObject(this.storePost(e)), e
+    }, appendPost: function (e) {
+        return this.get("posts").addObject(this.storePost(e)), e
+    }, findLoadedPost: function (e) {
+        return this.get("postIdentityMap").get(e)
+    }, triggerNewPostInStream: function (e) {
+        if (e && this.get("hasNoFilters")) {
+            var t = this.get("lastPostLoaded");
+            -1 === this.get("stream").indexOf(e) && (this.get("stream").pushObject(e), t && this.appendMore())
+        }
+    }, closestPostNumberFor: function (e) {
+        if (this.get("hasPosts")) {
+            var t = null;
+            return this.get("posts").forEach(function (s) {
+                t !== e && (t || (t = s.get("post_number")), Math.abs(e - s.get("post_number")) < Math.abs(t - e) && (t = s.get("post_number")))
+            }), t
+        }
+    }, updateFromJson: function (e) {
+        var t = this, s = this.get("posts");
+        s.clear(), e && (e.posts.forEach(function (e) {
+            t.appendPost(Discourse.Post.create(e))
+        }), delete e.posts, t.setProperties(e))
+    }, storePost: function (e) {
+        var t = e.get("id");
+        if (t) {
+            var s = this.get("postIdentityMap"), n = s.get(e.get("id"));
+            if (n)return n.updateFromPost(e), n;
+            e.set("topic", this.get("topic")), s.set(e.get("id"), e)
+        }
+        return e
+    }, listUnloadedIds: function (e) {
+        var t = Em.A(), s = this.get("postIdentityMap");
+        return e.forEach(function (e) {
+            s.has(e) || t.pushObject(e)
+        }), t
+    }, findPostsByIds: function (e) {
+        var t = this.listUnloadedIds(e), s = this.get("postIdentityMap");
+        return this.loadIntoIdentityMap(t).then(function () {
+            return e.map(function (e) {
+                return s.get(e)
+            })
+        })
+    }, loadIntoIdentityMap: function (e) {
+        if (Em.isEmpty(e))return Ember.Deferred.promise(function (e) {
+            e.resolve()
+        });
+        var t = "/t/" + this.get("topic.id") + "/posts.json", s = {post_ids: e}, n = this;
+        return Em.A(), Discourse.ajax(t, {data: s}).then(function (e) {
+            var t = Em.get(e, "post_stream.posts");
+            t && t.forEach(function (e) {
+                n.storePost(Discourse.Post.create(e))
+            })
+        })
+    }, indexOf: function (e) {
+        return this.get("stream").indexOf(e.get("id"))
+    }, errorLoading: function (e) {
+        var t = this.get("topic");
+        return t.set("loadingFilter", !1), t.set("errorLoading", !0), 404 === e ? (t.set("errorTitle", Em.String.i18n("topic.not_found.title")), t.set("message", Em.String.i18n("topic.not_found.description")), void 0) : 403 === e ? (t.set("errorTitle", Em.String.i18n("topic.invalid_access.title")), t.set("message", Em.String.i18n("topic.invalid_access.description")), void 0) : (t.set("errorTitle", Em.String.i18n("topic.server_error.title")), t.set("message", Em.String.i18n("topic.server_error.description")), void 0)
+    }}), Discourse.PostStream.reopenClass({create: function (e) {
+        var t = this._super(e);
+        return t.setProperties({posts: Em.A(), stream: Em.A(), userFilters: Em.Set.create(), postIdentityMap: Em.Map.create(), bestOf: !1, loaded: !1, loadingAbove: !1, loadingBelow: !1, loadingFilter: !1, stagingPost: !1}), t
+    }, loadTopicView: function (e, t) {
+        var s = _.merge({}, t), n = Discourse.getURL("/t/") + e;
+        return s.nearPost && (n += "/" + s.nearPost), delete s.nearPost, PreloadStore.getAndRemove("topic_" + e, function () {
+            return Discourse.ajax(n + ".json", {data: s})
+        })
+    }})
 }(this), function () {
     window.jQuery, Discourse.SelectableArray = Em.ArrayProxy.extend({init: function () {
         this.content = [], this._super()
@@ -15894,9 +15879,11 @@ var bootbox = window.bootbox || function (e) {
     }})
 }(this), function () {
     var e = window.jQuery;
-    Discourse.Topic = Discourse.Model.extend({fewParticipants: function () {
-        return this.present("participants") ? this.get("participants").slice(0, 3) : null
-    }.property("participants"), canConvertToRegular: function () {
+    Discourse.Topic = Discourse.Model.extend({postStream: function () {
+        return Discourse.PostStream.create({topic: this})
+    }.property(), details: function () {
+        return Discourse.TopicDetails.create({topic: this})
+    }.property(), canConvertToRegular: function () {
         var e = this.get("archetype");
         return"regular" !== e && "private_message" !== e
     }.property("archetype"), convertArchetype: function () {
@@ -15905,8 +15892,11 @@ var bootbox = window.bootbox || function (e) {
     }, searchContext: function () {
         return{type: "topic", id: this.get("id")}
     }.property("id"), category: function () {
-        return Discourse.Category.list().findProperty("name", this.get("categoryName"))
-    }.property("categoryName"), shareUrl: function () {
+        var e = this.get("category_id");
+        if (e)return Discourse.Category.list().findProperty("id", e);
+        var t = this.get("categoryName");
+        return t ? Discourse.Category.list().findProperty("name", t) : null
+    }.property("category_id", "categoryName"), shareUrl: function () {
         var e = Discourse.User.current();
         return this.get("url") + (e ? "?u=" + e.get("username_lower") : "")
     }.property("url"), url: function () {
@@ -15919,15 +15909,7 @@ var bootbox = window.bootbox || function (e) {
         return this.urlForPostNumber(this.get("last_read_post_number"))
     }.property("url", "last_read_post_number"), lastPostUrl: function () {
         return this.urlForPostNumber(this.get("highest_post_number"))
-    }.property("url", "highest_post_number"), lastPost: function () {
-        var e = this.get("posts");
-        return e[e.length - 1]
-    }, postsChanged: function () {
-        var e, t;
-        return t = this.get("posts"), e = t[t.length - 1], e && e.set && !e.lastPost ? (_.each(t, function (e) {
-            e.lastPost && e.set("lastPost", !1)
-        }), e.set("lastPost", !0), !0) : void 0
-    }.observes("posts.@each", "posts"), displayNewPosts: function () {
+    }.property("url", "highest_post_number"), displayNewPosts: function () {
         var e, t, s;
         return(t = Discourse.get("highestSeenByTopic")[this.get("id")]) && (e = t - this.get("last_read_post_number"), e > 0) ? (s = this.get("new_posts") - e, 0 > s && (s = 0), s) : this.get("new_posts")
     }.property("new_posts", "id"), ageCold: function () {
@@ -15951,13 +15933,6 @@ var bootbox = window.bootbox || function (e) {
         return"private_message" === this.get("archetype")
     }.property("archetype"), toggleStatus: function (e) {
         return this.toggleProperty(e), Discourse.ajax(this.get("url") + "/status", {type: "PUT", data: {status: e, enabled: this.get(e) ? "true" : "false"}})
-    }, removeAllowedUser: function (e) {
-        var t = this.get("allowed_users");
-        return Discourse.ajax("/t/" + this.get("id") + "/remove-allowed-user", {type: "PUT", data: {username: e}}).then(function () {
-            t.removeObject(t.find(function (t) {
-                return t.username === e
-            }))
-        })
     }, favoriteTooltipKey: function () {
         return this.get("starred") ? "favorite.help.unstar" : "favorite.help.star"
     }.property("starred"), favoriteTooltip: function () {
@@ -15968,43 +15943,20 @@ var bootbox = window.bootbox || function (e) {
             t.toggleProperty("starred"), s && s.responseText ? bootbox.alert(e.parseJSON(s.responseText).errors) : bootbox.alert(Em.String.i18n("generic_error"))
         })
     }, save: function () {
-        return this.get("can_edit") ? Discourse.ajax(this.get("url"), {type: "PUT", data: {title: this.get("title"), category: this.get("category.name")}}) : void 0
+        return this.get("details.can_edit") ? Discourse.ajax(this.get("url"), {type: "PUT", data: {title: this.get("title"), category: this.get("category.name")}}) : void 0
     }, resetRead: function () {
         return Discourse.ajax("/t/" + this.get("id") + "/timings", {type: "DELETE"})
     }, inviteUser: function (e) {
         return Discourse.ajax("/t/" + this.get("id") + "/invite", {type: "POST", data: {user: e}})
     }, destroy: function () {
         return Discourse.ajax("/t/" + this.get("id"), {type: "DELETE"})
-    }, loadPosts: function (e) {
-        var t = this;
-        if (e || (e = {}), e.bestOf || e.nearPost || (e.nearPost = 1), Discourse.TopicView.scrollTo(this.get("id"), e.nearPost))return Ember.Deferred.promise(function (e) {
-            e.resolve()
-        });
-        var s = function (s) {
-            var n, r, a;
-            s.slug && t.set("slug", s.slug), e.nearPost = parseInt(e.nearPost, 10), n = 0, a = Number.MAX_VALUE, _.each(s.posts, function (t) {
-                var s = Math.abs(t.post_number - e.nearPost);
-                return a > s && (a = s, n = t.post_number, 0 === s) ? !1 : void 0
-            }), e.nearPost = n, t.get("participants") && t.get("participants").clear(), s.suggested_topics && t.set("suggested_topics", Em.A()), t.mergeAttributes(s, {suggested_topics: Discourse.Topic}), t.set("posts", Em.A()), e.trackVisit && s.draft && s.draft.length > 0 && Discourse.openComposer({draft: Discourse.Draft.getLocal(s.draft_key, s.draft), draftKey: s.draft_key, draftSequence: s.draft_sequence, topic: t, ignoreIfChanged: !0}), r = null, _.each(s.posts, function (s) {
-                s.scrollToAfterInsert = e.nearPost;
-                var n = Discourse.Post.create(s);
-                n.set("topic", t), t.get("posts").pushObject(n), r = n
-            }), t.set("allowed_users", Em.A(s.allowed_users)), t.set("loaded", !0)
-        }, n = function (e) {
-            return t.set("errorLoading", !0), 404 === e.status ? (t.set("errorTitle", Em.String.i18n("topic.not_found.title")), t.set("message", Em.String.i18n("topic.not_found.description")), void 0) : 403 === e.status ? (t.set("errorTitle", Em.String.i18n("topic.invalid_access.title")), t.set("message", Em.String.i18n("topic.invalid_access.description")), void 0) : (t.set("errorTitle", Em.String.i18n("topic.server_error.title")), t.set("message", Em.String.i18n("topic.server_error.description")), void 0)
-        };
-        return Discourse.Topic.find(this.get("id"), {nearPost: e.nearPost, bestOf: e.bestOf, trackVisit: e.trackVisit}).then(s, n)
-    }, notificationReasonText: function () {
-        var e = "topic.notifications.reasons." + this.get("notification_level");
-        return"number" == typeof this.get("notifications_reason_id") && (e += "_" + this.get("notifications_reason_id")), Em.String.i18n(e, {username: Discourse.User.current("username_lower")})
-    }.property("notification_level", "notifications_reason_id"), updateNotifications: function (e) {
-        return this.set("notification_level", e), this.set("notifications_reason_id", null), Discourse.ajax("/t/" + this.get("id") + "/notifications", {type: "POST", data: {notification_level: e}})
-    }, pushPosts: function (e) {
-        var t, s;
-        t = {}, s = this.get("posts"), _.each(s, function (e) {
-            t["" + e.post_number] = !0
-        }), _.each(e, function (e) {
-            t[e.get("post_number")] || s.pushObject(e)
+    }, updateFromJson: function (e) {
+        this.get("details").updateFromJson(e.details);
+        var t = Object.keys(e);
+        t.removeObject("details"), t.removeObject("post_stream");
+        var s = this;
+        t.forEach(function (t) {
+            s.set(t, e[t])
         })
     }, clearPin: function () {
         var e = this;
@@ -16013,7 +15965,7 @@ var bootbox = window.bootbox || function (e) {
         })
     }, isReplyDirectlyBelow: function (e) {
         var t, s;
-        return(s = this.get("posts")) ? (t = s[s.indexOf(e) + 1], (t ? t.get("reply_to_post_number") : void 0) === e.get("post_number")) : void 0
+        return(s = this.get("postStream.posts")) ? (t = s[s.indexOf(e) + 1], t && t.get("reply_to_post_number") === e.get("post_number")) : void 0
     }, hasExcerpt: function () {
         return this.get("pinned") && this.get("excerpt") && this.get("excerpt").length > 0
     }.property("pinned", "excerpt"), excerptTruncated: function () {
@@ -16031,12 +15983,7 @@ var bootbox = window.bootbox || function (e) {
         var s, n;
         return n = Discourse.getURL("/t/") + e, t.nearPost && (n += "/" + t.nearPost), s = {}, t.postsAfter && (s.posts_after = t.postsAfter), t.postsBefore && (s.posts_before = t.postsBefore), t.trackVisit && (s.track_visit = !0), t.userFilters && t.userFilters.length > 0 && (s.username_filters = [], t.userFilters.forEach(function (e) {
             s.username_filters.push(e)
-        })), t.bestOf === !0 && (s.best_of = !0), PreloadStore.getAndRemove("topic_" + e,function () {
-            return Discourse.ajax(n + ".json", {data: s})
-        }).then(function (e) {
-            var s = e.posts[0];
-            return s && t && t.bestOf && (s.bestOfFirst = !0), e
-        })
+        })), t.bestOf === !0 && (s.best_of = !0), Discourse.ajax(n + ".json", {data: s})
     }, mergeTopic: function (e, t) {
         var s = Discourse.ajax("/t/" + e + "/merge-topic", {type: "POST", data: {destination_topic_id: t}}).then(function (e) {
             return e.success ? e : (s.reject(), void 0)
@@ -16047,13 +15994,21 @@ var bootbox = window.bootbox || function (e) {
             return e.success ? e : (s.reject(), void 0)
         });
         return s
-    }, create: function (e) {
-        var t = this._super(e);
-        return t.participants && (t.participants = _.map(t.participants, function (e) {
+    }})
+}(this), function () {
+    window.jQuery, Discourse.TopicDetails = Discourse.Model.extend({loaded: !1, updateFromJson: function (e) {
+        e.allowed_users && (e.allowed_users = e.allowed_users.map(function (e) {
             return Discourse.User.create(e)
-        }), t.fewParticipants = Em.A(), _.each(t.participants, function (e) {
-            return t.fewParticipants.length >= 8 ? !1 : (t.fewParticipants.pushObject(e), void 0)
-        })), t
+        })), e.suggested_topics && (e.suggested_topics = e.suggested_topics.map(function (e) {
+            return Discourse.Topic.create(e)
+        })), this.setProperties(e), this.set("loaded", !0)
+    }, fewParticipants: function () {
+        return this.present("participants") ? this.get("participants").slice(0, 3) : null
+    }.property("participants"), notificationReasonText: function () {
+        var e = "topic.notifications.reasons." + this.get("notification_level");
+        return"number" == typeof this.get("notifications_reason_id") && (e += "_" + this.get("notifications_reason_id")), Em.String.i18n(e, {username: Discourse.User.current("username_lower")})
+    }.property("notification_level", "notifications_reason_id"), updateNotifications: function (e) {
+        return this.set("notification_level", e), this.set("notifications_reason_id", null), Discourse.ajax("/t/" + this.get("topic.id") + "/notifications", {type: "POST", data: {notification_level: e}})
     }})
 }(this), function () {
     window.jQuery, Discourse.TopicList = Discourse.Model.extend({forEachNew: function (e, t) {
@@ -16362,17 +16317,23 @@ var bootbox = window.bootbox || function (e) {
     window.jQuery, Discourse.UserStream = Discourse.Model.extend({filterChanged: function () {
         this.setProperties({content: Em.A(), itemsLoaded: 0}), this.findItems()
     }.observes("filter"), findItems: function () {
-        var e = Discourse.getURL("/user_actions?offset=") + this.get("itemsLoaded") + "&username=" + this.get("user.username_lower");
-        this.get("filter") && (e += "&filter=" + this.get("filter"));
-        var t = this;
-        return Discourse.ajax(e, {cache: "false"}).then(function (e) {
-            if (e && e.user_actions) {
-                var s = Em.A();
-                _.each(e.user_actions, function (e) {
-                    s.pushObject(Discourse.UserAction.create(e))
-                }), s = Discourse.UserAction.collapseStream(s), t.get("content").pushObjects(s), t.set("itemsLoaded", t.get("itemsLoaded") + e.user_actions.length)
-            }
-        })
+        var e = this;
+        if (!this.get("loading")) {
+            this.set("loading", !0);
+            var t = Discourse.getURL("/user_actions.json?offset=") + this.get("itemsLoaded") + "&username=" + this.get("user.username_lower");
+            this.get("filter") && (t += "&filter=" + this.get("filter"));
+            var s = this;
+            return Discourse.ajax(t, {cache: "false"}).then(function (t) {
+                if (e.set("loading", !1), t && t.user_actions) {
+                    var n = Em.A();
+                    _.each(t.user_actions, function (e) {
+                        n.pushObject(Discourse.UserAction.create(e))
+                    }), n = Discourse.UserAction.collapseStream(n), s.get("content").pushObjects(n), s.set("itemsLoaded", s.get("itemsLoaded") + t.user_actions.length)
+                }
+            }, function () {
+                e.set("loading", !1)
+            })
+        }
     }})
 }(this), function () {
     var e = window.jQuery;
@@ -16433,14 +16394,14 @@ var bootbox = window.bootbox || function (e) {
         this.get("controller").send("showLogin")
     }})
 }(this), function () {
-    window.jQuery, Discourse.NotificationsButton = Discourse.DropdownButtonView.extend({title: Em.String.i18n("topic.notifications.title"), longDescriptionBinding: "topic.notificationReasonText", dropDownContent: [
+    window.jQuery, Discourse.NotificationsButton = Discourse.DropdownButtonView.extend({title: Em.String.i18n("topic.notifications.title"), longDescriptionBinding: "topic.details.notificationReasonText", dropDownContent: [
         [Discourse.Topic.NotificationLevel.WATCHING, "topic.notifications.watching"],
         [Discourse.Topic.NotificationLevel.TRACKING, "topic.notifications.tracking"],
         [Discourse.Topic.NotificationLevel.REGULAR, "topic.notifications.regular"],
         [Discourse.Topic.NotificationLevel.MUTE, "topic.notifications.muted"]
     ], text: function () {
         var e = function () {
-            switch (this.get("topic.notification_level")) {
+            switch (this.get("topic.details.notification_level")) {
                 case Discourse.Topic.NotificationLevel.WATCHING:
                     return"watching";
                 case Discourse.Topic.NotificationLevel.TRACKING:
@@ -16463,11 +16424,11 @@ var bootbox = window.bootbox || function (e) {
             }
         }();
         return t + Ember.String.i18n("topic.notifications." + e + ".title") + "<span class='caret'></span>"
-    }.property("topic.notification_level"), clicked: function (e) {
-        return this.get("topic").updateNotifications(e)
+    }.property("topic.details.notification_level"), clicked: function (e) {
+        return this.get("topic.details").updateNotifications(e)
     }})
 }(this), function () {
-    window.jQuery, Discourse.ReplyButton = Discourse.ButtonView.extend({classNames: ["btn", "btn-primary", "create"], attributeBindings: ["disabled"], helpKey: "topic.reply.help", disabled: Em.computed.not("controller.content.can_create_post"), text: function () {
+    window.jQuery, Discourse.ReplyButton = Discourse.ButtonView.extend({classNames: ["btn", "btn-primary", "create"], attributeBindings: ["disabled"], helpKey: "topic.reply.help", disabled: Em.computed.not("controller.model.details.can_create_post"), text: function () {
         var e = this.get("controller.content.archetype").capitalize(), t = this.get("parentView.replyButtonText" + e);
         return t ? t : Em.String.i18n("topic.reply.title")
     }.property(), renderIcon: function (e) {
@@ -16480,14 +16441,16 @@ var bootbox = window.bootbox || function (e) {
         e.push("<i class='icon icon-share'></i>")
     }})
 }(this), function () {
-    window.jQuery, Discourse.CategoryChooserView = Discourse.ComboboxView.extend({classNames: ["combobox category-combobox"], overrideWidths: !0, dataAttributes: ["name", "color", "text_color", "description", "topic_count"], valueBinding: Ember.Binding.oneWay("source"), init: function () {
+    window.jQuery, Discourse.CategoryChooserView = Discourse.ComboboxView.extend({classNames: ["combobox category-combobox"], overrideWidths: !0, dataAttributes: ["name", "color", "text_color", "description_text", "topic_count"], valueBinding: Ember.Binding.oneWay("source"), init: function () {
         this._super(), this.set("content", Discourse.Category.list())
     }, none: function () {
         return Discourse.SiteSettings.allow_uncategorized_topics || this.get("showUncategorized") ? "category.none" : void 0
     }.property("showUncategorized"), template: function (e, t) {
         if (!t.color)return e;
         var s = "<span class='badge-category' style='background-color: #" + t.color + "; color: #" + t.text_color + ";'>" + t.name + "</span>";
-        return s += " <span class='topic-count'>&times; " + t.topic_count + "</span>", t.description && "null" !== t.description && (s += '<div class="category-desc">' + t.description.substr(0, 200) + (t.description.length > 200 ? "&hellip;" : "") + "</div>"), s
+        s += " <span class='topic-count'>&times; " + t.topic_count + "</span>";
+        var n = t.description_text;
+        return n && "null" !== n && (s += '<div class="category-desc">' + n.substr(0, 200) + (n.length > 200 ? "&hellip;" : "") + "</div>"), s
     }}), Discourse.View.registerHelper("categoryChooser", Discourse.CategoryChooserView)
 }(this), function () {
     var e = window.jQuery;
@@ -16509,22 +16472,22 @@ var bootbox = window.bootbox || function (e) {
     }}), Discourse.View.registerHelper("chooseTopic", Discourse.ChooseTopicView)
 }(this), function () {
     var e = window.jQuery;
-    Discourse.ComposerView = Discourse.View.extend({templateName: "composer", elementId: "reply-control", classNameBindings: ["content.creatingPrivateMessage:private-message", "composeState", "content.loading", "content.editTitle", "postMade", "content.creatingTopic:topic", "content.showPreview", "content.hidePreview"], composeState: function () {
-        var e = this.get("content.composeState");
+    Discourse.ComposerView = Discourse.View.extend({templateName: "composer", elementId: "reply-control", classNameBindings: ["model.creatingPrivateMessage:private-message", "composeState", "model.loading", "model.editTitle", "postMade", "model.creatingTopic:topic", "model.showPreview", "model.hidePreview"], model: Em.computed.alias("controller.model"), content: Em.computed.alias("model"), composeState: function () {
+        var e = this.get("model.composeState");
         return e ? e : Discourse.Composer.CLOSED
-    }.property("content.composeState"), draftStatus: function () {
-        e("#draft-status").text(this.get("content.draftStatus") || "")
-    }.observes("content.draftStatus"), loadingChanged: function () {
+    }.property("model.composeState"), draftStatus: function () {
+        e("#draft-status").text(this.get("model.draftStatus") || "")
+    }.observes("model.draftStatus"), loadingChanged: function () {
         this.get("loading") ? e("#wmd-input, #reply-title").prop("disabled", "disabled") : e("#wmd-input, #reply-title").prop("disabled", "")
     }.observes("loading"), postMade: function () {
         return this.present("controller.createdPost") ? "created-post" : null
-    }.property("content.createdPost"), observeReplyChanges: function () {
+    }.property("model.createdPost"), observeReplyChanges: function () {
         var t = this;
-        this.get("content.hidePreview") || Ember.run.next(null, function () {
+        this.get("model.hidePreview") || Ember.run.next(null, function () {
             var s, n;
             return t.editor && (t.editor.refreshPreview(), n = Discourse.Utilities.caretPosition(t.wmdInput[0]), !t.wmdInput.val().substring(n).match(/\n/) && (s = e("#wmd-preview"), s.is(":visible"))) ? s.scrollTop(s[0].scrollHeight) : void 0
         })
-    }.observes("content.reply", "content.hidePreview"), newUserEducationVisibilityChanged: function () {
+    }.observes("model.reply", "model.hidePreview"), newUserEducationVisibilityChanged: function () {
         var t = e("#new-user-education");
         this.get("controller.newUserEducationVisible") ? t.slideDown("fast") : t.slideUp("fast")
     }.observes("controller.newUserEducationVisible"), similarVisibilityChanged: function () {
@@ -16540,7 +16503,7 @@ var bootbox = window.bootbox || function (e) {
             var t = e("#reply-control"), s = t.height() || 0, n = "" + s + "px";
             e(".topic-area").css("padding-bottom", n), e(".composer-popup").css("bottom", n)
         })
-    }.observes("content.composeState"), keyUp: function () {
+    }.observes("model.composeState"), keyUp: function () {
         var e = this.get("controller");
         e.checkReplyLength();
         var t = new Date;
@@ -16560,7 +16523,7 @@ var bootbox = window.bootbox || function (e) {
         var t = e("#wmd-preview");
         if (0 !== t.length) {
             Discourse.SyntaxHighlighting.apply(t);
-            var s = this.get("controller.content.post"), n = !1;
+            var s = this.get("model.post"), n = !1;
             s && s.blank("refreshedPost") && (n = !0, s.set("refreshedPost", !0)), e("a.onebox", t).each(function (e, t) {
                 Discourse.Onebox.load(t, n)
             }), e("span.mention", t).each(function (e, t) {
@@ -16573,7 +16536,7 @@ var bootbox = window.bootbox || function (e) {
             $LAB.script(assetPath("defer/html-sanitizer-bundle")), Discourse.ComposerView.trigger("initWmdEditor");
             var r = Discourse.UserSelector.templateFunction();
             t.data("init", !0), t.autocomplete({template: r, dataSource: function (e) {
-                return Discourse.UserSearch.search({term: e, topicId: n.get("controller.controllers.topic.content.id")})
+                return Discourse.UserSearch.search({term: e, topicId: n.get("controller.controllers.topic.model.id")})
             }, key: "@", transformComplete: function (e) {
                 return e.username
             }}), this.editor = s = Discourse.Markdown.createEditor({lookupAvatar: function (e) {
@@ -16593,17 +16556,17 @@ var bootbox = window.bootbox || function (e) {
             });
             var o = e("#reply-title");
             return o.keyup(function () {
-                return i(), 0 >= n.get("controller.content.missingTitleCharacters") && o.removeClass("requirements-not-met"), !0
+                return i(), 0 >= n.get("model.missingTitleCharacters") && o.removeClass("requirements-not-met"), !0
             }), o.blur(function () {
-                n.get("controller.content.missingTitleCharacters") > 0 && o.toggleClass("requirements-not-met", !0)
+                n.get("model.missingTitleCharacters") > 0 && o.toggleClass("requirements-not-met", !0)
             }), a.fileupload("destroy"), a.off(), a.fileupload({url: Discourse.getURL("/uploads"), dataType: "json", timeout: 2e4}), a.on("fileuploadsubmit", function (e, t) {
                 var s = Discourse.Utilities.validateFilesForUpload(t.files);
-                return s && n.setProperties({uploadProgress: 0, loadingImage: !0}), s
+                return s && n.setProperties({uploadProgress: 0, isUploading: !0}), s
             }), a.on("fileuploadsend", function (t, s) {
                 n.get("controller").send("closeModal");
                 var r = s.xhr();
                 Em.run.schedule("afterRender", function () {
-                    e("#cancel-image-upload").on("click", function () {
+                    e("#cancel-file-upload").on("click", function () {
                         r && r.abort(), e(this).off("click")
                     })
                 })
@@ -16612,15 +16575,16 @@ var bootbox = window.bootbox || function (e) {
                 n.set("uploadProgress", s)
             }), a.on("fileuploaddone", function (e, t) {
                 var s = t.result, r = '<img src="' + s.url + '" width="' + s.width + '" height="' + s.height + '">';
-                n.addMarkdown(r), n.set("loadingImage", !1)
+                n.addMarkdown(r), n.set("isUploading", !1)
             }), a.on("fileuploadfail", function (e, t) {
-                if (n.set("loadingImage", !1), t.jqXHR)switch (t.jqXHR.status) {
+                if (n.set("isUploading", !1), t.jqXHR)switch (t.jqXHR.status) {
                     case 0:
                         return;
                     case 413:
                         return bootbox.alert(Em.String.i18n("post.errors.upload_too_large", {max_size_kb: Discourse.SiteSettings.max_upload_size_kb})), void 0;
                     case 415:
-                        return bootbox.alert(Em.String.i18n("post.errors.only_images_are_supported")), void 0;
+                        var s = Discourse.SiteSettings.authorized_extensions.replace(/\|/g, ", ");
+                        return bootbox.alert(Em.String.i18n("post.errors.upload_not_authorized", {authorized_extensions: s})), void 0;
                     case 422:
                         return bootbox.alert(t.jqXHR.responseText), void 0
                 }
@@ -16631,8 +16595,8 @@ var bootbox = window.bootbox || function (e) {
             }, 300)
         }
     }, addMarkdown: function (t) {
-        var s = e("#wmd-input").get(0), n = Discourse.Utilities.caretPosition(s), r = this.get("content.reply");
-        this.set("content.reply", r.substring(0, n) + t + r.substring(n, r.length)), Em.run.schedule("afterRender", function () {
+        var s = e("#wmd-input").get(0), n = Discourse.Utilities.caretPosition(s), r = this.get("model.reply");
+        this.set("model.reply", r.substring(0, n) + t + r.substring(n, r.length)), Em.run.schedule("afterRender", function () {
             Discourse.Utilities.setCaretPosition(s, n + t.length)
         })
     }, imageSizes: function () {
@@ -16647,14 +16611,14 @@ var bootbox = window.bootbox || function (e) {
         var t = e(".admin-options-form"), s = e(".wmd-controls"), n = parseInt(s.css("top"), 10);
         t.is(":visible") ? (s.css("top", n - parseInt(t.css("height"), 10) + "px"), t.hide()) : (t.show(), s.css("top", n + parseInt(t.css("height"), 10) + "px"))
     }, titleValidation: function () {
-        var e, t = this.get("content.title"), s = this.get("content.creatingPrivateMessage") ? Discourse.SiteSettings.min_private_message_title_length : Discourse.SiteSettings.min_topic_title_length;
-        return!t || 1 > t.length ? e = Em.String.i18n("composer.error.title_missing") : s > t.length ? e = Em.String.i18n("composer.error.title_too_short", {min: s}) : t.length > Discourse.SiteSettings.max_topic_title_length && (e = Em.String.i18n("composer.error.title_too_long", {max: Discourse.SiteSettings.max_topic_title_length})), e ? Discourse.InputValidation.create({failed: !0, reason: e}) : void 0
-    }.property("content.title"), categoryValidation: function () {
-        return Discourse.SiteSettings.allow_uncategorized_topics || this.get("content.categoryName") ? void 0 : Discourse.InputValidation.create({failed: !0, reason: Em.String.i18n("composer.error.category_missing")})
-    }.property("content.categoryName"), replyValidation: function () {
-        var e, t = this.get("content.reply");
-        return!t || 1 > t.length ? e = Em.String.i18n("composer.error.post_missing") : t.length < Discourse.SiteSettings.min_post_length && (e = Em.String.i18n("composer.error.post_length", {min: Discourse.SiteSettings.min_post_length})), e ? Discourse.InputValidation.create({failed: !0, reason: e}) : void 0
-    }.property("content.reply")}), Discourse.NotifyingTextArea = Ember.TextArea.extend({placeholder: function () {
+        var e, t = this.get("model.titleLength"), s = this.get("model.missingTitleCharacters");
+        return 1 > t ? e = Em.String.i18n("composer.error.title_missing") : s > 0 ? e = Em.String.i18n("composer.error.title_too_short", {min: this.get("model.minimumTitleLength")}) : t > Discourse.SiteSettings.max_topic_title_length && (e = Em.String.i18n("composer.error.title_too_long", {max: Discourse.SiteSettings.max_topic_title_length})), e ? Discourse.InputValidation.create({failed: !0, reason: e}) : void 0
+    }.property("model.titleLength", "model.missingTitleCharacters", "model.minimumTitleLength"), categoryValidation: function () {
+        return Discourse.SiteSettings.allow_uncategorized_topics || this.get("model.categoryName") ? void 0 : Discourse.InputValidation.create({failed: !0, reason: Em.String.i18n("composer.error.category_missing")})
+    }.property("model.categoryName"), replyValidation: function () {
+        var e, t = this.get("model.replyLength"), s = this.get("model.missingReplyCharacters");
+        return 1 > t ? e = Em.String.i18n("composer.error.post_missing") : s > 0 && (e = Em.String.i18n("composer.error.post_length", {min: this.get("model.minimumPostLength")})), e ? Discourse.InputValidation.create({failed: !0, reason: e}) : void 0
+    }.property("model.reply", "model.replyLength", "model.missingReplyCharacters", "model.minimumPostLength")}), Discourse.NotifyingTextArea = Ember.TextArea.extend({placeholder: function () {
         return Em.String.i18n(this.get("placeholderKey"))
     }.property("placeholderKey"), didInsertElement: function () {
         return this.get("parent").childDidInsertElement(this)
@@ -16707,7 +16671,10 @@ var bootbox = window.bootbox || function (e) {
         if (this.get("controller.showExtraInfo")) {
             var t = Discourse.SiteSettings.logo_small_url;
             e += t && t.length > 1 ? "<img class='logo-small' src='" + t + "' width='33' height='33'>" : "<i class='icon-home'></i>"
-        } else e += "<img class='logo-big' src=\"" + Discourse.SiteSettings.logo_url + '" alt="' + Discourse.SiteSettings.title + "\" id='site-logo'>";
+        } else {
+            var s = Discourse.SiteSettings.logo_url;
+            e += s && s.length > 1 ? "<img class='logo-big' src=\"" + s + '" alt="' + Discourse.SiteSettings.title + "\" id='site-logo'>" : "<h2 class='text-logo' id='site-text-logo'>" + Discourse.SiteSettings.title + "</h2>"
+        }
         return e += "</a></div>", new Handlebars.SafeString(e)
     }.property("controller.showExtraInfo"), willDestroyElement: function () {
         e(window).unbind("scroll.discourse-dock"), e(document).unbind("touchmove.discourse-dock"), this.$("a.unread-private-messages, a.unread-notifications, a[data-notifications]").off("click.notifications"), this.$("a[data-dropdown]").off("click.dropdown")
@@ -16937,8 +16904,8 @@ var bootbox = window.bootbox || function (e) {
     }})
 }(this), function () {
     window.jQuery, Discourse.ParticipantView = Discourse.View.extend({templateName: "participant", toggled: function () {
-        return this.get("controller.userFilters").contains(this.get("participant.username"))
-    }.property("controller.userFilters.[]")}), Discourse.View.registerHelper("participant", Discourse.ParticipantView)
+        return this.get("controller.postStream.userFilters").contains(this.get("participant.username"))
+    }.property("controller.postStream.userFilters.[]")}), Discourse.View.registerHelper("participant", Discourse.ParticipantView)
 }(this), function () {
     window.jQuery, Discourse.PopupInputTipView = Discourse.View.extend({templateName: "popup_input_tip", classNameBindings: [":popup-tip", "good", "bad", "shownAt::hide"], animateAttribute: null, bouncePixels: 6, bounceDelay: 100, good: function () {
         return!this.get("validation.failed")
@@ -16981,7 +16948,7 @@ var bootbox = window.bootbox || function (e) {
         }
     }, needsToRender: function () {
         this.rerender()
-    }.observes("post.deleted_at", "post.flagsAvailable.@each", "post.url", "post.bookmarked", "post.reply_count", "post.showRepliesBelow", "post.can_delete"), renderReplies: function (e, t) {
+    }.observes("post.deleted_at", "post.flagsAvailable.@each", "post.url", "post.bookmarked", "post.reply_count", "post.showRepliesBelow", "post.can_delete", "post.read", "post.topic.last_read_post_number"), renderReplies: function (e, t) {
         if (e.get("showRepliesBelow")) {
             var s = e.get("reply_count");
             t.push("<button class='show-replies' data-action='replies'>"), t.push("<span class='badge-posts'>" + s + "</span>"), t.push(Em.String.i18n("post.has_replies", {count: s}));
@@ -16991,7 +16958,7 @@ var bootbox = window.bootbox || function (e) {
     }, clickReplies: function () {
         this.get("postView").showReplies()
     }, renderDelete: function (e, t) {
-        return 1 === e.get("post_number") && this.get("controller.content.can_delete") ? (t.push('<button title="' + Em.String.i18n("topic.actions.delete") + '" data-action="deleteTopic" class=\'delete\'><i class="icon-trash"></i></button>'), void 0) : (e.get("deleted_at") ? e.get("can_recover") && t.push('<button title="' + Em.String.i18n("post.controls.undelete") + '" data-action="recover" class="delete"><i class="icon-undo"></i></button>') : e.get("can_delete") && t.push('<button title="' + Em.String.i18n("post.controls.delete") + '" data-action="delete" class="delete"><i class="icon-trash"></i></button>'), void 0)
+        return 1 === e.get("post_number") && this.get("controller.model.details.can_delete") ? (t.push('<button title="' + Em.String.i18n("topic.actions.delete") + '" data-action="deleteTopic" class=\'delete\'><i class="icon-trash"></i></button>'), void 0) : (e.get("deleted_at") ? e.get("can_recover") && t.push('<button title="' + Em.String.i18n("post.controls.undelete") + '" data-action="recover" class="delete"><i class="icon-undo"></i></button>') : e.get("can_delete") && t.push('<button title="' + Em.String.i18n("post.controls.delete") + '" data-action="delete" class="delete"><i class="icon-trash"></i></button>'), void 0)
     }, clickDeleteTopic: function () {
         this.get("controller").deleteTopic()
     }, clickRecover: function () {
@@ -17014,20 +16981,17 @@ var bootbox = window.bootbox || function (e) {
     }, renderShare: function (e, t) {
         t.push('<button title="' + Em.String.i18n("post.controls.share") + '" data-share-url="' + e.get("shareUrl") + '" class=\'share\'><i class="icon-link"></i></button>')
     }, renderReply: function (e, t) {
-        this.get("controller.content.can_create_post") && t.push('<button title="' + Em.String.i18n("post.controls.reply") + "\" class='create' data-action=\"reply\"><i class='icon-reply'></i>" + Em.String.i18n("topic.reply.title") + "</button>")
+        this.get("controller.model.details.can_create_post") && t.push('<button title="' + Em.String.i18n("post.controls.reply") + "\" class='create' data-action=\"reply\"><i class='icon-reply'></i>" + Em.String.i18n("topic.reply.title") + "</button>")
     }, clickReply: function () {
         this.get("controller").replyToPost(this.get("post"))
     }, renderBookmark: function (e, t) {
-        if (Discourse.User.current()) {
-            var s = "bookmark";
-            this.get("post.bookmarked") || (s += "-empty"), t.push('<button title="' + Em.String.i18n("post.controls.bookmark") + '" data-action="bookmark" class=\'bookmark\'><i class="icon-' + s + '"></i></button>')
-        }
+        Discourse.User.current() && t.push('<button title="' + this.get("post.bookmarkTooltip") + "\" data-action=\"bookmark\" class='bookmark'><div class='" + this.get("post.bookmarkClass") + "'></div></button>")
     }, clickBookmark: function () {
         this.get("post").toggleProperty("bookmarked")
     }})
 }(this), function () {
     var e = window.jQuery;
-    Discourse.PostView = Discourse.View.extend({classNames: ["topic-post", "clearfix"], templateName: "post", classNameBindings: ["post.lastPost", "postTypeClass", "selected", "post.hidden:hidden", "post.deleted_at:deleted", "parentPost:replies-above"], postBinding: "content", postTypeClass: function () {
+    Discourse.PostView = Discourse.View.extend({classNames: ["topic-post", "clearfix"], templateName: "post", classNameBindings: ["postTypeClass", "selected", "post.hidden:hidden", "post.deleted_at:deleted", "parentPost:replies-above"], postBinding: "content", postTypeClass: function () {
         return this.get("post.post_type") === Discourse.Site.instance().get("post_types.moderator_action") ? "moderator" : "regular"
     }.property("post.post_type"), cookedChanged: function () {
         var e = this;
@@ -17062,13 +17026,13 @@ var bootbox = window.bootbox || function (e) {
         }
         return!1
     }, updateQuoteElements: function (t, s) {
-        var n, r = "", a = Em.String.i18n("post.follow_quote");
-        if (n = t.data("post")) {
+        var n = "", r = Em.String.i18n("post.follow_quote"), a = t.data("post");
+        if (a) {
             var i, o;
-            (i = t.data("topic")) ? (o = this.get("controller.content"), r = o && o.get("id") === i ? "<a href='" + o.urlForPostNumber(n) + "' title='" + a + "' class='back'></a>" : "<a href='" + Discourse.getURL("/t/via-quote/") + i + "/" + n + "' title='" + a + "' class='quote-other-topic'></a>") : (o = this.get("controller.content")) && (r = "<a href='" + o.urlForPostNumber(n) + "' title='" + a + "' class='back'></a>")
+            (i = t.data("topic")) ? (o = this.get("controller.content"), n = o && o.get("id") === i ? "<a href='" + o.urlForPostNumber(a) + "' title='" + r + "' class='back'></a>" : "<a href='" + Discourse.getURL("/t/via-quote/") + i + "/" + a + "' title='" + r + "' class='quote-other-topic'></a>") : (o = this.get("controller.content")) && (n = "<a href='" + o.urlForPostNumber(a) + "' title='" + r + "' class='back'></a>")
         }
         var u = "";
-        t.data("full") || (u = "<i class='icon-" + s + "' title='" + Em.String.i18n("post.expand_collapse") + "'></i>", t.css("cursor", "pointer")), e(".quote-controls", t).html("" + u + r)
+        t.data("full") || (u = "<i class='icon-" + s + "' title='" + Em.String.i18n("post.expand_collapse") + "'></i>", t.css("cursor", "pointer")), e(".quote-controls", t).html("" + u + n)
     }, toggleQuote: function (t) {
         if (t.data("expanded", !t.data("expanded")), t.data("expanded")) {
             this.updateQuoteElements(t, "chevron-up");
@@ -17104,16 +17068,8 @@ var bootbox = window.bootbox || function (e) {
     }, willDestroyElement: function () {
         Discourse.ScreenTrack.instance().stopTracking(this.$().prop("id"))
     }, didInsertElement: function () {
-        var t = this.$(), s = this.get("post"), n = s.get("scrollToAfterInsert");
-        if (n && (Discourse.TopicView.scrollTo(this.get("post.topic_id"), n), n === s.get("post_number"))) {
-            var r = e(".topic-body .contents", t), a = r.css("backgroundColor");
-            r.css({backgroundColor: "#ffffcc"}).animate({backgroundColor: a}, 2500)
-        }
-        this.showLinkCounts(), Discourse.ScreenTrack.instance().track(this.$().prop("id"), this.get("post.post_number")), Discourse.SyntaxHighlighting.apply(t), Discourse.Lightbox.apply(t);
-        var i = this.get("post.scrollTo");
-        i && (e("body").scrollTop(e(document).height() - i.height + i.top), e("section.divider").addClass("fade")), this.insertQuoteControls();
-        var o = this.get("controller");
-        o && o.postRendered && o.postRendered(s)
+        var e = this.$();
+        this.get("post"), this.showLinkCounts(), Discourse.ScreenTrack.instance().track(this.$().prop("id"), this.get("post.post_number")), Discourse.SyntaxHighlighting.apply(e), Discourse.Lightbox.apply(e), this.insertQuoteControls(), e.addClass("ready")
     }})
 }(this), function () {
     window.jQuery, Discourse.PrependPostView = Discourse.ContainerView.extend({init: function () {
@@ -17126,12 +17082,12 @@ var bootbox = window.bootbox || function (e) {
     }, didInsertElement: function () {
         var t = this.get("controller"), s = this;
         e(document).on("mousedown.quote-button",function (n) {
-            s.set("isMouseDown", !0), e(n.target).hasClass("quote-button") || e(n.target).hasClass("create") || 1 !== n.which || n.shiftKey || t.deselectText()
+            s.set("isMouseDown", !0), e(n.target).hasClass("quote-button") || e(n.target).hasClass("create") || Discourse.User.current("enable_quoting") && (1 !== n.which || n.shiftKey || t.deselectText())
         }).on("mouseup.quote-button",function (e) {
-            s.selectText(e.target, t), s.set("isMouseDown", !1)
-        }).on("selectionchange", function () {
-            s.get("isMouseDown") || s.selectText(window.getSelection().anchorNode, t)
-        })
+                s.selectText(e.target, t), s.set("isMouseDown", !1)
+            }).on("selectionchange", function () {
+                s.get("isMouseDown") || s.selectText(window.getSelection().anchorNode, t)
+            })
     }, selectText: function (t, s) {
         var n = e(t);
         if (Discourse.User.current("enable_quoting")) {
@@ -17241,9 +17197,9 @@ var bootbox = window.bootbox || function (e) {
 }(this), function () {
     window.jQuery, Discourse.TopicClosingView = Discourse.View.extend({elementId: "topic-closing-info", delayedRerender: null, contentChanged: function () {
         this.rerender()
-    }.observes("topic.auto_close_at"), render: function (e) {
-        if (this.present("topic.auto_close_at")) {
-            var t = moment(this.get("topic.auto_close_at"));
+    }.observes("topic.details.auto_close_at"), render: function (e) {
+        if (this.present("topic.details.auto_close_at")) {
+            var t = moment(this.get("topic.details.auto_close_at"));
             if (!(new Date > t)) {
                 var s, n, r = moment.duration(t - moment()), a = r.asMinutes();
                 a > 1410 ? (s = Em.String.i18n("in_n_days", {count: Math.round(r.asDays())}), n = a > 2160 ? 432e5 : 36e5) : a > 90 ? (s = Em.String.i18n("in_n_hours", {count: Math.round(r.asHours())}), n = 18e5) : a > 2 ? (s = Em.String.i18n("in_n_minutes", {count: Math.round(r.asMinutes())}), n = 6e4) : (s = Em.String.i18n("in_n_seconds", {count: Math.round(r.asSeconds())}), n = 1e3), e.push('<h3><i class="icon icon-time"></i> '), e.push(Em.String.i18n("topic.auto_close_notice", {timeLeft: s})), e.push("</h3>"), this.delayedRerender = Em.run.later(this, this.rerender, n)
@@ -17257,7 +17213,7 @@ var bootbox = window.bootbox || function (e) {
         this._super(), this.createButtons()
     }, createButtons: function () {
         var e = this.get("topic");
-        Discourse.User.current() ? (e.get("isPrivateMessage") || (this.get("topic.can_invite_to") && this.attachViewClass(Discourse.InviteReplyButton), this.attachViewClass(Discourse.FavoriteButton), this.attachViewWithArgs({topic: e}, Discourse.ShareButton), this.attachViewClass(Discourse.ClearPinButton)), this.attachViewClass(Discourse.ReplyButton), e.get("isPrivateMessage") || this.attachViewWithArgs({topic: e}, Discourse.NotificationsButton), this.trigger("additionalButtons", this)) : this.attachViewClass(Discourse.LoginReplyButton)
+        Discourse.User.current() ? (e.get("isPrivateMessage") || (this.get("topic.details.can_invite_to") && this.attachViewClass(Discourse.InviteReplyButton), this.attachViewClass(Discourse.FavoriteButton), this.attachViewWithArgs({topic: e}, Discourse.ShareButton), this.attachViewClass(Discourse.ClearPinButton)), this.attachViewClass(Discourse.ReplyButton), e.get("isPrivateMessage") || this.attachViewWithArgs({topic: e}, Discourse.NotificationsButton), this.trigger("additionalButtons", this)) : this.attachViewClass(Discourse.LoginReplyButton)
     }})
 }(this), function () {
     window.jQuery, Discourse.TopicStatusView = Discourse.View.extend({classNames: ["topic-statuses"], hasDisplayableStatus: function () {
@@ -17271,13 +17227,13 @@ var bootbox = window.bootbox || function (e) {
         this.get("hasDisplayableStatus") && (this.trigger("addCustomIcon", e), this.get("topic.closed") && this.renderIcon(e, "lock", "locked"), this.get("topic.pinned") && this.renderIcon(e, "pushpin", "pinned"), this.get("topic.visible") || this.renderIcon(e, "eye-close", "invisible"))
     }}), Discourse.View.registerHelper("topicStatus", Discourse.TopicStatusView)
 }(this), function () {
-    window.jQuery, Discourse.TopicSummaryView = Discourse.ContainerView.extend({topicBinding: "controller.content", classNameBindings: ["hidden", ":topic-summary"], LINKS_SHOWN: 5, allLinksShown: !1, showAllLinksControls: function () {
-        return this.blank("topic.links") ? !1 : this.get("allLinksShown") ? !1 : this.get("topic.links.length") <= this.LINKS_SHOWN ? !1 : !0
-    }.property("allLinksShown", "topic.links"), infoLinks: function () {
-        if (this.blank("topic.links"))return[];
-        var e = this.get("topic.links");
-        return this.get("allLinksShown") ? e : e.slice(0, this.LINKS_SHOWN)
-    }.property("topic.links", "allLinksShown"), newPostCreated: function () {
+    window.jQuery, Discourse.TopicSummaryView = Discourse.ContainerView.extend({classNameBindings: ["hidden", ":topic-summary"], allLinksShown: !1, topic: Em.computed.alias("controller.model"), showAllLinksControls: function () {
+        return this.get("allLinksShown") ? !1 : (this.get("topic.details.links.length") || 0) <= Discourse.TopicSummaryView.LINKS_SHOWN ? !1 : !0
+    }.property("allLinksShown", "topic.details.links"), infoLinks: function () {
+        if (this.blank("topic.details.links"))return[];
+        var e = this.get("topic.details.links");
+        return this.get("allLinksShown") ? e : e.slice(0, Discourse.TopicSummaryView.LINKS_SHOWN)
+    }.property("topic.details.links", "allLinksShown"), newPostCreated: function () {
         this.rerender()
     }.observes("topic.posts_count"), hidden: function () {
         return 1 !== this.get("post.post_number") ? !0 : "private_message" === this.get("controller.content.archetype") ? !1 : "regular" !== this.get("controller.content.archetype") ? !0 : 2 > this.get("controller.content.posts_count")
@@ -17287,42 +17243,48 @@ var bootbox = window.bootbox || function (e) {
         this.set("allLinksShown", !0)
     }, appendSummaryInformation: function (e) {
         this.get("controller.has_best_of") && e.attachViewWithArgs({templateName: "topic_summary/best_of_toggle", tagName: "section", classNames: ["information"]}), this.get("topic.isPrivateMessage") && e.attachViewWithArgs({templateName: "topic_summary/private_message", tagName: "section", classNames: ["information"]})
-    }})
+    }}), Discourse.TopicSummaryView.reopenClass({LINKS_SHOWN: 5})
 }(this), function () {
     var e = window.jQuery;
-    Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {templateName: "topic", topicBinding: "controller.content", userFiltersBinding: "controller.userFilters", classNameBindings: ["controller.multiSelect:multi-select", "topic.archetype", "topic.category.secure:secure_category"], progressPosition: 1, menuVisible: !0, SHORT_POST: 1200, updateBar: function () {
-        var t, s, n, r, a, i;
-        this.get("topic.loaded") && (t = e("#topic-progress"), t.length && (a = this.get("progressPosition") / this.get("topic.filtered_posts_count"), i = t.width(), r = a * i, s = t.find(".bg"), s.stop(!0, !0), n = s.width(), n === i && s.width(n - 1), r === i ? s.css("border-right-width", "0px") : s.css("border-right-width", "1px"), 0 === n ? s.width(r) : s.animate({width: r}, 400)))
-    }.observes("progressPosition", "topic.filtered_posts_count", "topic.loaded"), updateTitle: function () {
+    Discourse.TopicView = Discourse.View.extend(Discourse.Scrolling, {templateName: "topic", topicBinding: "controller.content", userFiltersBinding: "controller.userFilters", classNameBindings: ["controller.multiSelect:multi-select", "topic.archetype", "topic.category.secure:secure_category"], menuVisible: !0, SHORT_POST: 1200, postStream: Em.computed.alias("controller.postStream"), updateBar: function () {
+        var t = e("#topic-progress");
+        if (t.length) {
+            var s = t.width(), n = this.get("controller.streamPercentage") * s;
+            t.find(".bg").css("border-right-width", n === s ? "0px" : "1px").width(n)
+        }
+    }.observes("controller.streamPercentage"), updateTitle: function () {
         var e = this.get("topic.title");
         return e ? Discourse.set("title", e) : void 0
     }.observes("topic.loaded", "topic.title"), currentPostChanged: function () {
-        var t = this.get("controller.currentPost"), s = this.get("topic");
-        if (t && s) {
-            t > (this.get("maxPost") || 0) && this.set("maxPost", t);
-            var n = s.get("url");
-            t > 1 ? n += "/" + t : this.get("controller.bestOf") && (n += "/best_of"), Discourse.URL.replaceState(n), 1 === t ? e("#jump-top").attr("disabled", !0) : e("#jump-top").attr("disabled", !1), t === this.get("topic.highest_post_number") ? e("#jump-bottom").attr("disabled", !0) : e("#jump-bottom").attr("disabled", !1)
+        var e = this.get("controller.currentPost"), t = this.get("topic");
+        if (e && t) {
+            e > (this.get("maxPost") || 0) && this.set("maxPost", e);
+            var s = t.get("url");
+            e > 1 && (s += "/" + e), Discourse.URL.replaceState(s)
         }
-    }.observes("controller.currentPost", "controller.bestOf", "topic.highest_post_number"), composeChanged: function () {
+    }.observes("controller.currentPost", "highest_post_number"), composeChanged: function () {
         var e = Discourse.get("router.composerController");
         e.clearState(), e.set("topic", this.get("topic"))
-    }.observes("composer"), willDestroyElement: function () {
-        this.unbindScrolling(), e(window).unbind("resize.discourse-on-scroll"), this.$().off("mouseup.discourse-redirect", ".cooked a, a.track-link"), this.get("controller").set("onPostRendered", null), this.resetExamineDockCache(), this.set("controller.controllers.header.showExtraInfo", !1)
-    }, didInsertElement: function () {
+    }.observes("composer"), enteredTopic: function () {
+        if (this.present("controller.enteredAt")) {
+            var e = this;
+            Em.run.schedule("afterRender", function () {
+                e.updateBar(), e.updatePosition()
+            })
+        }
+    }.observes("controller.enteredAt"), didInsertElement: function () {
         this.bindScrolling({debounce: 0});
         var t = this;
         e(window).bind("resize.discourse-on-scroll", function () {
-            t.updatePosition(!1)
-        });
-        var s = this.get("controller");
-        s.set("onPostRendered", function () {
-            t.postsRendered.apply(t)
+            t.updatePosition()
         }), this.$().on("mouseup.discourse-redirect", ".cooked a, a.track-link", function (e) {
             return Discourse.ClickTrack.trackClick(e)
-        }), this.updatePosition(!0)
+        })
+    }, willDestroyElement: function () {
+        this.unbindScrolling(), e(window).unbind("resize.discourse-on-scroll"), this.$().off("mouseup.discourse-redirect", ".cooked a, a.track-link"), this.resetExamineDockCache(), this.set("controller.controllers.header.showExtraInfo", !1)
     }, debounceLoadSuggested: Discourse.debounce(function () {
         if (!this.get("isDestroyed") && !this.get("isDestroying")) {
-            var e = this.get("topicTrackingState.newIncoming"), t = this.get("topic.suggested_topics"), s = this.get("topic.id");
+            var e = this.get("topicTrackingState.newIncoming"), t = this.get("topic.details.suggested_topics"), s = this.get("topic.id");
             if (t) {
                 var n = _.invoke(t, "get", "id"), r = _.chain(e).last(5).reverse().union(n).uniq().without(s).first(5).value();
                 Discourse.TopicList.loadTopics(r, "").then(function (e) {
@@ -17332,9 +17294,7 @@ var bootbox = window.bootbox || function (e) {
         }
     }, 1e3), hasNewSuggested: function () {
         this.debounceLoadSuggested()
-    }.observes("topicTrackingState.incomingCount"), postsRendered: Discourse.debounce(function () {
-        this.updatePosition(!1)
-    }, 50), resetRead: function () {
+    }.observes("topicTrackingState.incomingCount"), resetRead: function () {
         Discourse.ScreenTrack.instance().reset(), this.get("controller").unsubscribe();
         var e = this;
         this.get("topic").resetRead().then(function () {
@@ -17349,121 +17309,82 @@ var bootbox = window.bootbox || function (e) {
         var t = this.getPost(e);
         if (t) {
             var s = t.get("post_number");
-            return s > (this.get("topic.last_read_post_number") || 0) && this.set("topic.last_read_post_number", s), t.get("read") || t.set("read", !0), t.get("post_number")
+            return s > (this.get("controller.last_read_post_number") || 0) && this.set("controller.last_read_post_number", s), t.get("read") || t.set("read", !0), t.get("post_number")
         }
-    }, observeFirstPostLoaded: function () {
-        var e, t, s;
-        s = this.get("topic.posts"), e = s && s[0] && 1 === s[0].post_number, t = this.get("firstPostLoaded"), e ? t !== !0 && this.set("firstPostLoaded", !0) : t !== !1 && this.set("firstPostLoaded", !1)
-    }.observes("topic.posts.@each"), prevPage: function (t) {
-        var s = Ember.View.views[t.prop("id")];
-        if (s) {
-            var n = s.get("post");
-            if (n && 1 !== n.post_number && !(this.topic && this.topic.posts && this.topic.posts.length > 0 && this.topic.posts[0].post_number !== n.post_number || this.get("controller.loading"))) {
-                this.set("controller.loading", !0), this.set("controller.loadingAbove", !0);
-                var r = e.extend({postsBefore: n.get("post_number")}, this.get("controller.postFilters")), a = this;
-                return Discourse.Topic.find(this.get("topic.id"), r).then(function (t) {
-                    var s, n;
-                    return n = a.get("topic.posts"), s = t.posts[0].post_number, _.each(t.posts, function (t) {
-                        var r;
-                        return r = Discourse.Post.create(t, a.get("topic")), t.post_number === s && r.set("scrollTo", {top: e(window).scrollTop(), height: e(document).height()}), n.unshiftObject(r)
-                    }), a.set("controller.loading", !1), a.set("controller.loadingAbove", !1)
-                })
-            }
-        }
-    }, fullyLoaded: function () {
-        return this.get("controller.seenBottom") || this.get("topic.at_bottom")
-    }.property("topic.at_bottom", "controller.seenBottom"), nextPage: function (e) {
-        return this.get("controller.loading") || this.get("controller.seenBottom") ? void 0 : this.loadMore(this.getPost(e))
-    }, postCountChanged: function () {
-        this.set("controller.seenBottom", !1)
-    }.observes("topic.highest_post_number"), loadMore: function (t) {
-        if (t && !this.get("controller.loading") && this.get("topic.highest_post_number") !== t.get("post_number") && !this.get("controller.seenBottom") && this.topic.posts[this.topic.posts.length - 1].post_number === t.post_number) {
-            this.set("controller.loadingBelow", !0), this.set("controller.loading", !0);
-            var s = e.extend({postsAfter: t.get("post_number")}, this.get("controller.postFilters")), n = this, r = this.get("controller.content");
-            return Discourse.Topic.find(r.get("id"), s).then(function (e) {
-                if ((e.at_bottom || 0 === e.posts.length) && n.set("controller.seenBottom", "true"), r.pushPosts(_.map(e.posts, function (e) {
-                    return Discourse.Post.create(e, r)
-                })), e.suggested_topics) {
-                    var t = Em.A();
-                    _.each(e.suggested_topics, function (e) {
-                        t.pushObject(Discourse.Topic.create(e))
-                    }), n.set("topic.suggested_topics", t)
-                }
-                return n.set("controller.loadingBelow", !1), n.set("controller.loading", !1)
-            })
-        }
-    }, cancelEdit: function () {
-        this.set("editingTopic", !1)
-    }, finishedEdit: function () {
-        var t = this;
-        if (this.get("editingTopic")) {
-            var s = this.get("topic"), n = e("#edit-title").val(), r = e("#topic-title select option:selected").val();
-            s.setProperties({title: n, fancy_title: n, categoryName: r}), s.save().then(function (e) {
-                var t = e.basic_topic.fancy_title;
-                s.setProperties({title: t, fancy_title: t})
-            }, function (s) {
-                t.set("editingTopic", !0), s && s.responseText ? bootbox.alert(e.parseJSON(s.responseText).errors[0]) : bootbox.alert(Em.String.i18n("generic_error"))
-            }), t.set("editingTopic", !1)
-        }
-    }, editTopic: function () {
-        return this.get("topic.can_edit") ? (this.set("editingTopic", !0), !1) : !1
-    }, showFavoriteButton: function () {
-        return Discourse.User.current() && !this.get("topic.isPrivateMessage")
-    }.property("topic.isPrivateMessage"), resetExamineDockCache: function () {
-        this.docAt = null, this.dockedTitle = !1, this.dockedCounter = !1
+    }, resetExamineDockCache: function () {
+        this.set("docAt", !1)
     }, updateDock: function (e) {
         if (e) {
             var t = e.get("post");
-            t && this.set("progressPosition", t.get("index"))
+            t && this.set("controller.progressPosition", this.get("postStream").indexOf(t) + 1)
         }
-    }, nonUrgentPositionUpdate: Discourse.debounce(function (e) {
-        Discourse.ScreenTrack.instance().scrolled(), this.set("controller.currentPost", e.currentPost)
+    }, throttledPositionUpdate: Discourse.debounce(function () {
+        Discourse.ScreenTrack.instance().scrolled();
+        var e = this.get("controller.model");
+        e && this.get("nextPositionUpdate") && this.set("controller.currentPost", this.get("nextPositionUpdate"))
     }, 500), scrolled: function () {
-        this.updatePosition(!0)
-    }, updatePosition: function (t) {
-        var s = e(".topic-post");
-        if (s && 0 !== s.length) {
-            var n = Discourse.Eyeline.analyze(s);
-            if (n) {
-                (0 === n.top || 0 === n.onScreen[0] || 0 === n.bottom) && this.prevPage(e(s[0]));
-                var r;
-                n.bottom === s.length - 1 && (r = this.postSeen(e(s[n.bottom])), this.nextPage(e(s[n.bottom]))), this.updateDock(Ember.View.views[s[n.bottom].id]);
-                var a = this;
-                _.each(n.onScreen, function (t) {
-                    var n = a.postSeen(e(s[t]));
-                    r = r || n
+        this.updatePosition()
+    }, processSeenPosts: function () {
+        var t = e(".topic-post.ready");
+        if (t && 0 !== t.length) {
+            var s = Discourse.Eyeline.analyze(t);
+            if (s) {
+                if (0 === s.top || 0 === s.onScreen[0] || 0 === s.bottom) {
+                    var n = e("body"), r = e(t[0]), a = n.scrollTop() - r.position().top;
+                    this.get("postStream").prependMore().then(function () {
+                        Em.run.next(function () {
+                            e("html, body").scrollTop(r.position().top + a)
+                        })
+                    })
+                }
+                var i;
+                s.bottom === t.length - 1 && (i = this.postSeen(e(t[s.bottom])), this.get("postStream").appendMore()), this.updateDock(Ember.View.views[t[s.bottom].id]);
+                var o = this;
+                _.each(s.onScreen, function (s) {
+                    var n = o.postSeen(e(t[s]));
+                    i = i || n
                 });
-                var i = r;
-                if (!i) {
-                    var o = this.getPost(e(s[n.bottom]));
-                    o && (i = o.get("post_number"))
+                var u = i;
+                if (!u) {
+                    var h = this.getPost(e(t[s.bottom]));
+                    h && (u = h.get("post_number"))
                 }
-                i ? this.nonUrgentPositionUpdate({userActive: t, currentPost: r || i}) : console.error("can't update position ");
-                var u = window.pageYOffset || e("html").scrollTop(), h = this.get("firstPostLoaded");
-                if (!this.docAt) {
-                    var c = e("#topic-title");
-                    c && 1 === c.length && (this.docAt = c.offset().top)
-                }
-                var l = this.get("controller.controllers.header");
-                this.docAt ? l.set("showExtraInfo", u >= this.docAt || !h) : l.set("showExtraInfo", !h);
-                var p = e(".last-post"), f = p.offset();
-                f && (u >= f.top + p.height() - e(window).height() ? this.dockedCounter || (e("#topic-progress-wrapper").addClass("docked"), this.dockedCounter = !0) : this.dockedCounter && (e("#topic-progress-wrapper").removeClass("docked"), this.dockedCounter = !1))
+                u ? (this.set("nextPositionUpdate", i || u), this.throttledPositionUpdate()) : console.error("can't update position ")
             }
         }
+    }, updatePosition: function () {
+        this.processSeenPosts();
+        var t = window.pageYOffset || e("html").scrollTop();
+        if (!this.get("docAt")) {
+            var s = e("#topic-title");
+            s && 1 === s.length && this.set("docAt", s.offset().top)
+        }
+        var n = this.get("controller.controllers.header"), r = this.get("controller.model");
+        this.get("docAt") ? n.set("showExtraInfo", t >= this.get("docAt") || r.get("postStream.firstPostNotLoaded")) : n.set("showExtraInfo", r.get("postStream.firstPostNotLoaded"));
+        var a = e("article[data-post-id=" + r.get("postStream.lastPostId") + "]"), i = a.offset();
+        return i ? (this.set("controller.dockedCounter", t >= i.top + a.height() - e(window).height()), void 0) : (this.set("controller.dockedCounter", !1), void 0)
     }, topicTrackingState: function () {
         return Discourse.TopicTrackingState.current()
     }.property(), browseMoreMessage: function () {
-        var e, t;
-        t = {latestLink: '<a href="/">' + Em.String.i18n("topic.view_latest_topics") + "</a>"}, t.catLink = (e = this.get("controller.content.category")) ? Discourse.Utilities.categoryLink(e) : '<a href="' + Discourse.getURL("/categories") + '">' + Em.String.i18n("topic.browse_all_categories") + "</a>";
+        var e = {latestLink: '<a href="/">' + Em.String.i18n("topic.view_latest_topics") + "</a>"}, t = this.get("controller.content.category");
+        e.catLink = t ? Discourse.Utilities.categoryLink(t) : '<a href="' + Discourse.getURL("/categories") + '">' + Em.String.i18n("topic.browse_all_categories") + "</a>";
         var s = this.get("topicTrackingState"), n = s.countUnread(), r = s.countNew();
         if (r + n > 0) {
             var a = n > 0 && r > 0;
-            return I18n.messageFormat("topic.read_more_MF", {BOTH: a, UNREAD: n, NEW: r, CATEGORY: e ? !0 : !1, latestLink: t.latestLink, catLink: t.catLink})
+            return I18n.messageFormat("topic.read_more_MF", {BOTH: a, UNREAD: n, NEW: r, CATEGORY: t ? !0 : !1, latestLink: e.latestLink, catLink: e.catLink})
         }
-        return e ? Ember.String.i18n("topic.read_more_in_category", t) : Ember.String.i18n("topic.read_more", t)
-    }.property("topicTrackingState.messageCount")}), Discourse.TopicView.reopenClass({scrollTo: function (t, s) {
-        var n, r, a, i;
-        return parseInt(t, 10) !== parseInt(e("#topic").data("topic-id"), 10) ? !1 : (n = e("#post_" + s), n.length ? (1 === s ? e("html, body").scrollTop(0) : (r = e("header"), a = e("#topic-title"), i = a.height() - r.find(".contents").height(), 0 > i && (i = 0), e("html, body").scrollTop(n.offset().top - (r.outerHeight(!0) + i))), !0) : !1)
+        return t ? Ember.String.i18n("topic.read_more_in_category", e) : Ember.String.i18n("topic.read_more", e)
+    }.property("topicTrackingState.messageCount")}), Discourse.TopicView.reopenClass({jumpToPost: function (t, s) {
+        Em.run.scheduleOnce("afterRender", function () {
+            if (t !== parseInt(e("#topic").data("topic-id"), 10))return!1;
+            var n = e("#post_" + s);
+            if (n.length)if (1 === s)e("html, body").scrollTop(0); else {
+                var r = e("header"), a = e("#topic-title"), i = a.height() - r.find(".contents").height();
+                0 > i && (i = 0), e("html, body").scrollTop(n.offset().top - (r.outerHeight(!0) + i));
+                var o = e(".topic-body .contents", n), u = o.css("backgroundColor");
+                o.css({backgroundColor: "#ffffcc"}).animate({backgroundColor: u}, 2500)
+            }
+        })
     }})
 }(this), function () {
     window.jQuery, Discourse.ActivityFilterView = Discourse.View.extend({tagName: "li", classNameBindings: ["active"], stream: Em.computed.alias("controller.content"), countChanged: function () {
@@ -17557,10 +17478,8 @@ var bootbox = window.bootbox || function (e) {
     }}), Discourse.View.registerHelper("userSelector", Discourse.UserSelector)
 }(this), function () {
     window.jQuery, Handlebars.registerHelper("breakUp", function (e, t) {
-        var s, n, r;
-        return(s = Ember.Handlebars.get(this, e, t)) ? (r = s.match(new RegExp(".{1,14}", "g")), 1 === r.length ? s : (n = "", _.each(r, function (e, t) {
-            n += e, -1 === e.indexOf(" ") && r.length - 1 > t && (n += "- ")
-        }), n)) : ""
+        var s;
+        return s = Ember.Handlebars.get(this, e, t), s ? Discourse.Formatter.breakUp(s, 13) : ""
     }), Handlebars.registerHelper("shorten", function (e, t) {
         return Ember.Handlebars.get(this, e, t).substring(0, 35)
     }), Handlebars.registerHelper("topicLink", function (e, t) {
@@ -17603,9 +17522,12 @@ var bootbox = window.bootbox || function (e) {
     }), Handlebars.registerHelper("unboundAge", function (e, t) {
         var s = new Date(Ember.Handlebars.get(this, e, t));
         return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(s))
+    }), Handlebars.registerHelper("unboundAgeWithTooltip", function (e, t) {
+        var s = new Date(Ember.Handlebars.get(this, e, t));
+        return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(s, {title: !0}))
     }), Handlebars.registerHelper("editDate", function (e, t) {
         var s = new Date(Ember.Handlebars.get(this, e, t));
-        return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(s, {format: "medium", leaveAgo: !0, wrapInSpan: !1}))
+        return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(s, {format: "medium", title: !0, leaveAgo: !0, wrapInSpan: !1}))
     }), Ember.Handlebars.registerHelper("percentile", function (e, t) {
         var s = Ember.Handlebars.get(this, e, t);
         return Math.round(100 * (1 - s))
@@ -17613,16 +17535,18 @@ var bootbox = window.bootbox || function (e) {
         var s = Ember.Handlebars.get(this, e, t);
         return s ? Math.round(s) === s ? s : s.toFixed(3) : "0"
     }), Handlebars.registerHelper("number", function (e, t) {
-        var s, n, r;
-        return n = parseInt(Ember.Handlebars.get(this, e, t), 10), isNaN(n) && (n = 0), r = n, t.hash.numberKey && (r = Em.String.i18n(t.hash.numberKey, {number: n})), s = n, n > 999 && (s = (n / 1e3).toFixed(1) + "K"), new Handlebars.SafeString("<span class='number' title='" + r + "'>" + s + "</span>")
+        var s, n, r, a;
+        return n = parseInt(Ember.Handlebars.get(this, e, t), 10), isNaN(n) && (n = 0), r = n, t.hash.numberKey && (r = Em.String.i18n(t.hash.numberKey, {number: n})), s = n, n > 999 && !t.hash.noTitle && (s = (n / 1e3).toFixed(1) + "K"), a = "<span class='number'", s !== r && (a += " title='" + r + "'"), a += ">" + s + "</span>", new Handlebars.SafeString(a)
     }), Handlebars.registerHelper("date", function (e, t) {
         var s;
         e.hash && (e.hash.leaveAgo && (s = "true" === e.hash.leaveAgo), e.hash.path && (e = e.hash.path));
         var n = Ember.Handlebars.get(this, e, t);
         if (n) {
             var r = new Date(n);
-            return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(r, {format: "medium", leaveAgo: s}))
+            return new Handlebars.SafeString(Discourse.Formatter.autoUpdatingRelativeAge(r, {format: "medium", title: !0, leaveAgo: s}))
         }
+    }), Handlebars.registerHelper("faqLink", function () {
+        return new Handlebars.SafeString("<a href='" + (Discourse.SiteSettings.faq_url.length > 0 ? Discourse.SiteSettings.faq_url : Discourse.getURL("/faq")) + "'>" + Em.String.i18n("faq") + "</a>")
     })
 }(this), Ember.TEMPLATES.application = Ember.Handlebars.template(function (e, t, s, n, r) {
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
@@ -17664,81 +17588,81 @@ var bootbox = window.bootbox || function (e) {
 }), Ember.TEMPLATES.composer = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n          <li>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.topicLink, r = n ? n.call(e, "", o) : T.call(e, "topicLink", "", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(" <span class='posts-count'>("), i = {count: e}, a = {count: "STRING"}, o = {hash: {count: "posts_count"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.i18n, r = n ? n.call(e, "topic.filters.n_posts", o) : T.call(e, "i18n", "topic.filters.n_posts", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(")</span></li>\n        "), u
+        return t.buffer.push("\n          <li>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.topicLink, r = n ? n.call(e, "", o) : E.call(e, "topicLink", "", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(" <span class='posts-count'>("), i = {count: e}, a = {count: "STRING"}, o = {hash: {count: "posts_count"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.i18n, r = n ? n.call(e, "topic.filters.n_posts", o) : E.call(e, "i18n", "topic.filters.n_posts", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(")</span></li>\n        "), u
     }
 
     function i(e, t) {
         var n, r, a, i, u, h = "";
-        return t.buffer.push("\n      <div class='control-row reply-area'>\n        <div class='reply-to'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, n = s._triageMustache.call(e, "content.actionTitle", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push(":</div>\n\n        "), i = {}, a = {}, n = s["if"].call(e, "content.editTitle", {hash: {}, inverse: D.noop, fn: D.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n        <div class='wmd-controls'>\n          <div class='textarea-wrapper'>\n            <div class='wmd-button-bar' id='wmd-button-bar'></div>\n            "), a = {parentBinding: e, tabindex: e, valueBinding: e, id: e, placeholderKey: e}, i = {parentBinding: "STRING", tabindex: "STRING", valueBinding: "STRING", id: "STRING", placeholderKey: "STRING"}, t.buffer.push(C(s.view.call(e, "Discourse.NotifyingTextArea", {hash: {parentBinding: "view", tabindex: "3", valueBinding: "content.reply", id: "wmd-input", placeholderKey: "composer.reply_placeholder"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("\n            "), a = {validation: e, shownAt: e}, i = {validation: "ID", shownAt: "ID"}, u = {hash: {validation: "view.replyValidation", shownAt: "view.showReplyTip"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, u) : T.call(e, "popupInputTip", u)))), t.buffer.push("\n          </div>\n          <div class='preview-wrapper'>\n            <div id='wmd-preview' "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(C(s.bindAttr.call(e, {hash: {"class": "hidePreview:hidden"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("></div>\n          </div>\n          "), i = {}, a = {}, r = s["if"].call(e, "currentUser", {hash: {}, inverse: D.noop, fn: D.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n\n        "), i = {}, a = {}, r = s["if"].call(e, "currentUser", {hash: {}, inverse: D.noop, fn: D.program(15, d, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      </div>\n    "), h
+        return t.buffer.push("\n      <div class='control-row reply-area'>\n        <div class='reply-to'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, n = s._triageMustache.call(e, "model.actionTitle", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push(":</div>\n\n        "), i = {}, a = {}, n = s["if"].call(e, "model.editTitle", {hash: {}, inverse: D.noop, fn: D.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n        <div class='wmd-controls'>\n          <div class='textarea-wrapper'>\n            <div class='wmd-button-bar' id='wmd-button-bar'></div>\n            "), a = {parentBinding: e, tabindex: e, valueBinding: e, id: e, placeholderKey: e}, i = {parentBinding: "STRING", tabindex: "STRING", valueBinding: "STRING", id: "STRING", placeholderKey: "STRING"}, t.buffer.push(C(s.view.call(e, "Discourse.NotifyingTextArea", {hash: {parentBinding: "view", tabindex: "3", valueBinding: "model.reply", id: "wmd-input", placeholderKey: "composer.reply_placeholder"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("\n            "), a = {validation: e, shownAt: e}, i = {validation: "ID", shownAt: "ID"}, u = {hash: {validation: "view.replyValidation", shownAt: "view.showReplyTip"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, u) : E.call(e, "popupInputTip", u)))), t.buffer.push("\n          </div>\n          <div class='preview-wrapper'>\n            <div id='wmd-preview' "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(C(s.bindAttr.call(e, {hash: {"class": "hidePreview:hidden"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("></div>\n          </div>\n          "), i = {}, a = {}, r = s["if"].call(e, "currentUser", {hash: {}, inverse: D.noop, fn: D.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n\n        "), i = {}, a = {}, r = s["if"].call(e, "currentUser", {hash: {}, inverse: D.noop, fn: D.program(15, d, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      </div>\n    "), h
     }
 
     function o(e, t) {
         var n, r, a, i, o, c = "";
-        return t.buffer.push("\n          <div class='form-element clearfix'>\n            "), a = {}, i = {}, n = s["if"].call(e, "content.creatingPrivateMessage", {hash: {}, inverse: D.noop, fn: D.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push('\n\n            <div class="title-input">\n              '), i = {value: e, tabindex: e, id: e, maxlength: e, "class": e, placeholderKey: e}, a = {value: "ID", tabindex: "STRING", id: "STRING", maxlength: "STRING", "class": "STRING", placeholderKey: "STRING"}, o = {hash: {value: "content.title", tabindex: "2", id: "reply-title", maxlength: "255", "class": "span8", placeholderKey: "composer.title_placeholder"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.textField, n ? n.call(e, o) : T.call(e, "textField", o)))), t.buffer.push("\n              "), i = {validation: e, shownAt: e}, a = {validation: "ID", shownAt: "ID"}, o = {hash: {validation: "view.titleValidation", shownAt: "view.showTitleTip"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, o) : T.call(e, "popupInputTip", o)))), t.buffer.push("\n            </div>\n\n            "), a = {}, i = {}, r = s.unless.call(e, "content.creatingPrivateMessage", {hash: {}, inverse: D.noop, fn: D.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push('\n          </div>\n\n          <div class="admin-options-form">\n            '), i = {autoCloseDays: e}, a = {autoCloseDays: "ID"}, o = {hash: {autoCloseDays: "content.auto_close_days"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.autoCloseForm, n ? n.call(e, o) : T.call(e, "autoCloseForm", o)))), t.buffer.push("\n          </div>\n        "), c
+        return t.buffer.push("\n          <div class='form-element clearfix'>\n            "), a = {}, i = {}, n = s["if"].call(e, "model.creatingPrivateMessage", {hash: {}, inverse: D.noop, fn: D.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push('\n\n            <div class="title-input">\n              '), i = {value: e, tabindex: e, id: e, maxlength: e, "class": e, placeholderKey: e}, a = {value: "ID", tabindex: "STRING", id: "STRING", maxlength: "STRING", "class": "STRING", placeholderKey: "STRING"}, o = {hash: {value: "model.title", tabindex: "2", id: "reply-title", maxlength: "255", "class": "span8", placeholderKey: "composer.title_placeholder"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.textField, n ? n.call(e, o) : E.call(e, "textField", o)))), t.buffer.push("\n              "), i = {validation: e, shownAt: e}, a = {validation: "ID", shownAt: "ID"}, o = {hash: {validation: "view.titleValidation", shownAt: "view.showTitleTip"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, o) : E.call(e, "popupInputTip", o)))), t.buffer.push("\n            </div>\n\n            "), a = {}, i = {}, r = s.unless.call(e, "model.creatingPrivateMessage", {hash: {}, inverse: D.noop, fn: D.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push('\n          </div>\n\n          <div class="admin-options-form">\n            '), i = {autoCloseDays: e}, a = {autoCloseDays: "ID"}, o = {hash: {autoCloseDays: "model.auto_close_days"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.autoCloseForm, n ? n.call(e, o) : E.call(e, "autoCloseForm", o)))), t.buffer.push("\n          </div>\n        "), c
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n              "), r = {topicId: e, excludeCurrentUser: e, id: e, "class": e, placeholderKey: e, tabindex: e, usernames: e}, a = {topicId: "ID", excludeCurrentUser: "STRING", id: "STRING", "class": "STRING", placeholderKey: "STRING", tabindex: "STRING", usernames: "ID"}, i = {hash: {topicId: "controller.controllers.topic.content.id", excludeCurrentUser: "true", id: "private-message-users", "class": "span8", placeholderKey: "composer.users_placeholder", tabindex: "1", usernames: "content.targetUsernames"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(C((n = s.userSelector, n ? n.call(e, i) : T.call(e, "userSelector", i)))), t.buffer.push("\n            "), o
+        return t.buffer.push("\n              "), r = {topicId: e, excludeCurrentUser: e, id: e, "class": e, placeholderKey: e, tabindex: e, usernames: e}, a = {topicId: "ID", excludeCurrentUser: "STRING", id: "STRING", "class": "STRING", placeholderKey: "STRING", tabindex: "STRING", usernames: "ID"}, i = {hash: {topicId: "controller.controllers.topic.model.id", excludeCurrentUser: "true", id: "private-message-users", "class": "span8", placeholderKey: "composer.users_placeholder", tabindex: "1", usernames: "model.targetUsernames"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(C((n = s.userSelector, n ? n.call(e, i) : E.call(e, "userSelector", i)))), t.buffer.push("\n            "), o
     }
 
     function h(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push('\n              <div class="category-input">\n                '), a = {valueAttribute: e, value: e, showUncategorized: e}, i = {valueAttribute: "STRING", value: "ID", showUncategorized: "STRING"}, o = {hash: {valueAttribute: "name", value: "content.categoryName", showUncategorized: "true"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.categoryChooser, n ? n.call(e, o) : T.call(e, "categoryChooser", o)))), t.buffer.push("\n                "), a = {validation: e, shownAt: e}, i = {validation: "ID", shownAt: "ID"}, o = {hash: {validation: "view.categoryValidation", shownAt: "view.showCategoryTip"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, o) : T.call(e, "popupInputTip", o)))), t.buffer.push("\n              </div>\n              "), i = {}, a = {}, r = s["if"].call(e, "content.archetype.hasOptions", {hash: {}, inverse: D.noop, fn: D.program(8, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              "), i = {}, a = {}, r = s["if"].call(e, "content.showAdminOptions", {hash: {}, inverse: D.noop, fn: D.program(10, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), u
+        return t.buffer.push('\n              <div class="category-input">\n                '), a = {valueAttribute: e, value: e, showUncategorized: e}, i = {valueAttribute: "STRING", value: "ID", showUncategorized: "STRING"}, o = {hash: {valueAttribute: "name", value: "model.categoryName", showUncategorized: "true"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.categoryChooser, n ? n.call(e, o) : E.call(e, "categoryChooser", o)))), t.buffer.push("\n                "), a = {validation: e, shownAt: e}, i = {validation: "ID", shownAt: "ID"}, o = {hash: {validation: "view.categoryValidation", shownAt: "view.showCategoryTip"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(C((n = s.popupInputTip, n ? n.call(e, o) : E.call(e, "popupInputTip", o)))), t.buffer.push("\n              </div>\n              "), i = {}, a = {}, r = s["if"].call(e, "model.archetype.hasOptions", {hash: {}, inverse: D.noop, fn: D.program(8, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              "), i = {}, a = {}, r = s["if"].call(e, "model.showAdminOptions", {hash: {}, inverse: D.noop, fn: D.program(10, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), u
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n                <button class='btn' "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "showOptions", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "topic.options", i) : T.call(e, "i18n", "topic.options", i)))), t.buffer.push("</button>\n              "), o
+        return t.buffer.push("\n                <button class='btn' "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "showOptions", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "topic.options", i) : E.call(e, "i18n", "topic.options", i)))), t.buffer.push("</button>\n              "), o
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n                <button "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(C(s.action.call(e, "toggleAdminOptions", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(' class="btn no-text" title=\''), a = {}, r = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.admin_options_title", i) : T.call(e, "i18n", "composer.admin_options_title", i)))), t.buffer.push('\'><i class="icon icon-wrench"></i></button>\n              '), o
+        return t.buffer.push("\n                <button "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(C(s.action.call(e, "toggleAdminOptions", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(' class="btn no-text" title=\''), a = {}, r = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.admin_options_title", i) : E.call(e, "i18n", "composer.admin_options_title", i)))), t.buffer.push('\'><i class="icon icon-wrench"></i></button>\n              '), o
     }
 
     function p(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push('\n            <a href="#" '), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "togglePreview", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='toggle-preview'>"), a = {unescaped: e}, r = {unescaped: "STRING"}, n = s._triageMustache.call(e, "content.toggleText", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</a>\n            <div id='draft-status'></div>\n            "), r = {}, a = {}, n = s["if"].call(e, "view.loadingImage", {hash: {}, inverse: D.noop, fn: D.program(13, f, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
+        return t.buffer.push('\n            <a href="#" '), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "togglePreview", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='toggle-preview'>"), a = {unescaped: e}, r = {unescaped: "STRING"}, n = s._triageMustache.call(e, "model.toggleText", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</a>\n            <div id='draft-status'></div>\n            "), r = {}, a = {}, n = s["if"].call(e, "view.isUploading", {hash: {}, inverse: D.noop, fn: D.program(13, f, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
     }
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n              <div id="image-uploading">\n                '), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "image_selector.uploading_image", i) : T.call(e, "i18n", "image_selector.uploading_image", i)))), t.buffer.push(" "), r = {}, a = {}, t.buffer.push(C(s._triageMustache.call(e, "view.uploadProgress", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('% <a id="cancel-image-upload">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "cancel", i) : T.call(e, "i18n", "cancel", i)))), t.buffer.push("</a>\n              </div>\n            "), o
+        return t.buffer.push('\n              <div id="file-uploading">\n                '), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "image_selector.uploading_image", i) : E.call(e, "i18n", "image_selector.uploading_image", i)))), t.buffer.push(" "), r = {}, a = {}, t.buffer.push(C(s._triageMustache.call(e, "view.uploadProgress", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('% <a id="cancel-file-upload">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "cancel", i) : E.call(e, "i18n", "cancel", i)))), t.buffer.push("</a>\n              </div>\n            "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <div class='submit-panel'>\n            <button "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "save", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' tabindex="4" '), a = {"class": e}, r = {"class": "STRING"}, t.buffer.push(C(s.bindAttr.call(e, {hash: {"class": ":btn :btn-primary :create content.cantSubmitPost:disabled"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, t.buffer.push(C(s._triageMustache.call(e, "view.content.saveText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</button>\n            <a href='#' "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "cancel", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='cancel' tabindex=\"4\">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "cancel", i) : T.call(e, "i18n", "cancel", i)))), t.buffer.push("</a>\n          </div>\n        "), o
+        return t.buffer.push("\n          <div class='submit-panel'>\n            <button "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "save", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' tabindex="4" '), a = {"class": e}, r = {"class": "STRING"}, t.buffer.push(C(s.bindAttr.call(e, {hash: {"class": ":btn :btn-primary :create model.cantSubmitPost:disabled"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, t.buffer.push(C(s._triageMustache.call(e, "model.saveText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</button>\n            <a href='#' "), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "cancel", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='cancel' tabindex=\"4\">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "cancel", i) : E.call(e, "i18n", "cancel", i)))), t.buffer.push("</a>\n          </div>\n        "), o
     }
 
     function m(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n      <div class='row'>\n        <div class='span24'>\n          <div class='saving-text'>\n            "), r = {}, a = {}, n = s["if"].call(e, "content.createdPost", {hash: {}, inverse: D.program(20, b, t), fn: D.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          </div>\n          <div class='draft-text'>\n            "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saved_draft", i) : T.call(e, "i18n", "composer.saved_draft", i)))), t.buffer.push("\n          </div>\n        </div>\n\n      </div>\n    "), o
+        return t.buffer.push("\n      <div class='row'>\n        <div class='span24'>\n          <div class='saving-text'>\n            "), r = {}, a = {}, n = s["if"].call(e, "model.createdPost", {hash: {}, inverse: D.program(20, b, t), fn: D.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          </div>\n          <div class='draft-text'>\n            "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saved_draft", i) : E.call(e, "i18n", "composer.saved_draft", i)))), t.buffer.push("\n          </div>\n        </div>\n\n      </div>\n    "), o
     }
 
     function g(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saved", i) : T.call(e, "i18n", "composer.saved", i)))), t.buffer.push(" <a class='permalink' href=\""), r = {}, a = {}, t.buffer.push(C(s.unbound.call(e, "createdPost.url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "viewNewReply", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.view_new_post", i) : T.call(e, "i18n", "composer.view_new_post", i)))), t.buffer.push("</a>\n            "), o
+        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saved", i) : E.call(e, "i18n", "composer.saved", i)))), t.buffer.push(" <a class='permalink' href=\""), r = {}, a = {}, t.buffer.push(C(s.unbound.call(e, "createdPost.url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(C(s.action.call(e, "viewNewReply", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.view_new_post", i) : E.call(e, "i18n", "composer.view_new_post", i)))), t.buffer.push("</a>\n            "), o
     }
 
     function b(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saving", i) : T.call(e, "i18n", "composer.saving", i)))), t.buffer.push("\n            "), o
+        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "composer.saving", i) : E.call(e, "i18n", "composer.saving", i)))), t.buffer.push("\n            "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var y, v, x, _, E, w = "", T = s.helperMissing, C = this.escapeExpression, D = this;
-    return r.buffer.push("<div class='spinner'>"), x = {}, _ = {}, E = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.uploading", E) : T.call(t, "i18n", "composer.uploading", E)))), r.buffer.push("</div>\n\n<div class='contents'>\n\n  <div class='composer-popup-container'>\n    <div id='new-user-education' class='composer-popup' style='display: none'>\n      <a href='#' "), x = {}, _ = {}, r.buffer.push(C(s.action.call(t, "closeEducation", {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" class='close'><i class='icon icon-remove-sign'></i></a>\n      "), _ = {unescaped: t}, x = {unescaped: "STRING"}, v = s._triageMustache.call(t, "educationContents", {hash: {unescaped: "true"}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n    </div>\n\n    <div id='similar-topics' class='composer-popup' style='display: none'>\n      <a href='#' "), x = {}, _ = {}, r.buffer.push(C(s.action.call(t, "closeSimilar", {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" class='close'><i class='icon icon-remove-sign'></i></a>\n      <h3>"), x = {}, _ = {}, E = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.similar_topics", E) : T.call(t, "i18n", "composer.similar_topics", E)))), r.buffer.push("<h3>\n\n      <ul class='topics'>\n        "), x = {}, _ = {}, v = s.each.call(t, "similarTopics", {hash: {}, inverse: D.noop, fn: D.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n      </ul>\n    </div>\n  </div>\n\n  <div class='control'>\n    <a href='#' class='toggler' "), _ = {bubbles: t}, x = {bubbles: "BOOLEAN"}, r.buffer.push(C(s.action.call(t, "toggle", {hash: {bubbles: !1}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" title='"), x = {}, _ = {}, E = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.toggler", E) : T.call(t, "i18n", "composer.toggler", E)))), r.buffer.push("'></a>\n\n    "), x = {}, _ = {}, v = s["if"].call(t, "content.viewOpen", {hash: {}, inverse: D.program(17, m, r), fn: D.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n  </div>\n</div>\n"), w
+    var y, v, x, _, w, T = "", E = s.helperMissing, C = this.escapeExpression, D = this;
+    return r.buffer.push("<div class='spinner'>"), x = {}, _ = {}, w = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.uploading", w) : E.call(t, "i18n", "composer.uploading", w)))), r.buffer.push("</div>\n\n<div class='contents'>\n\n  <div class='composer-popup-container'>\n    <div id='new-user-education' class='composer-popup' style='display: none'>\n      <a href='#' "), x = {}, _ = {}, r.buffer.push(C(s.action.call(t, "closeEducation", {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" class='close'><i class='icon icon-remove-sign'></i></a>\n      "), _ = {unescaped: t}, x = {unescaped: "STRING"}, v = s._triageMustache.call(t, "educationContents", {hash: {unescaped: "true"}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n    </div>\n\n    <div id='similar-topics' class='composer-popup' style='display: none'>\n      <a href='#' "), x = {}, _ = {}, r.buffer.push(C(s.action.call(t, "closeSimilar", {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" class='close'><i class='icon icon-remove-sign'></i></a>\n      <h3>"), x = {}, _ = {}, w = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.similar_topics", w) : E.call(t, "i18n", "composer.similar_topics", w)))), r.buffer.push("<h3>\n\n      <ul class='topics'>\n        "), x = {}, _ = {}, v = s.each.call(t, "similarTopics", {hash: {}, inverse: D.noop, fn: D.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n      </ul>\n    </div>\n  </div>\n\n  <div class='control'>\n    <a href='#' class='toggler' "), _ = {bubbles: t}, x = {bubbles: "BOOLEAN"}, r.buffer.push(C(s.action.call(t, "toggle", {hash: {bubbles: !1}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}))), r.buffer.push(" title='"), x = {}, _ = {}, w = {hash: {}, contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}, r.buffer.push(C((y = s.i18n, y ? y.call(t, "composer.toggler", w) : E.call(t, "i18n", "composer.toggler", w)))), r.buffer.push("'></a>\n\n    "), x = {}, _ = {}, v = s["if"].call(t, "model.viewOpen", {hash: {}, inverse: D.program(17, m, r), fn: D.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n  </div>\n</div>\n"), T
 }), Ember.TEMPLATES.embedded_post = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, u, h, c = "";
-        return t.buffer.push("\n  <div class='row'>\n    <div class='topic-meta-data span2'>\n      <div class='contents'>\n        <div>\n          <a href='/users/"), a = {}, u = {}, t.buffer.push(p(s.unbound.call(e, "username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("'>"), u = {imageSize: e}, a = {imageSize: "STRING"}, h = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.avatar, n ? n.call(e, "", h) : f.call(e, "avatar", "", h)))), t.buffer.push("</a>\n        </div>\n        <h5 "), u = {"class": e}, a = {"class": "STRING"}, t.buffer.push(p(s.bindAttr.call(e, {hash: {"class": "staff new_user"}, contexts: [], types: [], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("><a href='"), a = {}, u = {}, t.buffer.push(p(s.unbound.call(e, "usernameUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("'>"), a = {}, u = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.breakUp, n ? n.call(e, "username", h) : f.call(e, "breakUp", "username", h)))), t.buffer.push("</a></h5>\n        <span class='post-date'>"), a = {}, u = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.date, n ? n.call(e, "created_at", h) : f.call(e, "date", "created_at", h)))), t.buffer.push("</span>\n      </div>\n\n    </div>\n    <div class='span11 topic-body'>\n      "), a = {}, u = {}, r = s["if"].call(e, "view.previousPost", {hash: {}, inverse: d.noop, fn: d.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, u = {}, r = s.unbound.call(e, "cooked", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, u = {}, r = s.unless.call(e, "view.previousPost", {hash: {}, inverse: d.noop, fn: d.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </div>\n  </div>\n"), c
+        return t.buffer.push("\n  <div class='row'>\n    <div class='topic-meta-data span2'>\n      <div class='contents'>\n        <div>\n          <a href='/users/"), a = {}, u = {}, t.buffer.push(p(s.unbound.call(e, "username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("'>"), u = {imageSize: e}, a = {imageSize: "STRING"}, h = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.avatar, n ? n.call(e, "", h) : f.call(e, "avatar", "", h)))), t.buffer.push("</a>\n        </div>\n        <h5 "), u = {"class": e}, a = {"class": "STRING"}, t.buffer.push(p(s.bindAttr.call(e, {hash: {"class": "staff new_user"}, contexts: [], types: [], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("><a href='"), a = {}, u = {}, t.buffer.push(p(s.unbound.call(e, "usernameUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}))), t.buffer.push("'>"), a = {}, u = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.breakUp, n ? n.call(e, "username", h) : f.call(e, "breakUp", "username", h)))), t.buffer.push("</a></h5>\n      </div>\n    </div>\n    <div class='span11 topic-body'>\n      <div class=\"topic-meta-data-inside\">\n        <div class='post-info post-date'>"), a = {}, u = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}, t.buffer.push(p((n = s.unboundAgeWithTooltip, n ? n.call(e, "created_at", h) : f.call(e, "unboundAgeWithTooltip", "created_at", h)))), t.buffer.push("</div>\n        "), a = {}, u = {}, r = s["if"].call(e, "view.previousPost", {hash: {}, inverse: d.noop, fn: d.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </div>\n      "), a = {}, u = {}, r = s.unbound.call(e, "cooked", {hash: {}, contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, u = {}, r = s.unless.call(e, "view.previousPost", {hash: {}, inverse: d.noop, fn: d.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: u, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </div>\n  </div>\n"), c
     }
 
     function i(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("<a href='"), r = {}, a = {}, t.buffer.push(p(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('\' class="arrow" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(p((n = s.i18n, n ? n.call(e, "topic.jump_reply_up", i) : f.call(e, "i18n", "topic.jump_reply_up", i)))), t.buffer.push("\"><i class='icon icon-arrow-up'></i></a>"), o
+        return t.buffer.push("<a href='"), r = {}, a = {}, t.buffer.push(p(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('\' class="post-info arrow" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(p((n = s.i18n, n ? n.call(e, "topic.jump_reply_up", i) : f.call(e, "i18n", "topic.jump_reply_up", i)))), t.buffer.push("\"><i class='icon icon-arrow-up'></i></a>"), o
     }
 
     function o(e, t) {
@@ -17752,7 +17676,7 @@ var bootbox = window.bootbox || function (e) {
 }), Ember.TEMPLATES.featured_topics = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <a href="/users/'), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "username_lower", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), a = {imageSize: e}, r = {imageSize: "STRING"}, i = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.avatar, n ? n.call(e, "", i) : T.call(e, "avatar", "", i)))), t.buffer.push("</a>\n      "), o
+        return t.buffer.push('\n        <a href="/users/'), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "username_lower", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), a = {imageSize: e}, r = {imageSize: "STRING"}, i = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.avatar, n ? n.call(e, "", i) : E.call(e, "avatar", "", i)))), t.buffer.push("</a>\n      "), o
     }
 
     function i(e, t) {
@@ -17762,22 +17686,22 @@ var bootbox = window.bootbox || function (e) {
 
     function o(e, t) {
         var n, r, a, i, o, p = "";
-        return t.buffer.push("\n    <tr "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {"class": "archived"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n      <td class='main-link'>\n        <div class='topic-inset'>\n          "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: ""}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.topicStatus, n ? n.call(e, o) : T.call(e, "topicStatus", o)))), t.buffer.push("\n          "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.topicLink, r = n ? n.call(e, "", o) : T.call(e, "topicLink", "", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), i = {}, a = {}, r = s["if"].call(e, "unread", {hash: {}, inverse: C.noop, fn: C.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), i = {}, a = {}, r = s["if"].call(e, "new_posts", {hash: {}, inverse: C.noop, fn: C.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), i = {}, a = {}, r = s["if"].call(e, "unseen", {hash: {}, inverse: C.noop, fn: C.program(10, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), i = {}, a = {}, r = s["if"].call(e, "hasExcerpt", {hash: {}, inverse: C.noop, fn: C.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n      </td>\n      <td class='num'><span class='badge-posts'>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "posts_count", o) : T.call(e, "number", "posts_count", o)))), t.buffer.push("</span></td>\n      <td class='num'><span "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {"class": ":age ageCold"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(" title='"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.unboundDate, n ? n.call(e, "created_at", o) : T.call(e, "unboundDate", "created_at", o)))), t.buffer.push("'>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.unboundAge, r = n ? n.call(e, "created_at", o) : T.call(e, "unboundAge", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</span></td>\n    </tr>\n  "), p
+        return t.buffer.push("\n    <tr "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(T(s.bindAttr.call(e, {hash: {"class": "archived"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n      <td class='main-link'>\n        <div class='topic-inset'>\n          "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: ""}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(T((n = s.topicStatus, n ? n.call(e, o) : E.call(e, "topicStatus", o)))), t.buffer.push("\n          "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.topicLink, r = n ? n.call(e, "", o) : E.call(e, "topicLink", "", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), i = {}, a = {}, r = s["if"].call(e, "unread", {hash: {}, inverse: C.noop, fn: C.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), i = {}, a = {}, r = s["if"].call(e, "new_posts", {hash: {}, inverse: C.noop, fn: C.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), i = {}, a = {}, r = s["if"].call(e, "unseen", {hash: {}, inverse: C.noop, fn: C.program(10, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), i = {}, a = {}, r = s["if"].call(e, "hasExcerpt", {hash: {}, inverse: C.noop, fn: C.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n      </td>\n      <td class='num posts'><span class='badge-posts'>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(T((n = s.number, n ? n.call(e, "posts_count", o) : E.call(e, "number", "posts_count", o)))), t.buffer.push("</span></td>\n      <td class='num age'><span "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(T(s.bindAttr.call(e, {hash: {"class": ":age ageCold"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(" title='"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(T((n = s.unboundDate, n ? n.call(e, "created_at", o) : E.call(e, "unboundDate", "created_at", o)))), t.buffer.push("'>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.unboundAge, r = n ? n.call(e, "created_at", o) : E.call(e, "unboundAge", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</span></td>\n    </tr>\n  "), p
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge unread badge-notification' title='"), a = {count: e}, r = {count: "STRING"}, i = {hash: {count: "unread"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.unread_posts", i) : T.call(e, "i18n", "topic.unread_posts", i)))), t.buffer.push("'>"), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "unread", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
+        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge unread badge-notification' title='"), a = {count: e}, r = {count: "STRING"}, i = {hash: {count: "unread"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.unread_posts", i) : E.call(e, "i18n", "topic.unread_posts", i)))), t.buffer.push("'>"), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "unread", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
     }
 
     function h(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge new-posts badge-notification' title='"), a = {count: e}, r = {count: "STRING"}, i = {hash: {count: "new_posts"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.new_posts", i) : T.call(e, "i18n", "topic.new_posts", i)))), t.buffer.push("'>"), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "new_posts", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
+        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge new-posts badge-notification' title='"), a = {count: e}, r = {count: "STRING"}, i = {hash: {count: "new_posts"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.new_posts", i) : E.call(e, "i18n", "topic.new_posts", i)))), t.buffer.push("'>"), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "new_posts", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge new-posts badge-notification' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.new", i) : T.call(e, "i18n", "topic.new", i)))), t.buffer.push("'><i class='icon icon-asterisk'></i></a>\n          "), o
+        return t.buffer.push('\n            <a href="'), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\" class='badge new-posts badge-notification' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.new", i) : E.call(e, "i18n", "topic.new", i)))), t.buffer.push("'><i class='icon icon-asterisk'></i></a>\n          "), o
     }
 
     function l(e, t) {
@@ -17792,181 +17716,176 @@ var bootbox = window.bootbox || function (e) {
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('<a href="'), r = {}, a = {}, t.buffer.push(w(s._triageMustache.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "read_more", i) : T.call(e, "i18n", "read_more", i)))), t.buffer.push("</a>"), o
+        return t.buffer.push('<a href="'), r = {}, a = {}, t.buffer.push(T(s._triageMustache.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "read_more", i) : E.call(e, "i18n", "read_more", i)))), t.buffer.push("</a>"), o
     }
 
     function d(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n                <a href="#" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "clearPin", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "i18n", "topic.clear_pin.help", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.clear_pin.title", i) : T.call(e, "i18n", "topic.clear_pin.title", i)))), t.buffer.push("</a>\n              "), o
+        return t.buffer.push('\n                <a href="#" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "clearPin", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "i18n", "topic.clear_pin.help", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.clear_pin.title", i) : E.call(e, "i18n", "topic.clear_pin.title", i)))), t.buffer.push("</a>\n              "), o
     }
 
     function m(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    <a href='#' "), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "editCategory", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "category.edit", i) : T.call(e, "i18n", "category.edit", i)))), t.buffer.push("</a>\n  "), o
+        return t.buffer.push("\n    <a href='#' "), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "editCategory", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "category.edit", i) : E.call(e, "i18n", "category.edit", i)))), t.buffer.push("</a>\n  "), o
     }
 
     function g(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    <a href='/category/"), r = {}, a = {}, t.buffer.push(w(s.unbound.call(e, "slug", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("' class='btn btn-small'>"), a = {posts: e}, r = {posts: "STRING"}, i = {hash: {posts: "topic_count"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "category.more_posts", i) : T.call(e, "i18n", "category.more_posts", i)))), t.buffer.push("</a>\n  "), o
+        return t.buffer.push("\n    <a href='/category/"), r = {}, a = {}, t.buffer.push(T(s.unbound.call(e, "slug", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("' class='btn btn-small'>"), a = {posts: e}, r = {posts: "STRING"}, i = {hash: {posts: "topic_count"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "category.more_posts", i) : E.call(e, "i18n", "category.more_posts", i)))), t.buffer.push("</a>\n  "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var b, y, v, x, _, E = "", w = this.escapeExpression, T = s.helperMissing, C = this;
-    return r.buffer.push("<table id='topic-list'>\n  <tr>\n    <th>\n      "), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.categoryLink, b ? b.call(t, "", _) : T.call(t, "categoryLink", "", _)))), r.buffer.push("\n\n      <div class='posters'>\n      "), v = {}, x = {}, y = s.each.call(t, "featured_users", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n      </div>\n    </th>\n    <th class='num'>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "posts", _) : T.call(t, "i18n", "posts", _)))), r.buffer.push("</th>\n    <th class='num'>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "age", _) : T.call(t, "i18n", "age", _)))), r.buffer.push("</th>\n  </tr>\n\n  "), v = {}, x = {}, y = s["if"].call(t, "description_excerpt", {hash: {}, inverse: C.noop, fn: C.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n  "), v = {}, x = {}, y = s.each.call(t, "topics", {hash: {}, inverse: C.noop, fn: C.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push('\n\n</table>\n<footer class="clearfix">\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "year_desc", _) : T.call(t, "i18n", "year_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.number, b ? b.call(t, "topics_year", _) : T.call(t, "number", "topics_year", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "year", _) : T.call(t, "i18n", "year", _)))), r.buffer.push('</figcaption></figure>\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "month_desc", _) : T.call(t, "i18n", "month_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.number, b ? b.call(t, "topics_month", _) : T.call(t, "number", "topics_month", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "month", _) : T.call(t, "i18n", "month", _)))), r.buffer.push('</figcaption></figure>\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "week_desc", _) : T.call(t, "i18n", "week_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.number, b ? b.call(t, "topics_week", _) : T.call(t, "number", "topics_week", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(w((b = s.i18n, b ? b.call(t, "week", _) : T.call(t, "i18n", "week", _)))), r.buffer.push("</figcaption></figure>\n\n  "), v = {}, x = {}, y = s["if"].call(t, "controller.canEdit", {hash: {}, inverse: C.noop, fn: C.program(18, m, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n  "), v = {}, x = {}, y = s["if"].call(t, "moreTopics", {hash: {}, inverse: C.noop, fn: C.program(20, g, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</footer>\n"), E
+    var b, y, v, x, _, w = "", T = this.escapeExpression, E = s.helperMissing, C = this;
+    return r.buffer.push("<table id='topic-list'>\n  <tr>\n    <th class=\"main-link\">\n      "), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.categoryLink, b ? b.call(t, "", _) : E.call(t, "categoryLink", "", _)))), r.buffer.push("\n\n      <div class='posters'>\n      "), v = {}, x = {}, y = s.each.call(t, "featured_users", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n      </div>\n    </th>\n    <th class='num posts'>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "posts", _) : E.call(t, "i18n", "posts", _)))), r.buffer.push("</th>\n    <th class='num age'>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "age", _) : E.call(t, "i18n", "age", _)))), r.buffer.push("</th>\n  </tr>\n\n  "), v = {}, x = {}, y = s["if"].call(t, "description_excerpt", {hash: {}, inverse: C.noop, fn: C.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n  "), v = {}, x = {}, y = s.each.call(t, "topics", {hash: {}, inverse: C.noop, fn: C.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push('\n\n</table>\n<footer class="clearfix">\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "year_desc", _) : E.call(t, "i18n", "year_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.number, b ? b.call(t, "topics_year", _) : E.call(t, "number", "topics_year", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "year", _) : E.call(t, "i18n", "year", _)))), r.buffer.push('</figcaption></figure>\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "month_desc", _) : E.call(t, "i18n", "month_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.number, b ? b.call(t, "topics_month", _) : E.call(t, "number", "topics_month", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "month", _) : E.call(t, "i18n", "month", _)))), r.buffer.push('</figcaption></figure>\n  <figure title="'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "week_desc", _) : E.call(t, "i18n", "week_desc", _)))), r.buffer.push('">'), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.number, b ? b.call(t, "topics_week", _) : E.call(t, "number", "topics_week", _)))), r.buffer.push(" <figcaption>"), v = {}, x = {}, _ = {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((b = s.i18n, b ? b.call(t, "week", _) : E.call(t, "i18n", "week", _)))), r.buffer.push("</figcaption></figure>\n\n  "), v = {}, x = {}, y = s["if"].call(t, "controller.canEdit", {hash: {}, inverse: C.noop, fn: C.program(18, m, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n  "), v = {}, x = {}, y = s["if"].call(t, "moreTopics", {hash: {}, inverse: C.noop, fn: C.program(20, g, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</footer>\n"), w
 }), Ember.TEMPLATES.header = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, h, c = "";
-        return t.buffer.push('\n      <div class="extra-info-wrapper">\n        <div class="extra-info">\n          '), r = {}, a = {}, n = s["if"].call(e, "showFavoriteButton", {hash: {}, inverse: G.noop, fn: G.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          <h1>\n          "), r = {}, a = {}, n = s["if"].call(e, "topic.fancy_title", {hash: {}, inverse: G.program(6, u, t), fn: G.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), r = {}, a = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.categoryLink, n ? n.call(e, "topic.category", h) : F.call(e, "categoryLink", "topic.category", h)))), t.buffer.push("\n          </h1>\n        </div>\n      </div>\n    "), c
+        return t.buffer.push('\n      <div class="extra-info-wrapper">\n        <div class="extra-info">\n          '), r = {}, a = {}, n = s["if"].call(e, "showFavoriteButton", {hash: {}, inverse: F.noop, fn: F.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          <h1>\n          "), r = {}, a = {}, n = s["if"].call(e, "topic.details.loaded", {hash: {}, inverse: F.program(6, u, t), fn: F.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), r = {}, a = {}, h = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.categoryLink, n ? n.call(e, "topic.category", h) : B.call(e, "categoryLink", "topic.category", h)))), t.buffer.push("\n          </h1>\n        </div>\n      </div>\n    "), c
     }
 
     function i(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n            <a "), n = {"class": e}, r = {"class": "STRING"}, t.buffer.push(B(s.bindAttr.call(e, {hash: {"class": ":star topic.starred:starred"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), r = {}, n = {}, t.buffer.push(B(s.action.call(e, "toggleStar", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" href='#' "), n = {title: e}, r = {title: "STRING"}, t.buffer.push(B(s.bindAttr.call(e, {hash: {title: "topic.favoriteTooltip"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("></a>\n          "), a
+        return t.buffer.push("\n            <a "), n = {"class": e}, r = {"class": "STRING"}, t.buffer.push(H(s.bindAttr.call(e, {hash: {"class": ":star topic.starred:starred"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), r = {}, n = {}, t.buffer.push(H(s.action.call(e, "toggleStar", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" href='#' "), n = {title: e}, r = {title: "STRING"}, t.buffer.push(H(s.bindAttr.call(e, {hash: {title: "topic.favoriteTooltip"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("></a>\n          "), a
     }
 
     function o(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: "topic"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(B((n = s.topicStatus, n ? n.call(e, o) : F.call(e, "topicStatus", o)))), t.buffer.push("\n            <a class='topic-link' href='"), i = {}, a = {}, t.buffer.push(B(s.unbound.call(e, "topic.url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, r = s._triageMustache.call(e, "topic.fancy_title", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</a>\n          "), u
+        return t.buffer.push("\n            "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: "topic"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(H((n = s.topicStatus, n ? n.call(e, o) : B.call(e, "topicStatus", o)))), t.buffer.push("\n            <a class='topic-link' href='"), i = {}, a = {}, t.buffer.push(H(s.unbound.call(e, "topic.url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, r = s._triageMustache.call(e, "topic.fancy_title", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</a>\n          "), u
     }
 
     function u(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n            "), r = {}, a = {}, n = s["if"].call(e, "topic.errorLoading", {hash: {}, inverse: G.program(9, c, t), fn: G.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
+        return t.buffer.push("\n            "), r = {}, a = {}, n = s["if"].call(e, "topic.errorLoading", {hash: {}, inverse: F.program(9, c, t), fn: F.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
     }
 
     function h(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n              "), n = {}, r = {}, t.buffer.push(B(s._triageMustache.call(e, "topic.errorTitle", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("\n            "), a
+        return t.buffer.push("\n              "), n = {}, r = {}, t.buffer.push(H(s._triageMustache.call(e, "topic.errorTitle", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("\n            "), a
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "topic.loading", i) : F.call(e, "i18n", "topic.loading", i)))), t.buffer.push("\n            "), o
+        return t.buffer.push("\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "topic.loading", i) : B.call(e, "i18n", "topic.loading", i)))), t.buffer.push("\n            "), o
     }
 
     function l(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n        <div class='current-username'>\n          "), r = {}, a = {}, n = s["if"].call(e, "currentUser", {hash: {}, inverse: G.program(14, f, t), fn: G.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n        </div>\n      "), i
+        return t.buffer.push("\n        <div class='current-username'>\n          "), r = {}, a = {}, n = s["if"].call(e, "currentUser", {hash: {}, inverse: F.program(14, f, t), fn: F.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n        </div>\n      "), i
     }
 
     function p(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n          <span class='username'><a "), n = {href: e}, r = {href: "STRING"}, t.buffer.push(B(s.bindAttr.call(e, {hash: {href: "currentUser.path"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, n = {}, t.buffer.push(B(s._triageMustache.call(e, "currentUser.name", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("</a></span>\n          "), a
+        return t.buffer.push("\n          <span class='username'><a "), n = {href: e}, r = {href: "STRING"}, t.buffer.push(H(s.bindAttr.call(e, {hash: {href: "currentUser.path"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, n = {}, t.buffer.push(H(s._triageMustache.call(e, "currentUser.name", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("</a></span>\n          "), a
     }
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n            <button "), r = {}, a = {}, t.buffer.push(B(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-primary btn-small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "log_in", i) : F.call(e, "i18n", "log_in", i)))), t.buffer.push("</button>\n          "), o
+        return t.buffer.push("\n            <button "), r = {}, a = {}, t.buffer.push(H(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-primary btn-small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "log_in", i) : B.call(e, "i18n", "log_in", i)))), t.buffer.push("</button>\n          "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            <a class='icon' href=\"#\" "), a = {target: e}, i = {target: "STRING"}, t.buffer.push(B(s.action.call(e, "showNotifications", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(" data-notifications=\"notifications-dropdown\" id='user-notifications' title='"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "notifications.title", o) : F.call(e, "i18n", "notifications.title", o)))), t.buffer.push("'><i class='icon-comment'></i></a>\n            "), i = {}, a = {}, r = s["if"].call(e, "currentUser.unread_notifications", {hash: {}, inverse: G.noop, fn: G.program(17, m, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), i = {}, a = {}, r = s["if"].call(e, "currentUser.unread_private_messages", {hash: {}, inverse: G.noop, fn: G.program(19, g, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
+        return t.buffer.push("\n            <a class='icon' href=\"#\" "), a = {target: e}, i = {target: "STRING"}, t.buffer.push(H(s.action.call(e, "showNotifications", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(" data-notifications=\"notifications-dropdown\" id='user-notifications' title='"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "notifications.title", o) : B.call(e, "i18n", "notifications.title", o)))), t.buffer.push("'><i class='icon-comment'></i></a>\n            "), i = {}, a = {}, r = s["if"].call(e, "currentUser.unread_notifications", {hash: {}, inverse: F.noop, fn: F.program(17, m, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), i = {}, a = {}, r = s["if"].call(e, "currentUser.unread_private_messages", {hash: {}, inverse: F.noop, fn: F.program(19, g, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
     }
 
     function m(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n              <a href='#' class='badge-notification unread-notifications'>"), n = {}, r = {}, t.buffer.push(B(s._triageMustache.call(e, "currentUser.unread_notifications", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</a>\n            "), a
+        return t.buffer.push("\n              <a href='#' class='badge-notification unread-notifications'>"), n = {}, r = {}, t.buffer.push(H(s._triageMustache.call(e, "currentUser.unread_notifications", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</a>\n            "), a
     }
 
     function g(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n              <a href='#' class='badge-notification unread-private-messages'>"), n = {}, r = {}, t.buffer.push(B(s._triageMustache.call(e, "currentUser.unread_private_messages", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</a>\n            "), a
+        return t.buffer.push("\n              <a href='#' class='badge-notification unread-private-messages'>"), n = {}, r = {}, t.buffer.push(H(s._triageMustache.call(e, "currentUser.unread_private_messages", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</a>\n            "), a
     }
 
     function b(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n            <a class='icon' href=\"#\" "), r = {}, a = {}, t.buffer.push(B(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "notifications.title", i) : F.call(e, "i18n", "notifications.title", i)))), t.buffer.push("'><i class='icon-comment'></i></a>\n          "), o
+        return t.buffer.push("\n            <a class='icon' href=\"#\" "), r = {}, a = {}, t.buffer.push(H(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "notifications.title", i) : B.call(e, "i18n", "notifications.title", i)))), t.buffer.push("'><i class='icon-comment'></i></a>\n          "), o
     }
 
     function y(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n            <a class='icon expand' href='#' "), n = {}, r = {}, t.buffer.push(B(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">\n              <i class='icon-search'></i>\n            </a>\n          "), a
+        return t.buffer.push("\n            <a class='icon expand' href='#' "), n = {}, r = {}, t.buffer.push(H(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">\n              <i class='icon-search'></i>\n            </a>\n          "), a
     }
 
     function v(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n            <a class='icon expand'\n               href='#'\n               data-dropdown=\"search-dropdown\"\n               title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "search.title", i) : F.call(e, "i18n", "search.title", i)))), t.buffer.push("'>\n               <i class='icon-search'></i>\n            </a>\n          "), o
+        return t.buffer.push("\n            <a class='icon expand'\n               href='#'\n               data-dropdown=\"search-dropdown\"\n               title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "search.title", i) : B.call(e, "i18n", "search.title", i)))), t.buffer.push("'>\n               <i class='icon-search'></i>\n            </a>\n          "), o
     }
 
     function x(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n            <a class='icon'\n               href=\"#\"\n               "), n = {}, r = {}, t.buffer.push(B(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">\n               <i class='icon-reorder'></i>\n            </a>\n          "), a
+        return t.buffer.push("\n            <a class='icon'\n               href=\"#\"\n               "), n = {}, r = {}, t.buffer.push(H(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">\n               <i class='icon-reorder'></i>\n            </a>\n          "), a
     }
 
     function _(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n            <a class=\'icon\'\n               data-dropdown="site-map-dropdown"\n               href="#"\n               title=\''), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "site_map", i) : F.call(e, "i18n", "site_map", i)))), t.buffer.push("'>\n               <i class='icon-reorder'></i>\n            </a>\n          "), o
-    }
-
-    function E(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n            <a href='/admin/flags/active' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "notifications.total_flagged", i) : F.call(e, "i18n", "notifications.total_flagged", i)))), t.buffer.push("' class='badge-notification flagged-posts'>"), r = {}, a = {}, t.buffer.push(B(s._triageMustache.call(e, "currentUser.site_flagged_posts_count", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
+        return t.buffer.push('\n            <a class=\'icon\'\n               data-dropdown="site-map-dropdown"\n               href="#"\n               title=\''), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "site_map", i) : B.call(e, "i18n", "site_map", i)))), t.buffer.push("'>\n               <i class='icon-reorder'></i>\n            </a>\n          "), o
     }
 
     function w(e, t) {
-        var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            "), a = {titleKey: e, "class": e}, i = {titleKey: "STRING", "class": "STRING"}, o = {hash: {titleKey: "current_user", "class": "icon"}, inverse: G.noop, fn: G.program(34, T, t), contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: i, data: t}, n = s.titledLinkTo, r = n ? n.call(e, "user.activity", "currentUser", o) : F.call(e, "titledLinkTo", "user.activity", "currentUser", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n            <a href='/admin/flags/active' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "notifications.total_flagged", i) : B.call(e, "i18n", "notifications.total_flagged", i)))), t.buffer.push("' class='badge-notification flagged-posts'>"), r = {}, a = {}, t.buffer.push(H(s._triageMustache.call(e, "currentUser.site_flagged_posts_count", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a>\n          "), o
     }
 
     function T(e, t) {
+        var n, r, a, i, o, u = "";
+        return t.buffer.push("\n            "), a = {titleKey: e, "class": e}, i = {titleKey: "STRING", "class": "STRING"}, o = {hash: {titleKey: "current_user", "class": "icon"}, inverse: F.noop, fn: F.program(34, E, t), contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: i, data: t}, n = s.titledLinkTo, r = n ? n.call(e, "user.activity", "currentUser", o) : B.call(e, "titledLinkTo", "user.activity", "currentUser", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
+    }
+
+    function E(e, t) {
         var n, r, a, i;
-        r = {imageSize: e}, a = {imageSize: "STRING"}, i = {hash: {imageSize: "medium"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(B((n = s.avatar, n ? n.call(e, "currentUser", i) : F.call(e, "avatar", "currentUser", i))))
+        r = {imageSize: e}, a = {imageSize: "STRING"}, i = {hash: {imageSize: "medium"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(H((n = s.avatar, n ? n.call(e, "currentUser", i) : B.call(e, "avatar", "currentUser", i))))
     }
 
     function C(e, t) {
         var n, r, a = "";
-        return t.buffer.push('\n            <div class="icon not-logged-in-avatar" '), n = {}, r = {}, t.buffer.push(B(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("><i class='icon-user'></i></div>\n          "), a
+        return t.buffer.push('\n            <div class="icon not-logged-in-avatar" '), n = {}, r = {}, t.buffer.push(H(s.action.call(e, "showLogin", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("><i class='icon-user'></i></div>\n          "), a
     }
 
     function D(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <ul>\n            "), r = {}, a = {}, n = s.each.call(e, "view.notifications", {hash: {}, inverse: G.noop, fn: G.program(39, I, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n            <li class='read last'>\n              <a "), a = {href: e}, r = {href: "STRING"}, t.buffer.push(B(s.bindAttr.call(e, {hash: {href: "currentUser.path"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "notifications.more", i) : F.call(e, "i18n", "notifications.more", i)))), t.buffer.push(" &hellip;</a>\n            </li>\n          </ul>\n        "), o
+        return t.buffer.push("\n          <ul>\n            "), r = {}, a = {}, n = s.each.call(e, "view.notifications", {hash: {}, inverse: F.noop, fn: F.program(39, I, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n            <li class='read last'>\n              <a "), a = {href: e}, r = {href: "STRING"}, t.buffer.push(H(s.bindAttr.call(e, {hash: {href: "currentUser.path"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "notifications.more", i) : B.call(e, "i18n", "notifications.more", i)))), t.buffer.push(" &hellip;</a>\n            </li>\n          </ul>\n        "), o
     }
 
     function I(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push('\n            <li class="'), r = {}, a = {}, t.buffer.push(B(s.unbound.call(e, "readClass", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, n = s.unbound.call(e, "rendered", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</li>\n            "), i
+        return t.buffer.push('\n            <li class="'), r = {}, a = {}, t.buffer.push(H(s.unbound.call(e, "readClass", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('">'), r = {}, a = {}, n = s.unbound.call(e, "rendered", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</li>\n            "), i
     }
 
     function S(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <div class='none'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "notifications.none", i) : F.call(e, "i18n", "notifications.none", i)))), t.buffer.push("</div>\n        "), o
+        return t.buffer.push("\n          <div class='none'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "notifications.none", i) : B.call(e, "i18n", "notifications.none", i)))), t.buffer.push("</div>\n        "), o
     }
 
     function k(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n          <li><a href=\"/admin\"><i class='icon icon-cog'></i>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "admin_title", o) : F.call(e, "i18n", "admin_title", o)))), t.buffer.push("</a></li>\n          <li><a href=\"/admin/flags/active\"><i class='icon icon-flag'></i>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "flags_title", o) : F.call(e, "i18n", "flags_title", o)))), t.buffer.push("</a>\n          "), a = {}, i = {}, r = s["if"].call(e, "currentUser.site_flagged_posts_count", {hash: {}, inverse: G.noop, fn: G.program(31, E, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </li>\n        "), u
-    }
-
-    function A(e, t) {
-        var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "filters.latest.title", i) : F.call(e, "i18n", "filters.latest.title", i))))
+        return t.buffer.push("\n          <li><a href=\"/admin\"><i class='icon icon-wrench'></i>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "admin_title", o) : B.call(e, "i18n", "admin_title", o)))), t.buffer.push("</a></li>\n          <li><a href=\"/admin/flags/active\"><i class='icon icon-flag'></i>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "flags_title", o) : B.call(e, "i18n", "flags_title", o)))), t.buffer.push("</a>\n          "), a = {}, i = {}, r = s["if"].call(e, "currentUser.site_flagged_posts_count", {hash: {}, inverse: F.noop, fn: F.program(31, w, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </li>\n        "), u
     }
 
     function N(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "faq", i) : F.call(e, "i18n", "faq", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "filters.latest.title", i) : B.call(e, "i18n", "filters.latest.title", i))))
+    }
+
+    function A(e, t) {
+        var n, r, a, i, o, u = "";
+        return t.buffer.push("\n          <li class='heading' title=\""), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "filters.categories.help", o) : B.call(e, "i18n", "filters.categories.help", o)))), t.buffer.push('">\n            '), a = {}, i = {}, o = {hash: {}, inverse: F.noop, fn: F.program(48, P, t), contexts: [e], types: ["STRING"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.categories", o) : B.call(e, "linkTo", "list.categories", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </li>\n\n          "), a = {}, i = {}, r = s.each.call(e, "categories", {hash: {}, inverse: F.noop, fn: F.program(50, R, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        "), u
     }
 
     function P(e, t) {
-        var n, r, a, i, o, u = "";
-        return t.buffer.push("\n          <li class='heading' title=\""), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "filters.categories.help", o) : F.call(e, "i18n", "filters.categories.help", o)))), t.buffer.push('">\n            '), a = {}, i = {}, o = {hash: {}, inverse: G.noop, fn: G.program(50, R, t), contexts: [e], types: ["STRING"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.categories", o) : F.call(e, "linkTo", "list.categories", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </li>\n\n          "), a = {}, i = {}, r = s.each.call(e, "categories", {hash: {}, inverse: G.noop, fn: G.program(52, O, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        "), u
+        var n, r, a, i;
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.i18n, n ? n.call(e, "filters.categories.title", i) : B.call(e, "i18n", "filters.categories.title", i))))
     }
 
     function R(e, t) {
-        var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.i18n, n ? n.call(e, "filters.categories.title", i) : F.call(e, "i18n", "filters.categories.title", i))))
-    }
-
-    function O(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n            <li class='category'>\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(B((n = s.categoryLink, n ? n.call(e, "", i) : F.call(e, "categoryLink", "", i)))), t.buffer.push("\n              <b>"), r = {}, a = {}, t.buffer.push(B(s.unbound.call(e, "topic_count", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</b></a>\n            </li>\n          "), o
+        return t.buffer.push("\n            <li class='category'>\n              "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(H((n = s.categoryLink, n ? n.call(e, "", i) : B.call(e, "categoryLink", "", i)))), t.buffer.push("\n              <b>"), r = {}, a = {}, t.buffer.push(H(s.unbound.call(e, "topic_count", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</b></a>\n            </li>\n          "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var j, M, L, U, V, H = "", B = this.escapeExpression, F = s.helperMissing, G = this;
-    return r.buffer.push("<div class='container'>\n  <div class='contents clearfix'>\n\n    "), L = {}, U = {}, r.buffer.push(B(s._triageMustache.call(t, "view.logoHTML", {hash: {}, contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}))), r.buffer.push("\n\n    "), L = {}, U = {}, j = s["if"].call(t, "showExtraInfo", {hash: {}, inverse: G.noop, fn: G.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n\n    <div class='panel clearfix'>\n      "), L = {}, U = {}, j = s.unless.call(t, "showExtraInfo", {hash: {}, inverse: G.noop, fn: G.program(11, l, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n      <ul class='icons clearfix'>\n        <li class='notifications'>\n          "), L = {}, U = {}, j = s["if"].call(t, "currentUser", {hash: {}, inverse: G.program(21, b, r), fn: G.program(16, d, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        </li>\n        <li>\n          "), L = {}, U = {}, j = s["if"].call(t, "Discourse.loginRequired", {hash: {}, inverse: G.program(25, v, r), fn: G.program(23, y, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        </li>\n        <li class='categories dropdown'>\n          "), L = {}, U = {}, j = s["if"].call(t, "Discourse.loginRequired", {hash: {}, inverse: G.program(29, _, r), fn: G.program(27, x, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n          "), L = {}, U = {}, j = s["if"].call(t, "currentUser.site_flagged_posts_count", {hash: {}, inverse: G.noop, fn: G.program(31, E, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        </li>\n        <li class='current-user'>\n          "), L = {}, U = {}, j = s["if"].call(t, "currentUser", {hash: {}, inverse: G.program(36, C, r), fn: G.program(33, w, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        </li>\n      </ul>\n\n      "), L = {}, U = {}, V = {hash: {}, contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}, r.buffer.push(B((j = s.render, j ? j.call(t, "search", V) : F.call(t, "render", "search", V)))), r.buffer.push("\n\n      <section class='d-dropdown' id='notifications-dropdown'>\n        "), L = {}, U = {}, M = s["if"].call(t, "view.notifications", {hash: {}, inverse: G.program(41, S, r), fn: G.program(38, D, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (M || 0 === M) && r.buffer.push(M), r.buffer.push("\n      </section>\n\n      <section class='d-dropdown' id='site-map-dropdown'>\n      <ul>\n        "), L = {}, U = {}, M = s["if"].call(t, "currentUser.staff", {hash: {}, inverse: G.noop, fn: G.program(43, k, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (M || 0 === M) && r.buffer.push(M), r.buffer.push("\n        <li>\n          "), U = {titleKey: t}, L = {titleKey: "STRING"}, V = {hash: {titleKey: "filters.latest.help"}, inverse: G.noop, fn: G.program(45, A, r), contexts: [t], types: ["STRING"], hashContexts: U, hashTypes: L, data: r}, j = s.titledLinkTo, M = j ? j.call(t, "list.latest", V) : F.call(t, "titledLinkTo", "list.latest", V), (M || 0 === M) && r.buffer.push(M), r.buffer.push("\n        </li>\n        <li>"), L = {}, U = {}, V = {hash: {}, inverse: G.noop, fn: G.program(47, N, r), contexts: [t], types: ["STRING"], hashContexts: U, hashTypes: L, data: r}, j = s.linkTo, M = j ? j.call(t, "faq", V) : F.call(t, "linkTo", "faq", V), (M || 0 === M) && r.buffer.push(M), r.buffer.push("</li>\n        "), L = {}, U = {}, M = s["if"].call(t, "categories", {hash: {}, inverse: G.noop, fn: G.program(49, P, r), contexts: [t], types: ["ID"], hashContexts: U, hashTypes: L, data: r}), (M || 0 === M) && r.buffer.push(M), r.buffer.push("\n\n      </ul>\n    </section>\n\n    </div>\n  </div>\n</div>\n\n\n"), H
+    var O, j, M, L, U, V = "", H = this.escapeExpression, B = s.helperMissing, F = this;
+    return r.buffer.push("<div class='container'>\n  <div class='contents clearfix'>\n\n    "), M = {}, L = {}, r.buffer.push(H(s._triageMustache.call(t, "view.logoHTML", {hash: {}, contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}))), r.buffer.push("\n\n    "), M = {}, L = {}, O = s["if"].call(t, "showExtraInfo", {hash: {}, inverse: F.noop, fn: F.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n\n    <div class='panel clearfix'>\n      "), M = {}, L = {}, O = s.unless.call(t, "showExtraInfo", {hash: {}, inverse: F.noop, fn: F.program(11, l, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n      <ul class='icons clearfix'>\n        <li class='notifications'>\n          "), M = {}, L = {}, O = s["if"].call(t, "currentUser", {hash: {}, inverse: F.program(21, b, r), fn: F.program(16, d, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n        </li>\n        <li>\n          "), M = {}, L = {}, O = s["if"].call(t, "Discourse.loginRequired", {hash: {}, inverse: F.program(25, v, r), fn: F.program(23, y, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n        </li>\n        <li class='categories dropdown'>\n          "), M = {}, L = {}, O = s["if"].call(t, "Discourse.loginRequired", {hash: {}, inverse: F.program(29, _, r), fn: F.program(27, x, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n          "), M = {}, L = {}, O = s["if"].call(t, "currentUser.site_flagged_posts_count", {hash: {}, inverse: F.noop, fn: F.program(31, w, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n        </li>\n        <li class='current-user'>\n          "), M = {}, L = {}, O = s["if"].call(t, "currentUser", {hash: {}, inverse: F.program(36, C, r), fn: F.program(33, T, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (O || 0 === O) && r.buffer.push(O), r.buffer.push("\n        </li>\n      </ul>\n\n      "), M = {}, L = {}, U = {hash: {}, contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}, r.buffer.push(H((O = s.render, O ? O.call(t, "search", U) : B.call(t, "render", "search", U)))), r.buffer.push("\n\n      <section class='d-dropdown' id='notifications-dropdown'>\n        "), M = {}, L = {}, j = s["if"].call(t, "view.notifications", {hash: {}, inverse: F.program(41, S, r), fn: F.program(38, D, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n      </section>\n\n      <section class='d-dropdown' id='site-map-dropdown'>\n      <ul>\n        "), M = {}, L = {}, j = s["if"].call(t, "currentUser.staff", {hash: {}, inverse: F.noop, fn: F.program(43, k, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        <li>\n          "), L = {titleKey: t}, M = {titleKey: "STRING"}, U = {hash: {titleKey: "filters.latest.help"}, inverse: F.noop, fn: F.program(45, N, r), contexts: [t], types: ["STRING"], hashContexts: L, hashTypes: M, data: r}, O = s.titledLinkTo, j = O ? O.call(t, "list.latest", U) : B.call(t, "titledLinkTo", "list.latest", U), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n        </li>\n        <li>"), M = {}, L = {}, r.buffer.push(H(s._triageMustache.call(t, "faqLink", {hash: {}, contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}))), r.buffer.push("</li>\n\n        "), M = {}, L = {}, j = s["if"].call(t, "categories", {hash: {}, inverse: F.noop, fn: F.program(47, A, r), contexts: [t], types: ["ID"], hashContexts: L, hashTypes: M, data: r}), (j || 0 === j) && r.buffer.push(j), r.buffer.push("\n\n      </ul>\n    </section>\n\n    </div>\n  </div>\n</div>\n\n\n"), V
 }), Ember.TEMPLATES.image_selector = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o = "";
@@ -18066,7 +17985,7 @@ var bootbox = window.bootbox || function (e) {
     }
 
     function g(e, t) {
-        t.buffer.push("/best_of")
+        t.buffer.push("?filter=best_of")
     }
 
     function b(e, t) {
@@ -18076,12 +17995,12 @@ var bootbox = window.bootbox || function (e) {
 
     function y(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n    <td class='num activity'>\n      <a href=\""), a = {}, i = {}, t.buffer.push(C(s._triageMustache.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='age' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "first_post", o) : D.call(e, "i18n", "first_post", o)))), t.buffer.push(": "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.unboundDate, r = n ? n.call(e, "created_at", o) : D.call(e, "unboundDate", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.unboundAge, n ? n.call(e, "created_at", o) : D.call(e, "unboundAge", "created_at", o)))), t.buffer.push("</a>\n    </td>\n    <td></td>\n  "), u
+        return t.buffer.push("\n    <td class='num activity'>\n      <a href=\""), a = {}, i = {}, t.buffer.push(C(s._triageMustache.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='age' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.i18n, n ? n.call(e, "first_post", o) : D.call(e, "i18n", "first_post", o)))), t.buffer.push(": "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.unboundDate, r = n ? n.call(e, "created_at", o) : D.call(e, "unboundDate", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(C((n = s.unboundAge, n ? n.call(e, "created_at", o) : D.call(e, "unboundAge", "created_at", o)))), t.buffer.push("</a>\n    </td>\n    <td class='activity'></td>\n  "), u
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var v, x, _, E, w, T = "", C = this.escapeExpression, D = s.helperMissing, I = this;
-    return r.buffer.push("  "), _ = {}, E = {}, v = s["if"].call(t, "controller.currentUser.id", {hash: {}, inverse: I.noop, fn: I.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n  <td class='main-link clearfix'>\n\n    "), _ = {}, E = {}, v = s["if"].call(t, "controller.rankDetailsVisible", {hash: {}, inverse: I.noop, fn: I.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n    "), E = {topic: t}, _ = {topic: "ID"}, w = {hash: {topic: ""}, contexts: [], types: [], hashContexts: E, hashTypes: _, data: r}, r.buffer.push(C((v = s.topicStatus, v ? v.call(t, w) : D.call(t, "topicStatus", w)))), r.buffer.push("\n    "), _ = {}, E = {}, w = {hash: {}, contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}, v = s.topicLink, x = v ? v.call(t, "", w) : D.call(t, "topicLink", "", w), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, E = {}, x = s["if"].call(t, "unread", {hash: {}, inverse: I.noop, fn: I.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, E = {}, x = s["if"].call(t, "displayNewPosts", {hash: {}, inverse: I.noop, fn: I.program(7, u, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, E = {}, x = s["if"].call(t, "unseen", {hash: {}, inverse: I.noop, fn: I.program(9, h, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n\n    "), _ = {}, E = {}, x = s["if"].call(t, "hasExcerpt", {hash: {}, inverse: I.noop, fn: I.program(11, c, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td class='category'>\n    "), _ = {}, E = {}, w = {hash: {}, contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}, r.buffer.push(C((v = s.categoryLink, v ? v.call(t, "category", w) : D.call(t, "categoryLink", "category", w)))), r.buffer.push("\n  </td>\n\n  <td class='posters'>\n    "), _ = {}, E = {}, x = s.each.call(t, "posters", {hash: {}, inverse: I.noop, fn: I.program(17, d, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td class='num posts'><a href=\""), _ = {}, E = {}, r.buffer.push(C(s._triageMustache.call(t, "lastReadUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}))), r.buffer.push("\" class='badge-posts'>"), E = {numberKey: t}, _ = {numberKey: "STRING"}, w = {hash: {numberKey: "posts_long"}, contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}, r.buffer.push(C((v = s.number, v ? v.call(t, "posts_count", w) : D.call(t, "number", "posts_count", w)))), r.buffer.push("</a></td>\n\n  <td class='num likes'>\n    "), _ = {}, E = {}, x = s["if"].call(t, "like_count", {hash: {}, inverse: I.noop, fn: I.program(19, m, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td "), E = {"class": t}, _ = {"class": "STRING"}, r.buffer.push(C(s.bindAttr.call(t, {hash: {"class": ":num :views viewsHeat"}, contexts: [], types: [], hashContexts: E, hashTypes: _, data: r}))), r.buffer.push(">"), E = {numberKey: t}, _ = {numberKey: "STRING"}, w = {hash: {numberKey: "views_long"}, contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}, r.buffer.push(C((v = s.number, v ? v.call(t, "views", w) : D.call(t, "number", "views", w)))), r.buffer.push("</td>\n\n  "), _ = {}, E = {}, x = s["if"].call(t, "bumped", {hash: {}, inverse: I.program(24, y, r), fn: I.program(22, b, r), contexts: [t], types: ["ID"], hashContexts: E, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n"), T
+    var v, x, _, w, T, E = "", C = this.escapeExpression, D = s.helperMissing, I = this;
+    return r.buffer.push("  "), _ = {}, w = {}, v = s["if"].call(t, "controller.currentUser.id", {hash: {}, inverse: I.noop, fn: I.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n  <td class='main-link clearfix'>\n\n    "), _ = {}, w = {}, v = s["if"].call(t, "controller.rankDetailsVisible", {hash: {}, inverse: I.noop, fn: I.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n\n    "), w = {topic: t}, _ = {topic: "ID"}, T = {hash: {topic: ""}, contexts: [], types: [], hashContexts: w, hashTypes: _, data: r}, r.buffer.push(C((v = s.topicStatus, v ? v.call(t, T) : D.call(t, "topicStatus", T)))), r.buffer.push("\n    "), _ = {}, w = {}, T = {hash: {}, contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}, v = s.topicLink, x = v ? v.call(t, "", T) : D.call(t, "topicLink", "", T), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, w = {}, x = s["if"].call(t, "unread", {hash: {}, inverse: I.noop, fn: I.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, w = {}, x = s["if"].call(t, "displayNewPosts", {hash: {}, inverse: I.noop, fn: I.program(7, u, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n    "), _ = {}, w = {}, x = s["if"].call(t, "unseen", {hash: {}, inverse: I.noop, fn: I.program(9, h, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n\n    "), _ = {}, w = {}, x = s["if"].call(t, "hasExcerpt", {hash: {}, inverse: I.noop, fn: I.program(11, c, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td class='category'>\n    "), _ = {}, w = {}, T = {hash: {}, contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}, r.buffer.push(C((v = s.categoryLink, v ? v.call(t, "category", T) : D.call(t, "categoryLink", "category", T)))), r.buffer.push("\n  </td>\n\n  <td class='posters'>\n    "), _ = {}, w = {}, x = s.each.call(t, "posters", {hash: {}, inverse: I.noop, fn: I.program(17, d, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td class='num posts'><a href=\""), _ = {}, w = {}, r.buffer.push(C(s._triageMustache.call(t, "lastReadUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}))), r.buffer.push("\" class='badge-posts'>"), w = {numberKey: t}, _ = {numberKey: "STRING"}, T = {hash: {numberKey: "posts_long"}, contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}, r.buffer.push(C((v = s.number, v ? v.call(t, "posts_count", T) : D.call(t, "number", "posts_count", T)))), r.buffer.push("</a></td>\n\n  <td class='num likes'>\n    "), _ = {}, w = {}, x = s["if"].call(t, "like_count", {hash: {}, inverse: I.noop, fn: I.program(19, m, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n  </td>\n\n  <td "), w = {"class": t}, _ = {"class": "STRING"}, r.buffer.push(C(s.bindAttr.call(t, {hash: {"class": ":num :views viewsHeat"}, contexts: [], types: [], hashContexts: w, hashTypes: _, data: r}))), r.buffer.push(">"), w = {numberKey: t}, _ = {numberKey: "STRING"}, T = {hash: {numberKey: "views_long"}, contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}, r.buffer.push(C((v = s.number, v ? v.call(t, "views", T) : D.call(t, "number", "views", T)))), r.buffer.push("</td>\n\n  "), _ = {}, w = {}, x = s["if"].call(t, "bumped", {hash: {}, inverse: I.program(24, y, r), fn: I.program(22, b, r), contexts: [t], types: ["ID"], hashContexts: w, hashTypes: _, data: r}), (x || 0 === x) && r.buffer.push(x), r.buffer.push("\n"), E
 }), Ember.TEMPLATES["list/topics"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, o = "";
@@ -18090,17 +18009,17 @@ var bootbox = window.bootbox || function (e) {
 
     function i(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n    <div class='contents'>\n      "), r = {}, a = {}, n = s["if"].call(e, "view.showTable", {hash: {}, inverse: C.noop, fn: C.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </div>\n\n    <footer id='topic-list-bottom'>\n      "), r = {}, a = {}, n = s["if"].call(e, "loadingMore", {hash: {}, inverse: C.noop, fn: C.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n      <h3>\n        "), r = {}, a = {}, t.buffer.push(w(s._triageMustache.call(e, "footerMessage", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n        "), r = {}, a = {}, n = s["if"].call(e, "allLoaded", {hash: {}, inverse: C.noop, fn: C.program(14, f, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </h3>\n    </footer>\n\n  "), i
+        return t.buffer.push("\n    <div class='contents'>\n      "), r = {}, a = {}, n = s["if"].call(e, "view.showTable", {hash: {}, inverse: C.noop, fn: C.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </div>\n\n    <footer id='topic-list-bottom'>\n      "), r = {}, a = {}, n = s["if"].call(e, "loadingMore", {hash: {}, inverse: C.noop, fn: C.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n      <h3>\n        "), r = {}, a = {}, t.buffer.push(T(s._triageMustache.call(e, "footerMessage", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n        "), r = {}, a = {}, n = s["if"].call(e, "allLoaded", {hash: {}, inverse: C.noop, fn: C.program(14, f, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </h3>\n    </footer>\n\n  "), i
     }
 
     function o(e, t) {
         var n, r, a, i, o, p = "";
-        return t.buffer.push("\n\n      "), a = {}, i = {}, n = s["if"].call(e, "canViewRankDetails", {hash: {}, inverse: C.noop, fn: C.program(4, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n      <table id='topic-list'>\n        <thead>\n        <tr>\n          "), a = {}, i = {}, n = s["if"].call(e, "currentUser", {hash: {}, inverse: C.noop, fn: C.program(6, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          <th class='main-link'>\n            "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.title", o) : T.call(e, "i18n", "topic.title", o)))), t.buffer.push("\n          </th>\n          <th class='category'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "category_title", o) : T.call(e, "i18n", "category_title", o)))), t.buffer.push("</th>\n          <th class='posters'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "top_contributors", o) : T.call(e, "i18n", "top_contributors", o)))), t.buffer.push("</th>\n          <th class='num posts'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "posts", o) : T.call(e, "i18n", "posts", o)))), t.buffer.push("</th>\n          <th class='num likes'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "likes", o) : T.call(e, "i18n", "likes", o)))), t.buffer.push("</th>\n          <th class='num views'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "views", o) : T.call(e, "i18n", "views", o)))), t.buffer.push("</th>\n          <th class='num activity' colspan='2'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "activity", o) : T.call(e, "i18n", "activity", o)))), t.buffer.push("</th>\n        </tr>\n        </thead>\n\n        "), a = {}, i = {}, r = s["if"].call(e, "view.topicTrackingState.hasIncoming", {hash: {}, inverse: C.noop, fn: C.program(8, c, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n        "), o = {hash: {}, inverse: C.noop, fn: C.program(10, l, t), contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, (r = s.group) ? r = r.call(e, o) : (r = e.group, r = typeof r === D ? r.apply(e) : r), a = {}, i = {}, s.group || (r = I.call(e, r, o)), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      </table>\n      "), p
+        return t.buffer.push("\n\n      "), a = {}, i = {}, n = s["if"].call(e, "canViewRankDetails", {hash: {}, inverse: C.noop, fn: C.program(4, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n      <table id='topic-list'>\n        <thead>\n        <tr>\n          "), a = {}, i = {}, n = s["if"].call(e, "currentUser", {hash: {}, inverse: C.noop, fn: C.program(6, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          <th class='main-link'>\n            "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.title", o) : E.call(e, "i18n", "topic.title", o)))), t.buffer.push("\n          </th>\n          <th class='category'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "category_title", o) : E.call(e, "i18n", "category_title", o)))), t.buffer.push("</th>\n          <th class='posters'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "top_contributors", o) : E.call(e, "i18n", "top_contributors", o)))), t.buffer.push("</th>\n          <th class='num posts'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "posts", o) : E.call(e, "i18n", "posts", o)))), t.buffer.push("</th>\n          <th class='num likes'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "likes", o) : E.call(e, "i18n", "likes", o)))), t.buffer.push("</th>\n          <th class='num views'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "views", o) : E.call(e, "i18n", "views", o)))), t.buffer.push("</th>\n          <th class='num activity' colspan='2'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "activity", o) : E.call(e, "i18n", "activity", o)))), t.buffer.push("</th>\n        </tr>\n        </thead>\n\n        "), a = {}, i = {}, r = s["if"].call(e, "view.topicTrackingState.hasIncoming", {hash: {}, inverse: C.noop, fn: C.program(8, c, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n        "), o = {hash: {}, inverse: C.noop, fn: C.program(10, l, t), contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, (r = s.group) ? r = r.call(e, o) : (r = e.group, r = typeof r === D ? r.apply(e) : r), a = {}, i = {}, s.group || (r = I.call(e, r, o)), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      </table>\n      "), p
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <button class='btn' "), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "toggleRankDetails", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" style='margin-bottom: 10px'>\n          <i class='icon icon-beaker'></i>\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "rank_details.toggle", i) : T.call(e, "i18n", "rank_details.toggle", i)))), t.buffer.push("\n        </button>\n      "), o
+        return t.buffer.push("\n        <button class='btn' "), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "toggleRankDetails", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" style='margin-bottom: 10px'>\n          <i class='icon icon-beaker'></i>\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "rank_details.toggle", i) : E.call(e, "i18n", "rank_details.toggle", i)))), t.buffer.push("\n        </button>\n      "), o
     }
 
     function h(e, t) {
@@ -18109,17 +18028,17 @@ var bootbox = window.bootbox || function (e) {
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <tbody>\n            <tr>\n              <td colspan=\"9\">\n                <div class='alert alert-info'>\n                  "), r = {countBinding: e}, a = {countBinding: "STRING"}, i = {hash: {countBinding: "view.topicTrackingState.incomingCount"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(w((n = s.countI18n, n ? n.call(e, "new_topics_inserted", i) : T.call(e, "countI18n", "new_topics_inserted", i)))), t.buffer.push("\n                  <a href='#' "), a = {}, r = {}, t.buffer.push(w(s.action.call(e, "showInserted", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, r = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "show_new_topics", i) : T.call(e, "i18n", "show_new_topics", i)))), t.buffer.push("</a>\n                </div>\n              </td>\n            </tr>\n          </tbody>\n        "), o
+        return t.buffer.push("\n          <tbody>\n            <tr>\n              <td colspan=\"9\">\n                <div class='alert alert-info'>\n                  "), r = {countBinding: e}, a = {countBinding: "STRING"}, i = {hash: {countBinding: "view.topicTrackingState.incomingCount"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(T((n = s.countI18n, n ? n.call(e, "new_topics_inserted", i) : E.call(e, "countI18n", "new_topics_inserted", i)))), t.buffer.push("\n                  <a href='#' "), a = {}, r = {}, t.buffer.push(T(s.action.call(e, "showInserted", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, r = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "show_new_topics", i) : E.call(e, "i18n", "show_new_topics", i)))), t.buffer.push("</a>\n                </div>\n              </td>\n            </tr>\n          </tbody>\n        "), o
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          "), r = {contentBinding: e, tagName: e, itemViewClass: e}, a = {contentBinding: "STRING", tagName: "STRING", itemViewClass: "STRING"}, i = {hash: {contentBinding: "topics", tagName: "tbody", itemViewClass: "Discourse.TopicListItemView"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(w((n = s.collection, n ? n.call(e, i) : T.call(e, "collection", i)))), t.buffer.push("\n        "), o
+        return t.buffer.push("\n          "), r = {contentBinding: e, tagName: e, itemViewClass: e}, a = {contentBinding: "STRING", tagName: "STRING", itemViewClass: "STRING"}, i = {hash: {contentBinding: "topics", tagName: "tbody", itemViewClass: "Discourse.TopicListItemView"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(T((n = s.collection, n ? n.call(e, i) : E.call(e, "collection", i)))), t.buffer.push("\n        "), o
     }
 
     function p(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <div class='topics-loading'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.loading_more", i) : T.call(e, "i18n", "topic.loading_more", i)))), t.buffer.push("</div>\n      "), o
+        return t.buffer.push("\n        <div class='topics-loading'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.loading_more", i) : E.call(e, "i18n", "topic.loading_more", i)))), t.buffer.push("</div>\n      "), o
     }
 
     function f(e, t) {
@@ -18134,27 +18053,27 @@ var bootbox = window.bootbox || function (e) {
 
     function m(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n              <a href='#' "), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "createTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.suggest_create_topic", i) : T.call(e, "i18n", "topic.suggest_create_topic", i)))), t.buffer.push("</a>\n            "), o
+        return t.buffer.push("\n              <a href='#' "), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "createTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.suggest_create_topic", i) : E.call(e, "i18n", "topic.suggest_create_topic", i)))), t.buffer.push("</a>\n            "), o
     }
 
     function g(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            "), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(19, b, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.categories", o) : T.call(e, "linkTo", "list.categories", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(" "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "or", o) : T.call(e, "i18n", "or", o)))), t.buffer.push(" "), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(21, y, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.latest", o) : T.call(e, "linkTo", "list.latest", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
+        return t.buffer.push("\n            "), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(19, b, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.categories", o) : E.call(e, "linkTo", "list.categories", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push(" "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "or", o) : E.call(e, "i18n", "or", o)))), t.buffer.push(" "), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(21, y, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.latest", o) : E.call(e, "linkTo", "list.latest", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          "), u
     }
 
     function b(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.browse_all_categories", i) : T.call(e, "i18n", "topic.browse_all_categories", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.browse_all_categories", i) : E.call(e, "i18n", "topic.browse_all_categories", i))))
     }
 
     function y(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.view_latest_topics", i) : T.call(e, "i18n", "topic.view_latest_topics", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "topic.view_latest_topics", i) : E.call(e, "i18n", "topic.view_latest_topics", i))))
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var v, x, _, E = "", w = this.escapeExpression, T = s.helperMissing, C = this, D = "function", I = s.blockHelperMissing;
-    return x = {}, _ = {}, v = s.unless.call(t, "loading", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n"), E
+    var v, x, _, w = "", T = this.escapeExpression, E = s.helperMissing, C = this, D = "function", I = s.blockHelperMissing;
+    return x = {}, _ = {}, v = s.unless.call(t, "loading", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: _, hashTypes: x, data: r}), (v || 0 === v) && r.buffer.push(v), r.buffer.push("\n"), w
 }), Ember.TEMPLATES["modal/archetype_options"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
     var a, i, o, u, h = "", c = this.escapeExpression, l = s.helperMissing;
@@ -18185,7 +18104,7 @@ var bootbox = window.bootbox || function (e) {
 
     function i(e, t) {
         var n, r, a, i, c, l = "";
-        return t.buffer.push("\n          <section class='field'>\n            <label>"), a = {}, i = {}, c = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.description", c) : _.call(e, "i18n", "category.description", c)))), t.buffer.push("</label>\n\n            "), a = {}, i = {}, r = s["if"].call(e, "description", {hash: {}, inverse: E.program(6, u, t), fn: E.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), a = {}, i = {}, r = s["if"].call(e, "topic_url", {hash: {}, inverse: E.noop, fn: E.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </section>\n        "), l
+        return t.buffer.push("\n          <section class='field'>\n            <label>"), a = {}, i = {}, c = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.description", c) : _.call(e, "i18n", "category.description", c)))), t.buffer.push("</label>\n\n            "), a = {}, i = {}, r = s["if"].call(e, "description", {hash: {}, inverse: w.program(6, u, t), fn: w.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            "), a = {}, i = {}, r = s["if"].call(e, "topic_url", {hash: {}, inverse: w.noop, fn: w.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </section>\n        "), l
     }
 
     function o(e, t) {
@@ -18205,12 +18124,12 @@ var bootbox = window.bootbox || function (e) {
 
     function c(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n      <div "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(x(s.bindAttr.call(e, {hash: {"class": ":modal-tab :options-tab securitySelected::invisible"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <section class='field'>\n          <label>\n            "), a = {type: e, checked: e}, i = {type: "STRING", checked: "ID"}, o = {hash: {type: "checkbox", checked: "secure"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.input, n ? n.call(e, o) : _.call(e, "input", o)))), t.buffer.push("\n            "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.is_secure", o) : _.call(e, "i18n", "category.is_secure", o)))), t.buffer.push("\n          </label>\n          "), i = {}, a = {}, r = s["if"].call(e, "secure", {hash: {}, inverse: E.noop, fn: E.program(11, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </section>\n      </div>\n      <div "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(x(s.bindAttr.call(e, {hash: {"class": ":modal-tab :options-tab settingsSelected::invisible"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <section class='field'>\n          "), a = {autoCloseDays: e, labelKey: e}, i = {autoCloseDays: "ID", labelKey: "STRING"}, o = {hash: {autoCloseDays: "auto_close_days", labelKey: "category.auto_close_label"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.autoCloseForm, n ? n.call(e, o) : _.call(e, "autoCloseForm", o)))), t.buffer.push("\n        </section>\n\n        <section class='field'>\n          <label>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.hotness", o) : _.call(e, "i18n", "category.hotness", o)))), t.buffer.push("</label>\n          "), a = {hotnessBinding: e}, i = {hotnessBinding: "STRING"}, t.buffer.push(x(s.view.call(e, "Discourse.HotnessView", {hash: {hotnessBinding: "hotness"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("\n        </section>\n      </div>\n    "), u
+        return t.buffer.push("\n      <div "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(x(s.bindAttr.call(e, {hash: {"class": ":modal-tab :options-tab securitySelected::invisible"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <section class='field'>\n          <label>\n            "), a = {type: e, checked: e}, i = {type: "STRING", checked: "ID"}, o = {hash: {type: "checkbox", checked: "secure"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.input, n ? n.call(e, o) : _.call(e, "input", o)))), t.buffer.push("\n            "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.is_secure", o) : _.call(e, "i18n", "category.is_secure", o)))), t.buffer.push("\n          </label>\n          "), i = {}, a = {}, r = s["if"].call(e, "secure", {hash: {}, inverse: w.noop, fn: w.program(11, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </section>\n      </div>\n      <div "), a = {"class": e}, i = {"class": "STRING"}, t.buffer.push(x(s.bindAttr.call(e, {hash: {"class": ":modal-tab :options-tab settingsSelected::invisible"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <section class='field'>\n          "), a = {autoCloseDays: e, labelKey: e}, i = {autoCloseDays: "ID", labelKey: "STRING"}, o = {hash: {autoCloseDays: "auto_close_days", labelKey: "category.auto_close_label"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.autoCloseForm, n ? n.call(e, o) : _.call(e, "autoCloseForm", o)))), t.buffer.push("\n        </section>\n\n        <section class='field'>\n          <label>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.hotness", o) : _.call(e, "i18n", "category.hotness", o)))), t.buffer.push("</label>\n          "), a = {hotnessBinding: e}, i = {hotnessBinding: "STRING"}, t.buffer.push(x(s.view.call(e, "Discourse.HotnessView", {hash: {hotnessBinding: "hotness"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("\n        </section>\n      </div>\n    "), u
     }
 
     function l(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push('\n            <div class="secure-category-options">\n              <label>'), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.allowed_groups", o) : _.call(e, "i18n", "category.allowed_groups", o)))), t.buffer.push('</label>\n              <ul class="badge-list">\n                '), a = {}, i = {}, r = s.each.call(e, "groups", {hash: {}, inverse: E.noop, fn: E.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              </ul>\n              "), i = {contentBinding: e, valueBinding: e}, a = {contentBinding: "STRING", valueBinding: "STRING"}, t.buffer.push(x(s.view.call(e, "Ember.Select", {hash: {contentBinding: "availableGroups", valueBinding: "selectedGroup"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n              <button "), a = {}, i = {}, t.buffer.push(x(s.action.call(e, "addGroup", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(' class="btn btn-small">'), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.add_group", o) : _.call(e, "i18n", "category.add_group", o)))), t.buffer.push("</button>\n            </div>\n          "), u
+        return t.buffer.push('\n            <div class="secure-category-options">\n              <label>'), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.allowed_groups", o) : _.call(e, "i18n", "category.allowed_groups", o)))), t.buffer.push('</label>\n              <ul class="badge-list">\n                '), a = {}, i = {}, r = s.each.call(e, "groups", {hash: {}, inverse: w.noop, fn: w.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              </ul>\n              "), i = {contentBinding: e, valueBinding: e}, a = {contentBinding: "STRING", valueBinding: "STRING"}, t.buffer.push(x(s.view.call(e, "Ember.Select", {hash: {contentBinding: "availableGroups", valueBinding: "selectedGroup"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n              <button "), a = {}, i = {}, t.buffer.push(x(s.action.call(e, "addGroup", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(' class="btn btn-small">'), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "category.add_group", o) : _.call(e, "i18n", "category.add_group", o)))), t.buffer.push("</button>\n            </div>\n          "), u
     }
 
     function p(e, t) {
@@ -18224,8 +18143,8 @@ var bootbox = window.bootbox || function (e) {
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var d, m, g, b, y, v = "", x = this.escapeExpression, _ = s.helperMissing, E = this;
-    return r.buffer.push("<div "), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "loading:invisible"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push('>\n  <ul class="nav nav-pills">\n    <li '), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "generalSelected:active"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push('>\n      <a href="#" '), b = {}, g = {}, r.buffer.push(x(s.action.call(t, "selectGeneral", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.general", y) : _.call(t, "i18n", "category.general", y)))), r.buffer.push("</a>\n    </li>\n    "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: E.noop, fn: E.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push('\n  </ul>\n\n  <div class="modal-body">\n    <div '), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": ":modal-tab :general-tab generalSelected::invisible"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">\n      <form>\n        <section class='field'>\n          <label>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.name", y) : _.call(t, "i18n", "category.name", y)))), r.buffer.push("</label>\n          "), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "name", placeholderKey: "category.name_placeholder", maxlength: "50"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n        </section>\n\n        "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: E.noop, fn: E.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n\n        <section class='field'>\n          <label>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.badge_colors", y) : _.call(t, "i18n", "category.badge_colors", y)))), r.buffer.push("</label>\n          <div class=\"category-color-editor\">\n            <span class='badge-category' "), g = {style: t}, b = {style: "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {style: "colorStyle"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, r.buffer.push(x(s._triageMustache.call(t, "categoryName", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push("</span>\n\n            <div class='input-prepend input-append' style=\"margin-top: 10px;\">\n              <span class='color-title'>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.background_color", y) : _.call(t, "i18n", "category.background_color", y)))), r.buffer.push(":</span>\n              <span class='add-on'>#</span>"), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "color", placeholderKey: "category.color_placeholder", maxlength: "6"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n              "), g = {colors: t, usedColors: t, value: t}, b = {colors: "ID", usedColors: "ID", value: "ID"}, y = {hash: {colors: "backgroundColors", usedColors: "usedBackgroundColors", value: "color"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.colorPicker, d ? d.call(t, y) : _.call(t, "colorPicker", y)))), r.buffer.push("\n            </div>\n\n            <div class='input-prepend input-append'>\n              <span class='color-title'>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.foreground_color", y) : _.call(t, "i18n", "category.foreground_color", y)))), r.buffer.push(":</span>\n              <span class='add-on'>#</span>"), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "text_color", placeholderKey: "category.color_placeholder", maxlength: "6"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n              "), g = {colors: t, value: t}, b = {colors: "ID", value: "ID"}, y = {hash: {colors: "foregroundColors", value: "text_color"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.colorPicker, d ? d.call(t, y) : _.call(t, "colorPicker", y)))), r.buffer.push("\n            </div>\n          </div>\n        </section>\n      </form>\n    </div>\n    "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: E.noop, fn: E.program(10, c, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n  </div>\n  <div class=\"modal-footer\">\n    <button class='btn btn-primary' "), g = {disabled: t}, b = {disabled: "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {disabled: "disabled"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(" "), b = {}, g = {}, r.buffer.push(x(s.action.call(t, "saveCategory", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, r.buffer.push(x(s._triageMustache.call(t, "buttonTitle", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push("</button>\n    "), b = {}, g = {}, m = s["if"].call(t, "deleteVisible", {hash: {}, inverse: E.noop, fn: E.program(14, f, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n  </div>\n</div>\n"), v
+    var d, m, g, b, y, v = "", x = this.escapeExpression, _ = s.helperMissing, w = this;
+    return r.buffer.push("<div "), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "loading:invisible"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push('>\n  <ul class="nav nav-pills">\n    <li '), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "generalSelected:active"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push('>\n      <a href="#" '), b = {}, g = {}, r.buffer.push(x(s.action.call(t, "selectGeneral", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.general", y) : _.call(t, "i18n", "category.general", y)))), r.buffer.push("</a>\n    </li>\n    "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: w.noop, fn: w.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push('\n  </ul>\n\n  <div class="modal-body">\n    <div '), g = {"class": t}, b = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": ":modal-tab :general-tab generalSelected::invisible"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">\n      <form>\n        <section class='field'>\n          <label>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.name", y) : _.call(t, "i18n", "category.name", y)))), r.buffer.push("</label>\n          "), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "name", placeholderKey: "category.name_placeholder", maxlength: "50"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n        </section>\n\n        "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: w.noop, fn: w.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n\n        <section class='field'>\n          <label>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.badge_colors", y) : _.call(t, "i18n", "category.badge_colors", y)))), r.buffer.push("</label>\n          <div class=\"category-color-editor\">\n            <span class='badge-category' "), g = {style: t}, b = {style: "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {style: "colorStyle"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, r.buffer.push(x(s._triageMustache.call(t, "categoryName", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push("</span>\n\n            <div class='input-prepend input-append' style=\"margin-top: 10px;\">\n              <span class='color-title'>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.background_color", y) : _.call(t, "i18n", "category.background_color", y)))), r.buffer.push(":</span>\n              <span class='add-on'>#</span>"), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "color", placeholderKey: "category.color_placeholder", maxlength: "6"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n              "), g = {colors: t, usedColors: t, value: t}, b = {colors: "ID", usedColors: "ID", value: "ID"}, y = {hash: {colors: "backgroundColors", usedColors: "usedBackgroundColors", value: "color"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.colorPicker, d ? d.call(t, y) : _.call(t, "colorPicker", y)))), r.buffer.push("\n            </div>\n\n            <div class='input-prepend input-append'>\n              <span class='color-title'>"), b = {}, g = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.i18n, d ? d.call(t, "category.foreground_color", y) : _.call(t, "i18n", "category.foreground_color", y)))), r.buffer.push(":</span>\n              <span class='add-on'>#</span>"), g = {value: t, placeholderKey: t, maxlength: t}, b = {value: "ID", placeholderKey: "STRING", maxlength: "STRING"}, y = {hash: {value: "text_color", placeholderKey: "category.color_placeholder", maxlength: "6"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.textField, d ? d.call(t, y) : _.call(t, "textField", y)))), r.buffer.push("\n              "), g = {colors: t, value: t}, b = {colors: "ID", value: "ID"}, y = {hash: {colors: "foregroundColors", value: "text_color"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}, r.buffer.push(x((d = s.colorPicker, d ? d.call(t, y) : _.call(t, "colorPicker", y)))), r.buffer.push("\n            </div>\n          </div>\n        </section>\n      </form>\n    </div>\n    "), b = {}, g = {}, m = s.unless.call(t, "isUncategorized", {hash: {}, inverse: w.noop, fn: w.program(10, c, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n  </div>\n  <div class=\"modal-footer\">\n    <button class='btn btn-primary' "), g = {disabled: t}, b = {disabled: "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {disabled: "disabled"}, contexts: [], types: [], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(" "), b = {}, g = {}, r.buffer.push(x(s.action.call(t, "saveCategory", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push(">"), b = {}, g = {}, r.buffer.push(x(s._triageMustache.call(t, "buttonTitle", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}))), r.buffer.push("</button>\n    "), b = {}, g = {}, m = s["if"].call(t, "deleteVisible", {hash: {}, inverse: w.noop, fn: w.program(14, f, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: b, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n  </div>\n</div>\n"), v
 }), Ember.TEMPLATES["modal/flag"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, u = "";
@@ -18368,80 +18287,80 @@ var bootbox = window.bootbox || function (e) {
 }), Ember.TEMPLATES["modal/login"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, f = "";
-        return t.buffer.push('\n    <div id="login-buttons">\n      '), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_google_logins", {hash: {}, inverse: T.noop, fn: T.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_facebook_logins", {hash: {}, inverse: T.noop, fn: T.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_cas_logins", {hash: {}, inverse: T.noop, fn: T.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_twitter_logins", {hash: {}, inverse: T.noop, fn: T.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_yahoo_logins", {hash: {}, inverse: T.noop, fn: T.program(10, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_github_logins", {hash: {}, inverse: T.noop, fn: T.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_persona_logins", {hash: {}, inverse: T.noop, fn: T.program(14, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </div>\n  "), f
+        return t.buffer.push('\n    <div id="login-buttons">\n      '), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_google_logins", {hash: {}, inverse: E.noop, fn: E.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_facebook_logins", {hash: {}, inverse: E.noop, fn: E.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_cas_logins", {hash: {}, inverse: E.noop, fn: E.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_twitter_logins", {hash: {}, inverse: E.noop, fn: E.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_yahoo_logins", {hash: {}, inverse: E.noop, fn: E.program(10, c, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_github_logins", {hash: {}, inverse: E.noop, fn: E.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      "), r = {}, a = {}, n = s["if"].call(e, "Discourse.SiteSettings.enable_persona_logins", {hash: {}, inverse: E.noop, fn: E.program(14, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </div>\n  "), f
     }
 
     function i(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social google" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.google.title", i) : E.call(e, "i18n", "login.google.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "openidLogin", "google", {hash: {}, contexts: [e, e], types: ["ID", "STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.google.title", i) : E.call(e, "i18n", "login.google.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social google" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.google.title", i) : w.call(e, "i18n", "login.google.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "openidLogin", "google", {hash: {}, contexts: [e, e], types: ["ID", "STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.google.title", i) : w.call(e, "i18n", "login.google.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function o(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social facebook" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.facebook.title", i) : E.call(e, "i18n", "login.facebook.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "facebookLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.facebook.title", i) : E.call(e, "i18n", "login.facebook.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social facebook" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.facebook.title", i) : w.call(e, "i18n", "login.facebook.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "facebookLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.facebook.title", i) : w.call(e, "i18n", "login.facebook.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social cas" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.cas.title", i) : E.call(e, "i18n", "login.cas.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "casLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.cas.title", i) : E.call(e, "i18n", "login.cas.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social cas" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.cas.title", i) : w.call(e, "i18n", "login.cas.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "casLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.cas.title", i) : w.call(e, "i18n", "login.cas.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function h(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social twitter" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.twitter.title", i) : E.call(e, "i18n", "login.twitter.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "twitterLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.twitter.title", i) : E.call(e, "i18n", "login.twitter.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social twitter" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.twitter.title", i) : w.call(e, "i18n", "login.twitter.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "twitterLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.twitter.title", i) : w.call(e, "i18n", "login.twitter.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social yahoo" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.yahoo.title", i) : E.call(e, "i18n", "login.yahoo.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "openidLogin", "yahoo", {hash: {}, contexts: [e, e], types: ["ID", "STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.yahoo.title", i) : E.call(e, "i18n", "login.yahoo.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social yahoo" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.yahoo.title", i) : w.call(e, "i18n", "login.yahoo.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "openidLogin", "yahoo", {hash: {}, contexts: [e, e], types: ["ID", "STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.yahoo.title", i) : w.call(e, "i18n", "login.yahoo.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social github" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.github.title", i) : E.call(e, "i18n", "login.github.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "githubLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.github.title", i) : E.call(e, "i18n", "login.github.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social github" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.github.title", i) : w.call(e, "i18n", "login.github.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "githubLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.github.title", i) : w.call(e, "i18n", "login.github.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function p(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n        <button class="btn btn-social persona" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.persona.title", i) : E.call(e, "i18n", "login.persona.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "personaLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.persona.title", i) : E.call(e, "i18n", "login.persona.title", i)))), t.buffer.push("</button>\n      "), o
+        return t.buffer.push('\n        <button class="btn btn-social persona" title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.persona.title", i) : w.call(e, "i18n", "login.persona.title", i)))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "personaLogin", {hash: {}, contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.persona.title", i) : w.call(e, "i18n", "login.persona.title", i)))), t.buffer.push("</button>\n      "), o
     }
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    "), r = {}, a = {}, n = s["if"].call(e, "hasAtLeastOneLoginButton", {hash: {}, inverse: T.noop, fn: T.program(17, d, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    <form id='login-form'>\n      <div>\n        <table>\n        <tr>\n        <td>\n          <label for='login-account-name'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.username", i) : E.call(e, "i18n", "login.username", i)))), t.buffer.push("&nbsp;</label>\n        </td>\n        <td>\n          "), a = {value: e, placeholderKey: e, id: e, autocorrect: e, autocapitalize: e, autofocus: e}, r = {value: "ID", placeholderKey: "STRING", id: "STRING", autocorrect: "STRING", autocapitalize: "STRING", autofocus: "STRING"}, i = {hash: {value: "loginName", placeholderKey: "login.email_placeholder", id: "login-account-name", autocorrect: "off", autocapitalize: "off", autofocus: "autofocus"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.textField, n ? n.call(e, i) : E.call(e, "textField", i)))), t.buffer.push("\n        </td>\n        <tr>\n        <td>\n            <label for='login-account-password'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.password", i) : E.call(e, "i18n", "login.password", i)))), t.buffer.push("&nbsp;</label>\n        </td>\n        <td>\n            "), a = {value: e, type: e, id: e}, r = {value: "ID", type: "STRING", id: "STRING"}, i = {hash: {value: "loginPassword", type: "password", id: "login-account-password"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.textField, n ? n.call(e, i) : E.call(e, "textField", i)))), t.buffer.push(' &nbsp;\n            <a id="forgot-password-link" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "showForgotPassword", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "forgot_password.action", i) : E.call(e, "i18n", "forgot_password.action", i)))), t.buffer.push("</a>\n        </td>\n        </tr>\n        </table>\n      </div>\n    </form>\n  "), o
+        return t.buffer.push("\n    "), r = {}, a = {}, n = s["if"].call(e, "hasAtLeastOneLoginButton", {hash: {}, inverse: E.noop, fn: E.program(17, d, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    <form id='login-form' method='post'>\n      <div>\n        <table>\n        <tr>\n        <td>\n          <label for='login-account-name'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.username", i) : w.call(e, "i18n", "login.username", i)))), t.buffer.push("&nbsp;</label>\n        </td>\n        <td>\n          "), a = {value: e, placeholderKey: e, id: e, autocorrect: e, autocapitalize: e, autofocus: e}, r = {value: "ID", placeholderKey: "STRING", id: "STRING", autocorrect: "STRING", autocapitalize: "STRING", autofocus: "STRING"}, i = {hash: {value: "loginName", placeholderKey: "login.email_placeholder", id: "login-account-name", autocorrect: "off", autocapitalize: "off", autofocus: "autofocus"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.textField, n ? n.call(e, i) : w.call(e, "textField", i)))), t.buffer.push("\n        </td>\n        <tr>\n        <td>\n            <label for='login-account-password'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.password", i) : w.call(e, "i18n", "login.password", i)))), t.buffer.push("&nbsp;</label>\n        </td>\n        <td>\n            "), a = {value: e, type: e, id: e}, r = {value: "ID", type: "STRING", id: "STRING"}, i = {hash: {value: "loginPassword", type: "password", id: "login-account-password"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.textField, n ? n.call(e, i) : w.call(e, "textField", i)))), t.buffer.push(' &nbsp;\n            <a id="forgot-password-link" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "showForgotPassword", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "forgot_password.action", i) : w.call(e, "i18n", "forgot_password.action", i)))), t.buffer.push("</a>\n        </td>\n        </tr>\n        </table>\n      </div>\n    </form>\n  "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push('\n      <h3 style="text-align:center; margin-bottom:10px;">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.or", i) : E.call(e, "i18n", "login.or", i)))), t.buffer.push("</h3>\n    "), o
+        return t.buffer.push('\n      <h3 style="text-align:center; margin-bottom:10px;">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.or", i) : w.call(e, "i18n", "login.or", i)))), t.buffer.push("</h3>\n    "), o
     }
 
     function m(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "login.authenticating", i) : E.call(e, "i18n", "login.authenticating", i)))), t.buffer.push("\n  "), o
+        return t.buffer.push("\n    "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "login.authenticating", i) : w.call(e, "i18n", "login.authenticating", i)))), t.buffer.push("\n  "), o
     }
 
     function g(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n    <button class='btn btn-large btn-primary'\n      "), r = {disabled: e}, a = {disabled: "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {disabled: "loginDisabled"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n      "), a = {}, r = {}, t.buffer.push(w(s.action.call(e, "login", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push('>\n        <i class="icon-unlock"></i>&nbsp;'), a = {}, r = {}, t.buffer.push(w(s._triageMustache.call(e, "loginButtonText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n    </button>\n\n    "), a = {}, r = {}, n = s.unless.call(e, "Discourse.SiteSettings.invite_only", {hash: {}, inverse: T.noop, fn: T.program(22, b, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n  "), i
+        return t.buffer.push("\n    <button class='btn btn-large btn-primary'\n      "), r = {disabled: e}, a = {disabled: "STRING"}, t.buffer.push(T(s.bindAttr.call(e, {hash: {disabled: "loginDisabled"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n      "), a = {}, r = {}, t.buffer.push(T(s.action.call(e, "login", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push('>\n        <i class="icon-unlock"></i>&nbsp;'), a = {}, r = {}, t.buffer.push(T(s._triageMustache.call(e, "loginButtonText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n    </button>\n\n    "), a = {}, r = {}, n = s.unless.call(e, "Discourse.SiteSettings.invite_only", {hash: {}, inverse: E.noop, fn: E.program(22, b, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n  "), i
     }
 
     function b(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n      &nbsp; "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "create_account.invite", i) : E.call(e, "i18n", "create_account.invite", i)))), t.buffer.push('\n      <a id="new-account-link" '), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "showCreateAccount", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">\n        "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "create_account.action", i) : E.call(e, "i18n", "create_account.action", i)))), t.buffer.push("\n      </a>\n    "), o
+        return t.buffer.push("\n      &nbsp; "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "create_account.invite", i) : w.call(e, "i18n", "create_account.invite", i)))), t.buffer.push('\n      <a id="new-account-link" '), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "showCreateAccount", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">\n        "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "create_account.action", i) : w.call(e, "i18n", "create_account.action", i)))), t.buffer.push("\n      </a>\n    "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var y, v, x, _ = "", E = s.helperMissing, w = this.escapeExpression, T = this;
-    return r.buffer.push('<div class="modal-body">\n  '), v = {}, x = {}, y = s["if"].call(t, "hasAtLeastOneLoginButton", {hash: {}, inverse: T.noop, fn: T.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, y = s["if"].call(t, "Discourse.SiteSettings.enable_local_logins", {hash: {}, inverse: T.noop, fn: T.program(16, f, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, r.buffer.push(w(s._triageMustache.call(t, "authMessage", {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push("\n  <div id='login-alert' "), x = {"class": t}, v = {"class": "STRING"}, r.buffer.push(w(s.bindAttr.call(t, {hash: {"class": "alertClass"}, contexts: [], types: [], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push(">"), v = {}, x = {}, r.buffer.push(w(s._triageMustache.call(t, "alert", {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push('</div>\n</div>\n<div class="modal-footer">\n  '), v = {}, x = {}, y = s["if"].call(t, "authenticate", {hash: {}, inverse: T.noop, fn: T.program(19, m, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, y = s["if"].call(t, "Discourse.SiteSettings.enable_local_logins", {hash: {}, inverse: T.noop, fn: T.program(21, g, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</div>\n"), _
+    var y, v, x, _ = "", w = s.helperMissing, T = this.escapeExpression, E = this;
+    return r.buffer.push('<div class="modal-body">\n  '), v = {}, x = {}, y = s["if"].call(t, "hasAtLeastOneLoginButton", {hash: {}, inverse: E.noop, fn: E.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, y = s["if"].call(t, "Discourse.SiteSettings.enable_local_logins", {hash: {}, inverse: E.noop, fn: E.program(16, f, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, r.buffer.push(T(s._triageMustache.call(t, "authMessage", {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push("\n  <div id='login-alert' "), x = {"class": t}, v = {"class": "STRING"}, r.buffer.push(T(s.bindAttr.call(t, {hash: {"class": "alertClass"}, contexts: [], types: [], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push(">"), v = {}, x = {}, r.buffer.push(T(s._triageMustache.call(t, "alert", {hash: {}, contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}))), r.buffer.push('</div>\n</div>\n<div class="modal-footer">\n  '), v = {}, x = {}, y = s["if"].call(t, "authenticate", {hash: {}, inverse: E.noop, fn: E.program(19, m, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n  "), v = {}, x = {}, y = s["if"].call(t, "Discourse.SiteSettings.enable_local_logins", {hash: {}, inverse: E.noop, fn: E.program(21, g, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</div>\n"), _
 }), Ember.TEMPLATES["modal/merge_topic"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         t.buffer.push('\n    <div class="alert alert-error">\n      <button class="close" data-dismiss="alert">×</button>\n    </div>\n  ')
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var i, o, u, h, c, l = "", p = this, f = this.escapeExpression, d = s.helperMissing;
-    return r.buffer.push("<div id='move-selected' class=\"modal-body\">\n  "), u = {}, h = {}, i = s["if"].call(t, "error", {hash: {}, inverse: p.noop, fn: p.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}), (i || 0 === i) && r.buffer.push(i), r.buffer.push("\n\n  "), u = {}, h = {}, r.buffer.push(f(s._triageMustache.call(t, "selectedPostsCount", {hash: {}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push("\n  <p>"), h = {count: t}, u = {count: "STRING"}, c = {hash: {count: "selectedPostsCount"}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}, i = s.i18n, o = i ? i.call(t, "topic.merge_topic.instructions", c) : d.call(t, "i18n", "topic.merge_topic.instructions", c), (o || 0 === o) && r.buffer.push(o), r.buffer.push("</p>\n\n  "), h = {selectedTopicId: t}, u = {selectedTopicId: "ID"}, c = {hash: {selectedTopicId: "selectedTopicId"}, contexts: [], types: [], hashContexts: h, hashTypes: u, data: r}, r.buffer.push(f((i = s.chooseTopic, i ? i.call(t, c) : d.call(t, "chooseTopic", c)))), r.buffer.push("\n</div>\n\n<div class=\"modal-footer\">\n  <button class='btn btn-primary' "), h = {disabled: t}, u = {disabled: "STRING"}, r.buffer.push(f(s.bindAttr.call(t, {hash: {disabled: "buttonDisabled"}, contexts: [], types: [], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push(" "), u = {}, h = {}, r.buffer.push(f(s.action.call(t, "movePostsToExistingTopic", {hash: {}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push(">"), u = {}, h = {}, r.buffer.push(f(s._triageMustache.call(t, "buttonTitle", {hash: {}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push("</button>\n</div>\n"), l
+    var i, o, u, h, c, l = "", p = this, f = s.helperMissing, d = this.escapeExpression;
+    return r.buffer.push("<div id='move-selected' class=\"modal-body\">\n  "), u = {}, h = {}, i = s["if"].call(t, "error", {hash: {}, inverse: p.noop, fn: p.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}), (i || 0 === i) && r.buffer.push(i), r.buffer.push("\n\n  <p>"), h = {count: t}, u = {count: "STRING"}, c = {hash: {count: "selectedPostsCount"}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}, i = s.i18n, o = i ? i.call(t, "topic.merge_topic.instructions", c) : f.call(t, "i18n", "topic.merge_topic.instructions", c), (o || 0 === o) && r.buffer.push(o), r.buffer.push("</p>\n\n  "), h = {selectedTopicId: t}, u = {selectedTopicId: "ID"}, c = {hash: {selectedTopicId: "selectedTopicId"}, contexts: [], types: [], hashContexts: h, hashTypes: u, data: r}, r.buffer.push(d((i = s.chooseTopic, i ? i.call(t, c) : f.call(t, "chooseTopic", c)))), r.buffer.push("\n</div>\n\n<div class=\"modal-footer\">\n  <button class='btn btn-primary' "), h = {disabled: t}, u = {disabled: "STRING"}, r.buffer.push(d(s.bindAttr.call(t, {hash: {disabled: "buttonDisabled"}, contexts: [], types: [], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push(" "), u = {}, h = {}, r.buffer.push(d(s.action.call(t, "movePostsToExistingTopic", {hash: {}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push(">"), u = {}, h = {}, r.buffer.push(d(s._triageMustache.call(t, "buttonTitle", {hash: {}, contexts: [t], types: ["ID"], hashContexts: h, hashTypes: u, data: r}))), r.buffer.push("</button>\n</div>\n"), l
 }), Ember.TEMPLATES["modal/modal"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a = "";
@@ -18488,47 +18407,52 @@ var bootbox = window.bootbox || function (e) {
 }), Ember.TEMPLATES.post = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a = "";
-        return t.buffer.push("\n      "), n = {contentBinding: e, postViewBinding: e}, r = {contentBinding: "STRING", postViewBinding: "STRING"}, t.buffer.push(v(s.view.call(e, "Discourse.ParentView", {hash: {contentBinding: "view.parentPost", postViewBinding: "view"}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("\n    "), a
+        return t.buffer.push("\n      "), n = {contentBinding: e, postViewBinding: e}, r = {contentBinding: "STRING", postViewBinding: "STRING"}, t.buffer.push(x(s.view.call(e, "Discourse.ParentView", {hash: {contentBinding: "view.parentPost", postViewBinding: "view"}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("\n    "), a
     }
 
     function i(e, t) {
-        var n, r, a = "";
-        return t.buffer.push("\n      <button class='post-select' "), n = {}, r = {}, t.buffer.push(v(s.action.call(e, "selectPost", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">"), n = {}, r = {}, t.buffer.push(v(s._triageMustache.call(e, "view.selectText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</button>\n    "), a
+        var n, r, a, i = "";
+        return t.buffer.push("\n      <a href='#' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(x(s.action.call(e, "toggleParent", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(" class='reply-to-tab'>\n        "), a = {}, r = {}, n = s["if"].call(e, "loadingParent", {hash: {}, inverse: w.program(6, u, t), fn: w.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </a>\n    "), i
     }
 
     function o(e, t) {
-        var n, r, a = "";
-        return t.buffer.push("\n      <div "), n = {"class": e}, r = {"class": "STRING"}, t.buffer.push(v(s.bindAttr.call(e, {hash: {"class": "bookmarkClass"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), n = {title: e}, r = {title: "STRING"}, t.buffer.push(v(s.bindAttr.call(e, {hash: {title: "bookmarkTooltip"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), r = {}, n = {}, t.buffer.push(v(s.action.call(e, "toggleBookmark", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("></div>\n    "), a
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "loading", i) : _.call(e, "i18n", "loading", i)))), t.buffer.push("\n        "), o
     }
 
     function u(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n      <a href='#' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(v(s.action.call(e, "toggleParent", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(" class='reply-to-tab'>\n        "), a = {}, r = {}, n = s["if"].call(e, "loadingParent", {hash: {}, inverse: _.program(10, c, t), fn: _.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </a>\n    "), i
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "post.in_reply_to", i) : _.call(e, "i18n", "post.in_reply_to", i)))), t.buffer.push("\n          "), a = {imageSize: e}, r = {imageSize: "STRING"}, i = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.avatar, n ? n.call(e, "reply_to_user", i) : _.call(e, "avatar", "reply_to_user", i)))), t.buffer.push("\n          "), r = {}, a = {}, t.buffer.push(x(s._triageMustache.call(e, "reply_to_user.username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n        "), o
     }
 
     function h(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(v((n = s.i18n, n ? n.call(e, "loading", i) : x.call(e, "i18n", "loading", i)))), t.buffer.push("\n        "), o
+        var n, r, a = "";
+        return t.buffer.push('<div class="user-title">'), n = {}, r = {}, t.buffer.push(x(s._triageMustache.call(e, "user_title", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</div>"), a
     }
 
     function c(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(v((n = s.i18n, n ? n.call(e, "post.in_reply_to", i) : x.call(e, "i18n", "post.in_reply_to", i)))), t.buffer.push("\n          "), a = {imageSize: e}, r = {imageSize: "STRING"}, i = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(v((n = s.avatar, n ? n.call(e, "reply_to_user", i) : x.call(e, "avatar", "reply_to_user", i)))), t.buffer.push("\n          "), r = {}, a = {}, t.buffer.push(v(s._triageMustache.call(e, "reply_to_user.username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n        "), o
+        var n, r, a = "";
+        return t.buffer.push("\n        <button class='post-select' "), n = {}, r = {}, t.buffer.push(x(s.action.call(e, "selectPost", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push(">"), n = {}, r = {}, t.buffer.push(x(s._triageMustache.call(e, "view.selectText", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("</button>\n      "), a
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <div class='post-info'>\n            <a href='#' class=\""), r = {}, a = {}, t.buffer.push(v(s.unbound.call(e, "historyHeat", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(v(s.action.call(e, "showHistory", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(v((n = s.editDate, n ? n.call(e, "updated_at", i) : x.call(e, "editDate", "updated_at", i)))), t.buffer.push("\">\n              <i class='icon-pencil'></i>\n              "), r = {}, a = {}, t.buffer.push(v(s._triageMustache.call(e, "editCount", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n            </a>\n          </div>\n        "), o
+        return t.buffer.push("\n          <div class='topic-meta-data-inside'>\n            "), r = {}, a = {}, n = s["if"].call(e, "hasHistory", {hash: {}, inverse: w.noop, fn: w.program(13, p, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n            <div class='post-info'>\n              <a href='#' class='post-date' "), a = {"data-share-url": e}, r = {"data-share-url": "STRING"}, t.buffer.push(x(s.bindAttr.call(e, {hash: {"data-share-url": "shareUrl"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.unboundAgeWithTooltip, n ? n.call(e, "created_at", i) : _.call(e, "unboundAgeWithTooltip", "created_at", i)))), t.buffer.push("</a>\n            </div>\n          </div>\n        "), o
     }
 
     function p(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <a href='#' class='reply-new' "), r = {}, a = {}, t.buffer.push(v(s.action.call(e, "replyAsNewTopic", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("><i class='icon icon-plus'></i>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(v((n = s.i18n, n ? n.call(e, "post.reply_as_new_topic", i) : x.call(e, "i18n", "post.reply_as_new_topic", i)))), t.buffer.push("</a>\n      "), o
+        return t.buffer.push("\n              <div class='post-info edits'>\n                <a href='#' class=\""), r = {}, a = {}, t.buffer.push(x(s.unbound.call(e, "historyHeat", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push('" '), r = {}, a = {}, t.buffer.push(x(s.action.call(e, "showHistory", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.unboundDate, n ? n.call(e, "updated_at", i) : _.call(e, "unboundDate", "updated_at", i)))), t.buffer.push('">\n                  '), r = {}, a = {}, t.buffer.push(x(s._triageMustache.call(e, "editCount", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("\n                  <i class='icon-pencil'></i>\n                </a>\n              </div>\n            "), o
+    }
+
+    function f(e, t) {
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n        <a href='#' class='reply-new' "), r = {}, a = {}, t.buffer.push(x(s.action.call(e, "replyAsNewTopic", "", {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("><i class='icon icon-plus'></i>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(x((n = s.i18n, n ? n.call(e, "post.reply_as_new_topic", i) : _.call(e, "i18n", "post.reply_as_new_topic", i)))), t.buffer.push("</a>\n      "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var f, d, m, g, b, y = "", v = this.escapeExpression, x = s.helperMissing, _ = this;
-    return r.buffer.push("<div class='row'>\n  <section class='embedded-posts top parent-post span14 offset2' style='display:none'>\n    "), m = {}, g = {}, f = s["if"].call(t, "view.parentPost", {hash: {}, inverse: _.noop, fn: _.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (f || 0 === f) && r.buffer.push(f), r.buffer.push("\n  </section>\n</div>\n\n<article class='boxed' "), g = {id: t}, m = {id: "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {id: "postElementId"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push(" "), g = {"data-post-id": t}, m = {"data-post-id": "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {"data-post-id": "id"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push(' data-user-id="'), m = {}, g = {}, r.buffer.push(v(s.unbound.call(t, "user_id", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\">\n  <div class='row'>\n    "), m = {}, g = {}, f = s["if"].call(t, "controller.multiSelect", {hash: {}, inverse: _.program(5, o, r), fn: _.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (f || 0 === f) && r.buffer.push(f), r.buffer.push("\n\n    "), m = {}, g = {}, f = s["if"].call(t, "showUserReplyTab", {hash: {}, inverse: _.noop, fn: _.program(7, u, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (f || 0 === f) && r.buffer.push(f), r.buffer.push("\n\n    <div class='topic-meta-data span2'>\n      <div "), g = {"class": t}, m = {"class": "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {"class": ":contents byTopicCreator:topic-creator"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push(">\n        <a href='"), m = {}, g = {}, r.buffer.push(v(s.unbound.call(t, "usernameUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("'>"), g = {imageSize: t}, m = {imageSize: "STRING"}, b = {hash: {imageSize: "large"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}, r.buffer.push(v((f = s.avatar, f ? f.call(t, "", b) : x.call(t, "avatar", "", b)))), r.buffer.push("</a>\n        <h3 "), g = {"class": t}, m = {"class": "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {"class": "staff new_user"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("><a href='"), m = {}, g = {}, r.buffer.push(v(s.unbound.call(t, "usernameUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("'>"), m = {}, g = {}, b = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}, r.buffer.push(v((f = s.breakUp, f ? f.call(t, "username", b) : x.call(t, "breakUp", "username", b)))), r.buffer.push("</a></h3>\n\n        <div class='post-info'>\n          <a href='#' class='post-date' "), g = {"data-share-url": t}, m = {"data-share-url": "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {"data-share-url": "shareUrl"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push(">"), m = {}, g = {}, b = {hash: {}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}, r.buffer.push(v((f = s.date, f ? f.call(t, "created_at", b) : x.call(t, "date", "created_at", b)))), r.buffer.push("</a>\n        </div>\n        "), m = {}, g = {}, d = s["if"].call(t, "hasHistory", {hash: {}, inverse: _.noop, fn: _.program(12, l, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (d || 0 === d) && r.buffer.push(d), r.buffer.push("\n      </div>\n    </div>\n\n    <div class='topic-body span14'>\n      <div "), g = {"class": t}, m = {"class": "STRING"}, r.buffer.push(v(s.bindAttr.call(t, {hash: {"class": "showUserReplyTab:avoid-tab view.repliesHidden:bottom-round :contents :regular view.extraClass"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push(">\n        "), g = {postBinding: t}, m = {postBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.PrependPostView", {hash: {postBinding: "this"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n        "), g = {"class": t, contentBinding: t}, m = {"class": "STRING", contentBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.RawDivView", {hash: {"class": "cooked", contentBinding: "cooked"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n        "), g = {postBinding: t, postViewBinding: t}, m = {postBinding: "STRING", postViewBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.PostMenuView", {hash: {postBinding: "this", postViewBinding: "view"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n      </div>\n      "), g = {contentBinding: t, postViewBinding: t}, m = {contentBinding: "STRING", postViewBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.RepliesView", {hash: {contentBinding: "replies", postViewBinding: "view"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n      "), g = {contentBinding: t}, m = {contentBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.ActionsHistoryView", {hash: {contentBinding: "actionsHistory"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n      "), g = {postBinding: t}, m = {postBinding: "STRING"}, r.buffer.push(v(s.view.call(t, "Discourse.TopicSummaryView", {hash: {postBinding: "this"}, contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}))), r.buffer.push("\n    </div>\n\n    <div class='span5 gutter'>\n      "), g = {contentBinding: t, itemViewClass: t, tagName: t, classNames: t}, m = {contentBinding: "STRING", itemViewClass: "STRING", tagName: "STRING", classNames: "STRING"}, b = {hash: {contentBinding: "internalLinks", itemViewClass: "Discourse.PostLinkView", tagName: "ul", classNames: "post-links"}, contexts: [], types: [], hashContexts: g, hashTypes: m, data: r}, r.buffer.push(v((f = s.collection, f ? f.call(t, b) : x.call(t, "collection", b)))), r.buffer.push("\n      "), m = {}, g = {}, d = s["if"].call(t, "controller.can_reply_as_new_topic", {hash: {}, inverse: _.noop, fn: _.program(14, p, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (d || 0 === d) && r.buffer.push(d), r.buffer.push("\n    </div>\n  </div>\n\n</article>\n"), y
+    var d, m, g, b, y, v = "", x = this.escapeExpression, _ = s.helperMissing, w = this;
+    return r.buffer.push("<div class='row'>\n  <section class='embedded-posts top parent-post span14 offset2' style='display:none'>\n    "), g = {}, b = {}, d = s["if"].call(t, "view.parentPost", {hash: {}, inverse: w.noop, fn: w.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (d || 0 === d) && r.buffer.push(d), r.buffer.push("\n  </section>\n</div>\n\n<article class='boxed' "), b = {id: t}, g = {id: "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {id: "postElementId"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push(" "), b = {"data-post-id": t}, g = {"data-post-id": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"data-post-id": "id"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push(' data-user-id="'), g = {}, b = {}, r.buffer.push(x(s.unbound.call(t, "user_id", {hash: {}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\">\n  <div class='row'>\n    "), g = {}, b = {}, d = s["if"].call(t, "showUserReplyTab", {hash: {}, inverse: w.noop, fn: w.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (d || 0 === d) && r.buffer.push(d), r.buffer.push("\n\n    <div class='topic-meta-data span2'>\n      <div "), b = {"class": t}, g = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": ":contents byTopicCreator:topic-creator"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push(">\n        <a href='"), g = {}, b = {}, r.buffer.push(x(s.unbound.call(t, "usernameUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("'>"), b = {imageSize: t}, g = {imageSize: "STRING"}, y = {hash: {imageSize: "large"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}, r.buffer.push(x((d = s.avatar, d ? d.call(t, "", y) : _.call(t, "avatar", "", y)))), r.buffer.push("</a>\n        <h3 "), b = {"class": t}, g = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "staff new_user"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("><a href='"), g = {}, b = {}, r.buffer.push(x(s.unbound.call(t, "usernameUrl", {hash: {}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("'>"), g = {}, b = {}, y = {hash: {}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}, r.buffer.push(x((d = s.breakUp, d ? d.call(t, "username", y) : _.call(t, "breakUp", "username", y)))), r.buffer.push("</a></h3>\n        "), g = {}, b = {}, m = s["if"].call(t, "user_title", {hash: {}, inverse: w.noop, fn: w.program(8, h, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n      </div>\n    </div>\n\n    <div class='topic-body span14'>\n      "), g = {}, b = {}, m = s["if"].call(t, "controller.multiSelect", {hash: {}, inverse: w.noop, fn: w.program(10, c, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n\n      <div "), b = {"class": t}, g = {"class": "STRING"}, r.buffer.push(x(s.bindAttr.call(t, {hash: {"class": "showUserReplyTab:avoid-tab view.repliesHidden:bottom-round :contents :regular view.extraClass"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push(">\n        "), b = {postBinding: t}, g = {postBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.PrependPostView", {hash: {postBinding: "this"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n        "), g = {}, b = {}, m = s.unless.call(t, "controller.multiSelect", {hash: {}, inverse: w.noop, fn: w.program(12, l, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n        "), b = {"class": t, contentBinding: t}, g = {"class": "STRING", contentBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.RawDivView", {hash: {"class": "cooked", contentBinding: "cooked"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n        "), b = {postBinding: t, postViewBinding: t}, g = {postBinding: "STRING", postViewBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.PostMenuView", {hash: {postBinding: "this", postViewBinding: "view"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n      </div>\n      "), b = {contentBinding: t, postViewBinding: t}, g = {contentBinding: "STRING", postViewBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.RepliesView", {hash: {contentBinding: "replies", postViewBinding: "view"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n      "), b = {contentBinding: t}, g = {contentBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.ActionsHistoryView", {hash: {contentBinding: "actionsHistory"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n      "), b = {postBinding: t}, g = {postBinding: "STRING"}, r.buffer.push(x(s.view.call(t, "Discourse.TopicSummaryView", {hash: {postBinding: "this"}, contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}))), r.buffer.push("\n    </div>\n\n    <div class='span5 gutter'>\n      "), b = {contentBinding: t, itemViewClass: t, tagName: t, classNames: t}, g = {contentBinding: "STRING", itemViewClass: "STRING", tagName: "STRING", classNames: "STRING"}, y = {hash: {contentBinding: "internalLinks", itemViewClass: "Discourse.PostLinkView", tagName: "ul", classNames: "post-links"}, contexts: [], types: [], hashContexts: b, hashTypes: g, data: r}, r.buffer.push(x((d = s.collection, d ? d.call(t, y) : _.call(t, "collection", y)))), r.buffer.push("\n      "), g = {}, b = {}, m = s["if"].call(t, "controller.details.can_reply_as_new_topic", {hash: {}, inverse: w.noop, fn: w.program(15, f, r), contexts: [t], types: ["ID"], hashContexts: b, hashTypes: g, data: r}), (m || 0 === m) && r.buffer.push(m), r.buffer.push("\n    </div>\n  </div>\n\n</article>\n"), v
 }), "undefined" == typeof HANDLEBARS_TEMPLATES && (HANDLEBARS_TEMPLATES = {}), HANDLEBARS_TEMPLATES.quote = Handlebars.compile("<aside class='quote' {{#params}}data-{{key}}=\"{{value}}\" {{/params}}>\n  <div class='title'>\n    <div class='quote-controls'></div>\n  {{{avatarImg}}}\n  {{username}}\n  said:\n  </div>\n  <blockquote>{{{quote}}}</blockquote>\n</aside>\n"), Ember.TEMPLATES.search = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, o = "";
@@ -18668,12 +18592,12 @@ var bootbox = window.bootbox || function (e) {
 }), Ember.TEMPLATES.suggested_topic = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, o, u = "";
-        return t.buffer.push("\n  "), r = {hash: {}, inverse: x.noop, fn: x.program(2, i, t), contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}, (n = s.group) ? n = n.call(e, r) : (n = e.group, n = typeof n === _ ? n.apply(e) : n), a = {}, o = {}, s.group || (n = E.call(e, n, r)), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n"), u
+        return t.buffer.push("\n  "), r = {hash: {}, inverse: x.noop, fn: x.program(2, i, t), contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}, (n = s.group) ? n = n.call(e, r) : (n = e.group, n = typeof n === _ ? n.apply(e) : n), a = {}, o = {}, s.group || (n = w.call(e, n, r)), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n"), u
     }
 
     function i(e, t) {
         var n, r, a, i, l, d = "";
-        return t.buffer.push("\n  <td class='main-link'>\n    <a class='title' href=\""), a = {}, i = {}, t.buffer.push(y(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('">'), a = {}, i = {}, n = s.unbound.call(e, "fancy_title", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</a>\n    "), a = {}, i = {}, n = s["if"].call(e, "unread", {hash: {}, inverse: x.noop, fn: x.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    "), a = {}, i = {}, n = s["if"].call(e, "new_posts", {hash: {}, inverse: x.noop, fn: x.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    "), a = {}, i = {}, n = s["if"].call(e, "unseen", {hash: {}, inverse: x.noop, fn: x.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n  </td>\n  <td class='category'>\n    "), a = {}, i = {}, l = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.categoryLink, n ? n.call(e, "category", l) : v.call(e, "categoryLink", "category", l)))), t.buffer.push("\n  </td>\n  <td class='num'><a href=\""), a = {}, i = {}, t.buffer.push(y(s._triageMustache.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='badge-posts'>"), i = {numberKey: e}, a = {numberKey: "STRING"}, l = {hash: {numberKey: "posts_long"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.number, n ? n.call(e, "posts_count", l) : v.call(e, "number", "posts_count", l)))), t.buffer.push("</a></td>\n\n  <td class='num'>\n    "), a = {}, i = {}, r = s["if"].call(e, "like_count", {hash: {}, inverse: x.noop, fn: x.program(9, c, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n  </td>\n\n  <td "), i = {"class": e}, a = {"class": "STRING"}, t.buffer.push(y(s.bindAttr.call(e, {hash: {"class": ":num viewsHeat"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), i = {numberKey: e}, a = {numberKey: "STRING"}, l = {hash: {numberKey: "views_long"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.number, n ? n.call(e, "views", l) : v.call(e, "number", "views", l)))), t.buffer.push("</td>\n\n  "), a = {}, i = {}, r = s["if"].call(e, "bumped", {hash: {}, inverse: x.program(14, f, t), fn: x.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  "), d
+        return t.buffer.push("\n  <td class='main-link'>\n    <a class='title' href=\""), a = {}, i = {}, t.buffer.push(y(s.unbound.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('">'), a = {}, i = {}, n = s.unbound.call(e, "title", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("</a>\n    "), a = {}, i = {}, n = s["if"].call(e, "unread", {hash: {}, inverse: x.noop, fn: x.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    "), a = {}, i = {}, n = s["if"].call(e, "new_posts", {hash: {}, inverse: x.noop, fn: x.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    "), a = {}, i = {}, n = s["if"].call(e, "unseen", {hash: {}, inverse: x.noop, fn: x.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n  </td>\n  <td class='category'>\n    "), a = {}, i = {}, l = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.categoryLink, n ? n.call(e, "category", l) : v.call(e, "categoryLink", "category", l)))), t.buffer.push("\n  </td>\n  <td class='num posts'><a href=\""), a = {}, i = {}, t.buffer.push(y(s._triageMustache.call(e, "lastReadUrl", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='badge-posts'>"), i = {numberKey: e}, a = {numberKey: "STRING"}, l = {hash: {numberKey: "posts_long"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.number, n ? n.call(e, "posts_count", l) : v.call(e, "number", "posts_count", l)))), t.buffer.push("</a></td>\n\n  <td class='num likes'>\n    "), a = {}, i = {}, r = s["if"].call(e, "like_count", {hash: {}, inverse: x.noop, fn: x.program(9, c, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n  </td>\n\n  <td "), i = {"class": e}, a = {"class": "STRING"}, t.buffer.push(y(s.bindAttr.call(e, {hash: {"class": ":num :views viewsHeat"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), i = {numberKey: e}, a = {numberKey: "STRING"}, l = {hash: {numberKey: "views_long"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.number, n ? n.call(e, "views", l) : v.call(e, "number", "views", l)))), t.buffer.push("</td>\n\n  "), a = {}, i = {}, r = s["if"].call(e, "bumped", {hash: {}, inverse: x.program(14, f, t), fn: x.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  "), d
     }
 
     function o(e, t) {
@@ -18697,7 +18621,7 @@ var bootbox = window.bootbox || function (e) {
     }
 
     function l(e, t) {
-        t.buffer.push("/best_of")
+        t.buffer.push("?filter=best_of")
     }
 
     function p(e, t) {
@@ -18707,180 +18631,160 @@ var bootbox = window.bootbox || function (e) {
 
     function f(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n    <td class='num activity'>\n      <a href=\""), a = {}, i = {}, t.buffer.push(y(s._triageMustache.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='age' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.i18n, n ? n.call(e, "first_post", o) : v.call(e, "i18n", "first_post", o)))), t.buffer.push(": "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.unboundDate, r = n ? n.call(e, "created_at", o) : v.call(e, "unboundDate", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.unboundAge, n ? n.call(e, "created_at", o) : v.call(e, "unboundAge", "created_at", o)))), t.buffer.push("</a>\n    </td>\n    <td></td>\n  "), u
+        return t.buffer.push("\n    <td class='num activity'>\n      <a href=\""), a = {}, i = {}, t.buffer.push(y(s._triageMustache.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\" class='age' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.i18n, n ? n.call(e, "first_post", o) : v.call(e, "i18n", "first_post", o)))), t.buffer.push(": "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.unboundDate, r = n ? n.call(e, "created_at", o) : v.call(e, "unboundDate", "created_at", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(y((n = s.unboundAge, n ? n.call(e, "created_at", o) : v.call(e, "unboundAge", "created_at", o)))), t.buffer.push('</a>\n    </td>\n    <td class="activity"></td>\n  '), u
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var d, m, g, b = "", y = this.escapeExpression, v = s.helperMissing, x = this, _ = "function", E = s.blockHelperMissing;
+    var d, m, g, b = "", y = this.escapeExpression, v = s.helperMissing, x = this, _ = "function", w = s.blockHelperMissing;
     return m = {}, g = {}, d = s["with"].call(t, "view.content", {hash: {}, inverse: x.noop, fn: x.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: g, hashTypes: m, data: r}), (d || 0 === d) && r.buffer.push(d), r.buffer.push("\n"), b
 }), Ember.TEMPLATES.topic = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
-        var n, r, a, o = "";
-        return t.buffer.push("\n  "), r = {}, a = {}, n = s["if"].call(e, "loaded", {hash: {}, inverse: j.program(27, E, t), fn: j.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n"), o
+        var n, r, a, o, u, h = "";
+        return t.buffer.push("\n\n  "), a = {}, o = {}, n = s["if"].call(e, "postStream.firstPostLoaded", {hash: {}, inverse: A.noop, fn: A.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push('\n\n  <div class="container posts">\n\n    '), a = {}, o = {}, t.buffer.push(k(s.view.call(e, "Discourse.SelectedPostsView", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push('\n    <div class="row">\n      <section class="topic-area" id=\'topic\' data-topic-id=\''), a = {}, o = {}, t.buffer.push(k(s.unbound.call(e, "id", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("'>\n        <div class='posts-wrapper'>\n          <div id='topic-progress-wrapper' "), o = {"class": e}, a = {"class": "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {"class": "dockedCounter:docked"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push(">\n            <nav id='topic-progress' title=\""), a = {}, o = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.progress.title", u) : N.call(e, "i18n", "topic.progress.title", u)))), t.buffer.push('" '), o = {"class": e}, a = {"class": "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {"class": "hideProgress:hidden"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push(">\n              <button id='jump-top' title=\""), a = {}, o = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.progress.jump_top", u) : N.call(e, "i18n", "topic.progress.jump_top", u)))), t.buffer.push('" '), o = {disabled: e}, a = {disabled: "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {disabled: "jumpTopDisabled"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push(" "), a = {}, o = {}, t.buffer.push(k(s.action.call(e, "jumpTop", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push('><i class="icon-circle-arrow-up"></i></button>\n              <div class=\'nums\'>\n                <h4 title="'), a = {}, o = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.progress.current", u) : N.call(e, "i18n", "topic.progress.current", u)))), t.buffer.push('">'), a = {}, o = {}, t.buffer.push(k(s._triageMustache.call(e, "progressPosition", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("</h4> <span>"), a = {}, o = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "of_value", u) : N.call(e, "i18n", "of_value", u)))), t.buffer.push("</span> <h4>"), a = {}, o = {}, t.buffer.push(k(s._triageMustache.call(e, "postStream.filteredPostsCount", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("</h4>\n              </div>\n              <button id='jump-bottom' title=\""), a = {}, o = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.progress.jump_bottom", u) : N.call(e, "i18n", "topic.progress.jump_bottom", u)))), t.buffer.push('" '), o = {disabled: e}, a = {disabled: "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {disabled: "jumpBottomDisabled"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push(" "), a = {}, o = {}, t.buffer.push(k(s.action.call(e, "jumpBottom", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("><i class=\"icon-circle-arrow-down\"></i></button>\n              <div class='bg'>&nbsp;</div>\n            </nav>\n          </div>\n\n          "), a = {}, o = {}, r = s["if"].call(e, "postStream.loadingAbove", {hash: {}, inverse: A.noop, fn: A.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), a = {}, o = {}, r = s.unless.call(e, "postStream.loadingFilter", {hash: {}, inverse: A.noop, fn: A.program(14, f, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n          "), a = {}, o = {}, r = s["if"].call(e, "postStream.loadingBelow", {hash: {}, inverse: A.noop, fn: A.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n        <div id='topic-bottom'></div>\n\n        "), a = {}, o = {}, r = s["if"].call(e, "postStream.loadingFilter", {hash: {}, inverse: A.program(18, m, t), fn: A.program(16, d, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n\n      </section>\n    </div>\n\n  </div>\n\n"), h
     }
 
     function i(e, t) {
-        var n, r, a, i, u, h = "";
-        return t.buffer.push("\n\n    "), a = {}, i = {}, n = s["if"].call(e, "view.firstPostLoaded", {hash: {}, inverse: j.noop, fn: j.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push('\n\n    <div class="container posts">\n\n      '), a = {}, i = {}, t.buffer.push(R(s.view.call(e, "Discourse.SelectedPostsView", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('\n      <div class="row">\n        <section class="topic-area" id=\'topic\' data-topic-id=\''), a = {}, i = {}, t.buffer.push(R(s.unbound.call(e, "id", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("'>\n          <div class='posts-wrapper'>\n            <div id='topic-progress-wrapper'>\n              <nav id='topic-progress' title=\""), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.progress.title", u) : O.call(e, "i18n", "topic.progress.title", u)))), t.buffer.push('" '), i = {"class": e}, a = {"class": "STRING"}, t.buffer.push(R(s.bindAttr.call(e, {hash: {"class": "hideProgress:hidden"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">\n                <button id='jump-top' title=\""), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.progress.jump_top", u) : O.call(e, "i18n", "topic.progress.jump_top", u)))), t.buffer.push('" '), a = {}, i = {}, t.buffer.push(R(s.action.call(e, "jumpTop", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('><i class="icon-circle-arrow-up"></i></button>\n                <div class=\'nums\'>\n                  <h4 title="'), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.progress.current", u) : O.call(e, "i18n", "topic.progress.current", u)))), t.buffer.push('">'), a = {}, i = {}, t.buffer.push(R(s._triageMustache.call(e, "view.progressPosition", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("</h4> <span>"), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "of_value", u) : O.call(e, "i18n", "of_value", u)))), t.buffer.push("</span> <h4>"), a = {}, i = {}, t.buffer.push(R(s._triageMustache.call(e, "filtered_posts_count", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("</h4>\n                </div>\n                <button id='jump-bottom' title=\""), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.progress.jump_bottom", u) : O.call(e, "i18n", "topic.progress.jump_bottom", u)))), t.buffer.push('" '), a = {}, i = {}, t.buffer.push(R(s.action.call(e, "jumpBottom", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("><i class=\"icon-circle-arrow-down\"></i></button>\n                <div class='bg'>&nbsp;</div>\n              </nav>\n            </div>\n\n            "), a = {}, i = {}, r = s["if"].call(e, "loadingAbove", {hash: {}, inverse: j.noop, fn: j.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n            "), i = {itemViewClass: e, contentBinding: e, topicViewBinding: e}, a = {itemViewClass: "STRING", contentBinding: "STRING", topicViewBinding: "STRING"}, u = {hash: {itemViewClass: "Discourse.PostView", contentBinding: "posts", topicViewBinding: "view"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.collection, n ? n.call(e, u) : O.call(e, "collection", u)))), t.buffer.push("\n\n            "), a = {}, i = {}, r = s["if"].call(e, "loadingBelow", {hash: {}, inverse: j.noop, fn: j.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n          </div>\n          <div id='topic-bottom'></div>\n\n          "), a = {}, i = {}, r = s["if"].call(e, "loading", {hash: {}, inverse: j.program(23, v, t), fn: j.program(20, b, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n\n        </section>\n      </div>\n\n    </div>\n\n  "), h
+        var n, r, a, i = "";
+        return t.buffer.push("\n    <div id='topic-title'>\n      <div class='container'>\n        <div class='inner'>\n\n          "), r = {}, a = {}, n = s["if"].call(e, "showFavoriteButton", {hash: {}, inverse: A.noop, fn: A.program(3, o, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n\n          "), r = {}, a = {}, n = s["if"].call(e, "editingTopic", {hash: {}, inverse: A.program(7, h, t), fn: A.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n        </div>\n      </div>\n    </div>\n  "), i
     }
 
     function o(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n    <div id='topic-title'>\n      <div class='container'>\n        <div class='inner'>\n          "), r = {}, a = {}, n = s["if"].call(e, "view.showFavoriteButton", {hash: {}, inverse: j.noop, fn: j.program(4, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), r = {}, a = {}, n = s["if"].call(e, "view.editingTopic", {hash: {}, inverse: j.program(8, c, t), fn: j.program(6, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n        </div>\n      </div>\n    </div>\n    "), i
+        var n, r, a = "";
+        return t.buffer.push("\n            <a "), n = {"class": e}, r = {"class": "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {"class": ":star starred:starred"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), r = {}, n = {}, t.buffer.push(k(s.action.call(e, "toggleStar", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" href='#' "), n = {title: e}, r = {title: "STRING"}, t.buffer.push(k(s.bindAttr.call(e, {hash: {title: "favoriteTooltip"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("></a>\n          "), a
     }
 
     function u(e, t) {
-        var n, r, a = "";
-        return t.buffer.push("\n            <a "), n = {"class": e}, r = {"class": "STRING"}, t.buffer.push(R(s.bindAttr.call(e, {hash: {"class": ":star view.topic.starred:starred"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" "), r = {}, n = {}, t.buffer.push(R(s.action.call(e, "toggleStar", {hash: {}, contexts: [e], types: ["ID"], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push(" href='#' "), n = {title: e}, r = {title: "STRING"}, t.buffer.push(R(s.bindAttr.call(e, {hash: {title: "favoriteTooltip"}, contexts: [], types: [], hashContexts: n, hashTypes: r, data: t}))), t.buffer.push("></a>\n          "), a
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n            "), r = {id: e, value: e}, a = {id: "STRING", value: "ID"}, i = {hash: {id: "edit-title", value: "newTitle"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(k((n = s.textField, n ? n.call(e, i) : N.call(e, "textField", i)))), t.buffer.push("\n            "), r = {valueAttribute: e, value: e, source: e}, a = {valueAttribute: "STRING", value: "ID", source: "ID"}, i = {hash: {valueAttribute: "id", value: "newCategoryId", source: "category_id"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(k((n = s.categoryChooser, n ? n.call(e, i) : N.call(e, "categoryChooser", i)))), t.buffer.push("\n\n            <button class='btn btn-primary btn-small' "), a = {}, r = {}, t.buffer.push(k(s.action.call(e, "finishedEditingTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-ok'></i></button>\n            <button class='btn btn-small' "), a = {}, r = {}, t.buffer.push(k(s.action.call(e, "cancelEditingTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-remove'></i></button>\n          "), o
     }
 
     function h(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n            <input id='edit-title' type='text' "), r = {value: e}, a = {value: "STRING"}, t.buffer.push(R(s.bindAttr.call(e, {hash: {value: "view.topic.title"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(" autofocus>\n\n            "), r = {valueAttribute: e, source: e}, a = {valueAttribute: "STRING", source: "ID"}, i = {hash: {valueAttribute: "name", source: "view.topic.categoryName"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(R((n = s.categoryChooser, n ? n.call(e, i) : O.call(e, "categoryChooser", i)))), t.buffer.push("\n\n            <button class='btn btn-primary btn-small' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(R(s.action.call(e, "finishedEdit", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-ok'></i></button>\n            <button class='btn btn-small' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(R(s.action.call(e, "cancelEdit", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-remove'></i></button>\n          "), o
+        var n, r, a, i, o, u = "";
+        return t.buffer.push("\n            <h1>\n              "), a = {}, i = {}, n = s["if"].call(e, "details.loaded", {hash: {}, inverse: A.noop, fn: A.program(8, c, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n              "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.categoryLink, n ? n.call(e, "category", o) : N.call(e, "categoryLink", "category", o)))), t.buffer.push("\n\n              "), a = {}, i = {}, r = s["if"].call(e, "details.can_edit", {hash: {}, inverse: A.noop, fn: A.program(10, l, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            </h1>\n          "), u
     }
 
     function c(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            <h1>\n              "), a = {}, i = {}, n = s["if"].call(e, "view.topic.fancy_title", {hash: {}, inverse: j.program(11, p, t), fn: j.program(9, l, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n              "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.categoryLink, n ? n.call(e, "category", o) : O.call(e, "categoryLink", "category", o)))), t.buffer.push("\n\n              "), a = {}, i = {}, r = s["if"].call(e, "view.topic.can_edit", {hash: {}, inverse: j.noop, fn: j.program(16, m, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            </h1>\n          "), u
+        return t.buffer.push("\n                "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: "model"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(k((n = s.topicStatus, n ? n.call(e, o) : N.call(e, "topicStatus", o)))), t.buffer.push("\n                <a href='"), i = {}, a = {}, t.buffer.push(k(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, r = s._triageMustache.call(e, "fancy_title", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</a>\n              "), u
     }
 
     function l(e, t) {
-        var n, r, a, i, o, u = "";
-        return t.buffer.push("\n                "), a = {topic: e}, i = {topic: "ID"}, o = {hash: {topic: "view.topic"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(R((n = s.topicStatus, n ? n.call(e, o) : O.call(e, "topicStatus", o)))), t.buffer.push("\n                <a href='"), i = {}, a = {}, t.buffer.push(R(s.unbound.call(e, "view.topic.url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push("'>"), a = {unescaped: e}, i = {unescaped: "STRING"}, r = s._triageMustache.call(e, "view.topic.fancy_title", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</a>\n              "), u
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n                <a href='#' "), r = {}, a = {}, t.buffer.push(k(s.action.call(e, "editTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='edit-topic' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "edit", i) : N.call(e, "i18n", "edit", i)))), t.buffer.push('\'><i class="icon-pencil"></i></a>\n              '), o
     }
 
     function p(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n                "), r = {}, a = {}, n = s["if"].call(e, "view.topic.errorLoading", {hash: {}, inverse: j.program(14, d, t), fn: j.program(12, f, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n              "), i
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n            <div class='spinner'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "loading", i) : N.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n          "), o
     }
 
     function f(e, t) {
-        var n, r, a = "";
-        return t.buffer.push("\n                  "), n = {}, r = {}, t.buffer.push(R(s._triageMustache.call(e, "view.topic.errorTitle", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t}))), t.buffer.push("\n                "), a
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n            "), r = {itemViewClass: e, contentBinding: e, topicViewBinding: e}, a = {itemViewClass: "STRING", contentBinding: "STRING", topicViewBinding: "STRING"}, i = {hash: {itemViewClass: "Discourse.PostView", contentBinding: "postStream.posts", topicViewBinding: "view"}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(k((n = s.collection, n ? n.call(e, i) : N.call(e, "collection", i)))), t.buffer.push("\n          "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n                  "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.loading", i) : O.call(e, "i18n", "topic.loading", i)))), t.buffer.push("\n                "), o
+        return t.buffer.push("\n          <div class='spinner small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "loading", i) : N.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n        "), o
     }
 
     function m(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n                <a href='#' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(R(s.action.call(e, "editTopic", {hash: {target: "view"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(" class='edit-topic' title='"), a = {}, r = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "edit", i) : O.call(e, "i18n", "edit", i)))), t.buffer.push('\'><i class="icon-pencil"></i></a>\n              '), o
+        var n, r, a, i = "";
+        return t.buffer.push("\n          "), r = {}, a = {}, n = s["if"].call(e, "postStream.lastPostLoaded", {hash: {}, inverse: A.noop, fn: A.program(19, g, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n        "), i
     }
 
     function g(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n              <div class='spinner'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "loading", i) : O.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n            "), o
+        var n, r, a, i = "";
+        return t.buffer.push("\n\n            "), r = {topicBinding: e}, a = {topicBinding: "STRING"}, t.buffer.push(k(s.view.call(e, "Discourse.TopicClosingView", {hash: {topicBinding: "model"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n            "), r = {topicBinding: e}, a = {topicBinding: "STRING"}, t.buffer.push(k(s.view.call(e, "Discourse.TopicFooterButtonsView", {hash: {topicBinding: "model"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n\n            "), a = {}, r = {}, n = s["if"].call(e, "details.suggested_topics.length", {hash: {}, inverse: A.noop, fn: A.program(20, b, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
     }
 
     function b(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n            "), r = {}, a = {}, n = s.unless.call(e, "loadingBelow", {hash: {}, inverse: j.noop, fn: j.program(21, y, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
+        var n, r, a, i, o, u = "";
+        return t.buffer.push("\n              <div id='suggested-topics'>\n\n                <h3>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "suggested_topics.title", o) : N.call(e, "i18n", "suggested_topics.title", o)))), t.buffer.push("</h3>\n\n                <div class='topics'>\n                  <table id=\"topic-list\">\n                    <tr>\n                      <th>\n                        "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.title", o) : N.call(e, "i18n", "topic.title", o)))), t.buffer.push("\n                      </th>\n                      <th>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "category_title", o) : N.call(e, "i18n", "category_title", o)))), t.buffer.push("</th>\n                      <th class='num posts'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "posts", o) : N.call(e, "i18n", "posts", o)))), t.buffer.push("</th>\n                      <th class='num likes'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "likes", o) : N.call(e, "i18n", "likes", o)))), t.buffer.push("</th>\n                      <th class='num views'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "views", o) : N.call(e, "i18n", "views", o)))), t.buffer.push("</th>\n                      <th class='num activity' colspan='2'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "activity", o) : N.call(e, "i18n", "activity", o)))), t.buffer.push("</th>\n                    </tr>\n\n                  "), i = {itemTagName: e, itemViewClass: e}, a = {itemTagName: "STRING", itemViewClass: "STRING"}, t.buffer.push(k(s.each.call(e, "details.suggested_topics", {hash: {itemTagName: "tr", itemViewClass: "Discourse.SuggestedTopicView"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n                  </table>\n                </div>\n                <br/>\n                <h3>"), i = {unescaped: e}, a = {unescaped: "STRING"}, r = s._triageMustache.call(e, "view.browseMoreMessage", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</h3>\n              </div>\n            "), u
     }
 
     function y(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n              <div class='spinner small'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "loading", i) : O.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n            "), o
+        var n, r, a, i = "";
+        return t.buffer.push("\n  "), r = {}, a = {}, n = s["if"].call(e, "message", {hash: {}, inverse: A.program(26, _, t), fn: A.program(23, v, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n"), i
     }
 
     function v(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n            "), r = {}, a = {}, n = s["if"].call(e, "view.fullyLoaded", {hash: {}, inverse: j.noop, fn: j.program(24, x, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n          "), i
+        var n, r, a, i, o, u = "";
+        return t.buffer.push("\n    <div class='container'>\n      <div class='message'>\n\n        <h2>"), a = {}, i = {}, t.buffer.push(k(s._triageMustache.call(e, "message", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("</h2>\n\n        <p>\n          "), a = {}, i = {}, o = {hash: {}, inverse: A.noop, fn: A.program(24, x, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.latest", o) : N.call(e, "linkTo", "list.latest", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </div>\n    </div>\n  "), u
     }
 
     function x(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n\n              "), r = {topicBinding: e}, a = {topicBinding: "STRING"}, t.buffer.push(R(s.view.call(e, "Discourse.TopicClosingView", {hash: {topicBinding: "model"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n\n              "), r = {topicBinding: e}, a = {topicBinding: "STRING"}, t.buffer.push(R(s.view.call(e, "Discourse.TopicFooterButtonsView", {hash: {topicBinding: "model"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push("\n\n              "), a = {}, r = {}, n = s["if"].call(e, "suggested_topics.length", {hash: {}, inverse: j.noop, fn: j.program(25, _, t), contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n            "), i
+        var n, r, a, i;
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "topic.back_to_list", i) : N.call(e, "i18n", "topic.back_to_list", i))))
     }
 
     function _(e, t) {
-        var n, r, a, i, o, u = "";
-        return t.buffer.push("\n                <div id='suggested-topics'>\n\n                  <h3>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "suggested_topics.title", o) : O.call(e, "i18n", "suggested_topics.title", o)))), t.buffer.push("</h3>\n\n                  <div class='topics'>\n                    <table id=\"topic-list\">\n                      <tr>\n                        <th>\n                          "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.title", o) : O.call(e, "i18n", "topic.title", o)))), t.buffer.push("\n                        </th>\n                        <th>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "category_title", o) : O.call(e, "i18n", "category_title", o)))), t.buffer.push("</th>\n                        <th class='num'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "posts", o) : O.call(e, "i18n", "posts", o)))), t.buffer.push("</th>\n                        <th class='num'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "likes", o) : O.call(e, "i18n", "likes", o)))), t.buffer.push("</th>\n                        <th class='num'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "views", o) : O.call(e, "i18n", "views", o)))), t.buffer.push("</th>\n                        <th class='num activity' colspan='2'>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "activity", o) : O.call(e, "i18n", "activity", o)))), t.buffer.push("</th>\n                      </tr>\n\n                    "), i = {itemTagName: e, itemViewClass: e}, a = {itemTagName: "STRING", itemViewClass: "STRING"}, t.buffer.push(R(s.each.call(e, "suggested_topics", {hash: {itemTagName: "tr", itemViewClass: "Discourse.SuggestedTopicView"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n                    </table>\n                  </div>\n                  <br/>\n                  <h3>"), i = {unescaped: e}, a = {unescaped: "STRING"}, r = s._triageMustache.call(e, "view.browseMoreMessage", {hash: {unescaped: "true"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</h3>\n                </div>\n              "), u
-    }
-
-    function E(e, t) {
-        var n, r, a, i = "";
-        return t.buffer.push("\n    "), r = {}, a = {}, n = s["if"].call(e, "message", {hash: {}, inverse: j.program(31, C, t), fn: j.program(28, w, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n  "), i
+        var n, r, a, i, o = "";
+        return t.buffer.push("\n    <div class='container'>\n      <div class='spinner'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.i18n, n ? n.call(e, "loading", i) : N.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n    </div>\n  "), o
     }
 
     function w(e, t) {
-        var n, r, a, i, o, u = "";
-        return t.buffer.push("\n      <div class='container'>\n        <div class='message'>\n\n          <h2>"), a = {}, i = {}, t.buffer.push(R(s._triageMustache.call(e, "message", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("</h2>\n\n          <p>\n            "), a = {}, i = {}, o = {hash: {}, inverse: j.noop, fn: j.program(29, T, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "list.latest", o) : O.call(e, "linkTo", "list.latest", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </div>\n      </div>\n    "), u
-    }
-
-    function T(e, t) {
-        var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "topic.back_to_list", i) : O.call(e, "i18n", "topic.back_to_list", i))))
-    }
-
-    function C(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n      <div class='container'>\n        <div class='spinner'>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.i18n, n ? n.call(e, "loading", i) : O.call(e, "i18n", "loading", i)))), t.buffer.push("</div>\n      </div>\n    "), o
-    }
-
-    function D(e, t) {
-        var n, r, a, i, o = "";
-        return t.buffer.push("\n  "), r = {}, a = {}, i = {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(R((n = s.render, n ? n.call(e, "topicAdminMenu", "content", i) : O.call(e, "render", "topicAdminMenu", "content", i)))), t.buffer.push("\n"), o
+        return t.buffer.push("\n  "), r = {}, a = {}, i = {hash: {}, contexts: [e, e], types: ["ID", "ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(k((n = s.render, n ? n.call(e, "topicAdminMenu", "content", i) : N.call(e, "render", "topicAdminMenu", "content", i)))), t.buffer.push("\n"), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var I, S, k, A, N, P = "", R = this.escapeExpression, O = s.helperMissing, j = this;
-    return k = {}, A = {}, I = s["if"].call(t, "content", {hash: {}, inverse: j.noop, fn: j.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}), (I || 0 === I) && r.buffer.push(I), r.buffer.push("\n\n<div id='topic-filter' style='display: none'>\n  "), k = {}, A = {}, r.buffer.push(R(s._triageMustache.call(t, "filterDesc", {hash: {}, contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}))), r.buffer.push("\n  <a href='#' "), k = {}, A = {}, r.buffer.push(R(s.action.call(t, "cancelFilter", {hash: {}, contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}))), r.buffer.push(">"), k = {}, A = {}, N = {hash: {}, contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}, r.buffer.push(R((I = s.i18n, I ? I.call(t, "topic.filters.cancel", N) : O.call(t, "i18n", "topic.filters.cancel", N)))), r.buffer.push("</a>\n</div>\n\n"), k = {}, A = {}, N = {hash: {}, contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}, r.buffer.push(R((I = s.render, I ? I.call(t, "share", N) : O.call(t, "render", "share", N)))), r.buffer.push("\n"), k = {}, A = {}, N = {hash: {}, contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}, r.buffer.push(R((I = s.render, I ? I.call(t, "quoteButton", N) : O.call(t, "render", "quoteButton", N)))), r.buffer.push("\n\n"), k = {}, A = {}, S = s["if"].call(t, "currentUser.staff", {hash: {}, inverse: j.noop, fn: j.program(33, D, r), contexts: [t], types: ["ID"], hashContexts: A, hashTypes: k, data: r}), (S || 0 === S) && r.buffer.push(S), r.buffer.push("\n"), P
+    var T, E, C, D, I, S = "", k = this.escapeExpression, N = s.helperMissing, A = this;
+    return C = {}, D = {}, T = s["if"].call(t, "postStream.loaded", {hash: {}, inverse: A.program(22, y, r), fn: A.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}), (T || 0 === T) && r.buffer.push(T), r.buffer.push("\n\n\n<div id='topic-filter' "), D = {"class": t}, C = {"class": "STRING"}, r.buffer.push(k(s.bindAttr.call(t, {hash: {"class": "postStream.hasNoFilters:hidden"}, contexts: [], types: [], hashContexts: D, hashTypes: C, data: r}))), r.buffer.push(">\n  "), C = {}, D = {}, r.buffer.push(k(s._triageMustache.call(t, "postStream.filterDesc", {hash: {}, contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}))), r.buffer.push("\n  <a href='#' "), D = {target: t}, C = {target: "STRING"}, r.buffer.push(k(s.action.call(t, "cancelFilter", {hash: {target: "postStream"}, contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}))), r.buffer.push(">"), C = {}, D = {}, I = {hash: {}, contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}, r.buffer.push(k((T = s.i18n, T ? T.call(t, "topic.filters.cancel", I) : N.call(t, "i18n", "topic.filters.cancel", I)))), r.buffer.push("</a>\n</div>\n\n"), C = {}, D = {}, I = {hash: {}, contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}, r.buffer.push(k((T = s.render, T ? T.call(t, "share", I) : N.call(t, "render", "share", I)))), r.buffer.push("\n"), C = {}, D = {}, I = {hash: {}, contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}, r.buffer.push(k((T = s.render, T ? T.call(t, "quoteButton", I) : N.call(t, "render", "quoteButton", I)))), r.buffer.push("\n\n"), C = {}, D = {}, E = s["if"].call(t, "currentUser.staff", {hash: {}, inverse: A.noop, fn: A.program(28, w, r), contexts: [t], types: ["ID"], hashContexts: D, hashTypes: C, data: r}), (E || 0 === E) && r.buffer.push(E), r.buffer.push("\n"), S
 }), Ember.TEMPLATES.topic_admin_menu = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, g, b, y = "";
-        return t.buffer.push('\n  <div class="topic-admin-menu">\n    <h3>'), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "admin_title", b) : E.call(e, "i18n", "admin_title", b)))), t.buffer.push("</h3>\n\n    <ul>\n        <li>\n          <button "), a = {}, g = {}, t.buffer.push(_(s.action.call(e, "toggleMultiSelect", {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-tasks'></i> "), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.multi_select", b) : E.call(e, "i18n", "topic.actions.multi_select", b)))), t.buffer.push("</button>\n        </li>\n\n      "), a = {}, g = {}, r = s["if"].call(e, "can_delete", {hash: {}, inverse: w.noop, fn: w.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "closed", {hash: {}, inverse: w.program(6, u, t), fn: w.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "pinned", {hash: {}, inverse: w.program(10, c, t), fn: w.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "archived", {hash: {}, inverse: w.program(14, p, t), fn: w.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "visible", {hash: {}, inverse: w.program(18, d, t), fn: w.program(16, f, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      "), a = {}, g = {}, r = s["if"].call(e, "view.topic.canConvertToRegular", {hash: {}, inverse: w.noop, fn: w.program(20, m, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      <li>\n        <button class='btn btn-admin' "), g = {target: e}, a = {target: "STRING"}, t.buffer.push(_(s.action.call(e, "resetRead", {hash: {target: "view.parentView"}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-remove'></i> "), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.reset_read", b) : E.call(e, "i18n", "topic.actions.reset_read", b)))), t.buffer.push("</button>\n      </li>\n    </ul>\n  </div>\n"), y
+        return t.buffer.push('\n  <div class="topic-admin-menu">\n    <h3>'), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "admin_title", b) : w.call(e, "i18n", "admin_title", b)))), t.buffer.push("</h3>\n\n    <ul>\n        <li>\n          <button "), a = {}, g = {}, t.buffer.push(_(s.action.call(e, "toggleMultiSelect", {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-tasks'></i> "), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.multi_select", b) : w.call(e, "i18n", "topic.actions.multi_select", b)))), t.buffer.push("</button>\n        </li>\n\n      "), a = {}, g = {}, r = s["if"].call(e, "details.can_delete", {hash: {}, inverse: T.noop, fn: T.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "closed", {hash: {}, inverse: T.program(6, u, t), fn: T.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "pinned", {hash: {}, inverse: T.program(10, c, t), fn: T.program(8, h, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "archived", {hash: {}, inverse: T.program(14, p, t), fn: T.program(12, l, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      <li>\n        "), a = {}, g = {}, r = s["if"].call(e, "visible", {hash: {}, inverse: T.program(18, d, t), fn: T.program(16, f, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      </li>\n\n      "), a = {}, g = {}, r = s["if"].call(e, "view.topic.canConvertToRegular", {hash: {}, inverse: T.noop, fn: T.program(20, m, t), contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n      <li>\n        <button class='btn btn-admin' "), g = {target: e}, a = {target: "STRING"}, t.buffer.push(_(s.action.call(e, "resetRead", {hash: {target: "view.parentView"}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}))), t.buffer.push("><i class='icon-remove'></i> "), a = {}, g = {}, b = {hash: {}, contexts: [e], types: ["ID"], hashContexts: g, hashTypes: a, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.reset_read", b) : w.call(e, "i18n", "topic.actions.reset_read", b)))), t.buffer.push("</button>\n      </li>\n    </ul>\n  </div>\n"), y
     }
 
     function i(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <li>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "deleteTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin btn-danger'><i class='icon-trash'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.delete", i) : E.call(e, "i18n", "topic.actions.delete", i)))), t.buffer.push("</button>\n        </li>\n      "), o
+        return t.buffer.push("\n        <li>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "deleteTopic", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin btn-danger'><i class='icon-trash'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.delete", i) : w.call(e, "i18n", "topic.actions.delete", i)))), t.buffer.push("</button>\n        </li>\n      "), o
     }
 
     function o(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleClosed", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-unlock'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.open", i) : E.call(e, "i18n", "topic.actions.open", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleClosed", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-unlock'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.open", i) : w.call(e, "i18n", "topic.actions.open", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleClosed", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-lock'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.close", i) : E.call(e, "i18n", "topic.actions.close", i)))), t.buffer.push("</button>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "showAutoClose", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-time'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.auto_close", i) : E.call(e, "i18n", "topic.actions.auto_close", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleClosed", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-lock'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.close", i) : w.call(e, "i18n", "topic.actions.close", i)))), t.buffer.push("</button>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "showAutoClose", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-time'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.auto_close", i) : w.call(e, "i18n", "topic.actions.auto_close", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function h(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "togglePinned", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-pushpin'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.unpin", i) : E.call(e, "i18n", "topic.actions.unpin", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "togglePinned", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-pushpin'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.unpin", i) : w.call(e, "i18n", "topic.actions.unpin", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "togglePinned", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-pushpin'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.pin", i) : E.call(e, "i18n", "topic.actions.pin", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "togglePinned", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-pushpin'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.pin", i) : w.call(e, "i18n", "topic.actions.pin", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleArchived", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-folder-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.unarchive", i) : E.call(e, "i18n", "topic.actions.unarchive", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleArchived", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-folder-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.unarchive", i) : w.call(e, "i18n", "topic.actions.unarchive", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function p(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleArchived", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-folder-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.archive", i) : E.call(e, "i18n", "topic.actions.archive", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleArchived", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-folder-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.archive", i) : w.call(e, "i18n", "topic.actions.archive", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleVisibility", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-eye-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.invisible", i) : E.call(e, "i18n", "topic.actions.invisible", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleVisibility", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-eye-close'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.invisible", i) : w.call(e, "i18n", "topic.actions.invisible", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleVisibility", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-eye-open'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.visible", i) : E.call(e, "i18n", "topic.actions.visible", i)))), t.buffer.push("</button>\n        "), o
+        return t.buffer.push("\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "toggleVisibility", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-eye-open'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.visible", i) : w.call(e, "i18n", "topic.actions.visible", i)))), t.buffer.push("</button>\n        "), o
     }
 
     function m(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n      <li>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "convertToRegular", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-minus'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.convert_to_topic", i) : E.call(e, "i18n", "topic.actions.convert_to_topic", i)))), t.buffer.push("</button>\n      </li>\n      "), o
+        return t.buffer.push("\n      <li>\n          <button "), r = {}, a = {}, t.buffer.push(_(s.action.call(e, "convertToRegular", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(" class='btn btn-admin'><i class='icon-minus'></i> "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(_((n = s.i18n, n ? n.call(e, "topic.actions.convert_to_topic", i) : w.call(e, "i18n", "topic.actions.convert_to_topic", i)))), t.buffer.push("</button>\n      </li>\n      "), o
     }
 
     function g(e, t) {
@@ -18889,91 +18793,91 @@ var bootbox = window.bootbox || function (e) {
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var b, y, v, x = "", _ = this.escapeExpression, E = s.helperMissing, w = this;
-    return y = {}, v = {}, b = s["if"].call(t, "visible", {hash: {}, inverse: w.program(22, g, r), fn: w.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: v, hashTypes: y, data: r}), (b || 0 === b) && r.buffer.push(b), r.buffer.push("\n"), x
+    var b, y, v, x = "", _ = this.escapeExpression, w = s.helperMissing, T = this;
+    return y = {}, v = {}, b = s["if"].call(t, "visible", {hash: {}, inverse: T.program(22, g, r), fn: T.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: v, hashTypes: y, data: r}), (b || 0 === b) && r.buffer.push(b), r.buffer.push("\n"), x
 }), Ember.TEMPLATES["topic_summary/best_of_toggle"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n  <p>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.i18n, r = n ? n.call(e, "best_of.enabled_description", o) : f.call(e, "i18n", "best_of.enabled_description", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</p>\n  <button class='btn' "), a = {}, i = {}, t.buffer.push(d(s.action.call(e, "cancelFilter", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(d((n = s.i18n, n ? n.call(e, "best_of.disable", o) : f.call(e, "i18n", "best_of.disable", o)))), t.buffer.push("</button>\n"), u
+        return t.buffer.push("\n  <p>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, n = s.i18n, r = n ? n.call(e, "best_of.enabled_description", o) : f.call(e, "i18n", "best_of.enabled_description", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</p>\n  <button class='btn' "), i = {target: e}, a = {target: "STRING"}, t.buffer.push(d(s.action.call(e, "toggleBestOf", {hash: {target: "postStream"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(d((n = s.i18n, n ? n.call(e, "best_of.disable", o) : f.call(e, "i18n", "best_of.disable", o)))), t.buffer.push("</button>\n"), u
     }
 
     function i(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n  <p>"), a = {count: e}, i = {count: "STRING"}, o = {hash: {count: "posts_count"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.i18n, r = n ? n.call(e, "best_of.description", o) : f.call(e, "i18n", "best_of.description", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</p>\n  <button class='btn' "), i = {}, a = {}, t.buffer.push(d(s.action.call(e, "enableBestOf", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(d((n = s.i18n, n ? n.call(e, "best_of.enable", o) : f.call(e, "i18n", "best_of.enable", o)))), t.buffer.push("</button>\n"), u
+        return t.buffer.push("\n  <p>"), a = {count: e}, i = {count: "STRING"}, o = {hash: {count: "posts_count"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, n = s.i18n, r = n ? n.call(e, "best_of.description", o) : f.call(e, "i18n", "best_of.description", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</p>\n  <button class='btn' "), a = {target: e}, i = {target: "STRING"}, t.buffer.push(d(s.action.call(e, "toggleBestOf", {hash: {target: "postStream"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(d((n = s.i18n, n ? n.call(e, "best_of.enable", o) : f.call(e, "i18n", "best_of.enable", o)))), t.buffer.push("</button>\n"), u
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
     var o, u, h, c, l, p = "", f = s.helperMissing, d = this.escapeExpression, m = this;
-    return r.buffer.push("<h3><i class='icon icon-bullhorn'></i> "), h = {}, c = {}, l = {hash: {}, contexts: [t], types: ["ID"], hashContexts: c, hashTypes: h, data: r}, r.buffer.push(d((o = s.i18n, o ? o.call(t, "best_of.title", l) : f.call(t, "i18n", "best_of.title", l)))), r.buffer.push("</h3>\n"), h = {}, c = {}, u = s["if"].call(t, "bestOf", {hash: {}, inverse: m.program(3, i, r), fn: m.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: c, hashTypes: h, data: r}), (u || 0 === u) && r.buffer.push(u), r.buffer.push("\n"), p
+    return r.buffer.push("<h3><i class='icon icon-bullhorn'></i> "), h = {}, c = {}, l = {hash: {}, contexts: [t], types: ["ID"], hashContexts: c, hashTypes: h, data: r}, r.buffer.push(d((o = s.i18n, o ? o.call(t, "best_of.title", l) : f.call(t, "i18n", "best_of.title", l)))), r.buffer.push("</h3>\n"), h = {}, c = {}, u = s["if"].call(t, "postStream.bestOf", {hash: {}, inverse: m.program(3, i, r), fn: m.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: c, hashTypes: h, data: r}), (u || 0 === u) && r.buffer.push(u), r.buffer.push("\n"), p
 }), Ember.TEMPLATES["topic_summary/info"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    <button class='btn collapsed' "), r = {}, a = {}, t.buffer.push(E(s.action.call(e, "toggleSummary", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "topic.toggle_information", i) : w.call(e, "i18n", "topic.toggle_information", i)))), t.buffer.push("\">\n      <i class='icon icon-chevron-down'></i>\n    </button>\n    "), o
+        return t.buffer.push("\n    <button class='btn collapsed' "), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "toggleSummary", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.toggle_information", i) : T.call(e, "i18n", "topic.toggle_information", i)))), t.buffer.push("\">\n      <i class='icon icon-chevron-down'></i>\n    </button>\n    "), o
     }
 
     function i(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n    <button class='btn' "), r = {}, a = {}, t.buffer.push(E(s.action.call(e, "toggleSummary", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "topic.toggle_information", i) : w.call(e, "i18n", "topic.toggle_information", i)))), t.buffer.push("\">\n      <i class='icon icon-chevron-up'></i>\n    </button>\n  "), o
+        return t.buffer.push("\n    <button class='btn' "), r = {}, a = {}, t.buffer.push(w(s.action.call(e, "toggleSummary", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' title="'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic.toggle_information", i) : T.call(e, "i18n", "topic.toggle_information", i)))), t.buffer.push("\">\n      <i class='icon icon-chevron-up'></i>\n    </button>\n  "), o
     }
 
     function o(e, t) {
         var n, r, a, i, o, h = "";
-        return t.buffer.push("\n  <section class='summary collapsed'>\n    <ul class=\"clearfix\">\n      <li>\n        <a "), a = {href: e}, i = {href: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {href: "url"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "created", o) : w.call(e, "i18n", "created", o)))), t.buffer.push("</h4>\n        "), a = {imageSize: e}, i = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.avatar, n ? n.call(e, "created_by", o) : w.call(e, "avatar", "created_by", o)))), t.buffer.push("\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "created_at", o) : w.call(e, "date", "created_at", o)))), t.buffer.push("\n        </a>\n      </li>\n      <li>\n        <a "), a = {href: e}, i = {href: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {href: "lastPostUrl"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "last_post", o) : w.call(e, "i18n", "last_post", o)))), t.buffer.push("</h4>\n        "), a = {imageSize: e}, i = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.avatar, n ? n.call(e, "last_poster", o) : w.call(e, "avatar", "last_poster", o)))), t.buffer.push("\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "last_posted_at", o) : w.call(e, "date", "last_posted_at", o)))), t.buffer.push("\n        </a>\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "posts", o) : w.call(e, "i18n", "posts", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.number, n ? n.call(e, "posts_count", o) : w.call(e, "number", "posts_count", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "views", o) : w.call(e, "i18n", "views", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.number, n ? n.call(e, "views", o) : w.call(e, "number", "views", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "links", o) : w.call(e, "i18n", "links", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(E((n = s.number, n ? n.call(e, "links.length", o) : w.call(e, "number", "links.length", o)))), t.buffer.push("\n      </li>\n      "), i = {}, a = {}, r = s["if"].call(e, "fewParticipants", {hash: {}, inverse: T.noop, fn: T.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </ul>\n  </section>\n"), h
+        return t.buffer.push("\n  <section class='summary collapsed'>\n    <ul class=\"clearfix\">\n      <li>\n        <a "), a = {href: e}, i = {href: "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {href: "url"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "created", o) : T.call(e, "i18n", "created", o)))), t.buffer.push("</h4>\n        "), a = {imageSize: e}, i = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.avatar, n ? n.call(e, "details.created_by", o) : T.call(e, "avatar", "details.created_by", o)))), t.buffer.push("\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.date, n ? n.call(e, "created_at", o) : T.call(e, "date", "created_at", o)))), t.buffer.push("\n        </a>\n      </li>\n      <li>\n        <a "), a = {href: e}, i = {href: "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {href: "lastPostUrl"}, contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}))), t.buffer.push(">\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "last_post", o) : T.call(e, "i18n", "last_post", o)))), t.buffer.push("</h4>\n        "), a = {imageSize: e}, i = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.avatar, n ? n.call(e, "details.last_poster", o) : T.call(e, "avatar", "details.last_poster", o)))), t.buffer.push("\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.date, n ? n.call(e, "last_posted_at", o) : T.call(e, "date", "last_posted_at", o)))), t.buffer.push("\n        </a>\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "posts", o) : T.call(e, "i18n", "posts", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "posts_count", o) : T.call(e, "number", "posts_count", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "views", o) : T.call(e, "i18n", "views", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "views", o) : T.call(e, "number", "views", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "links", o) : T.call(e, "i18n", "links", o)))), t.buffer.push("</h4>\n        "), i = {}, a = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "details.links.length", o) : T.call(e, "number", "details.links.length", o)))), t.buffer.push("\n      </li>\n      "), i = {}, a = {}, r = s["if"].call(e, "details.fewParticipants", {hash: {}, inverse: E.noop, fn: E.program(6, u, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </ul>\n  </section>\n"), h
     }
 
     function u(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n      <li class='avatars'>\n        "), r = {}, a = {}, n = s.each.call(e, "fewParticipants", {hash: {}, inverse: T.noop, fn: T.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </li>\n      "), i
+        return t.buffer.push("\n      <li class='avatars'>\n        "), r = {}, a = {}, n = s.each.call(e, "details.fewParticipants", {hash: {}, inverse: E.noop, fn: E.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      </li>\n      "), i
     }
 
     function h(e, t) {
         var n, r, a, i;
-        r = {participant: e}, a = {participant: "ID"}, i = {hash: {participant: ""}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(E((n = s.participant, n ? n.call(e, i) : w.call(e, "participant", i))))
+        r = {participant: e}, a = {participant: "ID"}, i = {hash: {participant: ""}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(w((n = s.participant, n ? n.call(e, i) : T.call(e, "participant", i))))
     }
 
     function c(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n\n  <section class='summary'>\n    <ul class=\"clearfix\">\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "created", o) : w.call(e, "i18n", "created", o)))), t.buffer.push("</h4>\n        "), i = {imageSize: e}, a = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.avatar, n ? n.call(e, "created_by", o) : w.call(e, "avatar", "created_by", o)))), t.buffer.push("\n        <a "), i = {href: e}, a = {href: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {href: "url"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "created_at", o) : w.call(e, "date", "created_at", o)))), t.buffer.push("</a>\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "last_post", o) : w.call(e, "i18n", "last_post", o)))), t.buffer.push("</h4>\n        "), i = {imageSize: e}, a = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.avatar, n ? n.call(e, "last_poster", o) : w.call(e, "avatar", "last_poster", o)))), t.buffer.push("\n        <a "), i = {href: e}, a = {href: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {href: "lastPostUrl"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "last_posted_at", o) : w.call(e, "date", "last_posted_at", o)))), t.buffer.push("</a>\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "posts", o) : w.call(e, "i18n", "posts", o)))), t.buffer.push("</h4>\n        "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.number, n ? n.call(e, "posts_count", o) : w.call(e, "number", "posts_count", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "views", o) : w.call(e, "i18n", "views", o)))), t.buffer.push("</h4>\n        "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.number, n ? n.call(e, "views", o) : w.call(e, "number", "views", o)))), t.buffer.push("\n      </li>\n    </ul>\n  </section>\n\n  "), a = {}, i = {}, r = s["if"].call(e, "participants", {hash: {}, inverse: T.noop, fn: T.program(10, l, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  "), a = {}, i = {}, r = s["if"].call(e, "view.parentView.infoLinks", {hash: {}, inverse: T.noop, fn: T.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n\n\n"), u
+        return t.buffer.push("\n\n  <section class='summary'>\n    <ul class=\"clearfix\">\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "created", o) : T.call(e, "i18n", "created", o)))), t.buffer.push("</h4>\n        "), i = {imageSize: e}, a = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.avatar, n ? n.call(e, "details.created_by", o) : T.call(e, "avatar", "details.created_by", o)))), t.buffer.push("\n        <a "), i = {href: e}, a = {href: "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {href: "url"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.date, n ? n.call(e, "created_at", o) : T.call(e, "date", "created_at", o)))), t.buffer.push("</a>\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "last_post", o) : T.call(e, "i18n", "last_post", o)))), t.buffer.push("</h4>\n        "), i = {imageSize: e}, a = {imageSize: "STRING"}, o = {hash: {imageSize: "tiny"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.avatar, n ? n.call(e, "details.last_poster", o) : T.call(e, "avatar", "details.last_poster", o)))), t.buffer.push("\n        <a "), i = {href: e}, a = {href: "STRING"}, t.buffer.push(w(s.bindAttr.call(e, {hash: {href: "lastPostUrl"}, contexts: [], types: [], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push(">"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.date, n ? n.call(e, "last_posted_at", o) : T.call(e, "date", "last_posted_at", o)))), t.buffer.push("</a>\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "posts", o) : T.call(e, "i18n", "posts", o)))), t.buffer.push("</h4>\n        "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "posts_count", o) : T.call(e, "number", "posts_count", o)))), t.buffer.push("\n      </li>\n      <li>\n        <h4>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "views", o) : T.call(e, "i18n", "views", o)))), t.buffer.push("</h4>\n        "), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.number, n ? n.call(e, "views", o) : T.call(e, "number", "views", o)))), t.buffer.push("\n      </li>\n    </ul>\n  </section>\n\n  "), a = {}, i = {}, r = s["if"].call(e, "details.participants", {hash: {}, inverse: E.noop, fn: E.program(10, l, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  "), a = {}, i = {}, r = s["if"].call(e, "view.parentView.infoLinks", {hash: {}, inverse: E.noop, fn: E.program(12, p, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n\n\n"), u
     }
 
     function l(e, t) {
         var n, r, a, i = "";
-        return t.buffer.push("\n    <section class='avatars clearfix'>\n      "), r = {}, a = {}, n = s.each.call(e, "participants", {hash: {}, inverse: T.noop, fn: T.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </section>\n  "), i
+        return t.buffer.push("\n    <section class='avatars clearfix'>\n      "), r = {}, a = {}, n = s.each.call(e, "details.participants", {hash: {}, inverse: E.noop, fn: E.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </section>\n  "), i
     }
 
     function p(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n    <section class='links'>\n        <ul class='topic-links'>\n          "), a = {contentBinding: e, itemTagName: e}, i = {contentBinding: "STRING", itemTagName: "STRING"}, o = {hash: {contentBinding: "view.parentView.infoLinks", itemTagName: "li"}, inverse: T.noop, fn: T.program(13, f, t), contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, n = s.collection, r = n ? n.call(e, o) : w.call(e, "collection", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </ul>\n\n        "), i = {}, a = {}, r = s["if"].call(e, "view.parentView.showAllLinksControls", {hash: {}, inverse: T.noop, fn: T.program(20, b, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n    </section>\n  "), u
+        return t.buffer.push("\n    <section class='links'>\n        <ul class='topic-links'>\n          "), a = {contentBinding: e, itemTagName: e}, i = {contentBinding: "STRING", itemTagName: "STRING"}, o = {hash: {contentBinding: "view.parentView.infoLinks", itemTagName: "li"}, inverse: E.noop, fn: E.program(13, f, t), contexts: [], types: [], hashContexts: a, hashTypes: i, data: t}, n = s.collection, r = n ? n.call(e, o) : T.call(e, "collection", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n        </ul>\n\n        "), i = {}, a = {}, r = s["if"].call(e, "view.parentView.showAllLinksControls", {hash: {}, inverse: E.noop, fn: E.program(20, b, t), contexts: [e], types: ["ID"], hashContexts: a, hashTypes: i, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n    </section>\n  "), u
     }
 
     function f(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n            <span class='badge badge-notification clicks' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "topic_summary.clicks", o) : w.call(e, "i18n", "topic_summary.clicks", o)))), t.buffer.push("'>"), a = {}, i = {}, t.buffer.push(E(s._triageMustache.call(e, "clicks", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('</span>\n            <a href="'), a = {}, i = {}, t.buffer.push(E(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('" target="_blank" class=\'topic-link track-link\' data-user-id="'), a = {}, i = {}, t.buffer.push(E(s.unbound.call(e, "user_id", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('" data-ignore-post-id="true" title="'), a = {}, i = {}, t.buffer.push(E(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('">\n              '), a = {}, i = {}, r = s["if"].call(e, "title", {hash: {}, inverse: T.program(16, m, t), fn: T.program(14, d, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              "), a = {}, i = {}, r = s["if"].call(e, "internal", {hash: {}, inverse: T.noop, fn: T.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            </a>\n          "), u
+        return t.buffer.push("\n            <span class='badge badge-notification clicks' title='"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic_summary.clicks", o) : T.call(e, "i18n", "topic_summary.clicks", o)))), t.buffer.push("'>"), a = {}, i = {}, t.buffer.push(w(s._triageMustache.call(e, "clicks", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('</span>\n            <a href="'), a = {}, i = {}, t.buffer.push(w(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('" target="_blank" class=\'topic-link track-link\' data-user-id="'), a = {}, i = {}, t.buffer.push(w(s.unbound.call(e, "user_id", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('" data-ignore-post-id="true" title="'), a = {}, i = {}, t.buffer.push(w(s.unbound.call(e, "url", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push('">\n              '), a = {}, i = {}, r = s["if"].call(e, "title", {hash: {}, inverse: E.program(16, m, t), fn: E.program(14, d, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n              "), a = {}, i = {}, r = s["if"].call(e, "internal", {hash: {}, inverse: E.noop, fn: E.program(18, g, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n            </a>\n          "), u
     }
 
     function d(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.shorten, n ? n.call(e, "title", i) : w.call(e, "shorten", "title", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.shorten, n ? n.call(e, "title", i) : T.call(e, "shorten", "title", i))))
     }
 
     function m(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.shortenUrl, n ? n.call(e, "url", i) : w.call(e, "shortenUrl", "url", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.shortenUrl, n ? n.call(e, "url", i) : T.call(e, "shortenUrl", "url", i))))
     }
 
     function g(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("<i class='icon-arrow-right' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "topic_summary.topic_link", i) : w.call(e, "i18n", "topic_summary.topic_link", i)))), t.buffer.push("'></i>"), o
+        return t.buffer.push("<i class='icon-arrow-right' title='"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic_summary.topic_link", i) : T.call(e, "i18n", "topic_summary.topic_link", i)))), t.buffer.push("'></i>"), o
     }
 
     function b(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n          <div class='link-summary'>\n            <a href='#' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(E(s.action.call(e, "showAllLinks", {hash: {target: "view.parentView"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(">"), r = {totalLinks: e}, a = {totalLinks: "STRING"}, i = {hash: {totalLinks: "links.length"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "topic_summary.links_shown", i) : w.call(e, "i18n", "topic_summary.links_shown", i)))), t.buffer.push("</a>\n          </div>\n        "), o
+        return t.buffer.push("\n          <div class='link-summary'>\n            <a href='#' "), r = {target: e}, a = {target: "STRING"}, t.buffer.push(w(s.action.call(e, "showAllLinks", {hash: {target: "view.parentView"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}))), t.buffer.push(">"), r = {totalLinks: e}, a = {totalLinks: "STRING"}, i = {hash: {totalLinks: "details.links.length"}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(w((n = s.i18n, n ? n.call(e, "topic_summary.links_shown", i) : T.call(e, "i18n", "topic_summary.links_shown", i)))), t.buffer.push("</a>\n          </div>\n        "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var y, v, x, _ = "", E = this.escapeExpression, w = s.helperMissing, T = this;
-    return r.buffer.push("<nav class='buttons'>\n  "), v = {}, x = {}, y = s["if"].call(t, "summaryCollapsed", {hash: {}, inverse: T.program(3, i, r), fn: T.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</nav>\n\n\n"), v = {}, x = {}, y = s["if"].call(t, "summaryCollapsed", {hash: {}, inverse: T.program(9, c, r), fn: T.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n"), _
+    var y, v, x, _ = "", w = this.escapeExpression, T = s.helperMissing, E = this;
+    return r.buffer.push("<nav class='buttons'>\n  "), v = {}, x = {}, y = s["if"].call(t, "summaryCollapsed", {hash: {}, inverse: E.program(3, i, r), fn: E.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n</nav>\n\n\n"), v = {}, x = {}, y = s["if"].call(t, "summaryCollapsed", {hash: {}, inverse: E.program(9, c, r), fn: E.program(5, o, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n"), _
 }), Ember.TEMPLATES["topic_summary/private_message"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a = "";
@@ -18982,7 +18886,7 @@ var bootbox = window.bootbox || function (e) {
 
     function i(e, t) {
         var n, r, a, i, u, h = "";
-        return t.buffer.push("\n  <div class='user'>\n    <a href='/users/"), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.lower, n ? n.call(e, "username", u) : g.call(e, "lower", "username", u)))), t.buffer.push("'>\n      "), i = {imageSize: e}, a = {imageSize: "STRING"}, u = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.avatar, n ? n.call(e, "", u) : g.call(e, "avatar", "", u)))), t.buffer.push("\n    </a>\n    <a href='/users/"), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.lower, n ? n.call(e, "username", u) : g.call(e, "lower", "username", u)))), t.buffer.push("'>\n      "), a = {}, i = {}, t.buffer.push(m(s.unbound.call(e, "username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n    </a>\n    "), a = {}, i = {}, r = s["if"].call(e, "controller.model.can_remove_allowed_users", {hash: {}, inverse: b.noop, fn: b.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n  </div>\n  "), h
+        return t.buffer.push("\n  <div class='user'>\n    <a href='/users/"), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.lower, n ? n.call(e, "username", u) : g.call(e, "lower", "username", u)))), t.buffer.push("'>\n      "), i = {imageSize: e}, a = {imageSize: "STRING"}, u = {hash: {imageSize: "small"}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.avatar, n ? n.call(e, "", u) : g.call(e, "avatar", "", u)))), t.buffer.push("\n    </a>\n    <a href='/users/"), a = {}, i = {}, u = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(m((n = s.lower, n ? n.call(e, "username", u) : g.call(e, "lower", "username", u)))), t.buffer.push("'>\n      "), a = {}, i = {}, t.buffer.push(m(s.unbound.call(e, "username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}))), t.buffer.push("\n    </a>\n    "), a = {}, i = {}, r = s["if"].call(e, "controller.model.details.can_remove_allowed_users", {hash: {}, inverse: b.noop, fn: b.program(4, o, t), contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n  </div>\n  "), h
     }
 
     function o(e, t) {
@@ -18997,76 +18901,76 @@ var bootbox = window.bootbox || function (e) {
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
     var h, c, l, p, f, d = "", m = this.escapeExpression, g = s.helperMissing, b = this;
-    return r.buffer.push("<h3><i class='icon icon-envelope-alt'></i> "), l = {}, p = {}, f = {hash: {}, contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}, r.buffer.push(m((h = s.i18n, h ? h.call(t, "private_message_info.title", f) : g.call(t, "i18n", "private_message_info.title", f)))), r.buffer.push("</h3>\n<div class='participants clearfix'>\n  "), l = {}, p = {}, c = s.each.call(t, "allowed_groups", {hash: {}, inverse: b.noop, fn: b.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n  "), l = {}, p = {}, c = s.each.call(t, "allowed_users", {hash: {}, inverse: b.noop, fn: b.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n</div>\n"), l = {}, p = {}, c = s["if"].call(t, "can_invite_to", {hash: {}, inverse: b.noop, fn: b.program(6, u, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n"), d
+    return r.buffer.push("<h3><i class='icon icon-envelope-alt'></i> "), l = {}, p = {}, f = {hash: {}, contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}, r.buffer.push(m((h = s.i18n, h ? h.call(t, "private_message_info.title", f) : g.call(t, "i18n", "private_message_info.title", f)))), r.buffer.push("</h3>\n<div class='participants clearfix'>\n  "), l = {}, p = {}, c = s.each.call(t, "details.allowed_groups", {hash: {}, inverse: b.noop, fn: b.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n  "), l = {}, p = {}, c = s.each.call(t, "details.allowed_users", {hash: {}, inverse: b.noop, fn: b.program(3, i, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n</div>\n"), l = {}, p = {}, c = s["if"].call(t, "details.can_invite_to", {hash: {}, inverse: b.noop, fn: b.program(6, u, r), contexts: [t], types: ["ID"], hashContexts: p, hashTypes: l, data: r}), (c || 0 === c) && r.buffer.push(c), r.buffer.push("\n"), d
 }), Ember.TEMPLATES["user/activity"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, o, m, y = "";
-        return t.buffer.push("\n  <div id='user-info'>\n    <nav class='buttons'>\n      "), a = {}, o = {}, n = s["if"].call(e, "can_edit", {hash: {}, inverse: C.noop, fn: C.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      <br/>\n      "), a = {}, o = {}, n = s["if"].call(e, "can_send_private_message_to_user", {hash: {}, inverse: C.noop, fn: C.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </nav>\n    <div class='clearfix'></div>\n\n    <ul class='action-list nav-stacked side-nav'>\n      "), o = {count: e}, a = {count: "ID"}, m = {hash: {count: "statsCountNonPM"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(T((n = s.activityFilter, n ? n.call(e, m) : w.call(e, "activityFilter", m)))), t.buffer.push("\n      "), a = {}, o = {}, r = s.each.call(e, "statsExcludingPms", {hash: {}, inverse: C.noop, fn: C.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </ul>\n    <div class='show'>\n      <dl>\n      "), a = {}, o = {}, r = s["if"].call(e, "hasWebsite", {hash: {}, inverse: C.noop, fn: C.program(9, c, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "created_at", {hash: {}, inverse: C.noop, fn: C.program(11, l, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "last_posted_at", {hash: {}, inverse: C.noop, fn: C.program(13, p, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "last_seen_at", {hash: {}, inverse: C.noop, fn: C.program(15, f, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "invited_by", {hash: {}, inverse: C.noop, fn: C.program(17, d, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "email", {hash: {}, inverse: C.noop, fn: C.program(20, g, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      <dt>"), a = {}, o = {}, m = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.trust_level", m) : w.call(e, "i18n", "user.trust_level", m)))), t.buffer.push(":</dt><dd>"), a = {}, o = {}, t.buffer.push(T(s._triageMustache.call(e, "trustLevel.name", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("</dd>\n      </dl>\n    </div>\n\n    "), a = {}, o = {}, r = s["if"].call(e, "can_edit", {hash: {}, inverse: C.noop, fn: C.program(22, b, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  </div>\n"), y
+        return t.buffer.push("\n  <div id='user-info'>\n    <nav class='buttons'>\n      "), a = {}, o = {}, n = s["if"].call(e, "can_edit", {hash: {}, inverse: C.noop, fn: C.program(2, i, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n      <br/>\n      "), a = {}, o = {}, n = s["if"].call(e, "can_send_private_message_to_user", {hash: {}, inverse: C.noop, fn: C.program(5, u, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (n || 0 === n) && t.buffer.push(n), t.buffer.push("\n    </nav>\n    <div class='clearfix'></div>\n\n    <ul class='action-list nav-stacked side-nav'>\n      "), o = {count: e}, a = {count: "ID"}, m = {hash: {count: "statsCountNonPM"}, contexts: [], types: [], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(E((n = s.activityFilter, n ? n.call(e, m) : T.call(e, "activityFilter", m)))), t.buffer.push("\n      "), a = {}, o = {}, r = s.each.call(e, "statsExcludingPms", {hash: {}, inverse: C.noop, fn: C.program(7, h, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n    </ul>\n    <div class='show'>\n      <dl>\n      "), a = {}, o = {}, r = s["if"].call(e, "hasWebsite", {hash: {}, inverse: C.noop, fn: C.program(9, c, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "created_at", {hash: {}, inverse: C.noop, fn: C.program(11, l, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "last_posted_at", {hash: {}, inverse: C.noop, fn: C.program(13, p, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "last_seen_at", {hash: {}, inverse: C.noop, fn: C.program(15, f, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "invited_by", {hash: {}, inverse: C.noop, fn: C.program(17, d, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), a = {}, o = {}, r = s["if"].call(e, "email", {hash: {}, inverse: C.noop, fn: C.program(20, g, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      <dt>"), a = {}, o = {}, m = {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.trust_level", m) : T.call(e, "i18n", "user.trust_level", m)))), t.buffer.push(":</dt><dd>"), a = {}, o = {}, t.buffer.push(E(s._triageMustache.call(e, "trustLevel.name", {hash: {}, contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}))), t.buffer.push("</dd>\n      </dl>\n    </div>\n\n    "), a = {}, o = {}, r = s["if"].call(e, "can_edit", {hash: {}, inverse: C.noop, fn: C.program(22, b, t), contexts: [e], types: ["ID"], hashContexts: o, hashTypes: a, data: t}), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n\n  </div>\n"), y
     }
 
     function i(e, t) {
         var n, r, a, i, u, h = "";
-        return t.buffer.push("\n        "), a = {"class": e}, i = {"class": "STRING"}, u = {hash: {"class": "btn"}, inverse: C.noop, fn: C.program(3, o, t), contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: i, data: t}, n = s.linkTo, r = n ? n.call(e, "preferences", u) : w.call(e, "linkTo", "preferences", u), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), h
+        return t.buffer.push("\n        "), a = {"class": e}, i = {"class": "STRING"}, u = {hash: {"class": "btn"}, inverse: C.noop, fn: C.program(3, o, t), contexts: [e], types: ["STRING"], hashContexts: a, hashTypes: i, data: t}, n = s.linkTo, r = n ? n.call(e, "preferences", u) : T.call(e, "linkTo", "preferences", u), (r || 0 === r) && t.buffer.push(r), t.buffer.push("\n      "), h
     }
 
     function o(e, t) {
         var n, r, a, i;
-        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.edit", i) : w.call(e, "i18n", "user.edit", i))))
+        r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.edit", i) : T.call(e, "i18n", "user.edit", i))))
     }
 
     function u(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <button class='btn create' "), r = {}, a = {}, t.buffer.push(T(s.action.call(e, "composePrivateMessage", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">\n          <i class='icon icon-envelope-alt'></i>\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.private_message", i) : w.call(e, "i18n", "user.private_message", i)))), t.buffer.push("\n        </button>\n      "), o
+        return t.buffer.push("\n        <button class='btn create' "), r = {}, a = {}, t.buffer.push(E(s.action.call(e, "composePrivateMessage", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">\n          <i class='icon icon-envelope-alt'></i>\n          "), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.private_message", i) : T.call(e, "i18n", "user.private_message", i)))), t.buffer.push("\n        </button>\n      "), o
     }
 
     function h(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        "), r = {content: e}, a = {content: "ID"}, i = {hash: {content: ""}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(T((n = s.activityFilter, n ? n.call(e, i) : w.call(e, "activityFilter", i)))), t.buffer.push("\n      "), o
+        return t.buffer.push("\n        "), r = {content: e}, a = {content: "ID"}, i = {hash: {content: ""}, contexts: [], types: [], hashContexts: r, hashTypes: a, data: t}, t.buffer.push(E((n = s.activityFilter, n ? n.call(e, i) : T.call(e, "activityFilter", i)))), t.buffer.push("\n      "), o
     }
 
     function c(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.website", i) : w.call(e, "i18n", "user.website", i)))), t.buffer.push(":</dt><dd><a "), a = {href: e}, r = {href: "STRING"}, t.buffer.push(T(s.bindAttr.call(e, {hash: {href: "website"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' target="_blank">'), r = {}, a = {}, t.buffer.push(T(s._triageMustache.call(e, "websiteName", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a></dd>\n      "), o
+        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.website", i) : T.call(e, "i18n", "user.website", i)))), t.buffer.push(":</dt><dd><a "), a = {href: e}, r = {href: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {href: "website"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(' target="_blank">'), r = {}, a = {}, t.buffer.push(E(s._triageMustache.call(e, "websiteName", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</a></dd>\n      "), o
     }
 
     function l(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.created", i) : w.call(e, "i18n", "user.created", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.date, n ? n.call(e, "created_at", i) : w.call(e, "date", "created_at", i)))), t.buffer.push("</dd>\n      "), o
+        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.created", i) : T.call(e, "i18n", "user.created", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "created_at", i) : T.call(e, "date", "created_at", i)))), t.buffer.push("</dd>\n      "), o
     }
 
     function p(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.last_posted", i) : w.call(e, "i18n", "user.last_posted", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.date, n ? n.call(e, "last_posted_at", i) : w.call(e, "date", "last_posted_at", i)))), t.buffer.push("</dd>\n      "), o
+        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.last_posted", i) : T.call(e, "i18n", "user.last_posted", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "last_posted_at", i) : T.call(e, "date", "last_posted_at", i)))), t.buffer.push("</dd>\n      "), o
     }
 
     function f(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.last_seen", i) : w.call(e, "i18n", "user.last_seen", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.date, n ? n.call(e, "last_seen_at", i) : w.call(e, "date", "last_seen_at", i)))), t.buffer.push("</dd>\n      "), o
+        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.last_seen", i) : T.call(e, "i18n", "user.last_seen", i)))), t.buffer.push(":</dt><dd>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.date, n ? n.call(e, "last_seen_at", i) : T.call(e, "date", "last_seen_at", i)))), t.buffer.push("</dd>\n      "), o
     }
 
     function d(e, t) {
         var n, r, a, i, o, u = "";
-        return t.buffer.push("\n        <dt>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.invited_by", o) : w.call(e, "i18n", "user.invited_by", o)))), t.buffer.push(":</dt><dd>"), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(18, m, t), contexts: [e, e], types: ["ID", "ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "user.activity", "invited_by", o) : w.call(e, "linkTo", "user.activity", "invited_by", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</dd>\n      "), u
+        return t.buffer.push("\n        <dt>"), a = {}, i = {}, o = {hash: {}, contexts: [e], types: ["ID"], hashContexts: i, hashTypes: a, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.invited_by", o) : T.call(e, "i18n", "user.invited_by", o)))), t.buffer.push(":</dt><dd>"), a = {}, i = {}, o = {hash: {}, inverse: C.noop, fn: C.program(18, m, t), contexts: [e, e], types: ["ID", "ID"], hashContexts: i, hashTypes: a, data: t}, n = s.linkTo, r = n ? n.call(e, "user.activity", "invited_by", o) : T.call(e, "linkTo", "user.activity", "invited_by", o), (r || 0 === r) && t.buffer.push(r), t.buffer.push("</dd>\n      "), u
     }
 
     function m(e, t) {
         var n, r;
-        n = {}, r = {}, t.buffer.push(T(s._triageMustache.call(e, "invited_by.username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t})))
+        n = {}, r = {}, t.buffer.push(E(s._triageMustache.call(e, "invited_by.username", {hash: {}, contexts: [e], types: ["ID"], hashContexts: r, hashTypes: n, data: t})))
     }
 
     function g(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.email.title", i) : w.call(e, "i18n", "user.email.title", i)))), t.buffer.push(":</dt><dd "), a = {title: e}, r = {title: "STRING"}, t.buffer.push(T(s.bindAttr.call(e, {hash: {title: "email"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, t.buffer.push(T(s._triageMustache.call(e, "email", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</dd>\n      "), o
+        return t.buffer.push("\n        <dt>"), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.email.title", i) : T.call(e, "i18n", "user.email.title", i)))), t.buffer.push(":</dt><dd "), a = {title: e}, r = {title: "STRING"}, t.buffer.push(E(s.bindAttr.call(e, {hash: {title: "email"}, contexts: [], types: [], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push(">"), r = {}, a = {}, t.buffer.push(E(s._triageMustache.call(e, "email", {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}))), t.buffer.push("</dd>\n      "), o
     }
 
     function b(e, t) {
         var n, r, a, i, o = "";
-        return t.buffer.push("\n      <div style='margin-top: 10px'>\n        <button class='btn' data-not-implemented='true' disabled title=\""), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "not_implemented", i) : w.call(e, "i18n", "not_implemented", i)))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(T((n = s.i18n, n ? n.call(e, "user.download_archive", i) : w.call(e, "i18n", "user.download_archive", i)))), t.buffer.push("</button>\n      </div>\n    "), o
+        return t.buffer.push("\n      <div style='margin-top: 10px'>\n        <button class='btn' data-not-implemented='true' disabled title=\""), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "not_implemented", i) : T.call(e, "i18n", "not_implemented", i)))), t.buffer.push('">'), r = {}, a = {}, i = {hash: {}, contexts: [e], types: ["ID"], hashContexts: a, hashTypes: r, data: t}, t.buffer.push(E((n = s.i18n, n ? n.call(e, "user.download_archive", i) : T.call(e, "i18n", "user.download_archive", i)))), t.buffer.push("</button>\n      </div>\n    "), o
     }
 
     this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
-    var y, v, x, _, E = "", w = s.helperMissing, T = this.escapeExpression, C = this;
-    return v = {}, x = {}, y = s["with"].call(t, "user", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n"), x = {stream: t}, v = {stream: "ID"}, _ = {hash: {stream: "model"}, contexts: [], types: [], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(T((y = s.userStream, y ? y.call(t, _) : w.call(t, "userStream", _)))), r.buffer.push("\n"), E
+    var y, v, x, _, w = "", T = s.helperMissing, E = this.escapeExpression, C = this;
+    return v = {}, x = {}, y = s["with"].call(t, "user", {hash: {}, inverse: C.noop, fn: C.program(1, a, r), contexts: [t], types: ["ID"], hashContexts: x, hashTypes: v, data: r}), (y || 0 === y) && r.buffer.push(y), r.buffer.push("\n\n"), x = {stream: t}, v = {stream: "ID"}, _ = {hash: {stream: "model"}, contexts: [], types: [], hashContexts: x, hashTypes: v, data: r}, r.buffer.push(E((y = s.userStream, y ? y.call(t, _) : T.call(t, "userStream", _)))), r.buffer.push("\n"), w
 }), Ember.TEMPLATES["user/email"] = Ember.Handlebars.template(function (e, t, s, n, r) {
     function a(e, t) {
         var n, r, a, i, o = "";
@@ -19303,7 +19207,7 @@ var bootbox = window.bootbox || function (e) {
     window.jQuery, Discourse.Route.buildRoutes(function () {
         var e = this;
         this.resource("topic", {path: "/t/:slug/:id"}, function () {
-            this.route("fromParams", {path: "/"}), this.route("fromParams", {path: "/:nearPost"}), this.route("bestOf", {path: "/best_of"})
+            this.route("fromParams", {path: "/"}), this.route("fromParams", {path: "/:nearPost"})
         }), Discourse.StaticController.pages.forEach(function (t) {
             e.route(t, {path: "/" + t})
         }), this.resource("list", {path: "/"}, function () {
@@ -19319,11 +19223,21 @@ var bootbox = window.bootbox || function (e) {
         })
     })
 }(this), function () {
-    var e = window.jQuery, t = Ember.get, s = Ember.set, n = !1;
-    Ember.DiscourseLocation = Ember.Object.extend({init: function () {
+    var e = window.jQuery, t = Ember.get, s = Ember.set, n = !1, r = /([^&=]+)=?([^&]*)/g, a = function (e) {
+        return decodeURIComponent(e.replace(/\+/g, " "))
+    };
+    e.parseParams = function (t) {
+        var s, n = {};
+        if (t)for ("?" === t.substr(0, 1) && (t = t.substr(1)); s = r.exec(t);) {
+            var i = a(s[1]), o = a(s[2]);
+            void 0 !== n[i] ? (e.isArray(n[i]) || (n[i] = [n[i]]), n[i].push(o)) : n[i] = o
+        }
+        return n
+    }, Ember.DiscourseLocation = Ember.Object.extend({init: function () {
         s(this, "location", t(this, "location") || window.location), 0 > e.inArray("state", e.event.props) && jQuery.event.props.push("state"), this.initState()
     }, initState: function () {
-        this.replaceState(this.formatURL(this.getURL())), s(this, "history", window.history)
+        var t = this.get("location");
+        t && t.search && this.set("queryParams", e.parseParams(t.search)), this.replaceState(this.formatURL(this.getURL())), s(this, "history", window.history)
     }, getURL: function () {
         var e = void 0 === Discourse.BaseUri ? "/" : Discourse.BaseUri, s = t(this, "location").pathname;
         return e = e.replace(/\/$/, ""), s = s.replace(e, "")
@@ -19332,12 +19246,18 @@ var bootbox = window.bootbox || function (e) {
     }, replaceURL: function (e) {
         e = this.formatURL(e), this.getState() && this.getState().path !== e && (n = !0, this.replaceState(e))
     }, getState: function () {
-        return historyState = t(this, "history").state, historyState ? historyState : {path: window.location.pathname}
+        var e = t(this, "history").state;
+        return e ? e : {path: window.location.pathname}
     }, pushState: function (e) {
         window.history.pushState && (this.set("currentState", {path: e}), window.history.pushState({path: e}, null, e))
     }, replaceState: function (e) {
         window.history.replaceState && (this.set("currentState", {path: e}), window.history.replaceState({path: e}, null, e))
-    }, onUpdateURL: function (t) {
+    }, queryParamsString: function () {
+        var t = this.get("queryParams");
+        return Em.isEmpty(t) || Em.isEmpty(Object.keys(t)) ? "" : "?" + e.param(t).replace(/%5B/g, "[").replace(/%5D/g, "]")
+    }.property("queryParams"), queryParamsStringChanged: function () {
+        this.replaceState(this.formatURL(this.getURL()))
+    }.observes("queryParamsString"), onUpdateURL: function (t) {
         var s = Ember.guidFor(this), n = this;
         e(window).bind("popstate.ember-location-" + s, function (e) {
             if (e.state) {
@@ -19350,7 +19270,7 @@ var bootbox = window.bootbox || function (e) {
         })
     }, formatURL: function (e) {
         var t = void 0 === Discourse.BaseUri ? "/" : Discourse.BaseUri;
-        return"" !== e && (t = t.replace(/\/$/, "")), t.length > 1 && e.substring(0, t.length + 1) === t + "/" && (e = e.substring(t.length)), t + e
+        return"" !== e && (t = t.replace(/\/$/, "")), t.length > 1 && e.substring(0, t.length + 1) === t + "/" && (e = e.substring(t.length)), t + e + this.get("queryParamsString")
     }, willDestroy: function () {
         var e = Ember.guidFor(this);
         Ember.$(window).unbind("popstate.ember-location-" + e)
@@ -19367,9 +19287,9 @@ var bootbox = window.bootbox || function (e) {
     }, setupController: function () {
         var e = this.controllerFor("list"), t = this.controllerFor("listTopics");
         e.set("filterMode", this.filter);
-        var s = t.get("content");
+        var s = t.get("model");
         s && s.set("loaded", !1), e.load(this.filter).then(function (s) {
-            e.set("category", null), e.set("canCreateTopic", s.get("can_create_topic")), t.set("content", s)
+            e.set("category", null), e.set("canCreateTopic", s.get("can_create_topic")), t.set("model", s)
         })
     }}), Discourse.ListController.filters.forEach(function (e) {
         Discourse["List" + e.capitalize() + "Route"] = Discourse.FilteredListRoute.extend({filter: e})
@@ -19439,19 +19359,26 @@ var bootbox = window.bootbox || function (e) {
         Discourse[e.capitalize() + "Route"] = Discourse.Route.extend({renderTemplate: function () {
             this.render("static")
         }, setupController: function () {
-            this.controllerFor("static").loadPath("/" + e)
+            var t = Discourse.StaticController.configs[e];
+            t && Discourse.SiteSettings[t].length > 0 ? Discourse.URL.redirectTo(Discourse.SiteSettings[t]) : this.controllerFor("static").loadPath("/" + e)
         }})
     })
 }(this), function () {
-    window.jQuery, Discourse.TopicBestOfRoute = Discourse.Route.extend({setupController: function (e, t) {
-        var s;
-        t = t || {}, t.trackVisit = !0, t.bestOf = !0, s = this.controllerFor("topic"), s.cancelFilter(), s.set("bestOf", !0), s.loadPosts(t)
-    }})
-}(this), function () {
     window.jQuery, Discourse.TopicFromParamsRoute = Discourse.Route.extend({setupController: function (e, t) {
-        t = t || {}, t.trackVisit = !0;
-        var s = this.controllerFor("topic");
-        s.cancelFilter(), s.loadPosts(t)
+        t = t || {}, t.track_visit = !0;
+        var s = this.modelFor("topic"), n = s.get("postStream"), r = Discourse.URL.get("queryParams");
+        if (r) {
+            n.set("bestOf", "best_of" === Em.get(r, "filter"));
+            var a = Em.get(r, "username_filters[]");
+            a && ("string" == typeof a && (a = [a]), a.forEach(function (e) {
+                n.get("userFilters").add(e)
+            }))
+        }
+        var i = this.controllerFor("topic"), o = this.controllerFor("composer");
+        n.refresh(t).then(function () {
+            var e = n.closestPostNumberFor(t.nearPost) || 1;
+            i.setProperties({currentPost: e, progressPosition: e, enteredAt: (new Date).getTime()}), s.present("draft") && o.open({draft: Discourse.Draft.getLocal(s.get("draft_key"), s.get("draft")), draftKey: s.get("draft_key"), draftSequence: s.get("draft_sequence"), topic: s, ignoreIfChanged: !0})
+        })
     }})
 }(this), function () {
     window.jQuery, Discourse.TopicRoute = Discourse.Route.extend({redirect: function () {
@@ -19471,16 +19398,18 @@ var bootbox = window.bootbox || function (e) {
     }, splitTopic: function () {
         Discourse.Route.showModal(this, "splitTopic", this.modelFor("topic"))
     }}, model: function (e) {
-        var t, s;
-        return(t = (s = this.controllerFor("topic")) ? s.get("content") : void 0) && t.get("id") === parseInt(e.id, 10) ? t : Discourse.Topic.create(e)
+        var t = this.modelFor("topic");
+        return t && t.get("id") === parseInt(e.id, 10) ? t : Discourse.Topic.create(e)
     }, activate: function () {
         this._super();
         var e = this.modelFor("topic");
         Discourse.set("transient.lastTopicIdViewed", parseInt(e.get("id"), 10)), this.controllerFor("search").set("searchContext", e.get("searchContext"))
     }, deactivate: function () {
         this._super(), this.controllerFor("search").set("searchContext", null);
-        var e, t;
-        t = this.controllerFor("topic"), t.cancelFilter(), t.unsubscribe(), t.set("multiSelect", !1), this.controllerFor("composer").set("topic", null), Discourse.ScreenTrack.instance().stop(), (e = this.controllerFor("header")) && (e.set("topic", null), e.set("showExtraInfo", !1))
+        var e = this.controllerFor("topic"), t = e.get("postStream");
+        t.cancelFilter(), e.set("multiSelect", !1), e.unsubscribe(), this.controllerFor("composer").set("topic", null), Discourse.ScreenTrack.instance().stop();
+        var s;
+        (s = this.controllerFor("header")) && (s.set("topic", null), s.set("showExtraInfo", !1)), Discourse.URL.set("queryParams", null)
     }, setupController: function (e, t) {
         e.set("model", t), this.controllerFor("header").setProperties({topic: t, showExtraInfo: !1}), this.controllerFor("composer").set("topic", t), Discourse.TopicTrackingState.current().trackIncoming("all"), e.subscribe(), Discourse.ScreenTrack.instance().start(t.get("id"))
     }})
