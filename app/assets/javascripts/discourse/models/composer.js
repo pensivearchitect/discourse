@@ -21,13 +21,6 @@ var CLOSED = 'closed',
 
 Discourse.Composer = Discourse.Model.extend({
 
-  init: function() {
-    this._super();
-    var val = Discourse.KeyValueStore.get('composer.showPreview') || 'true';
-    this.set('showPreview', val === 'true');
-    this.set('archetypeId', Discourse.Site.instance().get('default_archetype'));
-  },
-
   archetypes: function() {
     return Discourse.Site.instance().get('archetypes');
   }.property(),
@@ -40,6 +33,8 @@ Discourse.Composer = Discourse.Model.extend({
   viewOpen: Em.computed.equal('composeState', OPEN),
   viewDraft: Em.computed.equal('composeState', DRAFT),
 
+  notCreatingPrivateMessage: Em.computed.not('creatingPrivateMessage'),
+
   archetype: function() {
     return this.get('archetypes').findProperty('id', this.get('archetypeId'));
   }.property('archetypeId'),
@@ -48,20 +43,229 @@ Discourse.Composer = Discourse.Model.extend({
     return this.set('metaData', Em.Object.create());
   }.observes('archetype'),
 
-  editTitle: function() {
-    if (this.get('creatingTopic') || this.get('creatingPrivateMessage')) return true;
-    if (this.get('editingPost') && this.get('post.post_number') === 1) return true;
-    return false;
-  }.property('editingPost', 'creatingTopic', 'post.post_number'),
-
-  canCategorize: function() {
-    return (this.get('editTitle') && !this.get('creatingPrivateMessage'));
-  }.property('editTitle', 'creatingPrivateMessage'),
+  editingFirstPost: Em.computed.and('editingPost', 'post.firstPost'),
+  canEditTitle: Em.computed.or('creatingTopic', 'creatingPrivateMessage', 'editingFirstPost'),
+  canCategorize: Em.computed.and('canEditTitle', 'notCreatingPrivateMessage'),
 
   showAdminOptions: function() {
     if (this.get('creatingTopic') && Discourse.User.current('staff')) return true;
     return false;
-  }.property('editTitle'),
+  }.property('canEditTitle'),
+
+  // Determine the appropriate title for this action
+  actionTitle: function() {
+    var topic = this.get('topic');
+
+    var postLink, topicLink;
+    if (topic) {
+      var postNumber = this.get('post.post_number');
+      postLink = "<a href='" + (topic.get('url')) + "/" + postNumber + "'>" +
+        I18n.t("post.post_number", { number: postNumber }) + "</a>";
+      topicLink = "<a href='" + (topic.get('url')) + "'> " + (Handlebars.Utils.escapeExpression(topic.get('title'))) + "</a>";
+    }
+
+    var postDescription,
+        post = this.get('post');
+
+    if (post) {
+      postDescription = I18n.t('post.' +  this.get('action'), {
+        link: postLink,
+        replyAvatar: Discourse.Utilities.tinyAvatar(post.get('username')),
+        username: this.get('post.username')
+      });
+
+      var replyUsername = post.get('reply_to_user.username');
+      if (replyUsername && this.get('action') === EDIT) {
+        postDescription += " " + I18n.t("post.in_reply_to") + " " +
+                           Discourse.Utilities.tinyAvatar(replyUsername) + " " + replyUsername;
+      }
+    }
+
+    switch (this.get('action')) {
+      case PRIVATE_MESSAGE: return I18n.t('topic.private_message');
+      case CREATE_TOPIC: return I18n.t('topic.create_long');
+      case REPLY:
+      case EDIT:
+        if (postDescription) return postDescription;
+        if (topic) return I18n.t('post.reply_topic', { link: topicLink });
+    }
+
+  }.property('action', 'post', 'topic', 'topic.title'),
+
+  toggleText: function() {
+    return this.get('showPreview') ? I18n.t('composer.hide_preview') : I18n.t('composer.show_preview');
+  }.property('showPreview'),
+
+  hidePreview: Em.computed.not('showPreview'),
+
+  // Whether to disable the post button
+  cantSubmitPost: function() {
+
+    // Can't submit while loading
+    if (this.get('loading')) return true;
+
+    // Title is required when:
+    //    - creating a new topic
+    //    - editing the 1st post
+    //    - creating a private message
+
+    if (this.get('canEditTitle') && !this.get('titleLengthValid')) return true;
+
+    // Need at least one user when sending a private message
+    if ( this.get('creatingPrivateMessage') &&
+         this.get('targetUsernames') &&
+        (this.get('targetUsernames').trim() + ',').indexOf(',') === 0) {
+      return true;
+    }
+
+    // reply is always required
+    if (this.get('missingReplyCharacters') > 0) return true;
+
+    if (this.get('canCategorize') && !Discourse.SiteSettings.allow_uncategorized_topics && !this.get('categoryName')) return true;
+
+    return false;
+  }.property('loading', 'canEditTitle', 'titleLength', 'targetUsernames', 'replyLength', 'categoryName', 'missingReplyCharacters'),
+
+  /**
+    Is the title's length valid?
+
+    @property titleLengthValid
+  **/
+  titleLengthValid: function() {
+    if (this.get('titleLength') < this.get('minimumTitleLength')) return false;
+    return (this.get('titleLength') <= Discourse.SiteSettings.max_topic_title_length);
+  }.property('minimumTitleLength', 'titleLength'),
+
+  // The text for the save button
+  saveText: function() {
+    switch (this.get('action')) {
+      case EDIT: return I18n.t('composer.save_edit');
+      case REPLY: return I18n.t('composer.reply');
+      case CREATE_TOPIC: return I18n.t('composer.create_topic');
+      case PRIVATE_MESSAGE: return I18n.t('composer.create_pm');
+    }
+  }.property('action'),
+
+  hasMetaData: function() {
+    var metaData = this.get('metaData');
+    return metaData ? Em.empty(Em.keys(this.get('metaData'))) : false;
+  }.property('metaData'),
+
+  /**
+    Did the user make changes to the reply?
+
+    @property replyDirty
+  **/
+  replyDirty: function() {
+    return this.get('reply') !== this.get('originalText');
+  }.property('reply', 'originalText'),
+
+/**
+    Number of missing characters in the title until valid.
+
+    @property missingTitleCharacters
+  **/
+  missingTitleCharacters: function() {
+    return this.get('minimumTitleLength') - this.get('titleLength');
+  }.property('minimumTitleLength', 'titleLength'),
+
+  /**
+    Minimum number of characters for a title to be valid.
+
+    @property minimumTitleLength
+  **/
+  minimumTitleLength: function() {
+    if (this.get('creatingPrivateMessage')) {
+      return Discourse.SiteSettings.min_private_message_title_length;
+    } else {
+      return Discourse.SiteSettings.min_topic_title_length;
+    }
+  }.property('creatingPrivateMessage'),
+
+  /**
+    Number of missing characters in the reply until valid.
+
+    @property missingReplyCharacters
+  **/
+  missingReplyCharacters: function() {
+    return this.get('minimumPostLength') - this.get('replyLength');
+  }.property('minimumPostLength', 'replyLength'),
+
+  /**
+    Minimum number of characters for a post body to be valid.
+
+    @property minimumPostLength
+  **/
+  minimumPostLength: function() {
+    if( this.get('creatingPrivateMessage') ) {
+      return Discourse.SiteSettings.min_private_message_post_length;
+    } else {
+      return Discourse.SiteSettings.min_post_length;
+    }
+  }.property('creatingPrivateMessage'),
+
+  /**
+    Computes the length of the title minus non-significant whitespaces
+
+    @property titleLength
+  **/
+  titleLength: function() {
+    var title = this.get('title') || "";
+    return title.replace(/\s+/img, " ").trim().length;
+  }.property('title'),
+
+  /**
+    Computes the length of the reply minus the quote(s) and non-significant whitespaces
+
+    @property replyLength
+  **/
+  replyLength: function() {
+    var reply = this.get('reply') || "";
+    while (Discourse.BBCode.QUOTE_REGEXP.test(reply)) { reply = reply.replace(Discourse.BBCode.QUOTE_REGEXP, ""); }
+    return reply.replace(/\s+/img, " ").trim().length;
+  }.property('reply'),
+
+
+  updateDraftStatus: function() {
+    var $title = $('#reply-title'),
+        $reply = $('#wmd-input');
+
+    // 'title' is focused
+    if ($title.is(':focus')) {
+      var titleDiff = this.get('missingTitleCharacters');
+      if (titleDiff > 0) {
+        this.flashDraftStatusForNewUser();
+        return this.set('draftStatus', I18n.t('composer.min_length.need_more_for_title', { n: titleDiff }));
+      }
+    // 'reply' is focused
+    } else if ($reply.is(':focus')) {
+      var replyDiff = this.get('missingReplyCharacters');
+      if (replyDiff > 0) {
+        return this.set('draftStatus', I18n.t('composer.min_length.need_more_for_reply', { n: replyDiff }));
+      }
+    }
+
+    // hide the counters if the currently focused text field is OK
+    this.set('draftStatus', null);
+
+  }.observes('missingTitleCharacters', 'missingReplyCharacters'),
+
+  init: function() {
+    this._super();
+    var val = Discourse.KeyValueStore.get('composer.showPreview') || 'true';
+    this.set('showPreview', val === 'true');
+    this.set('archetypeId', Discourse.Site.instance().get('default_archetype'));
+  },
+
+  /**
+    Append text to the current reply
+
+    @method appendText
+    @param {String} text the text to append
+  **/
+  appendText: function(text) {
+    this.set('reply', (this.get('reply') || '') + text);
+  },
 
   togglePreview: function() {
     this.toggleProperty('showPreview');
@@ -80,114 +284,6 @@ Discourse.Composer = Discourse.Model.extend({
       });
     }
   },
-
-  appendText: function(text) {
-    this.set('reply', (this.get('reply') || '') + text);
-  },
-
-  // Determine the appropriate title for this action
-  actionTitle: function() {
-    var topic = this.get('topic');
-
-    var postLink, topicLink;
-    if (topic) {
-      var postNumber = this.get('post.post_number');
-      postLink = "<a href='" + (topic.get('url')) + "/" + postNumber + "'>" +
-        Em.String.i18n("post.post_number", { number: postNumber }) + "</a>";
-      topicLink = "<a href='" + (topic.get('url')) + "'> " + (Handlebars.Utils.escapeExpression(topic.get('title'))) + "</a>";
-    }
-
-    var postDescription,
-        post = this.get('post');
-
-    if (post) {
-
-      postDescription = Em.String.i18n('post.' +  this.get('action'), {
-        link: postLink,
-        replyAvatar: Discourse.Utilities.tinyAvatar(post.get('username')),
-        username: this.get('post.username')
-      });
-
-      var replyUsername = post.get('reply_to_user.username');
-      if (replyUsername && this.get('action') === EDIT) {
-        postDescription += " " + Em.String.i18n("post.in_reply_to") + " " +
-                           Discourse.Utilities.tinyAvatar(replyUsername) + " " + replyUsername;
-      }
-
-    }
-
-    switch (this.get('action')) {
-      case PRIVATE_MESSAGE: return Em.String.i18n('topic.private_message');
-      case CREATE_TOPIC: return Em.String.i18n('topic.create_long');
-      case REPLY:
-      case EDIT:
-        if (postDescription) return postDescription;
-        if (topic) return Em.String.i18n('post.reply_topic', { link: topicLink });
-    }
-
-  }.property('action', 'post', 'topic', 'topic.title'),
-
-  toggleText: function() {
-    return this.get('showPreview') ? Em.String.i18n('composer.hide_preview') : Em.String.i18n('composer.show_preview');
-  }.property('showPreview'),
-
-  hidePreview: Em.computed.not('showPreview'),
-
-  // Whether to disable the post button
-  cantSubmitPost: function() {
-
-    // Can't submit while loading
-    if (this.get('loading')) return true;
-
-    // Title is required when:
-    //    - creating a new topic
-    //    - editing the 1st post
-    //    - creating a private message
-
-    if (this.get('editTitle') && !this.get('titleLengthValid')) return true;
-
-    // Need at least one user when sending a private message
-    if ( this.get('creatingPrivateMessage') &&
-         this.get('targetUsernames') &&
-        (this.get('targetUsernames').trim() + ',').indexOf(',') === 0) {
-      return true;
-    }
-
-    // reply is always required
-    if (this.get('missingReplyCharacters') > 0) return true;
-
-    if (this.get('canCategorize') && !Discourse.SiteSettings.allow_uncategorized_topics && !this.get('categoryName')) return true;
-
-    return false;
-  }.property('loading', 'editTitle', 'titleLength', 'targetUsernames', 'replyLength', 'categoryName', 'missingReplyCharacters'),
-
-  titleLengthValid: function() {
-    if (this.get('creatingPrivateMessage')) {
-      if (this.get('titleLength') < Discourse.SiteSettings.min_private_message_title_length) return false;
-    } else {
-      if (this.get('titleLength') < Discourse.SiteSettings.min_topic_title_length) return false;
-    }
-    return (this.get('titleLength') <= Discourse.SiteSettings.max_topic_title_length);
-  }.property('creatingPrivateMessage', 'titleLength'),
-
-  // The text for the save button
-  saveText: function() {
-    switch (this.get('action')) {
-      case EDIT: return Em.String.i18n('composer.save_edit');
-      case REPLY: return Em.String.i18n('composer.reply');
-      case CREATE_TOPIC: return Em.String.i18n('composer.create_topic');
-      case PRIVATE_MESSAGE: return Em.String.i18n('composer.create_pm');
-    }
-  }.property('action'),
-
-  hasMetaData: function() {
-    var metaData = this.get('metaData');
-    return metaData ? Em.empty(Em.keys(this.get('metaData'))) : false;
-  }.property('metaData'),
-
-  wouldLoseChanges: function() {
-    return this.get('reply') !== this.get('originalText');
-  }.property('reply', 'save'),
 
   /*
      Open a composer
@@ -209,7 +305,6 @@ Discourse.Composer = Discourse.Model.extend({
         (opts.action !== this.get('action') || ((opts.reply || opts.action === this.EDIT) && this.get('reply') !== this.get('originalText'))) &&
         !opts.tested) {
       opts.tested = true;
-      //composer.cancel(function() { composer.open(opts); });
       return;
     }
 
@@ -257,7 +352,7 @@ Discourse.Composer = Discourse.Model.extend({
       Discourse.Post.load(opts.post.get('id')).then(function(result) {
         composer.setProperties({
           reply: result.get('raw'),
-          originalText: composer.get('reply'),
+          originalText: result.get('raw'),
           loading: false
         });
       });
@@ -272,6 +367,20 @@ Discourse.Composer = Discourse.Model.extend({
     if( !this.get('cantSubmitPost') ) {
       return this.get('editingPost') ? this.editPost(opts) : this.createPost(opts);
     }
+  },
+
+  /**
+    Clear any state we have in preparation for a new composition.
+
+    @method clearState
+  **/
+  clearState: function() {
+    this.setProperties({
+      originalText: null,
+      reply: null,
+      post: null,
+      title: null
+    });
   },
 
   // When you edit a post
@@ -300,15 +409,13 @@ Discourse.Composer = Discourse.Model.extend({
 
     return Ember.Deferred.promise(function(promise) {
       post.save(function(savedPost) {
-        composer.set('originalText', '');
-        composer.set('reply', '');
-        composer.set('post', null);
+        composer.clearState();
       }, function(error) {
         var response = $.parseJSON(error.responseText);
         if (response && response.errors) {
           promise.reject(response.errors[0]);
         } else {
-          promise.reject(Em.String.i18n('generic_error'));
+          promise.reject(I18n.t('generic_error'));
         }
         post.set('cooked', oldCooked);
         composer.set('composeState', OPEN);
@@ -354,7 +461,12 @@ Discourse.Composer = Discourse.Model.extend({
       if (post) {
         post.set('reply_count', (post.get('reply_count') || 0) + 1);
       }
-      postStream.stagePost(createdPost, currentUser);
+      if (!postStream.stagePost(createdPost, currentUser)) {
+
+        // If we can't stage the post, return and don't save. We're likely currently
+        // staging a post.
+        return;
+      }
     }
 
     // Save callback
@@ -365,6 +477,7 @@ Discourse.Composer = Discourse.Model.extend({
             saving = true;
 
         createdPost.updateFromJson(result);
+
         if (topic) {
           // It's no longer a new post
           createdPost.set('newPost', false);
@@ -377,18 +490,14 @@ Discourse.Composer = Discourse.Model.extend({
           saving = false;
         }
 
-        composer.setProperties({
-          reply: '',
-          createdPost: createdPost,
-          title: ''
-        });
+        composer.clearState();
+        composer.set('createdPost', createdPost);
 
         if (addedToStream) {
           composer.set('composeState', CLOSED);
         } else if (saving) {
           composer.set('composeState', SAVING);
         }
-
 
         return promise.resolve({ post: result });
       }, function(error) {
@@ -421,16 +530,16 @@ Discourse.Composer = Discourse.Model.extend({
       usernames: this.get('targetUsernames')
     };
 
-    this.set('draftStatus', Em.String.i18n('composer.saving_draft_tip'));
+    this.set('draftStatus', I18n.t('composer.saving_draft_tip'));
 
     var composer = this;
 
     // try to save the draft
     return Discourse.Draft.save(this.get('draftKey'), this.get('draftSequence'), data)
       .then(function() {
-        composer.set('draftStatus', Em.String.i18n('composer.saved_draft_tip'));
+        composer.set('draftStatus', I18n.t('composer.saved_draft_tip'));
       }, function() {
-        composer.set('draftStatus', Em.String.i18n('composer.drafts_offline'));
+        composer.set('draftStatus', I18n.t('composer.drafts_offline'));
       });
   },
 
@@ -440,97 +549,7 @@ Discourse.Composer = Discourse.Model.extend({
       $draftStatus.toggleClass('flash', true);
       setTimeout(function() { $draftStatus.removeClass('flash'); }, 250);
     }
-  },
-
-  updateDraftStatus: function() {
-    var $title = $('#reply-title'),
-        $reply = $('#wmd-input');
-
-    // 'title' is focused
-    if ($title.is(':focus')) {
-      var titleDiff = this.get('missingTitleCharacters');
-      if (titleDiff > 0) {
-        this.flashDraftStatusForNewUser();
-        return this.set('draftStatus', Em.String.i18n('composer.min_length.need_more_for_title', { n: titleDiff }));
-      }
-    // 'reply' is focused
-    } else if ($reply.is(':focus')) {
-      var replyDiff = this.get('missingReplyCharacters');
-      if (replyDiff > 0) {
-        return this.set('draftStatus', Em.String.i18n('composer.min_length.need_more_for_reply', { n: replyDiff }));
-      }
-    }
-
-    // hide the counters if the currently focused text field is OK
-    this.set('draftStatus', null);
-
-  }.observes('missingTitleCharacters', 'missingReplyCharacters'),
-
-  /**
-    Number of missing characters in the title until valid.
-
-    @property missingTitleCharacters
-  **/
-  missingTitleCharacters: function() {
-    return this.get('minimumTitleLength') - this.get('titleLength');
-  }.property('minimumTitleLength', 'titleLength'),
-
-  /**
-    Minimum number of characters for a title to be valid.
-
-    @property minimumTitleLength
-  **/
-  minimumTitleLength: function() {
-    if (this.get('creatingPrivateMessage')) {
-      return Discourse.SiteSettings.min_private_message_title_length;
-    } else {
-      return Discourse.SiteSettings.min_topic_title_length;
-    }
-  }.property('creatingPrivateMessage'),
-
-
-  /**
-    Number of missing characters in the reply until valid.
-
-    @property missingReplyCharacters
-  **/
-  missingReplyCharacters: function() {
-    return this.get('minimumPostLength') - this.get('replyLength');
-  }.property('minimumPostLength', 'replyLength'),
-
-  /**
-    Minimum number of characters for a post body to be valid.
-
-    @property minimumPostLength
-  **/
-  minimumPostLength: function() {
-    if( this.get('creatingPrivateMessage') ) {
-      return Discourse.SiteSettings.min_private_message_post_length;
-    } else {
-      return Discourse.SiteSettings.min_post_length;
-    }
-  }.property('creatingPrivateMessage'),
-
-  /**
-    Computes the length of the title minus non-significant whitespaces
-
-    @property titleLength
-  **/
-  titleLength: function() {
-    var title = this.get('title') || "";
-    return title.replace(/\s+/img, " ").trim().length;
-  }.property('title'),
-
-  /**
-    Computes the length of the reply minus the quote(s) and non-significant whitespaces
-
-    @property replyLength
-  **/
-  replyLength: function() {
-    var reply = this.get('reply') || "";
-    while (Discourse.BBCode.QUOTE_REGEXP.test(reply)) { reply = reply.replace(Discourse.BBCode.QUOTE_REGEXP, ""); }
-    return reply.replace(/\s+/img, " ").trim().length;
-  }.property('reply')
+  }
 
 });
 

@@ -62,23 +62,15 @@ Discourse.AdminUser = Discourse.User.extend({
     return this.get('username').toLowerCase();
   }).property('username'),
 
-  trustLevel: function() {
-    var site = Discourse.Site.instance();
-    return site.get('trust_levels').findProperty('id', this.get('trust_level'));
-  }.property('trust_level'),
-
   setOriginalTrustLevel: function() {
     this.set('originalTrustLevel', this.get('trust_level'));
   },
 
   trustLevels: function() {
-    var site = Discourse.Site.instance();
-    return site.get('trust_levels');
-  }.property('trust_level'),
+    return Discourse.Site.instance().get('trustLevels');
+  }.property(),
 
-  dirty: function() {
-    return this.get('originalTrustLevel') !== parseInt(this.get('trustLevel.id'), 10);
-  }.property('originalTrustLevel', 'trustLevel.id'),
+  dirty: Discourse.computed.propertyNotEqual('originalTrustLevel', 'trustLevel.id'),
 
   saveTrustLevel: function() {
     Discourse.ajax("/admin/users/" + this.id + "/trust_level", {
@@ -89,7 +81,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failure
-      var error = Em.String.i18n('admin.user.trust_level_change_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.trust_level_change_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -98,22 +90,17 @@ Discourse.AdminUser = Discourse.User.extend({
     this.set('trustLevel.id', this.get('originalTrustLevel'));
   },
 
-  isBanned: (function() {
-    return this.get('is_banned') === true;
-  }).property('is_banned'),
+  isBanned: Em.computed.equal('is_banned', true),
+  canBan: Em.computed.not('staff'),
 
-  canBan: (function() {
-    return !this.get('admin') && !this.get('moderator');
-  }).property('admin', 'moderator'),
-
-  banDuration: (function() {
+  banDuration: function() {
     var banned_at = moment(this.banned_at);
     var banned_till = moment(this.banned_till);
     return banned_at.format('L') + " - " + banned_till.format('L');
-  }).property('banned_till', 'banned_at'),
+  }.property('banned_till', 'banned_at'),
 
   ban: function() {
-    var duration = parseInt(window.prompt(Em.String.i18n('admin.user.ban_duration')), 10);
+    var duration = parseInt(window.prompt(I18n.t('admin.user.ban_duration')), 10);
     if (duration > 0) {
       Discourse.ajax("/admin/users/" + this.id + "/ban", {
         type: 'PUT',
@@ -123,7 +110,7 @@ Discourse.AdminUser = Discourse.User.extend({
         window.location.reload();
       }, function(e) {
         // failure
-        var error = Em.String.i18n('admin.user.ban_failed', { error: "http: " + e.status + " - " + e.body });
+        var error = I18n.t('admin.user.ban_failed', { error: "http: " + e.status + " - " + e.body });
         bootbox.alert(error);
       });
     }
@@ -137,7 +124,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.unban_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.unban_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -152,9 +139,9 @@ Discourse.AdminUser = Discourse.User.extend({
     }, function(e) {
       // failed
       if (e.status === 404) {
-        bootbox.alert(Em.String.i18n('admin.impersonate.not_found'));
+        bootbox.alert(I18n.t('admin.impersonate.not_found'));
       } else {
-        bootbox.alert(Em.String.i18n('admin.impersonate.invalid'));
+        bootbox.alert(I18n.t('admin.impersonate.invalid'));
       }
     });
   },
@@ -165,7 +152,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.activate_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.activate_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -176,7 +163,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.deactivate_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.deactivate_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -187,7 +174,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.unblock_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.unblock_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -198,7 +185,7 @@ Discourse.AdminUser = Discourse.User.extend({
       window.location.reload();
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.block_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.block_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -206,10 +193,10 @@ Discourse.AdminUser = Discourse.User.extend({
   sendActivationEmail: function() {
     Discourse.ajax('/users/' + this.get('username') + '/send_activation_email', {type: 'POST'}).then(function() {
       // succeeded
-      bootbox.alert( Em.String.i18n('admin.user.activation_email_sent') );
+      bootbox.alert( I18n.t('admin.user.activation_email_sent') );
     }, function(e) {
       // failed
-      var error = Em.String.i18n('admin.user.send_activation_email_failed', { error: "http: " + e.status + " - " + e.body });
+      var error = I18n.t('admin.user.send_activation_email_failed', { error: "http: " + e.status + " - " + e.body });
       bootbox.alert(error);
     });
   },
@@ -220,7 +207,7 @@ Discourse.AdminUser = Discourse.User.extend({
 
   deleteButtonTitle: function() {
     if (this.get('deleteForbidden')) {
-      return Em.String.i18n('admin.user.delete_forbidden');
+      return I18n.t('admin.user.delete_forbidden');
     } else {
       return null;
     }
@@ -228,22 +215,22 @@ Discourse.AdminUser = Discourse.User.extend({
 
   destroy: function() {
     var user = this;
-    bootbox.confirm(Em.String.i18n("admin.user.delete_confirm"), Em.String.i18n("no_value"), Em.String.i18n("yes_value"), function(result) {
+    bootbox.confirm(I18n.t("admin.user.delete_confirm"), I18n.t("no_value"), I18n.t("yes_value"), function(result) {
       if(result) {
         Discourse.ajax("/admin/users/" + user.get('id') + '.json', { type: 'DELETE' }).then(function(data) {
           if (data.deleted) {
-            bootbox.alert(Em.String.i18n("admin.user.deleted"), function() {
+            bootbox.alert(I18n.t("admin.user.deleted"), function() {
               document.location = "/admin/users/list/active";
             });
           } else {
-            bootbox.alert(Em.String.i18n("admin.user.delete_failed"));
+            bootbox.alert(I18n.t("admin.user.delete_failed"));
             if (data.user) {
               user.mergeAttributes(data.user);
             }
           }
         }, function(jqXHR, status, error) {
           Discourse.AdminUser.find( user.get('username') ).then(function(u){ user.mergeAttributes(u); });
-          bootbox.alert(Em.String.i18n("admin.user.delete_failed"));
+          bootbox.alert(I18n.t("admin.user.delete_failed"));
         });
       }
     });
@@ -251,9 +238,9 @@ Discourse.AdminUser = Discourse.User.extend({
 
   loadDetails: function() {
     var model = this;
-    if (model.get('loadedDetails')) { return; }
+    if (model.get('loadedDetails')) { return Ember.RSVP.resolve(model); }
 
-    Discourse.AdminUser.find(model.get('username_lower')).then(function (result) {
+    return Discourse.AdminUser.find(model.get('username_lower')).then(function (result) {
       model.setProperties(result);
       model.set('loadedDetails', true);
     });
@@ -270,7 +257,7 @@ Discourse.AdminUser.reopenClass({
       return user.set('selected', false);
     });
 
-    bootbox.alert(Em.String.i18n("admin.user.approve_bulk_success"));
+    bootbox.alert(I18n.t("admin.user.approve_bulk_success"));
 
     return Discourse.ajax("/admin/users/approve-bulk", {
       type: 'PUT',

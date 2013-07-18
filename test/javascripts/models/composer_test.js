@@ -33,22 +33,76 @@ test('missingTitleCharacters', function() {
   missingTitleCharacters('z', true,  Discourse.SiteSettings.min_private_message_title_length - 1, 'too short pm title');
 });
 
-
-test('wouldLoseChanges', function() {
+test('replyDirty', function() {
   var composer = Discourse.Composer.create();
-  ok(!composer.get('wouldLoseChanges'), "by default it's false");
+  ok(!composer.get('replyDirty'), "by default it's false");
 
   composer.setProperties({
     originalText: "hello",
     reply: "hello"
   });
 
-  ok(!composer.get('wouldLoseChanges'), "it's false when the originalText is the same as the reply");
+  ok(!composer.get('replyDirty'), "it's false when the originalText is the same as the reply");
   composer.set('reply', 'hello world');
-  ok(composer.get('wouldLoseChanges'), "it's true when the reply changes");
+  ok(composer.get('replyDirty'), "it's true when the reply changes");
 });
 
+test("appendText", function() {
+  var composer = Discourse.Composer.create();
 
+  blank(composer.get('reply'), "the reply is blank by default");
+
+  composer.appendText("hello");
+  equal(composer.get('reply'), "hello", "it appends text to nothing");
+  composer.appendText(" world");
+  equal(composer.get('reply'), "hello world", "it appends text to existing text");
+
+});
+
+test("Title length for regular topics", function() {
+  Discourse.SiteSettings.min_topic_title_length = 5;
+  Discourse.SiteSettings.max_topic_title_length = 10;
+  var composer = Discourse.Composer.create();
+
+  composer.set('title', 'asdf');
+  ok(!composer.get('titleLengthValid'), "short titles are not valid");
+
+  composer.set('title', 'this is a long title');
+  ok(!composer.get('titleLengthValid'), "long titles are not valid");
+
+  composer.set('title', 'just right');
+  ok(composer.get('titleLengthValid'), "in the range is okay");
+});
+
+test("Title length for private messages", function() {
+  Discourse.SiteSettings.min_private_message_title_length = 5;
+  Discourse.SiteSettings.max_topic_title_length = 10;
+  var composer = Discourse.Composer.create({action: Discourse.Composer.PRIVATE_MESSAGE});
+
+  composer.set('title', 'asdf');
+  ok(!composer.get('titleLengthValid'), "short titles are not valid");
+
+  composer.set('title', 'this is a long title');
+  ok(!composer.get('titleLengthValid'), "long titles are not valid");
+
+  composer.set('title', 'just right');
+  ok(composer.get('titleLengthValid'), "in the range is okay");
+});
+
+test("Title length for private messages", function() {
+  Discourse.SiteSettings.min_private_message_title_length = 5;
+  Discourse.SiteSettings.max_topic_title_length = 10;
+  var composer = Discourse.Composer.create({action: Discourse.Composer.PRIVATE_MESSAGE});
+
+  composer.set('title', 'asdf');
+  ok(!composer.get('titleLengthValid'), "short titles are not valid");
+
+  composer.set('title', 'this is a long title');
+  ok(!composer.get('titleLengthValid'), "long titles are not valid");
+
+  composer.set('title', 'just right');
+  ok(composer.get('titleLengthValid'), "in the range is okay");
+});
 
 test('importQuote with no data', function() {
   this.stub(Discourse.Post, 'load');
@@ -63,7 +117,20 @@ test('importQuote with no data', function() {
   ok(!Discourse.Post.load.calledOnce, "load is not called");
 });
 
-asyncTest('importQuote with a post', function() {
+test('editingFirstPost', function() {
+  var composer = Discourse.Composer.create();
+  ok(!composer.get('editingFirstPost'), "it's false by default");
+
+  var post = Discourse.Post.create({id: 123, post_number: 2});
+  composer.setProperties({post: post, action: Discourse.Composer.EDIT });
+  ok(!composer.get('editingFirstPost'), "it's false when not editing the first post");
+
+  post.set('post_number', 1);
+  ok(composer.get('editingFirstPost'), "it's true when editing the first post");
+
+});
+
+asyncTestDiscourse('importQuote with a post', function() {
   expect(1);
 
   this.stub(Discourse.Post, 'load').withArgs(123).returns(Em.Deferred.promise(function (p) {
@@ -77,7 +144,7 @@ asyncTest('importQuote with a post', function() {
   });
 });
 
-asyncTest('importQuote with no post', function() {
+asyncTestDiscourse('importQuote with no post', function() {
   expect(1);
 
   this.stub(Discourse.Post, 'load').withArgs(4).returns(Em.Deferred.promise(function (p) {
@@ -90,5 +157,22 @@ asyncTest('importQuote with no post', function() {
     start();
     ok(composer.get('reply').indexOf('quote me') > -1, "it contains the word quote me");
   });
+
+});
+
+test('clearState', function() {
+  var composer = Discourse.Composer.create({
+    originalText: 'asdf',
+    reply: 'asdf2',
+    post: Discourse.Post.create({id: 1}),
+    title: 'wat'
+  });
+
+  composer.clearState();
+
+  blank(composer.get('originalText'));
+  blank(composer.get('reply'));
+  blank(composer.get('post'));
+  blank(composer.get('title'));
 
 });

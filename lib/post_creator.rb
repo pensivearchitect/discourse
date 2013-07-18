@@ -116,13 +116,13 @@ class PostCreator
   protected
 
   def secure_group_ids(topic)
-    @secure_group_ids ||= if topic.category && topic.category.secure?
+    @secure_group_ids ||= if topic.category && topic.category.read_restricted?
       topic.category.secure_group_ids
     end
   end
 
   def after_post_create
-    if @post.post_number > 1
+    if !@topic.private_message? && @post.post_number > 1 && @post.post_type != Post.types[:moderator_action]
       TopicTrackingState.publish_unread(@post)
     end
   end
@@ -132,7 +132,7 @@ class PostCreator
     # Don't publish invisible topics
     return unless @topic.visible?
 
-    return if @topic.private_message?
+    return if @topic.private_message? || @post.post_type == Post.types[:moderator_action]
 
     @topic.posters = @topic.posters_summary
     @topic.posts_count = 1

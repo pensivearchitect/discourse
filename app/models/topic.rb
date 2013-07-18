@@ -21,12 +21,14 @@ class Topic < ActiveRecord::Base
 
   versioned if: :new_version_required?
 
-  def trash!
-    super
+  def trash!(trashed_by=nil)
+    update_category_topic_count_by(-1) if deleted_at.nil?
+    super(trashed_by)
     update_flagged_posts_count
   end
 
   def recover!
+    update_category_topic_count_by(1) unless deleted_at.nil?
     super
     update_flagged_posts_count
   end
@@ -89,9 +91,9 @@ class Topic < ActiveRecord::Base
 
   scope :listable_topics, lambda { where('topics.archetype <> ?', [Archetype.private_message]) }
 
-  scope :by_newest, order('topics.created_at desc, topics.id desc')
+  scope :by_newest, -> { order('topics.created_at desc, topics.id desc') }
 
-  scope :visible, where(visible: true)
+  scope :visible, -> { where(visible: true) }
 
   scope :created_since, lambda { |time_ago| where('created_at > ?', time_ago) }
 
@@ -101,9 +103,9 @@ class Topic < ActiveRecord::Base
     # Query conditions
     condition =
       if ids.present?
-        ["NOT c.secure or c.id in (:cats)", cats: ids]
+        ["NOT c.read_restricted or c.id in (:cats)", cats: ids]
       else
-        ["NOT c.secure"]
+        ["NOT c.read_restricted"]
       end
 
     where("category_id IS NULL OR category_id IN (
@@ -627,9 +629,17 @@ class Topic < ActiveRecord::Base
     self
   end
 
-  def secure_category?
-    category && category.secure
+  def read_restricted_category?
+    category && category.read_restricted
   end
+
+  private
+
+    def update_category_topic_count_by(num)
+      if category_id.present?
+        Category.where(['id = ?', category_id]).update_all("topic_count = topic_count " + (num > 0 ? '+' : '') + "#{num}")
+      end
+    end
 end
 
 # == Schema Information
@@ -682,6 +692,7 @@ end
 #  auto_close_at           :datetime
 #  auto_close_user_id      :integer
 #  auto_close_started_at   :datetime
+#  deleted_by_id           :integer
 #
 # Indexes
 #

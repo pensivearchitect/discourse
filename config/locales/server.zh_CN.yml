@@ -563,8 +563,6 @@ zh_CN:
     newuser_max_mentions_per_post: "一个访问者可以在一个帖子里使用 @name 提及的最大数量"
     max_mentions_per_post: "你可以在一个帖子里使用 @name 提及的最大数量"
 
-    auto_link_images_wider_than: "图片宽度超过此设定像素值的，将被自动附加一个链接并且使用灯箱（lightbox）来展示"
-
     email_time_window_mins: "等待多少分钟才给用户发送通知电子邮件，好让他们有机会自己来浏览"
     flush_timings_secs: "刷新时间数据的频率，以秒为单位"
     max_word_length: "在主题的标题中，允许的词语长度的最大字符数"
@@ -577,7 +575,7 @@ zh_CN:
     min_body_similar_length: "开始检查相似主题的帖子内容的最小长度"
 
     category_colors: "设置分类颜色的用'|'分隔的十六进制色彩值列表"
-    max_upload_size_kb: "允许用户上传的最大文件大小(以kB为单位) - 确保在nginx(client_max_body_size), apache或代理服务中进行限制文件大小的配置."
+    max_image_size_kb: "允许用户上传的最大文件大小(以kB为单位) - 确保在nginx(client_max_body_size), apache或代理服务中进行限制文件大小的配置."
     max_similar_results: "当用户撰写新主题时，显示多少类似主题给用户"
 
     title_prettify: "防止常见标题里的错别字和错误，包括全部大写，第一个字符小写，多个！和？，结尾多余的. 等等。"
