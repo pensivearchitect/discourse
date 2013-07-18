@@ -1320,7 +1320,7 @@ CREATE TABLE categories (
     description text,
     text_color character varying(6) DEFAULT 'FFFFFF'::character varying NOT NULL,
     hotness double precision DEFAULT 5.0 NOT NULL,
-    secure boolean DEFAULT false NOT NULL,
+    read_restricted boolean DEFAULT false NOT NULL,
     auto_close_days double precision
 );
 
@@ -1353,8 +1353,28 @@ CREATE TABLE category_featured_topics (
     topic_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    rank integer DEFAULT 0 NOT NULL
+    rank integer DEFAULT 0 NOT NULL,
+    id integer NOT NULL
 );
+
+
+--
+-- Name: category_featured_topics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE category_featured_topics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: category_featured_topics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE category_featured_topics_id_seq OWNED BY category_featured_topics.id;
 
 
 --
@@ -1398,7 +1418,8 @@ CREATE TABLE category_groups (
     category_id integer NOT NULL,
     group_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    permission_type integer DEFAULT 1
 );
 
 
@@ -1791,7 +1812,8 @@ CREATE TABLE invites (
     redeemed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    deleted_at timestamp without time zone
+    deleted_at timestamp without time zone,
+    deleted_by_id integer
 );
 
 
@@ -1962,7 +1984,7 @@ CREATE TABLE post_actions (
     deleted_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    deleted_by integer,
+    deleted_by_id integer,
     message text,
     related_post_id integer,
     staff_took_action boolean DEFAULT false NOT NULL,
@@ -2094,7 +2116,9 @@ CREATE TABLE posts (
     reply_to_user_id integer,
     percent_rank double precision DEFAULT 1.0,
     notify_user_count integer DEFAULT 0 NOT NULL,
-    like_score integer DEFAULT 0 NOT NULL
+    like_score integer DEFAULT 0 NOT NULL,
+    deleted_by_id integer,
+    nuked_user boolean DEFAULT false
 );
 
 
@@ -2397,8 +2421,28 @@ CREATE TABLE topic_users (
     total_msecs_viewed integer DEFAULT 0 NOT NULL,
     cleared_pinned_at timestamp without time zone,
     unstarred_at timestamp without time zone,
+    id integer NOT NULL,
     CONSTRAINT test_starred_at CHECK (((starred = false) OR (starred_at IS NOT NULL)))
 );
+
+
+--
+-- Name: topic_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE topic_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: topic_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE topic_users_id_seq OWNED BY topic_users.id;
 
 
 --
@@ -2451,7 +2495,8 @@ CREATE TABLE topics (
     slug character varying(255),
     auto_close_at timestamp without time zone,
     auto_close_user_id integer,
-    auto_close_started_at timestamp without time zone
+    auto_close_started_at timestamp without time zone,
+    deleted_by_id integer
 );
 
 
@@ -3014,6 +3059,13 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY category_featured_topics ALTER COLUMN id SET DEFAULT nextval('category_featured_topics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY category_featured_users ALTER COLUMN id SET DEFAULT nextval('category_featured_users_id_seq'::regclass);
 
 
@@ -3197,6 +3249,13 @@ ALTER TABLE ONLY topic_link_clicks ALTER COLUMN id SET DEFAULT nextval('topic_li
 --
 
 ALTER TABLE ONLY topic_links ALTER COLUMN id SET DEFAULT nextval('topic_links_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY topic_users ALTER COLUMN id SET DEFAULT nextval('topic_users_id_seq'::regclass);
 
 
 --
@@ -3532,6 +3591,14 @@ ALTER TABLE ONLY category_search_data
 
 
 --
+-- Name: category_featured_topics_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY category_featured_topics
+    ADD CONSTRAINT category_featured_topics_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: category_featured_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3761,6 +3828,14 @@ ALTER TABLE ONLY topic_allowed_users
 
 ALTER TABLE ONLY topic_invites
     ADD CONSTRAINT topic_invites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: topic_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY topic_users
+    ADD CONSTRAINT topic_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -5312,3 +5387,11 @@ INSERT INTO schema_migrations (version) VALUES ('20130625022454');
 INSERT INTO schema_migrations (version) VALUES ('20130625170842');
 
 INSERT INTO schema_migrations (version) VALUES ('20130625201113');
+
+INSERT INTO schema_migrations (version) VALUES ('20130709184941');
+
+INSERT INTO schema_migrations (version) VALUES ('20130710201248');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712041133');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712163509');

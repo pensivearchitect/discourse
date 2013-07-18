@@ -7,8 +7,8 @@ gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_
 gem 'compass'
 gem 'zurb-foundation'
 gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
-gem 'handlebars-source', '1.0.12'
+gem 'ember-source'
+gem 'handlebars-source'
 gem 'barber'
 
 gem 'vestal_versions', git: 'https://github.com/zhangyuan/vestal_versions'

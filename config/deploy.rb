@@ -12,7 +12,6 @@ require 'sidekiq/capistrano'
 # Repo Settings
 # You should change this to your fork of discourse
 set :repository, 'git@github.com:pensivearchitect/discourse.git'
-set :deploy_via, :remote_cache
 set :branch, fetch(:branch, 'master')
 set :scm, :git
 ssh_options[:forward_agent] = true
@@ -22,13 +21,13 @@ set :deploy_type, :deploy
 default_run_options[:pty] = true
 
 # Server Settings
-set :user, 'admin'
+set :user, 'discourse'
 set :use_sudo, false
 set :rails_env, :production
 
-role :app, 'SERVER_ADDRESS_HERE', primary: true
-role :db, 'SERVER_ADDRESS_HERE', primary: true
-role :web, 'SERVER_ADDRESS_HERE', primary: true
+role :app, 'dgsforum.com', primary: true
+role :db, 'dgsforum.com', primary: true
+role :web, 'dgsforum.com', primary: true
 
 # Application Settings
 set :application, 'discourse'
