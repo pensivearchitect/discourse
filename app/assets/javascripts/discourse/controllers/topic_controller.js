@@ -184,7 +184,7 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
 
         var selectedPosts = topicController.get('selectedPosts');
         Discourse.Post.deleteMany(selectedPosts);
-        topicController.get('content.posts').removeObjects(selectedPosts);
+        topicController.get('model.postStream').removePosts(selectedPosts);
         topicController.toggleMultiSelect();
       }
     });
@@ -222,7 +222,7 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   },
 
   resetRead: function() {
-    Discourse.ScreenTrack.instance().reset();
+    Discourse.ScreenTrack.current().reset();
     this.unsubscribe();
 
     var topicController = this;
@@ -253,8 +253,27 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   },
 
   // Toggle the star on the topic
-  toggleStar: function(e) {
+  toggleStar: function() {
     this.get('content').toggleStar();
+  },
+
+  /**
+    Toggle the replies this post is a reply to
+
+    @method showReplyHistory
+  **/
+  toggleReplyHistory: function(post) {
+    var replyHistory = post.get('replyHistory'),
+        topicController = this;
+
+    if (replyHistory.length > 0) {
+      replyHistory.clear();
+    } else {
+      post.set('loadingReplyHistory', true);
+      topicController.get('postStream').findReplyHistory(post).then(function () {
+        post.set('loadingReplyHistory', false);
+      });
+    }
   },
 
   /**
@@ -332,7 +351,6 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
   },
 
   replyAsNewTopic: function(post) {
-    // TODO shut down topic draft cleanly if it exists ...
     var composerController = this.get('controllers.composer');
     var promise = composerController.open({
       action: Discourse.Composer.CREATE_TOPIC,
@@ -343,9 +361,9 @@ Discourse.TopicController = Discourse.ObjectController.extend(Discourse.Selected
 
     promise.then(function() {
       Discourse.Post.loadQuote(post.get('id')).then(function(q) {
-        composerController.appendText("" + (I18n.t("post.continue_discussion", {
+        composerController.appendText(I18n.t("post.continue_discussion", {
           postLink: postLink
-        })) + "\n\n" + q);
+        }) + "\n\n" + q);
       });
     });
   },

@@ -22,7 +22,7 @@ var CLOSED = 'closed',
 Discourse.Composer = Discourse.Model.extend({
 
   archetypes: function() {
-    return Discourse.Site.instance().get('archetypes');
+    return Discourse.Site.currentProp('archetypes');
   }.property(),
 
   creatingTopic: Em.computed.equal('action', CREATE_TOPIC),
@@ -48,7 +48,7 @@ Discourse.Composer = Discourse.Model.extend({
   canCategorize: Em.computed.and('canEditTitle', 'notCreatingPrivateMessage'),
 
   showAdminOptions: function() {
-    if (this.get('creatingTopic') && Discourse.User.current('staff')) return true;
+    if (this.get('creatingTopic') && Discourse.User.currentProp('staff')) return true;
     return false;
   }.property('canEditTitle'),
 
@@ -148,7 +148,7 @@ Discourse.Composer = Discourse.Model.extend({
 
   hasMetaData: function() {
     var metaData = this.get('metaData');
-    return metaData ? Em.empty(Em.keys(this.get('metaData'))) : false;
+    return metaData ? Em.isEmpty(Em.keys(this.get('metaData'))) : false;
   }.property('metaData'),
 
   /**
@@ -254,7 +254,7 @@ Discourse.Composer = Discourse.Model.extend({
     this._super();
     var val = Discourse.KeyValueStore.get('composer.showPreview') || 'true';
     this.set('showPreview', val === 'true');
-    this.set('archetypeId', Discourse.Site.instance().get('default_archetype'));
+    this.set('archetypeId', Discourse.Site.currentProp('default_archetype'));
   },
 
   /**
@@ -329,7 +329,7 @@ Discourse.Composer = Discourse.Model.extend({
 
     this.setProperties({
       categoryName: opts.categoryName || this.get('topic.category.name'),
-      archetypeId: opts.archetypeId || Discourse.Site.instance().get('default_archetype'),
+      archetypeId: opts.archetypeId || Discourse.Site.currentProp('default_archetype'),
       metaData: opts.metaData ? Em.Object.create(opts.metaData) : null,
       reply: opts.reply || this.get("reply") || ""
     });
@@ -394,9 +394,16 @@ Discourse.Composer = Discourse.Model.extend({
       var topic = this.get('topic');
       topic.setProperties({
         title: this.get('title'),
-        fancy_title: this.get('title'),
-        categoryName: this.get('categoryName')
+        fancy_title: this.get('title')
       });
+
+      var category = Discourse.Category.list().findProperty('name', this.get('categoryName'));
+      if (category) {
+        topic.setProperties({
+          categoryName: category.get('name'),
+          category_id: category.get('id')
+        });
+      }
       topic.save();
     }
 
@@ -446,7 +453,7 @@ Discourse.Composer = Discourse.Model.extend({
       user_id: currentUser.get('id'),
       metaData: this.get('metaData'),
       archetype: this.get('archetypeId'),
-      post_type: Discourse.Site.instance().get('post_types.regular'),
+      post_type: Discourse.Site.currentProp('post_types.regular'),
       target_usernames: this.get('targetUsernames'),
       actions_summary: Em.A(),
       moderator: currentUser.get('moderator'),
@@ -469,7 +476,6 @@ Discourse.Composer = Discourse.Model.extend({
       }
     }
 
-    // Save callback
     var composer = this;
     return Ember.Deferred.promise(function(promise) {
       createdPost.save(function(result) {
@@ -545,7 +551,7 @@ Discourse.Composer = Discourse.Model.extend({
 
   flashDraftStatusForNewUser: function() {
     var $draftStatus = $('#draft-status');
-    if (Discourse.User.current('trust_level') === 0) {
+    if (Discourse.User.currentProp('trust_level') === 0) {
       $draftStatus.toggleClass('flash', true);
       setTimeout(function() { $draftStatus.removeClass('flash'); }, 250);
     }

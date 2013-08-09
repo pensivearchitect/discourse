@@ -121,7 +121,7 @@ nl:
               cant_send_pm: "Sorry, je kan geen privébericht sturen naar deze persoon."
 
   user_profile:
-    no_info_me: "<div class='missing-profile'>Het Over Mij-profielveld is nog leeg, <a href='/users/%{username_lower}/preferences'>zou je deze willen invullen?</a></div>"
+    no_info_me: "<div class='missing-profile'>Het Over Mij-profielveld is nog leeg, <a href='/users/%{username_lower}/preferences/about-me'>zou je deze willen invullen?</a></div>"
     no_info_other: "<div class='missing-profile'>%{name} heeft nog niks in zijn of haar Over Mij-profielveld ingevuld</div>"
 
   category:
@@ -507,7 +507,7 @@ nl:
     ga_tracking_code: "Google analytics trackingcode, zie: http://google.com/analytics"
     ga_domain_name: "Google analytics domeinnaam, bijv. mijnsite.nl; zie http://google.com/analytics"
     enable_escaped_fragments: "Schakel workaround in om oude crawlers je site te kunnen laten indexeren. WAARSCHUWING: gebruik dit alleen als je het echt nodig hebt."
-    enable_noscript_support: "Ondersteun &lt;noscipt&gt; tag"
+    enable_noscript_support: "Ondersteun &lt;noscript&gt; tag"
     top_menu: "De volgorde en selectie van items in het hoofdmenu. Bijvoorbeeld latest|hot|read|favorited|unread|new|posted|categories"
     post_menu: "De volgorde en selectie van items in het berichtmenu. Bijvoorbeeld like|edit|flag|delete|share|bookmark|reply"
     share_links: "De volgorde en selectie van items in het deelmenu. Bijvoorbeeld twitter|facebook|google+"
@@ -974,7 +974,7 @@ nl:
         %{respond_instructions}
 
     user_posted:
-      subject_template: "[%{site_name}] %{username} nieuw bericht in '%{topic_title}'"
+      subject_template: "[%{site_name}] %{subject_prefix}%{username} nieuw bericht in '%{topic_title}'"
       text_body_template: |
         %{username} schreef een bericht in '%{topic_title}' op %{site_name}:
 
@@ -993,17 +993,6 @@ nl:
       unsubscribe: "Deze samenvatting wordt door %{site_link} verstuurd als we je 7 dagen hebben gemist op onze site.\nMocht je dit uit willen zetten, of je e-mailvoorkeur willen veranderen, %{unsubscribe_link}."
       click_here: klik hier
       from: "%{site_name} Digest"
-
-    private_message:
-      subject_template: "[%{site_name}] %{subject_prefix}%{topic_title}"
-      text_body_template: |
-        %{from} heeft je net een privé-bericht gestuurd
-
-        ---
-        %{message}
-
-        ---
-        %{respond_instructions}
 
     forgot_password:
       subject_template: "[%{site_name}] Wachtwoord herstellen"
@@ -1075,7 +1064,7 @@ nl:
 
   upload:
     pasted_image_filename: "Geplakte afbeelding"
-    image:
+    images:
       fetch_failure: "Er ging iets mis bij het opvragen van de afbeelding."
       unknown_image_type: "Het bestand dat je wil uploaden is geen afbeelding."
       size_not_found: "Het is niet gelukt de afmetingen van de afbeelding te bepalen. Misschien is het bestand corrupt?"

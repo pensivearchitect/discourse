@@ -87,7 +87,7 @@ class TopicQuery
 
     # When logged in we start with different results
     if @user
-      builder.add_results(unread_results(per_page: builder.results_left))
+      builder.add_results(unread_results(topic: topic, per_page: builder.results_left))
       builder.add_results(new_results(per_page: builder.results_left)) unless builder.full?
     end
     builder.add_results(random_suggested(topic, builder.results_left)) unless builder.full?
@@ -128,6 +128,14 @@ class TopicQuery
   def list_posted
     create_list(:posted) {|l| l.where('tu.user_id IS NOT NULL') }
   end
+
+  def list_topics_by(user)
+    Rails.logger.info ">>> #{user.id}"
+    create_list(:user_topics) do |topics|
+      topics.where(user_id: user.id)
+    end
+  end
+
 
   def list_uncategorized
     create_list(:uncategorized, unordered: true) do |list|
@@ -229,13 +237,17 @@ class TopicQuery
     end
 
     def new_results(options={})
-      TopicQuery.new_filter(default_results(options), @user.treat_as_new_topic_start_date)
+      result = TopicQuery.new_filter(default_results(options.reverse_merge(:unordered => true)),
+                                     @user.treat_as_new_topic_start_date)
+
+      suggested_ordering(result, options)
     end
 
     def unread_results(options={})
-      TopicQuery.unread_filter(default_results(options.reverse_merge(:unordered => true)))
-        .order('CASE WHEN topics.user_id = tu.user_id THEN 1 ELSE 2 END')
-        .order(TopicQuery.order_nocategory_with_pinned_sql)
+      result = TopicQuery.unread_filter(default_results(options.reverse_merge(:unordered => true)))
+                         .order('CASE WHEN topics.user_id = tu.user_id THEN 1 ELSE 2 END')
+
+      suggested_ordering(result, options)
     end
 
     def random_suggested(topic, count)
@@ -243,10 +255,18 @@ class TopicQuery
 
       # If we are in a category, prefer it for the random results
       if topic.category_id
-        result = result.order("CASE WHEN topics.category_id = #{topic.category_id.to_i} THEN 0 ELSE 1 END, RANDOM()")
+        result = result.order("CASE WHEN topics.category_id = #{topic.category_id.to_i} THEN 0 ELSE 1 END")
       end
 
       result.order("RANDOM()")
     end
 
+    def suggested_ordering(result, options)
+      # Prefer unread in the same category
+      if options[:topic] && options[:topic].category_id
+        result = result.order("CASE WHEN topics.category_id = #{options[:topic].category_id.to_i} THEN 0 ELSE 1 END")
+      end
+
+      result.order(TopicQuery.order_nocategory_with_pinned_sql)
+    end
 end

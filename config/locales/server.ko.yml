@@ -78,7 +78,7 @@ ko:
 
       Keep in mind as you compose your reply:
 
-      - Does your reply improve the conversation in some way, however small?
+      - Does your reply improve the conversation in some way?
 
       - Be kind to your fellow community members.
 
@@ -101,7 +101,7 @@ ko:
               cant_send_pm: "Sorry, you cannot send a private message to that user."
 
   user_profile:
-    no_info_me: "<div class='missing-profile'>the About Me field of your profile is currently blank, <a href='/users/%{username_lower}/preferences'>would you like to fill it out?</a></div>"
+    no_info_me: "<div class='missing-profile'>the About Me field of your profile is currently blank, <a href='/users/%{username_lower}/preferences/about-me'>would you like to fill it out?</a></div>"
     no_info_other: "<div class='missing-profile'>%{name} hasn't entered anything in the About Me field of their profile yet</div>"
 
   category:
@@ -856,7 +856,7 @@ ko:
         Please visit this link to respond: %{base_url}%{url}
 
     user_posted:
-      subject_template: "[%{site_name}] %{username} posted in '%{topic_title}'"
+      subject_template: "[%{site_name}] %{subject_prefix}%{username} posted in '%{topic_title}'"
       text_body_template: |
         %{username} posted in '%{topic_title}' on %{site_name}:
 
@@ -874,17 +874,6 @@ ko:
       unsubscribe: "This summary email is sent as a courtesy notification from %{site_link} when we haven't seen you in a while.\nIf you'd like to turn it off or change your email preferences, %{unsubscribe_link}."
       click_here: "click here"
       from: "%{site_name} digest"
-
-    private_message:
-      subject_template: "[%{site_name}] %{subject_prefix}%{topic_title}"
-      text_body_template: |
-        %{private_message_from} just sent you a private message
-
-        ---
-        %{message}
-
-        ---
-        Please visit this link to respond: %{base_url}%{url}
 
     forgot_password:
       subject_template: "[%{site_name}] Password reset"
@@ -932,7 +921,7 @@ ko:
   deleted: 'deleted'
 
   upload:
-    image:
+    images:
       fetch_failure: "Sorry, there has been an error while fetching the image."
       unknown_image_type: "Sorry, but the file you tried to upload doesn't appear to be an image."
       size_not_found: "Sorry, but we couldn't determine the size of the image. Maybe your image is corrupted?"

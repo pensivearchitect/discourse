@@ -62,6 +62,11 @@ Discourse::Application.routes.draw do
       end
     end
 
+    scope '/logs' do
+      resources :blocked_emails,    only: [:index, :create, :update, :destroy]
+      resources :staff_action_logs, only: [:index, :create, :update, :destroy]
+    end
+
     get 'customize' => 'site_customizations#index', constraints: AdminConstraint.new
     get 'flags' => 'flags#index'
     get 'flags/:filter' => 'flags#index'
@@ -96,6 +101,8 @@ Discourse::Application.routes.draw do
     end
   end
 
+  get 'session/csrf' => 'session#csrf'
+
   resources :users, except: [:show, :update] do
     collection do
       get 'check_username'
@@ -125,6 +132,7 @@ Discourse::Application.routes.draw do
   get 'users/:username/preferences' => 'users#preferences', constraints: {username: USERNAME_ROUTE_FORMAT}, as: :email_preferences
   get 'users/:username/preferences/email' => 'users#preferences', constraints: {username: USERNAME_ROUTE_FORMAT}
   put 'users/:username/preferences/email' => 'users#change_email', constraints: {username: USERNAME_ROUTE_FORMAT}
+  get 'users/:username/preferences/about-me' => 'users#preferences', constraints: {username: USERNAME_ROUTE_FORMAT}
   get 'users/:username/preferences/username' => 'users#preferences', constraints: {username: USERNAME_ROUTE_FORMAT}
   put 'users/:username/preferences/username' => 'users#username', constraints: {username: USERNAME_ROUTE_FORMAT}
   get 'users/:username/avatar(/:size)' => 'users#avatar', constraints: {username: USERNAME_ROUTE_FORMAT}
@@ -137,6 +145,7 @@ Discourse::Application.routes.draw do
 
 
   get 'posts/by_number/:topic_id/:post_number' => 'posts#by_number'
+  get 'posts/:id/reply-history' => 'posts#reply_history'
   resources :posts do
     get 'versions'
     put 'bookmark'
@@ -200,6 +209,7 @@ Discourse::Application.routes.draw do
   post 't' => 'topics#create'
   post 'topics/timings'
   get 'topics/similar_to'
+  get 'topics/created-by/:username' => 'list#topics_by', as: 'topics_by', constraints: {username: USERNAME_ROUTE_FORMAT}
 
   # Legacy route for old avatars
   get 'threads/:topic_id/:post_number/avatar' => 'topics#avatar', constraints: {topic_id: /\d+/, post_number: /\d+/}

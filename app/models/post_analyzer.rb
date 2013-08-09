@@ -1,15 +1,8 @@
 class PostAnalyzer
 
-  attr_accessor :cooked, :raw
-
   def initialize(raw, topic_id)
     @raw  = raw
     @topic_id = topic_id
-  end
-
-  def cooked_document
-    @cooked = cook(@raw, topic_id: @topic_id)
-    @cooked_document = Nokogiri::HTML.fragment(@cooked)
   end
 
   # What we use to cook posts
@@ -39,12 +32,23 @@ class PostAnalyzer
     end.count
   end
 
+  # How many attachments are present in the post
+  def attachment_count
+    return 0 unless @raw.present?
+    attachments = cooked_document.css("a.attachment[href^=\"#{Discourse.store.absolute_base_url}\"]")
+    attachments += cooked_document.css("a.attachment[href^=\"#{Discourse.store.relative_base_url}\"]") if Discourse.store.internal?
+    attachments.count
+  end
+
   def raw_mentions
     return [] if @raw.blank?
 
     # We don't count mentions in quotes
     return @raw_mentions if @raw_mentions.present?
     raw_stripped = @raw.gsub(/\[quote=(.*)\]([^\[]*?)\[\/quote\]/im, '')
+
+    # Process markdown so that code blocks can be generated and subsequently ignored
+    raw_stripped = PrettyText.markdown(raw_stripped)
 
     # Strip pre and code tags
     doc = Nokogiri::HTML.fragment(raw_stripped)
@@ -97,6 +101,10 @@ class PostAnalyzer
   end
 
   private
+
+  def cooked_document
+    @cooked_document ||= Nokogiri::HTML.fragment(cook(@raw, topic_id: @topic_id))
+  end
 
   def link_is_a_mention?(l)
     html_class = l.attributes['class']

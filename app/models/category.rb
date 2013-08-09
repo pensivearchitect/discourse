@@ -121,6 +121,7 @@ class Category < ActiveRecord::Base
 
   def ensure_slug
     if name.present?
+      self.name.strip!
       self.slug = Slug.for(name)
 
       return if self.slug.blank?
@@ -140,7 +141,7 @@ class Category < ActiveRecord::Base
   end
 
   def publish_categories_list
-    MessageBus.publish('/categories', {categories: ActiveModel::ArraySerializer.new(Category.latest.all).as_json})
+    MessageBus.publish('/categories', {categories: ActiveModel::ArraySerializer.new(Category.latest).as_json})
   end
 
   def uncategorized_validator

@@ -39,6 +39,10 @@ en:
     zero: "Sorry, new users can't put images in posts."
     one: "Sorry, new users can only put one image in a post."
     other: "Sorry, new users can only put %{count} images in a post."
+  too_many_attachments:
+    zero: "Sorry, new users can't put attachments in posts."
+    one: "Sorry, new users can only put one attachment in a post."
+    other: "Sorry, new users can only put %{count} attachments in a post."
   too_many_links:
     zero: "Sorry, new users can't put links in posts."
     one: "Sorry, new users can only put one link in a post."
@@ -92,7 +96,7 @@ en:
     'new-reply': |
       Welcome to %{site_name} &mdash; **thanks for contributing to the conversation!**
 
-      - Does your reply improve the conversation in some way, however small?
+      - Does your reply improve the conversation in some way?
 
       - Be kind to your fellow community members.
 
@@ -118,7 +122,7 @@ en:
               cant_send_pm: "Sorry, you cannot send a private message to that user."
 
   user_profile:
-    no_info_me: "<div class='missing-profile'>the About Me field of your profile is currently blank, <a href='/users/%{username_lower}/preferences'>would you like to fill it out?</a></div>"
+    no_info_me: "<div class='missing-profile'>the About Me field of your profile is currently blank, <a href='/users/%{username_lower}/preferences/about-me'>would you like to fill it out?</a></div>"
     no_info_other: "<div class='missing-profile'>%{name} hasn't entered anything in the About Me field of their profile yet</div>"
 
   category:
@@ -464,6 +468,7 @@ en:
     queue_jobs: "DEVELOPER ONLY! WARNING! By default, queue jobs in sidekiq. If disabled, your site will be broken."
     crawl_images: "Enable retrieving images from third party sources to insert width and height dimensions"
     ninja_edit_window: "Number of seconds after posting where edits do not create a new version"
+    delete_removed_posts_after: "Number of hours after which a post that was removed by its author will be deleted."
     max_image_width: "Maximum allowed width of images in a post"
     category_featured_topics: "Number of topics displayed per category in the /categories page"
     add_rel_nofollow_to_user_content: "Add rel nofollow to all submitted user content, except for internal links (including parent domains) changing this requires you update all your baked markdown with: \"rake posts:rebake\""
@@ -507,8 +512,8 @@ en:
     must_approve_users: "Admins must approve all users before they gain access"
     ga_tracking_code: "Google analytics tracking code code, eg: UA-12345678-9; see http://google.com/analytics"
     ga_domain_name: "Google analytics domain name, eg: mysite.com; see http://google.com/analytics"
-    enable_escaped_fragments: "Enable workaround solution to help old crawlers to index your site. WARNING: enable it only if you are really have to do it."
-    enable_noscript_support: "Enable supporting &lt;noscipt&gt; tag"
+    enable_escaped_fragments: "Enable workaround solution to help old crawlers to index your site. WARNING: enable it only if you really have to do it."
+    enable_noscript_support: "Enable supporting &lt;noscript&gt; tag"
     top_menu: "Determine which items appear in the homepage navigation, and in what order. Example latest|hot|read|favorited|unread|new|posted|categories"
     post_menu: "Determine which items appear on the post menu, and in what order. Example like|edit|flag|delete|share|bookmark|reply"
     share_links: "Determine which items appear on the share dialog, and in what order. Example twitter|facebook|google+|email"
@@ -582,7 +587,7 @@ en:
     suggested_topics: "The number of suggested topics shown at the bottom of a topic"
 
     enable_s3_uploads: "Place uploads on Amazon S3"
-    s3_upload_bucket: "The Amazon S3 bucket name that files will be uploaded into"
+    s3_upload_bucket: "The Amazon S3 bucket name that files will be uploaded into. WARNING: must be lowercase (cf. http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)"
     s3_access_key_id: "The Amazon S3 access key id that will be used to upload images"
     s3_secret_access_key: "The Amazon S3 secret access key that will be used to upload images"
     s3_region: "The Amazon S3 region name that will be used to upload images"
@@ -606,12 +611,14 @@ en:
 
     newuser_max_links: "How many links a new user can add to a post"
     newuser_max_images: "How many images a new user can add to a post"
+    newuser_max_attachments: "How many attachments a new user can add to a post"
     newuser_max_mentions_per_post: "Maximum number of @name notifications a new user can use in a post"
     max_mentions_per_post: "Maximum number of @name notifications you can use in a post"
 
     create_thumbnails: "Create thumbnails for lightboxed images"
 
     email_time_window_mins: "How many minutes we wait before sending a user mail, to give them a chance to see it first"
+    email_posts_context: "How many posts to include in emails to show context"
     flush_timings_secs: "How frequently we flush timing data to the server, in seconds"
     max_word_length: "The maximum allowed word length, in characters, in a topic title"
     title_min_entropy: "The minimum allowed entropy (unique characters, non-english count for more) required for a topic title"
@@ -653,7 +660,8 @@ en:
     minimum_topics_similar: "How many topics need to exist in the database before similar topics are presented."
 
     relative_date_duration: "Number of days after posting where post dates will be shown as relative instead of absolute. Examples: relative date: 7d, absolute date: 20 Feb"
-
+    delete_user_max_age: "The maximum age of a user, in days, which can be deleted by an admin."
+    delete_all_posts_max: "The maximum number of posts that can be deleted at once with the Delete All Posts button. If a user has more than this many posts, the posts cannot all be deleted at once and the user can't be deleted."
 
   notification_types:
     mentioned: "%{display_username} mentioned you in %{link}"
@@ -705,7 +713,7 @@ en:
     not_approved: "Your account hasn't been approved yet. You will be notified by email when you are ready to log in."
     incorrect_username_email_or_password: "Incorrect username, email or password"
     wait_approval: "Thanks for signing up. We will notify you when your account has been approved."
-    active: "Your account is active and ready."
+    active: "Your account is activated and ready to use."
     activate_email: "You're almost done! We sent an activation email to <b>%{email}</b>. Please follow the instructions in the email to activate your account."
     not_activated: "You can't log in yet. We sent an activation email to you. Please follow the instructions in the email to activate your account."
     banned: "You can't log in until %{date}."
@@ -725,6 +733,7 @@ en:
       must_begin_with_alphanumeric: "must begin with a letter or number"
     email:
       not_allowed: "is not allowed from that email provider. Please use another email address."
+      blocked: "is not allowed."
 
   invite_mailer:
     subject_template: "[%{site_name}] %{invitee_name} invited you to join a discussion on %{site_name}"
@@ -928,12 +937,15 @@ en:
   unsubscribe_link: "To unsubscribe from these emails, visit your [user preferences](%{user_preferences_url})."
 
   user_notifications:
+    previous_discussion: "Previous Replies"
     unsubscribe:
       title: "Unsubscribe"
       description: "Not interested in getting these emails? No problem! Click below to unsubscribe instantly:"
 
     reply_by_email: "To respond, reply to this email or visit %{base_url}%{url} in your browser."
     visit_link_to_respond: "To respond, visit %{base_url}%{url} in your browser."
+
+    posted_by: "Posted by %{username} on %{post_date}"
 
     user_invited_to_private_message:
       subject_template: "[%{site_name}] %{username} invited you to a private message '%{topic_title}'"
@@ -945,10 +957,9 @@ en:
     user_replied:
       subject_template: "[%{site_name}] new reply to your post in '%{topic_title}'"
       text_body_template: |
-        %{username} replied to your post in '%{topic_title}' on %{site_name}:
-
-        ---
         %{message}
+
+        %{context}
 
         ---
         %{respond_instructions}
@@ -956,10 +967,9 @@ en:
     user_quoted:
       subject_template: "[%{site_name}] %{username} quoted you in '%{topic_title}'"
       text_body_template: |
-        %{username} quoted you in '%{topic_title}' on %{site_name}:
-
-        ---
         %{message}
+
+        %{context}
 
         ---
         %{respond_instructions}
@@ -967,21 +977,19 @@ en:
     user_mentioned:
       subject_template: "[%{site_name}] %{username} mentioned you in '%{topic_title}'"
       text_body_template: |
-        %{username} mentioned you in '%{topic_title}' on %{site_name}:
-
-        ---
         %{message}
+
+        %{context}
 
         ---
         %{respond_instructions}
 
     user_posted:
-      subject_template: "[%{site_name}] new post in '%{topic_title}'"
+      subject_template: "[%{site_name}] %{subject_prefix}new post in '%{topic_title}'"
       text_body_template: |
-        %{username} posted in '%{topic_title}' on %{site_name}:
-
-        ---
         %{message}
+
+        %{context}
 
         ---
         %{respond_instructions}
@@ -995,17 +1003,6 @@ en:
       click_here: "click here"
       from: "%{site_name} digest"
       read_more: "Read More"
-
-    private_message:
-      subject_template: "[%{site_name}] %{subject_prefix}%{topic_title}"
-      text_body_template: |
-        %{private_message_from} just sent you a private message
-
-        ---
-        %{message}
-
-        ---
-        %{respond_instructions}
 
     forgot_password:
       subject_template: "[%{site_name}] Password reset"
@@ -1078,7 +1075,10 @@ en:
   upload:
     unauthorized: "Sorry, the file you are trying to upload is not authorized (authorized extensions: %{authorized_extensions})."
     pasted_image_filename: "Pasted image"
-    image:
+    attachments:
+      too_large: "Sorry, the file you are trying to upload is too big (maximum size is %{max_size_kb}%kb)."
+    images:
+      too_large: "Sorry, the image you are trying to upload is too big (maximum size is %{max_size_kb}%kb), please resize it and try again."
       fetch_failure: "Sorry, there has been an error while fetching the image."
       unknown_image_type: "Sorry, but the file you tried to upload doesn't appear to be an image."
       size_not_found: "Sorry, but we couldn't determine the size of the image. Maybe your image is corrupted?"

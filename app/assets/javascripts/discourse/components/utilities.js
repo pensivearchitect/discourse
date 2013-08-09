@@ -7,6 +7,9 @@
 **/
 Discourse.Utilities = {
 
+  IMAGE_EXTENSIONS: [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tif", ".tiff"],
+  IS_AN_IMAGE_REGEXP: /\.(png|jpg|jpeg|gif|bmp|tif|tiff)$/i,
+
   translateSize: function(size) {
     switch (size) {
       case 'tiny': return 20;
@@ -49,20 +52,23 @@ Discourse.Utilities = {
 
   avatarUrl: function(username, size, template) {
     if (!username) return "";
-    size = Discourse.Utilities.translateSize(size);
-    var rawSize = (size * (window.devicePixelRatio || 1)).toFixed();
+    var rawSize = (Discourse.Utilities.translateSize(size) * (window.devicePixelRatio || 1)).toFixed();
+
+    if (username.match(/[^A-Za-z0-9_]/)) { return ""; }
     if (template) return template.replace(/\{size\}/g, rawSize);
-    return Discourse.getURL("/users/") + (username.toLowerCase()) + "/avatar/" + rawSize + "?__ws=" + (encodeURIComponent(Discourse.BaseUrl || ""));
+    return Discourse.getURL("/users/") + username.toLowerCase() + "/avatar/" + rawSize + "?__ws=" + encodeURIComponent(Discourse.BaseUrl || "");
   },
 
   avatarImg: function(options) {
-    var extraClasses, size, title, url;
-    size = Discourse.Utilities.translateSize(options.size);
-    title = options.title || "";
-    extraClasses = options.extraClasses || "";
-    url = Discourse.Utilities.avatarUrl(options.username, options.size, options.avatarTemplate);
-    return "<img width='" + size + "' height='" + size + "' src='" + url + "' class='avatar " +
-            (extraClasses || "") + "' title='" + (Handlebars.Utils.escapeExpression(title || "")) + "'>";
+    var size = Discourse.Utilities.translateSize(options.size);
+    var url = Discourse.Utilities.avatarUrl(options.username, options.size, options.avatarTemplate);
+
+    // We won't render an invalid url
+    if (!url || url.length === 0) { return ""; }
+
+    var classes = "avatar" + (options.extraClasses ? " " + options.extraClasses : "");
+    var title = (options.title) ? " title='" + Handlebars.Utils.escapeExpression(options.title || "") + "'" : "";
+    return "<img width='" + size + "' height='" + size + "' src='" + url + "' class='" + classes + "'" + title + ">";
   },
 
   tinyAvatar: function(username) {
@@ -84,7 +90,7 @@ Discourse.Utilities = {
   },
 
   userUrl: function(username) {
-    return Discourse.getURL("/users/" + username);
+    return Discourse.getURL("/users/" + username.toLowerCase());
   },
 
   emailValid: function(email) {
@@ -160,37 +166,55 @@ Discourse.Utilities = {
   /**
     Validate a list of files to be uploaded
 
-    @method validateFilesForUpload
+    @method validateUploadedFiles
     @param {Array} files The list of files we want to upload
   **/
-  validateFilesForUpload: function(files) {
+  validateUploadedFiles: function(files) {
     if (!files || files.length === 0) { return false; }
+
     // can only upload one file at a time
     if (files.length > 1) {
       bootbox.alert(I18n.t('post.errors.too_many_uploads'));
       return false;
     }
+
     var upload = files[0];
-    // ensures that new users can upload image
-    if (Discourse.User.current('trust_level') === 0 && Discourse.SiteSettings.newuser_max_images === 0) {
-      bootbox.alert(I18n.t('post.errors.upload_not_allowed_for_new_user'));
-      return false;
-    }
-    // if the image was pasted, sets its name to a default one
+
+    // CHROME ONLY: if the image was pasted, sets its name to a default one
     if (upload instanceof Blob && !(upload instanceof File) && upload.type === "image/png") { upload.name = "blob.png"; }
+
+    return Discourse.Utilities.validateUploadedFile(upload, Discourse.Utilities.isAnImage(upload.name) ? 'image' : 'attachment');
+  },
+
+  /**
+    Validate a file to be uploaded
+
+    @method validateUploadedFile
+    @param {File} file The file to be uploaded
+    @param {string} type The type of the file
+  **/
+  validateUploadedFile: function(file, type) {
     // check that the uploaded file is authorized
-    if (!Discourse.Utilities.isAuthorizedUpload(upload)) {
-      var extensions = Discourse.SiteSettings.authorized_extensions.replace(/\|/g, ", ");
+    if (!Discourse.Utilities.isAuthorizedUpload(file)) {
+      var extensions = Discourse.Utilities.authorizedExtensions();
       bootbox.alert(I18n.t('post.errors.upload_not_authorized', { authorized_extensions: extensions }));
       return false;
     }
-    // check file size
-    var fileSizeKB = upload.size / 1024;
-    var maxSizeKB = Discourse.Utilities.maxUploadSizeInKB(upload.name);
-    if (fileSizeKB > maxSizeKB) {
-      bootbox.alert(I18n.t('post.errors.upload_too_large', { max_size_kb: maxSizeKB }));
+
+    // ensures that new users can upload a file
+    if (Discourse.User.currentProp('trust_level') === 0 && Discourse.SiteSettings['newuser_max_' + type + 's'] === 0) {
+      bootbox.alert(I18n.t('post.errors.' + type + '_upload_not_allowed_for_new_user'));
       return false;
     }
+
+    // check file size
+    var fileSizeKB = file.size / 1024;
+    var maxSizeKB = Discourse.SiteSettings['max_' + type + '_size_kb'];
+    if (fileSizeKB > maxSizeKB) {
+      bootbox.alert(I18n.t('post.errors.' + type + '_too_large', { max_size_kb: maxSizeKB }));
+      return false;
+    }
+
     // everything went fine
     return true;
   },
@@ -228,17 +252,20 @@ Discourse.Utilities = {
     @param {String} path The path
   **/
   isAnImage: function(path) {
-    return path && path.match(/\.(png|jpg|jpeg|gif|bmp|tif|tiff)$/i);
+    return Discourse.Utilities.IS_AN_IMAGE_REGEXP.test(path);
   },
 
   /**
-    Retrieve max upload size in KB depending on the file is an image or not
+    Determines whether we allow attachments or not
 
-    @method maxUploadSizeInKB
-    @param {String} path The path
+    @method allowsAttachments
   **/
-  maxUploadSizeInKB: function(path) {
-    return Discourse.Utilities.isAnImage(path) ? Discourse.SiteSettings.max_image_size_kb : Discourse.SiteSettings.max_attachment_size_kb;
+  allowsAttachments: function() {
+    return _.difference(Discourse.SiteSettings.authorized_extensions.split("|"), Discourse.Utilities.IMAGE_EXTENSIONS).length > 0;
+  },
+
+  authorizedExtensions: function() {
+    return Discourse.SiteSettings.authorized_extensions.replace(/\|/g, ", ");
   }
 
 };

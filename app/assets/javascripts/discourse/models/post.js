@@ -8,6 +8,10 @@
 **/
 Discourse.Post = Discourse.Model.extend({
 
+  init: function() {
+    this.set('replyHistory', []);
+  },
+
   shareUrl: function() {
     var user = Discourse.User.current();
     var userSuffix = user ? '?u=' + user.get('username_lower') : '';
@@ -25,14 +29,15 @@ Discourse.Post = Discourse.Model.extend({
   // Posts can show up as deleted if the topic is deleted
   deletedViaTopic: Em.computed.and('firstPost', 'topic.deleted_at'),
   deleted: Em.computed.or('deleted_at', 'deletedViaTopic'),
+  notDeleted: Em.computed.not('deleted'),
 
   postDeletedBy: function() {
-    if (this.get('firstPost')) { return this.get('topic.deleted_by') }
+    if (this.get('firstPost')) { return this.get('topic.deleted_by'); }
     return this.get('deleted_by');
   }.property('firstPost', 'deleted_by', 'topic.deleted_by'),
 
   postDeletedAt: function() {
-    if (this.get('firstPost')) { return this.get('topic.deleted_at') }
+    if (this.get('firstPost')) { return this.get('topic.deleted_at'); }
     return this.get('deleted_at');
   }.property('firstPost', 'deleted_at', 'topic.deleted_at'),
 
@@ -120,7 +125,7 @@ Discourse.Post = Discourse.Model.extend({
 
   flagsAvailable: function() {
     var post = this,
-        flags = Discourse.Site.instance().get('flagTypes').filter(function(item) {
+        flags = Discourse.Site.currentProp('flagTypes').filter(function(item) {
       return post.get("actionByName." + (item.get('name_key')) + ".can_act");
     });
     return flags;
@@ -150,7 +155,7 @@ Discourse.Post = Discourse.Model.extend({
       }).then(function(result) {
         // If we received a category update, update it
         self.set('version', result.post.version);
-        if (result.category) Discourse.Site.instance().updateCategory(result.category);
+        if (result.category) Discourse.Site.current().updateCategory(result.category);
         if (complete) complete(Discourse.Post.create(result.post));
       }, function(result) {
         // Post failed to update
@@ -199,13 +204,23 @@ Discourse.Post = Discourse.Model.extend({
     @method recover
   **/
   recover: function() {
-    this.setProperties({
+    var post = this;
+    post.setProperties({
       deleted_at: null,
       deleted_by: null,
-      can_delete: true
+      user_deleted: false,
+      can_delete: false
     });
 
-    return Discourse.ajax("/posts/" + (this.get('id')) + "/recover", { type: 'PUT', cache: false });
+    return Discourse.ajax("/posts/" + (this.get('id')) + "/recover", { type: 'PUT', cache: false }).then(function(data){
+      post.setProperties({
+        cooked: data.cooked,
+        raw: data.raw,
+        user_deleted: false,
+        can_delete: true,
+        version: data.version
+      });
+    });
   },
 
   /**
@@ -224,9 +239,12 @@ Discourse.Post = Discourse.Model.extend({
       });
     } else {
       this.setProperties({
-        cooked: Discourse.Markdown.cook(I18n.t("post.deleted_by_author")),
+        cooked: Discourse.Markdown.cook(I18n.t("post.deleted_by_author", {count: Discourse.SiteSettings.delete_removed_posts_after})),
         can_delete: false,
-        version: this.get('version') + 1
+        version: this.get('version') + 1,
+        can_recover: true,
+        can_edit: false,
+        user_deleted: true
       });
     }
 
@@ -277,7 +295,7 @@ Discourse.Post = Discourse.Model.extend({
       _.each(obj.actions_summary,function(a) {
         var actionSummary;
         a.post = post;
-        a.actionType = Discourse.Site.instance().postActionTypeById(a.id);
+        a.actionType = Discourse.Site.current().postActionTypeById(a.id);
         actionSummary = Discourse.ActionSummary.create(a);
         post.get('actions_summary').pushObject(actionSummary);
         lookup.set(a.actionType.get('name_key'), actionSummary);
@@ -336,7 +354,7 @@ Discourse.Post.reopenClass({
       var lookup = Em.Object.create();
       result.actions_summary = result.actions_summary.map(function(a) {
         a.post = result;
-        a.actionType = Discourse.Site.instance().postActionTypeById(a.id);
+        a.actionType = Discourse.Site.current().postActionTypeById(a.id);
         var actionSummary = Discourse.ActionSummary.create(a);
         lookup.set(a.actionType.get('name_key'), actionSummary);
         return actionSummary;
@@ -365,12 +383,6 @@ Discourse.Post.reopenClass({
 
   loadVersion: function(postId, version, callback) {
     return Discourse.ajax("/posts/" + postId + ".json?version=" + version).then(function(result) {
-      return Discourse.Post.create(result);
-    });
-  },
-
-  loadByPostNumber: function(topicId, postId) {
-    return Discourse.ajax("/posts/by_number/" + topicId + "/" + postId + ".json").then(function (result) {
       return Discourse.Post.create(result);
     });
   },
