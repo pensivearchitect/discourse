@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: dgsforum
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: aws
+    url: ${name}.${target-base}
+    mem: 1G
+    instances: 1
+    services:
+      discourse-development:
+        type: postgresql

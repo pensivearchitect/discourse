@@ -59,9 +59,11 @@ gem 'active_model_serializers'
 
 # we had issues with latest, stick to the rev till we figure this out
 # PR that makes it all hang together welcome
+gem 'compass'
+gem 'zurb-foundation'
 gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
-gem 'handlebars-source', '1.0.12'
+gem 'ember-source'
+gem 'handlebars-source'
 gem 'barber'
 
 gem 'vestal_versions', git: 'https://github.com/zhangyuan/vestal_versions'
@@ -101,7 +103,12 @@ gem 'omniauth-browserid', git: 'https://github.com/callahad/omniauth-browserid.g
 gem 'omniauth-cas'
 gem 'oj'
 gem 'pg'
-gem 'rake'
+# we had pain with the 3.2.13 upgrade so monkey patch the security fix
+# next time around we hope to upgrade
+gem 'rails', '3.2.12'
+gem 'rake', '10.0.4'
+gem 'redis'
+gem 'redis-rails'
 
 
 gem 'rest-client'
@@ -111,6 +118,8 @@ gem 'sass'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sinatra', require: nil
+gem 'slim' # required for sidekiq-web
+gem 'strong_parameters' # remove when we upgrade to Rails 4
 gem 'slim'  # required for sidekiq-web
 gem 'therubyracer', require: 'v8'
 gem 'thin', require: false
@@ -124,7 +133,7 @@ gem 'discourse_plugin', path: 'vendor/gems/discourse_plugin'
 # Polls and Tasks have been disabled for launch, we need think all sorts of stuff through before adding them back in
 #   biggest concern is core support for custom sort orders, but there is also styling that just gets mishmashed into our core theme.
 # gem 'discourse_poll', path: 'vendor/gems/discourse_poll'
-gem 'discourse_emoji', path: 'vendor/gems/discourse_emoji'
+# gem 'discourse_emoji', path: 'vendor/gems/discourse_emoji'
 # gem 'discourse_task', path: 'vendor/gems/discourse_task'
 
 # Gems used only for assets and not required
@@ -206,4 +215,6 @@ group :profile do
   #
   # if you need to profile, uncomment out this line
   # gem 'rack-perftools_profiler', require: 'rack/perftools_profiler', platform: :mri_19
+  gem 'capistrano'
+  gem 'capistrano-rbenv', require: nil
 end

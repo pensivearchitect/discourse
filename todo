@@ -1,0 +1,5 @@
+#About this site -- Stack
+
+This site is running on top of Discourse, the forum software by Jeff Atwood, and is load balanced by nginx. It currently runs on top of Ubuntu 12.04 Precise Pangolin LTS using ruby 2.0.0-p1
+
+Discourse is a Ruby on Rails Application

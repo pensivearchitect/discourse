@@ -1,0 +1,5 @@
+Ember.TEMPLATES.application = Ember.Handlebars.template(function (e, t, s, n, r) {
+    this.compilerInfo = [3, ">= 1.0.0-rc.4"], s = s || Ember.Handlebars.helpers, r = r || {};
+    var a, i, o, u, h = "", c = s.helperMissing, l = this.escapeExpression;
+    return i = {}, o = {}, u = {hash: {}, contexts: [t], types: ["ID"], hashContexts: o, hashTypes: i, data: r}, r.buffer.push(l((a = s.render, a ? a.call(t, "header", u) : c.call(t, "render", "header", u)))), r.buffer.push("\n\n<div id='main-outlet'>\n  "), i = {}, o = {}, r.buffer.push(l(s._triageMustache.call(t, "outlet", {hash: {}, contexts: [t], types: ["ID"], hashContexts: o, hashTypes: i, data: r}))), r.buffer.push("\n</div>\n\n"), i = {}, o = {}, u = {hash: {}, contexts: [t], types: ["ID"], hashContexts: o, hashTypes: i, data: r}, r.buffer.push(l((a = s.render, a ? a.call(t, "modal", u) : c.call(t, "render", "modal", u)))), r.buffer.push("\n"), h
+});
